@@ -33,4 +33,3 @@ to be engage in Microprocessor 2. Some of the labs will be new and other will be
 * [***Erick Baca***](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** 
   * 5G Engineer
-
