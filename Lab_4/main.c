@@ -57,55 +57,31 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
-/*Global semaphores*/
+
 SemaphoreHandle_t xSemaphore = NULL;
-SemaphoreHandle_t xSemaphore2 = NULL;
-/*Task 1 will run every 2 seconds*/
-void task1(void *pvParameter){
-    while(1) {     
-        vTaskDelay(2000 / portTICK_RATE_MS); //2 second delay 
-        printf("Task 1 running\n"); //display message
-        xSemaphoreGive( xSemaphore ); //set semaphore flag  
+
+void task1(void *pvParameter)
+{
+    while (1)
+    {
+        printf("Task 1\n");
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
-/*Task 2 will run every  second*/
-void task2(void *pvParameter){
-    while(1){
-        vTaskDelay(1000 / portTICK_RATE_MS); // 1 second delay
-        printf("\tTask 2 running\n"); //display message 
-        xSemaphoreGive( xSemaphore ); //set semaphore flag
+void task2(void *pvParameter)
+{
+    while (1)
+    {
+        printf("Task 2\n");
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
     }
 }
 
-/*Task 3 will run once Task 1 or Task 2 finishes it*/
-void task3(void *pvParameter){
-   while(1){
-       /*Wait xSemahpore to be avaiable*/
-       if(xSemaphoreTake(xSemaphore, portMAX_DELAY) == pdTRUE){
-            printf("\t\tTask 3 running\n"); //display message 
-            xSemaphoreGive(xSemaphore2); //give back Task1|Task2 semaphore    
-       }
-   }
-}
-/*Task 4 will run every time Task 3 runs*/
-void task4(void *pvParameter){
-   while(1){
-       /*Wait xSemahpore to be avaiable*/
-       if(xSemaphoreTake(xSemaphore2, portMAX_DELAY) == pdTRUE){
-            printf("\t\t\tTask 4 running\n"); //display message 
-       }
-   }
-}
-void app_main(){
-    /*Intialize global semaphores*/
+void app_main()
+{
     xSemaphore = xSemaphoreCreateBinary();
-    xSemaphore2 = xSemaphoreCreateBinary();
-    /*
-    Create Task 1-4, Task 1-2 will have highest priority followed
-    by Task 3 and 4 respectively. 
-    */
-    xTaskCreate(&task1,"task1",4096,(void * const)NULL,5,NULL);
-    xTaskCreate(&task2,"task2",4096,(void * const)NULL,5,NULL);
-    xTaskCreate(&task3,"task3",4096,(void * const)NULL,6,NULL);
-    xTaskCreate(&task4,"task4",4096,(void * const)NULL,7,NULL);
+    xTaskCreate(&task1, "task1", 4096, NULL, 5, NULL);
+    xTaskCreate(&task2, "task2", 4096, NULL, 5, NULL);
+    xTaskCreate(&task3, "task3", 4096, NULL, 6, NULL);
+    xTaskCreate(&task4, "task4", 4096, NULL, 7, NULL);
 }
