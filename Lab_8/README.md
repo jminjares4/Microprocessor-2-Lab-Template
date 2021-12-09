@@ -36,6 +36,7 @@
                                          | O                   O |
                                          +-----------------------+
 ~~~
+
 ### **Example 1**
 Here is an example of a single DAC channel doing a square wave.
 ~~~c
