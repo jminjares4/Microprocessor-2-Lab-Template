@@ -22,6 +22,7 @@ to be engage in Microprocessor 2. Some of the labs will be new and other will be
 - [Lab 8 DAC Peripheral](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8)
 
 ## **In progress**
+### Note: Maybe we will maybe we won't
 - [Lab 9 WiFi and Internet of Things (IOT)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/)
 - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/)
 - [Lab 11 WiFi and IOT: ADC MOnitor](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/)
@@ -31,4 +32,4 @@ to be engage in Microprocessor 2. Some of the labs will be new and other will be
   * Embedded Software Engineer
 * [***Erick Baca***](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** 
-  * 5G Engineer
+  * 5G Security Engineer
