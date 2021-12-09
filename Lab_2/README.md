@@ -1,6 +1,6 @@
-# Lab 2
-## **INTERRUPTS**
-### **Goals**
+# **`LAB 2 Interrupts`**
+
+### **Objective**
 ***
 * Given the program template shown in listing 1, edit it so that the code so that you replicate the functions of a microwave.
 * The code is expected to have a total of 6 buttons which will simulate the functions of the microwave. 

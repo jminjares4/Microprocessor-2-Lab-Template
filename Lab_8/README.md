@@ -1,6 +1,6 @@
-# Lab 8
-## **DAC Peripheral**
-### **Goals**
+# **`LAB 7 DAC Peripheral`**
+
+### **Objective**
 *** 
 * The objective for this lab is to use and understand the DAC driver of espressif. The ESP32 DAC has a 8-bit resolution therefore the output ranges from 0-255 bits or 0.0-3.3V. Knowing this, for this lab use GPIO 25 to generate a sine wave and in GPIO 26 generate a triangle wave. 
 

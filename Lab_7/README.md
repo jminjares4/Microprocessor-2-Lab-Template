@@ -1,6 +1,6 @@
-# Lab 7
-## **Peripherals and Queues:ADC and PWM (LEDC)**
-### **Goals**
+# **`LAB 7 Peripherals and Queues:ADC and PWM (LEDC)`**
+
+### **Objective**
 *** 
 * The objective for this lab is to understand how use the LEDC and ADC API's of espressif. In this lab, create 2 task: one that will initiallize the peripherals and perform ADC readings every 100 millisecond. The ADC input reading should come from a 10K potentiometer and store its information into a queue. For the second task, output a PWM signal which gets it's duty cycle updated based on the queue value send from the ADC task.
 
