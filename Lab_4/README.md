@@ -213,21 +213,11 @@ Lastly, `xSemaphoreTake` is the opposite of the prior function. Therefore, it wi
  xSemaphoreTake( SemaphoreHandle_t xSemaphore, TickType_t xTicksToWait );
 ~~~
 
-
 ### **Additional Links**
 * [FreeRTOS Semphores](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html)
 * [FreeRTOS Espressif Documenation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html)
 * [FreeRTOS Documenation](https://www.freertos.org/a00125.html)
-
 ---
-### TODO
-- [x] Create README.md
-- [x] Create Objective
-- [x] Explained undergraduate and graduate bonuses
-- [x] Start helpful C function calls
-- [x] Provide guideline of the lab and how to use API
-- [ ] Receive feeback 
-
 ### **Author**
 * [`Jesus Minjares`](https://github.com/jminjares4)
   * Master of Science in Computer Engineering

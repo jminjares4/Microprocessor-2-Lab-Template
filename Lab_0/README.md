@@ -202,14 +202,6 @@ void vTaskDelay(const TickType_t xTicksToDelay);
 ### **Additional Links**
 * [ESPRESSIF GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 ---
-### TODO
-- [x] Create README.md
-- [x] Create Objective
-- [x] Explained undergraduate and graduate bonuses
-- [x] Start helpful C function calls
-- [x] Provide guideline of the lab and how to use API
-- [ ] Receive feeback 
-
 ### **Author** 
 * [`Jesus Minjares`](https://github.com/jminjares4)
   * Master of Science in Computer Engineering
