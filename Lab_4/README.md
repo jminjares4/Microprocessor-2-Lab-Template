@@ -1,4 +1,4 @@
-# **`LAB 4 FreeRTOS, Tasks and Semaphores`**
+# **`LAB 4 FreeRTOS: Semaphores`**
 
 ## **Objective:**
 ***
