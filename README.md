@@ -1,4 +1,4 @@
-# **Microprocessor-2-Lab-Template**
+# **Microprocessor-2-Lab-Template :zap:**
 ## Objective
 * The objective of this labs to to provide a more interactive assignments for students
 to be engage in Microprocessor 2. Some of the labs will be new and other will be from previous semester but with a better documentation.
