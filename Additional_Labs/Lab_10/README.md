@@ -1,4 +1,4 @@
-# **`LAB 10 WiFi and Internet of Things (IOT): Servo Motor Control` :zap:**
+# **LAB 10 WiFi and Internet of Things (IOT): Servo Motor Control :zap:**
 
 ### **Objective**
 *** 

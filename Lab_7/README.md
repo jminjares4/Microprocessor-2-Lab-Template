@@ -1,4 +1,4 @@
-# **`LAB 7 Peripherals and Queues:ADC and PWM (LEDC)` :zap:**
+# **LAB 7 Peripherals and Queues:ADC and PWM (LEDC) :zap:**
 
 ### **Objective**
 *** 

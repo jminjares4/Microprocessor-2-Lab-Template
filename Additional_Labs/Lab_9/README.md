@@ -1,4 +1,4 @@
-# **`LAB 9 WiFi and Internet of Things (IOT)` :zap:**
+# **LAB 9 WiFi and Internet of Things (IOT) :zap:**
 
 ### **Objective**
 *** 

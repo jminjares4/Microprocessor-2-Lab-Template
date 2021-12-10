@@ -1,4 +1,4 @@
-# **`LAB 3 Introduction to FreeRTOS` :zap:**
+# **LAB 3 Introduction to FreeRTOS :zap:**
 
 ## **Objective:**
 ---

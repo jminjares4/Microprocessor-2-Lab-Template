@@ -1,4 +1,4 @@
-# **`LAB 6 GPIO, Interrupts, and Queues` :zap:**
+# **LAB 6 GPIO, Interrupts, and Queues :zap:**
 
 ## **Objective:**
 ***

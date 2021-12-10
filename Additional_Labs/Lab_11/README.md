@@ -1,4 +1,4 @@
-# **`LAB 11 WiFi and Internet of Things (IOT): ADC MOnitor` :zap:**
+# **LAB 11 WiFi and Internet of Things (IOT): ADC MOnitor :zap:**
 
 ### **Goals**
 

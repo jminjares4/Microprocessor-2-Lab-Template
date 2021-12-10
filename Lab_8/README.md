@@ -1,4 +1,4 @@
-# **`LAB 8 DAC Peripheral` :zap:**
+# **LAB 8 DAC Peripheral :zap:**
 
 ### **Objective**
 *** 
