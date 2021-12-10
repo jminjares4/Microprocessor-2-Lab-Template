@@ -1,4 +1,4 @@
-# *Additional Labs*
+# *Additional Labs :zap:*
 
 These are additional labs that may or may not be used in the course. The following labs consist of using `ESP22 IOT` interface with an *`http server`*.
 ## **Labs**

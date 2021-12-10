@@ -1,4 +1,4 @@
-# **`LAB 4 FreeRTOS: Semaphores`**
+# **`LAB 4 FreeRTOS: Semaphores` :zap:**
 
 ## **Objective:**
 ***

@@ -1,4 +1,4 @@
-# **`LAB 5 FreeRTOS: Queue`**
+# **`LAB 5 FreeRTOS: Queue` :zap:**
 
 ## **Objective:**
 

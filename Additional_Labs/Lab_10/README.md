@@ -1,6 +1,6 @@
-# Lab 06
-## **WIFI and IOT: Servo Motor Control**
-### **Goals**
+# **`LAB 10 WiFi and Internet of Things (IOT): Servo Motor Control` :zap:**
+
+### **Objective**
 *** 
 * Using the provided code, create a soft access point. Use your last name as the ssid and your ID as password
 * Initialize a pwm channel to be able to control a servo motor from a website

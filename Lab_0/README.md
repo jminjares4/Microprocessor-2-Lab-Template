@@ -1,4 +1,4 @@
-# **`LAB 0 LED Lightshow`**
+# **`LAB 0 LED Lightshow` :zap:**
 ## **Objective:**
 ---
 * Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and also `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then turn off the most significant bit to lowest bit. While `led chaser` as the name states will haven a single led iterating from the lowest to most significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
