@@ -1,7 +1,6 @@
 # **Microprocessor-2-Lab-Template :zap:**
 ## **Objective**
-The objective of this labs to to provide a more interactive assignments for students
-to be engage in Microprocessor 2. Some of the labs will be new and other will be from previous semester but with a better documentation.
+The objective of these labs is to provide more interactive tasks for students to be engaged in Microprocessor 2. Some labs will be new, and others will be from the previous semester but with better documentation.
 ## **Setup**
 * The students must have an `ESP32`
 * Install either `Visual Studio Code` or `Eclipse` 
