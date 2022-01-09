@@ -33,7 +33,8 @@ to be engage in Microprocessor 2. Some of the labs will be new and other will be
 
 ## **License**
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
+## **Latest Version**
+[![Release](https://img.shields.io/github/v/release/jminjares4/Microprocessor-2-Lab-Template?include_prereleases)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/releases)
 ### Authors
 * [***Jesus Minjares***](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
