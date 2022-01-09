@@ -219,7 +219,7 @@ Lastly, `xSemaphoreTake` is the opposite of the prior function. Therefore, it wi
 * [FreeRTOS Documenation](https://www.freertos.org/a00125.html)
 ---
 ### **Author**
-* [`Jesus Minjares`](https://github.com/jminjares4)
+* [***Jesus Minjares***](https://github.com/jminjares4)
   * Master of Science in Computer Engineering
-* [`Erick Baca`](https://github.com/eabaca2419)
+* [***Erick Baca***](https://github.com/eabaca2419)
   * Master of Science in Computer Engineering

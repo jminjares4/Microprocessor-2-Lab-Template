@@ -235,7 +235,7 @@ Lastly, there is an very important function was is need to fulfill this lab. We 
 * [FreeRTOS Documenation](https://www.freertos.org/a00125.html)
 ---
 ### **Author**
-* [`Jesus Minjares`](https://github.com/jminjares4)
+* [***Jesus Minjares***](https://github.com/jminjares4)
   * Master of Science in Computer Engineering
-* [`Erick Baca`](https://github.com/eabaca2419)
+* [***Erick Baca***](https://github.com/eabaca2419)
   * Master of Science in Computer Engineering

@@ -271,7 +271,7 @@ Finally the last important function while using the LEDC API is a way to pause t
 * [Espressif LEDC Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html)
 ---
 ### **Author**
-* [`Jesus Minjares`](https://github.com/jminjares4)
+* [***Jesus Minjares***](https://github.com/jminjares4)
   * Master of Science in Computer Engineering
-* [`Erick Baca`](https://github.com/eabaca2419)
+* [***Erick Baca***](https://github.com/eabaca2419)
   * Master of Science in Computer Engineering

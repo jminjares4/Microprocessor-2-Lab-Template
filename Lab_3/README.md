@@ -136,7 +136,7 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 ---
 ### **Author**
-* [`Jesus Minjares`](https://github.com/jminjares4)
+* [***Jesus Minjares***](https://github.com/jminjares4)
   * Master of Science in Computer Engineering
-* [`Erick Baca`](https://github.com/eabaca2419)
+* [***Erick Baca***](https://github.com/eabaca2419)
   * Master of Science in Computer Engineering
