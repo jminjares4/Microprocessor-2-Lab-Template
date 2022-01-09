@@ -11,8 +11,6 @@ to be engage in Microprocessor 2. Some of the labs will be new and other will be
 * Window 
   * Link to install ESP-IDF Windows Installer: [Window Installer](https://dl.espressif.com/dl/esp-idf/?idf=4.4)
 
-
-
 ## **Labs**
 - [Lab 0 Lightshow](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
 - [Lab 1 LED Controller with Inputs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_1)
