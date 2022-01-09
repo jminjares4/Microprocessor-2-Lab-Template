@@ -38,11 +38,8 @@ to be engage in Microprocessor 2. Some of the labs will be new and other will be
 
 ### Authors
 * [***Jesus Minjares***](https://github.com/jminjares4)
-  * **Master of Science in Computer Engineering**
-  * Embedded Software Engineer 
-  * Contact <br>
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesus-minjares-157a21195/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
+  * **Master of Science in Computer Engineering** <br>
+    [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesus-minjares-157a21195/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
 * [***Erick Baca***](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** 
-  * 5G Security Engineer
 
