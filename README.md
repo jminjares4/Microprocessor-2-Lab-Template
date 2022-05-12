@@ -14,6 +14,15 @@ The objective of these labs is to provide more interactive tasks for students to
 * Window 
   * Link to install ESP-IDF Windows Installer: [Window Installer](https://dl.espressif.com/dl/esp-idf/?idf=4.4)
 
+## **How to install ESP32 Espressif**
+
+```bash
+git submodule update --init --recursive
+cd ESP32_Installation
+chmod +x esp32_installation.sh
+./esp32_installation.sh
+```
+
 ## **Labs**
 - [Lab 0 Lightshow](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
 - [Lab 1 LED Controller with Inputs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_1)
