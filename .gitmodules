@@ -1,3 +1,3 @@
-[submodule "ESP32 Installation"]
+[submodule "ESP32_Installation"]
 	path = ESP32_Installation
 	url = https://github.com/jminjares4/ESP32_Installation
