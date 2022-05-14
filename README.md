@@ -5,8 +5,9 @@
 # **Microprocessor-2-Lab-Template :zap:**
 ## **Objective**
 The objective of these labs is to provide more interactive tasks for students to be engaged in Microprocessor 2. Some labs will be new, and others will be from the previous semester but with better documentation.
+
 ## **Setup**
-* The students must have an `ESP32`
+* Students must have an `ESP32`
 * Install either `Visual Studio Code` or `Eclipse` 
 ## **Installation**
 * Window's Linux Subystem, MacOS, or Linux
@@ -52,4 +53,3 @@ git submodule update --init --recursive
 * [***Erick Baca***](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca-484bbb215/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
-
