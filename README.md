@@ -14,13 +14,10 @@ The objective of these labs is to provide more interactive tasks for students to
 * Window 
   * Link to install ESP-IDF Windows Installer: [Window Installer](https://dl.espressif.com/dl/esp-idf/?idf=4.4)
 
-## **How to install ESP32 Espressif**
+## **How to initialize ESP32 Installation submodule**
 
 ```bash
 git submodule update --init --recursive
-cd ESP32_Installation
-chmod +x esp32_installation.sh
-./esp32_installation.sh
 ```
 
 ## **Labs**
