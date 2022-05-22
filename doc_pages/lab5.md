@@ -1,4 +1,4 @@
-# LAB 5 FreeRTOS: Queue
+# Lab 5 FreeRTOS: Queue
 
 ## Objective:
 * Understand how to use the queues with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be using queues to send data among tasks. 
@@ -286,4 +286,5 @@ BaseType_t xQueueReceive(QueueHandle_txQueue, void *const pvBuffer, TickType_t x
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca-484bbb215/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
+@see [GitHub Lab 5](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5)
 

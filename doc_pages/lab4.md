@@ -1,4 +1,4 @@
-# LAB 4 FreeRTOS: Semaphores
+# Lab 4 FreeRTOS: Semaphores
 
 ## Objective:
 * Understand how to use the semaphore with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html). In this lab, the main focus will be using semaphores to sycnrhonize various tasks. 
@@ -224,4 +224,5 @@ Lastly, `xSemaphoreTake` is the opposite of the prior function. Therefore, it wi
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca-484bbb215/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
+@see [GitHub Lab 4](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_4)
 

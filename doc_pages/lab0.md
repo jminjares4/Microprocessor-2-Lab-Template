@@ -1,4 +1,4 @@
-# LAB 0 LED Lightshow
+# Lab 0 LED Lightshow
 
 ## Objective:
 * Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and also `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then turn off the most significant bit to lowest bit. While `led chaser` as the name states will haven a single led iterating from the lowest to most significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
@@ -210,4 +210,4 @@ void vTaskDelay(const TickType_t xTicksToDelay);
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca-484bbb215/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
-
+@see [GitHub Lab 0](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)

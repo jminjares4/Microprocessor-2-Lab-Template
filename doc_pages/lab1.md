@@ -1,4 +1,4 @@
-# LAB 1 LED Controller
+# Lab 1 LED Controller
 
 ## Objective:
 * Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additionals led sequence that the student developed which be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have complete from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
@@ -248,4 +248,4 @@ esp_err_t gpio_pulldown_en(gpio_num_t gpio_num);
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca-484bbb215/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
-
+@see [GitHub Lab 1](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_1)

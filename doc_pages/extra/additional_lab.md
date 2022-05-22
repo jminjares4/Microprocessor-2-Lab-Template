@@ -3,9 +3,11 @@
 These are additional labs that may or may not be used in the course. The following labs consist of using `ESP22 IOT` interface with an *`http server`*.
 
 ## Labs
-- [Lab 9 WiFi and Internet of Things (IOT)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_9)
-- [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10)
-- [Lab 11 WiFi and IOT: ADC MOnitor](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11)
+- [Lab 9 WiFi and Internet of Things (IOT)](lab9.md)
+- [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](lab10.md)
+- [Lab 11 WiFi and IOT: ADC MOnitor](lab11.md)
+
+@see [GitHub Additional Labs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs)
 
 ### Authors
 * [***Jesus Minjares***](https://github.com/jminjares4)

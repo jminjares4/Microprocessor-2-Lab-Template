@@ -6,7 +6,7 @@
   </a>
 </div>
 
-[![Doxygen Action](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/main.yml)[![pages-build-deployment](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/pages/pages-build-deployment)
+[![Doxygen Action](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/main.yml) [![pages-build-deployment](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/pages/pages-build-deployment)
 
 ## Objective
 The objective of these labs is to provide more interactive tasks for students to be engaged in Microprocessor 2. Some labs will be new, and others will be from the previous semester but with better documentation.
@@ -27,20 +27,23 @@ The objective of these labs is to provide more interactive tasks for students to
 git submodule update --init --recursive
 ```
 
+<!-- https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0 -->
 ## Labs
-- [Lab 0 Lightshow](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
-- [Lab 1 LED Controller with Inputs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_1)
-- [Lab 2 Microwave](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2)
-- [Lab 3 Introduction to FreeRTOS](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3) 
-- [Lab 4 FreeRTOS: Semaphores](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_4)
-- [Lab 5 FreeRTOS: Queue](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5)
-- [Lab 6 GPIO, Interrupts, and Queues](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_6)
-- [Lab 7 Peripheral and Queues: ADC and PWM (LEDC)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7)
-- [Lab 8 DAC Peripheral](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8)
-- [Additional Labs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs)
-  - [Lab 9 WiFi and Internet of Things (IOT)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_9)
-  - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10)
-  - [Lab 11 WiFi and Internet of Things (IOT): ADC MOnitor](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11)
+- [Lab 0 Lightshow](lab0.md)
+- [Lab 1 LED Controller with Inputs](lab1.md)
+- [Lab 2 Microwave](lab2.md)
+- [Lab 3 Introduction to FreeRTOS](lab3.md) 
+- [Lab 4 FreeRTOS: Semaphores](lab4.md)
+- [Lab 5 FreeRTOS: Queue](lab5.md)
+- [Lab 6 GPIO, Interrupts, and Queues](lab6.md)
+- [Lab 7 Peripheral and Queues: ADC and PWM (LEDC)](lab7.md)
+- [Lab 8 DAC Peripheral](lab8.md)
+- [Additional Labs](extra/additional_lab.md)
+  - [Lab 9 WiFi and Internet of Things (IOT)](extra/lab9.md)
+  - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](extra/lab10.md)
+  - [Lab 11 WiFi and Internet of Things (IOT): ADC MOnitor](extra/lab11.md)
+
+@see [GitHub Labs](https://github.com/jminjares4/Microprocessor-2-Lab-Template)
 
 ## Development
 |Microcontroller|Software|Enviroment|Operating System|

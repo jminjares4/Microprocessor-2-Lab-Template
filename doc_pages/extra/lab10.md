@@ -1,4 +1,4 @@
-# LAB 10 WiFi and Internet of Things (IOT): Servo Motor Control
+# Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control
 
 ### Objective
 * Using the provided code, create a soft access point. Use your last name as the ssid and your ID as password
@@ -164,3 +164,5 @@ void app_main()
     xTaskCreate(&http_server, "http_server", 2048, NULL, 5, NULL);
 }
 ~~~
+
+@see [GitHub Lab 10](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10)

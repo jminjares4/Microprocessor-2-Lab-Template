@@ -1,4 +1,4 @@
-# LAB 6 GPIO, Interrupts, and Queues
+# Lab 6 GPIO, Interrupts, and Queues
 
 ## Objective:
 * Understand how to use interrupt and send data through a queue with [`FreeRTOS Queues`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be sending data from a interrupt to a task.
@@ -241,4 +241,5 @@ Lastly, there is an very important function was is need to fulfill this lab. We 
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca-484bbb215/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
+@see [GitHub Lab 6](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_6)
 

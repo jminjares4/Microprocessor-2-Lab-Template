@@ -1,4 +1,4 @@
-# LAB 11 WiFi and Internet of Things (IOT): ADC Monitor
+# Lab 11 WiFi and Internet of Things (IOT): ADC Monitor
 
 ### Goals
 * Using the provided code, create a soft access point. Use your last name as the ssid and your ID as password.
@@ -149,5 +149,7 @@ void app_main()
     wifi_init_softap();
     xTaskCreate(&http_server, "http_server", 2048, NULL, 5, NULL);
 }
-
 ~~~
+
+
+@see [GitHub Lab 11](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11)
