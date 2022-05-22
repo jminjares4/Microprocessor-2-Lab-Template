@@ -6,7 +6,7 @@
 * The code is expected to have a total of 6 buttons which will simulate the functions of the microwave. 
   - The first and second button should control a counter that goes up or down. 
   - The next two buttons should act as a start or reset counter.
-  - The last 2 buttons are your inteerupts which simulates if the door open or closes. Since the LAb is a microwave the timer should stop in the event that the door open button is been pressed the timer should stop and cannnot start again until the close door button has been pressed
+  - The last 2 buttons are your inteerupts which simulates if the door open or closes. Since the lab is a microwave the timer should stop in the event that the door open button is been pressed the timer should stop and cannnot start again until the close door button has been pressed
 * Print the counter time as you add or subtract the total amount of time the microwave will run. Then when the timer start button is pressed the counter should display in the screen as it goes down every 500 ms.
 
 ### **Bonus**

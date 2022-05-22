@@ -2,7 +2,7 @@
 
 ## **Objective:**
 ***
-* Understand how to use interrupt and send data through a queue with ['FreeRTOS Queues`]((https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be sending data from a interrupt to a task.
+* Understand how to use interrupt and send data through a queue with ['FreeRTOS Queues`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be sending data from a interrupt to a task.
 
 * Create a program which uses port interrupts to trigger a task.
 * The port interrupts must be connected to external push buttons which will trigger the “print_task”.
@@ -183,7 +183,7 @@ typedef struct {
     gpio_int_type_t intr_type;      /*!< GPIO interrupt type                                  */
 } gpio_config_t;
 ~~~
-In order to fill in the structure `gpio_config_t`, each variable is refference to another structure. Inside the `uint64_t pin_bin_mask` it need a to bit shift the pin number that converts from a int to an unsigned long long by using `1ULL << BUTTON`. After tknowing the the next variables have different function structures. For the `gpio_mode_t mode`, use the listing below in order to set what your button will do ass well if you want to set it up as an output. If you are using the output mode just remember that in ordet o call an output you nned to use `GPIO.out = BIT#`.
+In order to fill in the structure `gpio_config_t`, each variable is refference to another structure. Inside the `uint64_t pin_bin_mask` it need a to bit shift the pin number that converts from a int to an unsigned long long by using `1ULL << BUTTON`. After tknowing the the next variables have different function structures. For the `gpio_mode_t mode`, use the listing below in order to set what your button will do ass well if you want to set it up as an output. If you are using the output mode just remember that in order to call an output you need to use `GPIO.out = BIT#`.
 ~~~c
 typedef enum {
     GPIO_MODE_DISABLE = GPIO_MODE_DEF_DISABLE,                                                         /*!< GPIO mode : disable input and output             */
