@@ -1,4 +1,4 @@
-# **LAB 2 Interrupts :zap:**
+# **Lab 2 Interrupts :zap:**
 
 ### **Objective**
 ***

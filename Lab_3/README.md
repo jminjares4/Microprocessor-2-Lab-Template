@@ -1,4 +1,4 @@
-# **LAB 3 Introduction to FreeRTOS :zap:**
+# **Lab 3 Introduction to FreeRTOS :zap:**
 
 ## **Objective:**
 ---
