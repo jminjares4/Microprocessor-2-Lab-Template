@@ -42,10 +42,10 @@ var NAVTREE =
         [ "Authors", "da/da7/md_doc_pages_extra_additional_lab.html#autotoc_md2", null ]
       ] ]
     ] ],
-    [ "LAB 10 WiFi and Internet of Things (IOT): Servo Motor Control", "d2/dec/md_doc_pages_extra_lab10.html", null ],
-    [ "LAB 11 WiFi and Internet of Things (IOT): ADC Monitor", "d8/df1/md_doc_pages_extra_lab11.html", null ],
-    [ "LAB 9 WiFi and Internet of Things (IOT)", "d2/d1c/md_doc_pages_extra_lab9.html", null ],
-    [ "LAB 0 LED Lightshow", "dd/d8f/md_doc_pages_lab0.html", [
+    [ "Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control", "d2/dec/md_doc_pages_extra_lab10.html", null ],
+    [ "Lab 11 WiFi and Internet of Things (IOT): ADC Monitor", "d8/df1/md_doc_pages_extra_lab11.html", null ],
+    [ "Lab 9 WiFi and Internet of Things (IOT)", "d2/d1c/md_doc_pages_extra_lab9.html", null ],
+    [ "Lab 0 LED Lightshow", "dd/d8f/md_doc_pages_lab0.html", [
       [ "Objective:", "dd/d8f/md_doc_pages_lab0.html#autotoc_md16", [
         [ "ESP32 Pinout", "dd/d8f/md_doc_pages_lab0.html#autotoc_md17", null ],
         [ "Example", "dd/d8f/md_doc_pages_lab0.html#autotoc_md18", null ],
@@ -56,7 +56,7 @@ var NAVTREE =
         [ "Authors", "dd/d8f/md_doc_pages_lab0.html#autotoc_md23", null ]
       ] ]
     ] ],
-    [ "LAB 1 LED Controller", "dd/d91/md_doc_pages_lab1.html", [
+    [ "Lab 1 LED Controller", "dd/d91/md_doc_pages_lab1.html", [
       [ "Objective:", "dd/d91/md_doc_pages_lab1.html#autotoc_md25", [
         [ "ESP32 Pinout", "dd/d91/md_doc_pages_lab1.html#autotoc_md26", null ],
         [ "Example", "dd/d91/md_doc_pages_lab1.html#autotoc_md27", null ],
@@ -68,7 +68,7 @@ var NAVTREE =
         [ "Authors", "dd/d91/md_doc_pages_lab1.html#autotoc_md33", null ]
       ] ]
     ] ],
-    [ "LAB 2 Interrupts", "de/d6a/md_doc_pages_lab2.html", [
+    [ "Lab 2 Interrupts", "de/d6a/md_doc_pages_lab2.html", [
       [ "C helpful functions", "de/d6a/md_doc_pages_lab2.html#autotoc_md41", [
         [ "Objective", "de/d6a/md_doc_pages_lab2.html#autotoc_md35", null ],
         [ "Bonus", "de/d6a/md_doc_pages_lab2.html#autotoc_md36", null ],
@@ -80,7 +80,7 @@ var NAVTREE =
         [ "Authors", "de/d6a/md_doc_pages_lab2.html#autotoc_md44", null ]
       ] ]
     ] ],
-    [ "LAB 3 Introduction to FreeRTOS", "d3/d14/md_doc_pages_lab3.html", [
+    [ "Lab 3 Introduction to FreeRTOS", "d3/d14/md_doc_pages_lab3.html", [
       [ "Objective:", "d3/d14/md_doc_pages_lab3.html#autotoc_md46", [
         [ "ESP32 Pinout", "d3/d14/md_doc_pages_lab3.html#autotoc_md47", null ],
         [ "Example", "d3/d14/md_doc_pages_lab3.html#autotoc_md48", null ],
@@ -91,7 +91,7 @@ var NAVTREE =
         [ "Authors", "d3/d14/md_doc_pages_lab3.html#autotoc_md52", null ]
       ] ]
     ] ],
-    [ "LAB 4 FreeRTOS: Semaphores", "da/d3e/md_doc_pages_lab4.html", [
+    [ "Lab 4 FreeRTOS: Semaphores", "da/d3e/md_doc_pages_lab4.html", [
       [ "Objective:", "da/d3e/md_doc_pages_lab4.html#autotoc_md54", [
         [ "ESP32 Pinout", "da/d3e/md_doc_pages_lab4.html#autotoc_md55", null ],
         [ "Example 1", "da/d3e/md_doc_pages_lab4.html#autotoc_md56", null ],
@@ -103,7 +103,7 @@ var NAVTREE =
         [ "Authors", "da/d3e/md_doc_pages_lab4.html#autotoc_md61", null ]
       ] ]
     ] ],
-    [ "LAB 5 FreeRTOS: Queue", "d1/d00/md_doc_pages_lab5.html", [
+    [ "Lab 5 FreeRTOS: Queue", "d1/d00/md_doc_pages_lab5.html", [
       [ "Objective:", "d1/d00/md_doc_pages_lab5.html#autotoc_md63", [
         [ "Bonus", "d1/d00/md_doc_pages_lab5.html#autotoc_md64", null ],
         [ "ESP32 Pinout", "d1/d00/md_doc_pages_lab5.html#autotoc_md65", null ],
@@ -117,7 +117,7 @@ var NAVTREE =
         [ "Authors", "d1/d00/md_doc_pages_lab5.html#autotoc_md72", null ]
       ] ]
     ] ],
-    [ "LAB 6 GPIO, Interrupts, and Queues", "d8/d2a/md_doc_pages_lab6.html", [
+    [ "Lab 6 GPIO, Interrupts, and Queues", "d8/d2a/md_doc_pages_lab6.html", [
       [ "Objective:", "d8/d2a/md_doc_pages_lab6.html#autotoc_md74", [
         [ "ESP32 Pinout", "d8/d2a/md_doc_pages_lab6.html#autotoc_md75", null ],
         [ "Example", "d8/d2a/md_doc_pages_lab6.html#autotoc_md76", null ],
@@ -129,7 +129,7 @@ var NAVTREE =
         [ "Authors", "d8/d2a/md_doc_pages_lab6.html#autotoc_md82", null ]
       ] ]
     ] ],
-    [ "LAB 7 Peripherals and Queues:ADC and PWM (LEDC)", "d0/d10/md_doc_pages_lab7.html", [
+    [ "Lab 7 Peripherals and Queues:ADC and PWM (LEDC)", "d0/d10/md_doc_pages_lab7.html", [
       [ "C helpful functions", "d0/d10/md_doc_pages_lab7.html#autotoc_md91", [
         [ "Objective", "d0/d10/md_doc_pages_lab7.html#autotoc_md84", null ],
         [ "Bonus", "d0/d10/md_doc_pages_lab7.html#autotoc_md85", null ],
@@ -141,7 +141,7 @@ var NAVTREE =
         [ "Authors", "d0/d10/md_doc_pages_lab7.html#autotoc_md93", null ]
       ] ]
     ] ],
-    [ "LAB 8 DAC Peripheral", "dc/df4/md_doc_pages_lab8.html", [
+    [ "Lab 8 DAC Peripheral", "dc/df4/md_doc_pages_lab8.html", [
       [ "C helpful functions", "dc/df4/md_doc_pages_lab8.html#autotoc_md100", [
         [ "Objective", "dc/df4/md_doc_pages_lab8.html#autotoc_md95", null ],
         [ "Bonus", "dc/df4/md_doc_pages_lab8.html#autotoc_md96", null ],
