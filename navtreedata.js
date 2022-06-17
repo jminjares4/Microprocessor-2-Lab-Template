@@ -152,6 +152,29 @@ var NAVTREE =
         [ "Authors", "dc/df4/md_doc_pages_lab8.html#autotoc_md102", null ]
       ] ]
     ] ],
+    [ "ESP32_Installation", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html", [
+      [ "Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md114", [
+        [ "Linux Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md115", null ],
+        [ "MacOS Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md116", null ]
+      ] ],
+      [ "Installation", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md117", [
+        [ "MacOS or Linux", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md118", [
+          [ "Install through bash script", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md119", null ],
+          [ "Install through python", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md120", null ]
+        ] ],
+        [ "Windows", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md121", null ]
+      ] ],
+      [ "ESP-IDF alias", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md122", [
+        [ "Author:", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md123", null ]
+      ] ]
+    ] ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ]
+      ] ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
