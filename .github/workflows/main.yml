@@ -19,10 +19,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: checkout code  
-      uses: actions/checkout@v3
-      with:
-        submodules: 'true'
-        token: ${{secrets.PAT_TOKEN}}
+      uses: actions/checkout@v2
+    - name: Checkout submodules
+      run: git submodule update --init --recursive
         
     - name: doxygen
       uses: mattnotmitt/doxygen-action@v1.1.0
