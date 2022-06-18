@@ -30,10 +30,11 @@ var NAVTREE =
       [ "Setup", "index.html#autotoc_md105", null ],
       [ "Installation", "index.html#autotoc_md106", null ],
       [ "How to initialize ESP32 Installation submodule", "index.html#autotoc_md107", null ],
-      [ "Labs", "index.html#autotoc_md108", null ],
-      [ "Development", "index.html#autotoc_md109", null ],
-      [ "License", "index.html#autotoc_md110", null ],
-      [ "Latest Version", "index.html#autotoc_md111", [
+      [ "Labs", "index.html#autotoc_md108", [
+        [ "Microprocessor 2 Source Code", "index.html#autotoc_md109", null ]
+      ] ],
+      [ "Development", "index.html#autotoc_md110", null ],
+      [ "License and Release", "index.html#autotoc_md111", [
         [ "Authors", "index.html#autotoc_md112", null ]
       ] ]
     ] ],
