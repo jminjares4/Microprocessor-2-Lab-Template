@@ -43,9 +43,6 @@ git submodule update --init --recursive
   - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](extra/lab10.md)
   - [Lab 11 WiFi and Internet of Things (IOT): ADC MOnitor](extra/lab11.md)
 
-### Microprocessor 2 Source Code
-The labs are maintained through GitHub, here is the [source code](https://github.com/jminjares4/Microprocessor-2-Lab-Template).
-
 ## Development
 |Microcontroller|Software|Enviroment|Operating System|
 | :---| :---| :---| :---|
