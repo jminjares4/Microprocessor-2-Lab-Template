@@ -1,0 +1,145 @@
+html {
+    /* primary theme color. This will affect the entire websites color scheme: links, arrows, labels, ... */
+    --primary-color: #FF8200;
+    --primary-dark-color: #335c80;
+    --primary-light-color: #70b1e9;
+
+    /* page base colors */
+    --page-background-color: white;
+    --page-foreground-color: #2f4153;
+    --page-secondary-foreground-color: #637485;
+
+    /* color for all separators on the website: hr, borders, ... */
+    --separator-color: #dedede;
+
+    /* border radius for all rounded components. Will affect many components, like dropdowns, memitems, codeblocks, ... */
+    --border-radius-large: 8px;
+    --border-radius-small: 4px;
+    --border-radius-medium: 6px;
+
+    /* default spacings. Most compontest reference these values for spacing, to provide uniform spacing on the page. */
+    --spacing-small: 5px;
+    --spacing-medium: 10px;
+    --spacing-large: 16px;
+
+    /* default box shadow used for raising an element above the normal content. Used in dropdowns, Searchresult, ... */
+    --box-shadow: 0 2px 8px 0 rgba(0,0,0,.075);
+
+    --odd-color: rgba(0,0,0,.028);
+
+    /* font-families. will affect all text on the website
+     * font-family: the normal font for text, headlines, menus
+     * font-family-monospace: used for preformatted text in memtitle, code, fragments
+     */
+    --font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    --font-family-monospace: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+
+    /* font sizes */
+    --page-font-size: 15.6px;
+    --navigation-font-size: 14.4px;
+    --code-font-size: 14px; /* affects code, fragment */
+    --title-font-size: 22px;
+
+    /* content text properties. These only affect the page content, not the navigation or any other ui elements */
+    --content-line-height: 27px;
+    /* The content is centered and constraint in it's width. To make the content fill the whole page, set the variable to auto.*/
+    --content-maxwidth: 1000px;
+
+    /* colors for various content boxes: @warning, @note, @deprecated @bug */
+    --warning-color: #f8d1cc;
+    --warning-color-dark: #b61825;
+    --warning-color-darker: #75070f;
+    --note-color: #faf3d8;
+    --note-color-dark: #f3a600;
+    --note-color-darker: #5f4204;
+    --todo-color: #e4f3ff;
+    --todo-color-dark: #1879C4;
+    --todo-color-darker: #274a5c;
+    --deprecated-color: #ecf0f3;
+    --deprecated-color-dark: #5b6269;
+    --deprecated-color-darker: #43454a;
+    --bug-color: #e4dafd;
+    --bug-color-dark: #5b2bdd;
+    --bug-color-darker: #2a0d72;
+    --invariant-color: #d8f1e3;
+    --invariant-color-dark: #44b86f;
+    --invariant-color-darker: #265532;
+
+    /* blockquote colors */
+    --blockquote-background: #f8f9fa;
+    --blockquote-foreground: #636568;
+
+    /* table colors */
+    --tablehead-background: #f1f1f1;
+    --tablehead-foreground: var(--page-foreground-color);
+
+    /* menu-display: block | none
+     * Visibility of the top navigation on screens >= 768px. On smaller screen the menu is always visible.
+     * `GENERATE_TREEVIEW` MUST be enabled!
+     */
+    --menu-display: block;
+
+    --menu-focus-foreground: var(--page-background-color);
+    --menu-focus-background: var(--primary-color);
+    --menu-selected-background: rgba(0,0,0,.05);
+
+
+    --header-background: var(--page-background-color);
+    --header-foreground: white;
+
+    /* searchbar colors */
+    --searchbar-background: var(--side-nav-background);
+    --searchbar-foreground: var(--page-foreground-color);
+
+    /* searchbar size
+     * (`searchbar-width` is only applied on screens >= 768px.
+     * on smaller screens the searchbar will always fill the entire screen width) */
+    --searchbar-height: 33px;
+    --searchbar-width: 210px;
+    --searchbar-border-radius: var(--searchbar-height);
+
+    /* code block colors */
+    --code-background: #f5f5f5;
+    --code-foreground: var(--page-foreground-color);
+
+    /* fragment colors */
+    --fragment-background: #F8F9FA;
+    --fragment-foreground: #37474F;
+    --fragment-keyword: #bb6bb2;
+    --fragment-keywordtype: #8258b3;
+    --fragment-keywordflow: #d67c3b;
+    --fragment-token: #438a59;
+    --fragment-comment: #969696;
+    --fragment-link: #5383d6;
+    --fragment-preprocessor: #46aaa5;
+    --fragment-linenumber-color: #797979;
+    --fragment-linenumber-background: #f4f4f5;
+    --fragment-linenumber-border: #e3e5e7;
+    --fragment-lineheight: 20px;
+
+    /* sidebar navigation (treeview) colors */
+    --side-nav-background:  #041E42;
+    --side-nav-foreground: white;
+    --side-nav-arrow-opacity: 0;
+    --side-nav-arrow-hover-opacity: 0.9;
+
+    --toc-background: white;
+    --toc-foreground: white;
+
+    /* height of an item in any tree / collapsable table */
+    --tree-item-height: 30px;
+
+    --memname-font-size: var(--code-font-size);
+    --memtitle-font-size: 18px;
+
+    --webkit-scrollbar-size: 7px;
+    --webkit-scrollbar-padding: 4px;
+    --webkit-scrollbar-color: var(--separator-color);
+}
+
+.github-corner svg {
+    fill: #041E42;
+    color: #FF8200;
+    width: 72px;
+    height: 72px;
+}
