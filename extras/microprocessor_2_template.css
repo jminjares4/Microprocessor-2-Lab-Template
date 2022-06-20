@@ -84,7 +84,7 @@ html {
     --menu-selected-background: rgba(0,0,0,.05);
 
 
-    --header-background: var(--page-background-color);
+    --header-background: #041E42;
     --header-foreground: white;
 
     /* searchbar colors */
@@ -123,8 +123,8 @@ html {
     --side-nav-arrow-opacity: 0;
     --side-nav-arrow-hover-opacity: 0.9;
 
-    --toc-background: white;
-    --toc-foreground: white;
+    --toc-background: var(--side-nav-background);
+    --toc-foreground: var(--side-nav-foreground);
 
     /* height of an item in any tree / collapsable table */
     --tree-item-height: 30px;
