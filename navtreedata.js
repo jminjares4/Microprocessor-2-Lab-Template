@@ -30,12 +30,10 @@ var NAVTREE =
       [ "Setup", "index.html#autotoc_md105", null ],
       [ "Installation", "index.html#autotoc_md106", null ],
       [ "How to initialize ESP32 Installation submodule", "index.html#autotoc_md107", null ],
-      [ "Labs", "index.html#autotoc_md108", [
-        [ "Microprocessor 2 Source Code", "index.html#autotoc_md109", null ]
-      ] ],
-      [ "Development", "index.html#autotoc_md110", null ],
-      [ "License and Release", "index.html#autotoc_md111", [
-        [ "Authors", "index.html#autotoc_md112", null ]
+      [ "Labs", "index.html#autotoc_md108", null ],
+      [ "Development", "index.html#autotoc_md109", null ],
+      [ "License and Release", "index.html#autotoc_md110", [
+        [ "Authors", "index.html#autotoc_md111", null ]
       ] ]
     ] ],
     [ "Additional Labs", "da/da7/md_doc_pages_extra_additional_lab.html", [
@@ -154,19 +152,19 @@ var NAVTREE =
       ] ]
     ] ],
     [ "ESP32_Installation", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html", [
-      [ "Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md114", [
-        [ "Linux Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md115", null ],
-        [ "MacOS Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md116", null ]
+      [ "Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md113", [
+        [ "Linux Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md114", null ],
+        [ "MacOS Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md115", null ]
       ] ],
-      [ "Installation", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md117", [
-        [ "MacOS or Linux", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md118", [
-          [ "Install through bash script", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md119", null ],
-          [ "Install through python", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md120", null ]
+      [ "Installation", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md116", [
+        [ "MacOS or Linux", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md117", [
+          [ "Install through bash script", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md118", null ],
+          [ "Install through python", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md119", null ]
         ] ],
-        [ "Windows", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md121", null ]
+        [ "Windows", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md120", null ]
       ] ],
-      [ "ESP-IDF alias", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md122", [
-        [ "Author:", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md123", null ]
+      [ "ESP-IDF alias", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md121", [
+        [ "Author:", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md122", null ]
       ] ]
     ] ],
     [ "Namespaces", "namespaces.html", [
