@@ -4,9 +4,14 @@
 
 # **Microprocessor-2-Lab-Template :zap:**
 
+<div align="center">
+
 [![Doxygen Action](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/main.yml)
 [![pages-build-deployment](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/pages/pages-build-deployment)
 [![GitHub Page](https://img.shields.io/badge/active-34c855.svg?style=flat&logo=github&logoColor=949da5&label=GitHub%20Page&labelColor=3f4851)](https://jminjares4.github.io/Microprocessor-2-Lab-Template)
+
+</div>
+
 
 ## **Objective**
 The objective of these labs is to provide more interactive tasks for students to be engaged in Microprocessor 2. Some labs will be new, and others will be from the previous semester but with better documentation.
