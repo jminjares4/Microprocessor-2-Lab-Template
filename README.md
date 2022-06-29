@@ -39,7 +39,7 @@ git submodule update --init --recursive
 - [Additional Labs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs)
   - [Lab 9 WiFi and Internet of Things (IOT)](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_9)
   - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10)
-  - [Lab 11 WiFi and Internet of Things (IOT): ADC MOnitor](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11)
+  - [Lab 11 WiFi and Internet of Things (IOT): ADC Monitor](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11)
 
 ## **Development**
 |Microcontroller|Software|Enviroment|Operating System|
