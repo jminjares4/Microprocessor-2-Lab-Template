@@ -151,34 +151,73 @@ var NAVTREE =
         [ "Authors", "dc/df4/md_doc_pages_lab8.html#autotoc_md102", null ]
       ] ]
     ] ],
-    [ "ESP32_Installation", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html", [
-      [ "Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md113", [
-        [ "Linux Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md114", null ],
-        [ "MacOS Dependencies", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md115", null ]
+    [ "Customization", "d2/d6b/md_third_party_doxygen_awesome_css_docs_customization.html", [
+      [ "CSS-Variables", "d2/d6b/md_third_party_doxygen_awesome_css_docs_customization.html#autotoc_md113", [
+        [ "Setup", "d2/d6b/md_third_party_doxygen_awesome_css_docs_customization.html#autotoc_md114", null ],
+        [ "Available variables", "d2/d6b/md_third_party_doxygen_awesome_css_docs_customization.html#autotoc_md115", null ]
       ] ],
-      [ "Installation", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md116", [
-        [ "MacOS or Linux", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md117", [
-          [ "Install through bash script", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md118", null ],
-          [ "Install through python", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md119", null ]
-        ] ],
-        [ "Windows", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md120", null ]
+      [ "Doxygen generator", "d2/d6b/md_third_party_doxygen_awesome_css_docs_customization.html#autotoc_md116", null ],
+      [ "Share your customizations", "d2/d6b/md_third_party_doxygen_awesome_css_docs_customization.html#autotoc_md117", null ]
+    ] ],
+    [ "Extensions", "d6/dce/md_third_party_doxygen_awesome_css_docs_extensions.html", [
+      [ "Dark Mode Toggle", "d6/dce/md_third_party_doxygen_awesome_css_docs_extensions.html#autotoc_md119", [
+        [ "Installation", "d6/dce/md_third_party_doxygen_awesome_css_docs_extensions.html#autotoc_md120", null ]
       ] ],
-      [ "ESP-IDF alias", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md121", [
-        [ "Author:", "d3/d19/md__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md122", null ]
+      [ "Fragment Copy Button", "d6/dce/md_third_party_doxygen_awesome_css_docs_extensions.html#autotoc_md121", [
+        [ "Installation", "d6/dce/md_third_party_doxygen_awesome_css_docs_extensions.html#autotoc_md122", null ]
+      ] ],
+      [ "Paragraph Linking", "d6/dce/md_third_party_doxygen_awesome_css_docs_extensions.html#autotoc_md123", [
+        [ "Installation", "d6/dce/md_third_party_doxygen_awesome_css_docs_extensions.html#autotoc_md124", null ]
       ] ]
     ] ],
+    [ "Tips & Tricks", "d9/da0/md_third_party_doxygen_awesome_css_docs_tricks.html", [
+      [ "Class Diagrams with Graphviz", "d9/da0/md_third_party_doxygen_awesome_css_docs_tricks.html#autotoc_md126", null ],
+      [ "Disable Dark Mode", "d9/da0/md_third_party_doxygen_awesome_css_docs_tricks.html#autotoc_md127", null ],
+      [ "Choosing Sidebar Width", "d9/da0/md_third_party_doxygen_awesome_css_docs_tricks.html#autotoc_md128", null ]
+    ] ],
+    [ "Doxygen Awesome", "d6/dbc/md_third_party_doxygen_awesome_css__r_e_a_d_m_e.html", [
+      [ "Motivation", "d6/dbc/md_third_party_doxygen_awesome_css__r_e_a_d_m_e.html#autotoc_md136", null ],
+      [ "Features", "d6/dbc/md_third_party_doxygen_awesome_css__r_e_a_d_m_e.html#autotoc_md137", null ],
+      [ "Examples", "d6/dbc/md_third_party_doxygen_awesome_css__r_e_a_d_m_e.html#autotoc_md138", null ],
+      [ "Installation", "d6/dbc/md_third_party_doxygen_awesome_css__r_e_a_d_m_e.html#autotoc_md139", null ],
+      [ "Browser support", "d6/dbc/md_third_party_doxygen_awesome_css__r_e_a_d_m_e.html#autotoc_md140", null ],
+      [ "Credits", "d6/dbc/md_third_party_doxygen_awesome_css__r_e_a_d_m_e.html#autotoc_md141", null ]
+    ] ],
+    [ "ESP32_Installation", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html", [
+      [ "Dependencies", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md143", [
+        [ "Linux Dependencies", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md144", null ],
+        [ "MacOS Dependencies", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md145", null ]
+      ] ],
+      [ "Installation", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md146", [
+        [ "MacOS or Linux", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md147", [
+          [ "Install through bash script", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md148", null ],
+          [ "Install through python", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md149", null ]
+        ] ],
+        [ "Windows", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md150", null ]
+      ] ],
+      [ "ESP-IDF alias", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md151", [
+        [ "Author:", "d3/d9e/md_third_party__e_s_p32__installation__r_e_a_d_m_e.html#autotoc_md152", null ]
+      ] ]
+    ] ],
+    [ "Bug List", "de/da5/bug.html", null ],
+    [ "Deprecated List", "da/d58/deprecated.html", null ],
+    [ "Todo List", "dd/da0/todo.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -196,7 +235,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"de/da5/bug.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

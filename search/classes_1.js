@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['undergaduate_5ft_0',['Undergaduate_t',['../dd/d65/struct_undergaduate__t.html',1,'']]]
+  ['graduate_5ft_0',['Graduate_t',['../d5/de6/struct_graduate__t.html',1,'']]]
 ];
