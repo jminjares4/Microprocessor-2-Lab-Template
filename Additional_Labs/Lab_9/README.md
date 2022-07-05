@@ -161,5 +161,6 @@ void app_main()
     nvs_flash_init();
     wifi_init_softap();
     xTaskCreate(&http_server, "http_server", 2048, NULL, 5, NULL);
+}
 
 ~~~

@@ -108,7 +108,7 @@ void exampleTask1(void *pvParameter){
     }
 }
 
-void exmapleTask2(void *pvParameter){
+void exampleTask2(void *pvParameter){
     while(1){
          //wait for atleast 100 second
          if(xSemaphoreTake(mySemaphore2, 100/portTICK_RATE_MS) == pdTRUE){ 

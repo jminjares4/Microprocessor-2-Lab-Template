@@ -305,7 +305,7 @@ void setUpPWM()
     // To drive a RC servo, one MCPWM generator is enough
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, SERVO_PULSE_GPIO); 
     mcpwm_config_t pwm_config = {
-        .frequency = 50, // frequency = 50H
+        .frequency = 50, // frequency = 50Hz
         .cmpr_a = 0,     // duty cycle of PWMxA = 0
         .counter_mode = MCPWM_UP_COUNTER,
         .duty_mode = MCPWM_DUTY_MODE_0,
