@@ -95,3 +95,4 @@ void app_main()
     setUpGPIO(); //set the GPIO and interrupts
     gpio_queue = xQueueCreate(10, sizeof(uint32_t)); //create a queue instance
     xTaskCreate(&print_task, "print_task", 2048, NULL, 10, NULL); //create a task
+}

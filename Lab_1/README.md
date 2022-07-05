@@ -207,7 +207,6 @@ void app_main(void)
         }else{
           vTaskDelay(100/portTICK_PERIOD_MS); //100ms to avoid WDT errors
         }
-    }
 }
 ~~~
 
