@@ -975,7 +975,7 @@ EXCLUDE                = Lab_0/README.md \
                          Additional_Labs/Lab_11/README.md \
                          Additional_Labs/README.md        \
                          README.md                        \
-                         doxygen-awesome-css              \
+                         third-party                      \ #ignore submodules! 
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
@@ -1268,10 +1268,10 @@ HTML_STYLESHEET        =
 # list). For an example see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  =  doxygen-awesome-css/doxygen-awesome.css \
+HTML_EXTRA_STYLESHEET  =  third-party/doxygen-awesome-css/doxygen-awesome.css \
                           extras/microprocessor_2_template.css \
-                          doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
-                          doxygen-awesome-css/doxygen-awesome-sidebar-only-darkmode-toggle.css
+                          third-party/doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
+                          third-party/doxygen-awesome-css/doxygen-awesome-sidebar-only-darkmode-toggle.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -1281,8 +1281,8 @@ HTML_EXTRA_STYLESHEET  =  doxygen-awesome-css/doxygen-awesome.css \
 # files will be copied as-is; there are no commands or markers available.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_FILES       =    doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js \
-                            doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js
+HTML_EXTRA_FILES       =    third-party/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js \
+                            third-party/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
