@@ -8,6 +8,5 @@ var searchData=
   ['setupgpio_5',['setUpGPIO',['../de/d45/_lab__6_2main_8c.html#aff73127d1ba9b5a022d9cecadde1da29',1,'main.c']]],
   ['setupinterrupts_6',['setUpInterrupts',['../dd/d25/_lab__2_2main_8c.html#abca9c49bc40ba3533a50c2e19c0cd354',1,'main.c']]],
   ['setuppwm_7',['setUpPWM',['../dd/d74/_additional___labs_2_lab__10_2main_8c.html#a898dc750081ac7a409cb1df73da352d2',1,'main.c']]],
-  ['staticfunc_8',['staticfunc',['../d4/d17/class_my_library_1_1_example.html#a8c3ea5ce33b9e1fada7ff46eab0956a7',1,'MyLibrary::Example']]],
-  ['sweep_9',['sweep',['../d0/d98/_lab__0_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c'],['../d6/db3/_lab__1_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c']]]
+  ['sweep_8',['sweep',['../d0/d98/_lab__0_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c'],['../d6/db3/_lab__1_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c']]]
 ];
