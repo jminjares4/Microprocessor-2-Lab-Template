@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('dd/d91/md_doc_pages_lab1.html','../../
   <div class="headertitle"><div class="title">Lab 1 LED Controller </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md25"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md22"></a>
 Objective:</h1>
 <ul>
 <li><p class="startli">Understand how to use the gpio driver library from <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a>. The lab will consist of using a <code>sweeper</code>, <code>led chaser</code> and any additionals led sequence that the student developed which be selected via an input. Students must have a total of three buttons. First button must start <code>sweeper</code> function which student must have complete from the previous lab. Next, the second button must start the <code>led chaser</code> function. Lastly, the third button must toggle the state of the onboard led.</p>
@@ -137,7 +137,7 @@ Objective:</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -163,7 +163,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md24"></a>
 Example</h2>
 <p >Here is an example of a single GPIO set as ouptut and an input button. The following code will turn the onboard LED as long as the button is press. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -202,7 +202,7 @@ Example</h2>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
 <div class="ttc" id="a_lab__0_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:54</div></div>
 <div class="ttc" id="a_lab__0_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:55</div></div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md25"></a>
 Lab Template</h2>
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment">    Author:     Jesus Minjares and Erick A. Baca</span></div>
@@ -311,22 +311,22 @@ Lab Template</h2>
 <div class="ttc" id="a_lab__1_2main_8c_html_aae9c48b1d0fc8a1ffa66d3e9acfd338a"><div class="ttname"><a href="../../d6/db3/_lab__1_2main_8c.html#aae9c48b1d0fc8a1ffa66d3e9acfd338a">light_show</a></div><div class="ttdeci">void light_show()</div><div class="ttdef"><b>Definition:</b> main.c:110</div></div>
 <div class="ttc" id="a_lab__1_2main_8c_html_af77b3872f6434d30845284ab3cbfd591"><div class="ttname"><a href="../../d6/db3/_lab__1_2main_8c.html#af77b3872f6434d30845284ab3cbfd591">setInputs</a></div><div class="ttdeci">void setInputs(uint8_t *in, int size)</div><div class="ttdoc">setInputs will initialize uint8_t array as inputs</div><div class="ttdef"><b>Definition:</b> main.c:71</div></div>
 </div><!-- fragment --><hr  />
- <h1><a class="anchor" id="autotoc_md30"></a>
+ <h1><a class="anchor" id="autotoc_md27"></a>
 C helpful functions</h1>
 <p >For this lab, there are couple additional functions from ESPRESSIF that are important for using inputs. As the previous lab, we must set the direction of the GPIO pin by using <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code>. Previously we used *<code>GPIO_MODE_OUTPUT</code>* as we using outputs, however now that we will be using <em><code>GPIO_MODE_INPUT</code></em> for inputs. </p><div class="fragment"><div class="line">esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);</div>
 </div><!-- fragment --><p >Next, as the name states <code>gpio_get_level(gpio_num_tgpio_num)</code> returns the current level of the GPIO pin whether it high and low. This function is use to get the current state of the input. </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> gpio_get_level(gpio_num_ tgpio_num);</div>
 </div><!-- fragment --><p> Lastly, two function that are very important when using inputs is the setup for either pull-up or pull-down: <code>gpio_pulldown_en(gpio_num_t gpio_num)</code> and <code>gpio_pullup_en(gpio_num_t gpio_num)</code>. Here is an figure for pull-up and pull-down configuration. Pull-up is set to <code>high</code>, therefore to read the input as a <b>0</b>. Therfore, for pull-down as it set to <code>low</code>, it must read a <b>1</b> as it input. <br  />
  </p><div class="fragment"><div class="line">esp_err_t gpio_pullup_en(gpio_num_t gpio_num);</div>
 </div><!-- fragment --> <div class="fragment"><div class="line">esp_err_t gpio_pulldown_en(gpio_num_t gpio_num);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Pull-up and Pull-down Configuration</h2>
 <p ><img src="https://user-images.githubusercontent.com/60948298/144836131-96f04e0f-c7f7-443f-b35c-814fb9db4e29.png" alt="button configuation" width="413" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Additional Links</h2>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 Authors</h2>
 <ul>
 <li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>

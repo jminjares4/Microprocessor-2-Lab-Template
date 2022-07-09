@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('d8/d2a/md_doc_pages_lab6.html','../../
   <div class="headertitle"><div class="title">Lab 6 GPIO, Interrupts, and Queues </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md74"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md71"></a>
 Objective:</h1>
 <ul>
 <li>Understand how to use interrupt and send data through a queue with <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api"><code>FreeRTOS Queues</code></a>. In this lab, the main focus will be sending data from a interrupt to a task.</li>
@@ -135,7 +135,7 @@ Objective:</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md75"></a>
+<h2><a class="anchor" id="autotoc_md72"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -161,7 +161,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md76"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md73"></a>
 Example</h2>
 <p >The following example is demostration of how to use interrupts in the ESP32. The interrupt routine will toggle the state of the <code>onboard led</code> every time its pressed. There is also another task that will print a message every second. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
@@ -232,7 +232,7 @@ Example</h2>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
 <div class="ttc" id="a_lab__2_2main_8c_html_af8baf7d9859733667317e58c0ff707d1"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a></div><div class="ttdeci">#define ESP_INTR_FLAG_DEFAULT</div><div class="ttdef"><b>Definition:</b> main.c:55</div></div>
 <div class="ttc" id="a_lab__6_2main_8c_html_aff73127d1ba9b5a022d9cecadde1da29"><div class="ttname"><a href="../../de/d45/_lab__6_2main_8c.html#aff73127d1ba9b5a022d9cecadde1da29">setUpGPIO</a></div><div class="ttdeci">void setUpGPIO()</div><div class="ttdef"><b>Definition:</b> main.c:71</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md77"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md74"></a>
 Template Code</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
@@ -289,7 +289,7 @@ Template Code</h2>
 <div class="line">    xTaskCreate(&amp;print_task, <span class="stringliteral">&quot;print_task&quot;</span>, 2048, NULL, 10, NULL); <span class="comment">//create a task</span></div>
 <div class="line">}</div>
 </div><!-- fragment --><hr  />
- <h1><a class="anchor" id="autotoc_md79"></a>
+ <h1><a class="anchor" id="autotoc_md76"></a>
 C helpful functions</h1>
 <p >For this lab, we use prior function from Lab 2 that are important for using inputs. In the previous labs we use the function <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> in order to set our inputs and outputs. In this lab, we will use the <code>gpio_config_t</code> which will help us setup the interrupt function. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    uint64_t pin_bit_mask;          </div>
@@ -324,10 +324,10 @@ C helpful functions</h1>
 <div class="line">              BaseType_t *pxHigherPriorityTaskWoken</div>
 <div class="line">          );</div>
 <div class="ttc" id="a_lab__5_2main_8c_html_aa78b6121b7586233293fb6cba5e19206"><div class="ttname"><a href="../../da/de1/_lab__5_2main_8c.html#aa78b6121b7586233293fb6cba5e19206">xQueue</a></div><div class="ttdeci">QueueHandle_t xQueue</div><div class="ttdef"><b>Definition:</b> main.c:72</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md80"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md77"></a>
 Pull-up and Pull-down Configuration</h2>
 <p ><img src="https://user-images.githubusercontent.com/60948298/144836131-96f04e0f-c7f7-443f-b35c-814fb9db4e29.png" alt="button configuation" width="413" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md81"></a>
+<h2><a class="anchor" id="autotoc_md78"></a>
 Additional Links</h2>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
@@ -335,7 +335,7 @@ Additional Links</h2>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html">FreeRTOS Espressif Documenation</a></li>
 <li><a href="https://www.freertos.org/a00125.html">FreeRTOS Documenation</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md82"></a>
+<h2><a class="anchor" id="autotoc_md79"></a>
 Authors</h2>
 <ul>
 <li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>

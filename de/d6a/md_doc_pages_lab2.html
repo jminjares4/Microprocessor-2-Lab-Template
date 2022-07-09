@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('de/d6a/md_doc_pages_lab2.html','../../
   <div class="headertitle"><div class="title">Lab 2 Interrupts </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md35"></a>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md32"></a>
 Objective</h2>
 <ul>
 <li>Given the program template shown in listing 1, edit it so that the code so that you replicate the functions of a microwave.</li>
@@ -129,13 +129,13 @@ Objective</h2>
 </li>
 <li>Print the counter time as you add or subtract the total amount of time the microwave will run. Then when the timer start button is pressed the counter should display in the screen as it goes down every 500 ms.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 Bonus</h2>
 <ul>
 <li>Modify the code by using the gpio_config_t to create an output LED which will display when the door is open or close.+10</li>
 <li>Create anothe interrupt button which do the pause option in the microwave.+10</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md37"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -161,7 +161,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md38"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md35"></a>
 Example</h2>
 <p >Here is an example of a single GPIO set as ouptut and an input button. The following code will turn the onboard LED as long as the button is press. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
@@ -215,7 +215,7 @@ Example</h2>
 <div class="ttc" id="a_lab__2_2main_8c_html_a6971319b736532e14915f0bd246d2225"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#a6971319b736532e14915f0bd246d2225">GPIO_INPUT_PIN_SEL</a></div><div class="ttdeci">#define GPIO_INPUT_PIN_SEL</div><div class="ttdef"><b>Definition:</b> main.c:63</div></div>
 <div class="ttc" id="a_lab__2_2main_8c_html_abca9c49bc40ba3533a50c2e19c0cd354"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#abca9c49bc40ba3533a50c2e19c0cd354">setUpInterrupts</a></div><div class="ttdeci">void setUpInterrupts()</div><div class="ttdoc">setUpInterrupts will initialize the interrupt buttons stored in GPIO_INPUT_PIN_SEL and GPIO_OUTPUT_PI...</div><div class="ttdef"><b>Definition:</b> main.c:127</div></div>
 <div class="ttc" id="a_lab__2_2main_8c_html_af8baf7d9859733667317e58c0ff707d1"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a></div><div class="ttdeci">#define ESP_INTR_FLAG_DEFAULT</div><div class="ttdef"><b>Definition:</b> main.c:55</div></div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md39"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md36"></a>
 Lab Template</h2>
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment">    Author:     Jesus Minjares and Erick A. Baca</span></div>
@@ -329,7 +329,7 @@ Lab Template</h2>
 <div class="ttc" id="a_lab__2_2main_8c_html_ad43c3812e6d13e0518d9f8b8f463ffcf"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#ad43c3812e6d13e0518d9f8b8f463ffcf">count</a></div><div class="ttdeci">int count</div><div class="ttdef"><b>Definition:</b> main.c:67</div></div>
 <div class="ttc" id="a_lab__2_2main_8c_html_ae74eccd566e82e668d7031863efe6fbe"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#ae74eccd566e82e668d7031863efe6fbe">doorFlag</a></div><div class="ttdeci">int doorFlag</div><div class="ttdef"><b>Definition:</b> main.c:65</div></div>
 </div><!-- fragment --><hr  />
- <h1><a class="anchor" id="autotoc_md41"></a>
+ <h1><a class="anchor" id="autotoc_md38"></a>
 C helpful functions</h1>
 <p >For this lab, there are couple additional functions from ESPRESSIF that are important for using inputs. In the previous lab we use the function <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> in order to set our inputs and outputs. In this lab, we will use the <code>gpio_config_t</code> which will help us setup the interrupt function. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    uint64_t pin_bit_mask;          </div>
@@ -357,15 +357,15 @@ C helpful functions</h1>
 <div class="line">} gpio_int_type_t;</div>
 </div><!-- fragment --><p> Next, you will need to set the interrupt flag into 0 which uses the function : <code>gpio_install_isr_service(int intr_alloc_flags)</code> </p><div class="fragment"><div class="line">esp_err_t gpio_install_isr_service(<span class="keywordtype">int</span> intr_alloc_flags)</div>
 </div><!-- fragment --><p> Lastly, there is a function that allows the interrupt button to enter the <code>static void IRAM_ATTR gpio_isr_handler(void* arg)</code>. In order to enter this function you need to declare using the function <code>gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, <span class="keywordtype">void</span> *args)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md42"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md39"></a>
 Pull-up and Pull-down Configuration</h2>
 <p ><img src="https://user-images.githubusercontent.com/60948298/144836131-96f04e0f-c7f7-443f-b35c-814fb9db4e29.png" alt="button configuation" width="413" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 Additional Links</h2>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 Authors</h2>
 <ul>
 <li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>
