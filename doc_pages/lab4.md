@@ -226,3 +226,6 @@ Lastly, `xSemaphoreTake` is the opposite of the prior function. Therefore, it wi
 
 @see [GitHub Lab 4](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_4)
 
+<span class="next_section_button">
+Read Next: [Lab 5](@ref doc_pages/lab5.md)
+</span>

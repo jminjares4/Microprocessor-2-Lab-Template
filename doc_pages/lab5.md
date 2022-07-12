@@ -288,3 +288,6 @@ BaseType_t xQueueReceive(QueueHandle_txQueue, void *const pvBuffer, TickType_t x
 
 @see [GitHub Lab 5](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5)
 
+<span class="next_section_button">
+Read Next: [Lab 6](@ref doc_pages/lab6.md)
+</span>

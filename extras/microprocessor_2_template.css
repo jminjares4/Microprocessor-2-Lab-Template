@@ -247,3 +247,48 @@ html.dark-mode {
     width: 72px;
     height: 72px;
 }
+
+/*Next Section Button Settings*/
+.next_section_button {
+    display: block;
+    padding: var(--spacing-large) 0 var(--spacing-small) 0;
+    color: var(--page-background-color);
+    user-select: none;
+}
+
+.next_section_button::after {
+    /* clearfix */
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.next_section_button a {
+    overflow: hidden;
+    float: right;
+    border: 1px solid var(--separator-color);
+    padding: var(--spacing-medium) calc(var(--spacing-large) / 2) var(--spacing-medium) var(--spacing-large);
+    border-radius: var(--border-radius-medium);
+    color: var(--primary-color) !important; /*utep-blue*/
+    text-decoration: none;
+    background-color: var(--page-background-color); /*utep-orange*/
+    transition: color .08s ease-in-out, background-color .1s ease-in-out;
+}
+
+.next_section_button a:hover {
+    color: var(--utep-blue) !important;
+    background-color: var(--utep-orange);
+}
+
+.next_section_button a::after {
+    content: '〉';
+    color: var(--primary-color) !important;
+    padding-left: var(--spacing-large);
+    display: inline-block;
+    transition: color .08s ease-in-out, transform .09s ease-in-out;
+}
+
+.next_section_button a:hover::after {
+    color: var(--utep-blue) !important;
+    transform: translateX(3px);
+}

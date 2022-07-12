@@ -44,7 +44,7 @@ git submodule update --init --recursive
 - [Lab 6 GPIO, Interrupts, and Queues](lab6.md)
 - [Lab 7 Peripheral and Queues: ADC and PWM (LEDC)](lab7.md)
 - [Lab 8 DAC Peripheral](lab8.md)
-- [Additional Labs](additional_lab.md)
+- [Additional Labs](additional_labs.md)
   - [Lab 9 WiFi and Internet of Things (IOT)](@ref LAB_9)
   - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](@ref LAB_10)
   - [Lab 11 WiFi and Internet of Things (IOT): ADC Monitor](@ref LAB_11)
@@ -67,3 +67,7 @@ git submodule update --init --recursive
 * [***Erick Baca***](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
+
+<span class="next_section_button">
+Read Next: [Lab 0](@ref doc_pages/lab0.md)
+</span>
