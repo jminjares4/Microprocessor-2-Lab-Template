@@ -1,6 +1,7 @@
 # Additional Labs
 
-These are additional labs that may or may not be used in the course. The following labs consist of using `ESP22 IOT` interface with an *`http server`*.
+These are additional labs that may or may not be used in the course. The following labs consist of using `ESP22 IOT` 
+interface with an <strong>http server</strong>.
 
 ## Labs
 - [Lab 9 WiFi and Internet of Things (IOT)](@ref LAB_9)
