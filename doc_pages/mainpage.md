@@ -44,10 +44,10 @@ git submodule update --init --recursive
 - [Lab 6 GPIO, Interrupts, and Queues](lab6.md)
 - [Lab 7 Peripheral and Queues: ADC and PWM (LEDC)](lab7.md)
 - [Lab 8 DAC Peripheral](lab8.md)
-- [Additional Labs](extra/additional_lab.md)
-  - [Lab 9 WiFi and Internet of Things (IOT)](extra/lab9.md)
-  - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](extra/lab10.md)
-  - [Lab 11 WiFi and Internet of Things (IOT): ADC Monitor](extra/lab11.md)
+- [Additional Labs](additional_lab.md)
+  - [Lab 9 WiFi and Internet of Things (IOT)](@ref LAB_9)
+  - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](@ref LAB_10)
+  - [Lab 11 WiFi and Internet of Things (IOT): ADC Monitor](@ref LAB_11)
 
 ## Development
 |Microcontroller|Software|Enviroment|Operating System|
