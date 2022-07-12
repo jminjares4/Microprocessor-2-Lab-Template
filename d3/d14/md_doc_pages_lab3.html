@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('d3/d14/md_doc_pages_lab3.html','../../
   <div class="headertitle"><div class="title">Lab 3 Introduction to FreeRTOS </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md43"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md40"></a>
 Objective:</h1>
 <ul>
 <li><p class="startli">Understand how to use the FreeRTOS with <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a>.</p>
@@ -135,7 +135,7 @@ Objective:</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -161,7 +161,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md45"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md42"></a>
 Example</h2>
 <p >Here is a simple example of creating a task with FreeRTOS. The task is called <code>task1</code> which is it own function. <code>Task 1</code> will turn the <code>onboard led</code> for 2 seconds and turn off for another 2 seconds. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -195,7 +195,7 @@ Example</h2>
 <div class="ttc" id="a_lab__0_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:54</div></div>
 <div class="ttc" id="a_lab__0_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:55</div></div>
 <div class="ttc" id="a_lab__4_2main_8c_html_a39542ccd929d82b3d70434fc6c03cde9"><div class="ttname"><a href="../../df/d70/_lab__4_2main_8c.html#a39542ccd929d82b3d70434fc6c03cde9">task1</a></div><div class="ttdeci">void task1(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:63</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md46"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md43"></a>
 Template Code</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -229,7 +229,7 @@ Template Code</h2>
 <div class="ttc" id="a_lab__3_2main_8c_html_a06043530c2110db60e54b863450a25ee"><div class="ttname"><a href="../../d7/dac/_lab__3_2main_8c.html#a06043530c2110db60e54b863450a25ee">blinky_task</a></div><div class="ttdeci">void blinky_task(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:56</div></div>
 <div class="ttc" id="a_lab__3_2main_8c_html_a23a1e64d64f4e47337338ead50a56fb3"><div class="ttname"><a href="../../d7/dac/_lab__3_2main_8c.html#a23a1e64d64f4e47337338ead50a56fb3">hello_task</a></div><div class="ttdeci">void hello_task(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:51</div></div>
 <div class="ttc" id="a_lab__3_2main_8c_html_a41f4b96ab3dcc94240ee35333c7e08a6"><div class="ttname"><a href="../../d7/dac/_lab__3_2main_8c.html#a41f4b96ab3dcc94240ee35333c7e08a6">led_sequence_task</a></div><div class="ttdeci">void led_sequence_task(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:60</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md47"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md44"></a>
 C helpful functions</h1>
 <p >For this lab, the most important function call is <code>xTaskCreate</code> which is a function in <code>task.h</code> file. This function has a few parameter that must be pass on when calling the function. For instance we want to create a simple that call <code>example_task</code> which has a stack of <code>2048</code> and it will have no arguments or handle; it will be the following: <code>xTaskCreate(</code> <b>&amp;example_task</b>,<b>example task</b>, <b>2048</b>, <b>NULL</b>, <b>NULL</b> <code>);</code></p>
 <table class="markdownTable">
@@ -253,14 +253,14 @@ C helpful functions</h1>
 <div class="line">                        UBaseType_t uxPriority,</div>
 <div class="line">                        TaskHandle_t *pxCreatedTask</div>
 <div class="line">                       );</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md48"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md45"></a>
 Additional Links</h2>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html">FreeRTOS Espressif Documenation</a></li>
 <li><a href="https://www.freertos.org/a00125.html">FreeRTOS Documenation</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md49"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 Authors</h2>
 <ul>
 <li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>
@@ -274,7 +274,8 @@ Authors</h2>
 </ul>
 </li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3">GitHub Lab 3</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3">GitHub Lab 3</a></dd></dl>
+<p><span class="next_section_button"> Read Next: <a class="el" href="../../da/d3e/md_doc_pages_lab4.html">Lab 4</a> </span> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

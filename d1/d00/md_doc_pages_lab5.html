@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('d1/d00/md_doc_pages_lab5.html','../../
   <div class="headertitle"><div class="title">Lab 5 FreeRTOS: Queue </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md60"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md57"></a>
 Objective:</h1>
 <ul>
 <li>Understand how to use the queues with <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api"><code>FreeRTOS</code></a>. In this lab, the main focus will be using queues to send data among tasks.</li>
@@ -125,7 +125,7 @@ Objective:</h1>
 <li>Send data to the queue from multiple tasks, sending integers <code>10</code> and <code>20</code> also for strings <code>“EE4178”</code> and <code>“Fall2021”</code>.</li>
 <li>Receive and print data from the queue</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md61"></a>
+<h2><a class="anchor" id="autotoc_md58"></a>
 Bonus</h2>
 <ul>
 <li><em><b>Undergrad Bonus:</b></em><ul>
@@ -150,7 +150,7 @@ Bonus</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md62"></a>
+<h2><a class="anchor" id="autotoc_md59"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -176,7 +176,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md63"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md60"></a>
 Example 1</h2>
 <p >The following example is a quick demostration of how to use queues with FreeRTOS on the ESP32. First, a queue is create as a global variable to scope accessiblity name <code>myQueue</code>. Next, that variable must store an instance of a queue by <code>xQueueCreate</code> function. <code>Task 1</code> will send <code>data</code> which store a <code>10</code> to <code>Task 2</code> every second. <code>Task 2</code> will recieve data through the queue and display it in the terminal. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
@@ -212,7 +212,7 @@ Example 1</h2>
 <div class="line">    xTaskCreate(&amp;exampleTask2, <span class="stringliteral">&quot;example task 2), 2048, NULL, 4, NULL);</span></div>
 <div class="line"><span class="stringliteral">}</span></div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md64"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md61"></a>
 Example 2</h2>
 <p >The following example is an demostration of how to pass argument through a task. As mention in previous labs, <code>xTaskCreate</code> has the various parameters that we went briefly in detail. The 4th argument is the argument that is pass to the task. In the bottom code, <code>Task 1</code> is recieving the data store in <code>number</code> when it being created in main. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
@@ -232,7 +232,7 @@ Example 2</h2>
 <div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../df/d70/_lab__4_2main_8c.html#a39542ccd929d82b3d70434fc6c03cde9">task1</a>, <span class="stringliteral">&quot;Task 1&quot;</span>, 2048, (<span class="keywordtype">void</span>*)number, 4, NULL);</div>
 <div class="line">}</div>
 <div class="ttc" id="a_lab__4_2main_8c_html_a39542ccd929d82b3d70434fc6c03cde9"><div class="ttname"><a href="../../df/d70/_lab__4_2main_8c.html#a39542ccd929d82b3d70434fc6c03cde9">task1</a></div><div class="ttdeci">void task1(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:63</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md65"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md62"></a>
 Example 3</h2>
 <p >The following code is similar to the previous example however the major difference is using <code>global</code> and <code>static</code> variables.<code>static</code> keyword states that the variable that we create will store its data in the static memory. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
@@ -250,7 +250,7 @@ Example 3</h2>
 <div class="line">    <span class="keyword">static</span> <span class="keywordtype">int</span> number = 420; <span class="comment">// make it fun</span></div>
 <div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../df/d70/_lab__4_2main_8c.html#a39542ccd929d82b3d70434fc6c03cde9">task1</a>, <span class="stringliteral">&quot;Task 1&quot;</span>, 2048, (<span class="keywordtype">void</span>*)number, 4, NULL);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md66"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md63"></a>
 Template Code</h2>
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment">    Author:     Jesus Minjares and Erick Baca</span></div>
@@ -345,7 +345,7 @@ Template Code</h2>
 <div class="line">}</div>
 <div class="ttc" id="a_lab__4_2main_8c_html_a8873379ac3ff18bce730e90e44aaf384"><div class="ttname"><a href="../../df/d70/_lab__4_2main_8c.html#a8873379ac3ff18bce730e90e44aaf384">task2</a></div><div class="ttdeci">void task2(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:71</div></div>
 <div class="ttc" id="a_lab__5_2main_8c_html_aa78b6121b7586233293fb6cba5e19206"><div class="ttname"><a href="../../da/de1/_lab__5_2main_8c.html#aa78b6121b7586233293fb6cba5e19206">xQueue</a></div><div class="ttdeci">QueueHandle_t xQueue</div><div class="ttdef"><b>Definition:</b> main.c:72</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md67"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md64"></a>
 C helpful functions</h1>
 <p >For this lab, there are few important function calls that are going to be used throughout the lab. Queues are created by using <code>QueueHandle_t</code> data type. For instance, <b><code>QueueHandle_t</code></b> <em>myQueue</em> is how you would create a queue.</p>
 <p >First, <code>xQueueCreate</code> is the function you must call if you want to create a queue. <code>xQueueCreate</code> has two parameters, <code>UBaseType_t</code> uxQueueLength, and <code>UBaseType_t</code> uxItemSize. Therefore, if we wanted to create a queue of <code>float</code>'s we would do the following: </p><div class="fragment"><div class="line">QueueHandle_t myQueue; <span class="comment">//global queue</span></div>
@@ -363,14 +363,14 @@ C helpful functions</h1>
 <div class="line">                                  TickType_t xTicksToWait</div>
 <div class="line">                              );</div>
 </div><!-- fragment --><p> Lastly, <code>xQueueReceive</code> is the opposite of <code>xQueueSendToBack</code> and <code>xQueueSendToFront</code> in the sense that it will store the data in <code>void * const</code> pvBuffer. </p><div class="fragment"><div class="line">BaseType_t xQueueReceive(QueueHandle_txQueue, <span class="keywordtype">void</span> *<span class="keyword">const</span> pvBuffer, TickType_t xTicksToWait)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md68"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md65"></a>
 Additional Links</h2>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api">FreeRTOS Queue</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html">FreeRTOS Espressif Documenation</a></li>
 <li><a href="https://www.freertos.org/a00125.html">FreeRTOS Documenation</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md69"></a>
+<h2><a class="anchor" id="autotoc_md66"></a>
 Authors</h2>
 <ul>
 <li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>
@@ -384,7 +384,8 @@ Authors</h2>
 </ul>
 </li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5">GitHub Lab 5</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5">GitHub Lab 5</a></dd></dl>
+<p><span class="next_section_button"> Read Next: <a class="el" href="../../d8/d2a/md_doc_pages_lab6.html">Lab 6</a> </span> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

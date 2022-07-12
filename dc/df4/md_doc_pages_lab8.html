@@ -117,18 +117,18 @@ $(document).ready(function(){initNavTree('dc/df4/md_doc_pages_lab8.html','../../
   <div class="headertitle"><div class="title">Lab 8 DAC Peripheral </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md92"></a>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md89"></a>
 Objective</h2>
 <ul>
 <li>The objective for this lab is to use and understand the DAC driver of espressif. The ESP32 DAC has a 8-bit resolution therefore the output ranges from 0-255 bits or 0.0-3.3V. Knowing this, for this lab use GPIO 25 to generate a sine wave and in GPIO 26 generate a triangle wave.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md93"></a>
+<h2><a class="anchor" id="autotoc_md90"></a>
 Bonus</h2>
 <ul>
 <li>Make a Sawtooth wave in GPIO 25.</li>
 <li>Make the sine wave have a 10 hz frequency.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md94"></a>
+<h2><a class="anchor" id="autotoc_md91"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -154,7 +154,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md95"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md92"></a>
 Example 1</h2>
 <p >Here is an example of a single DAC channel doing a square wave. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;math.h&gt;</span></div>
@@ -180,7 +180,7 @@ Example 1</h2>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
 <div class="ttc" id="a_lab__8_2main_8c_html_ae8c0b1b0908cf8dbe08bf57647c6e672"><div class="ttname"><a href="../../dc/d1b/_lab__8_2main_8c.html#ae8c0b1b0908cf8dbe08bf57647c6e672">createSineWave</a></div><div class="ttdeci">void createSineWave(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:58</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md96"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md93"></a>
 Template Code</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;math.h&gt;</span></div>
@@ -218,7 +218,7 @@ Template Code</h2>
 <div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d1b/_lab__8_2main_8c.html#ae8c0b1b0908cf8dbe08bf57647c6e672">createSineWave</a>, <span class="stringliteral">&quot;createSineWave&quot;</span>, 4096, NULL, 5, NULL);</div>
 <div class="line">}</div>
 <div class="ttc" id="a_lab__8_2main_8c_html_ababa28c1a0c7526e4591753684985eb7"><div class="ttname"><a href="../../dc/d1b/_lab__8_2main_8c.html#ababa28c1a0c7526e4591753684985eb7">createTriangleWave</a></div><div class="ttdeci">void createTriangleWave(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:47</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md97"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md94"></a>
 C helpful functions</h1>
 <p >For this Lab, there is two additional function from ESPRESSIF that are important while using DAC. The function needed to enamble the DAC <code>dac_output_enable(dac_channel_t channel)</code>, the channel is is sepcific for 2 channels which are declare on the structure below. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
 <div class="line">    DAC_CHANNEL_1 = 0,    </div>
@@ -226,13 +226,13 @@ C helpful functions</h1>
 <div class="line">    DAC_CHANNEL_MAX,</div>
 <div class="line">} dac_channel_t;</div>
 </div><!-- fragment --><p> Finally, the last function needed in order to produce a DAC output will be <code>dac_output_voltage(dac_channel_t channel, uint8_t dac_value)</code> which you need to put the DAC enabled pin and the actual DAC value. Note: The DAC output value has a 8-bit resolution which its max ouput is a 255 value which represents 3.3V.</p>
-<h2><a class="anchor" id="autotoc_md98"></a>
+<h2><a class="anchor" id="autotoc_md95"></a>
 Additional Links</h2>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/dac.html">Espressif DAC Driver API</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md99"></a>
+<h2><a class="anchor" id="autotoc_md96"></a>
 Authors</h2>
 <ul>
 <li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>
@@ -246,7 +246,8 @@ Authors</h2>
 </ul>
 </li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8">GitHub Lab 8</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8">GitHub Lab 8</a></dd></dl>
+<p><span class="next_section_button"> Read Next: <a class="el" href="../../df/dad/md_doc_pages_additional_labs.html">Additional Labs</a> </span> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
