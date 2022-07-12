@@ -281,3 +281,6 @@ Finally the last important function while using the LEDC API is a way to pause t
 
 @see [GitHub Lab 7](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7)
 
+<span class="next_section_button">
+Read Next: [Lab 8](@ref doc_pages/lab8.md)
+</span>

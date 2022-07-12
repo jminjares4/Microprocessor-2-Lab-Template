@@ -145,3 +145,6 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
 
 @see [GitHub Lab 3](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3)
 
+<span class="next_section_button">
+Read Next: [Lab 4](@ref doc_pages/lab4.md)
+</span>

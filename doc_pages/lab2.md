@@ -283,3 +283,6 @@ esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void
 
 @see [GitHub Lab 2](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2)
 
+<span class="next_section_button">
+Read Next: [Lab 3](@ref doc_pages/lab3.md)
+</span>

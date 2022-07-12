@@ -125,3 +125,7 @@ Finally, the last function needed in order to produce a DAC output will be `dac_
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
 @see [GitHub Lab 8](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8)
+
+<span class="next_section_button">
+Read Next: [Additional Labs](@ref doc_pages/additional_labs.md)
+</span>

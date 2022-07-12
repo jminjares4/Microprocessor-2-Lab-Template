@@ -243,3 +243,6 @@ Lastly, there is an very important function was is need to fulfill this lab. We 
 
 @see [GitHub Lab 6](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_6)
 
+<span class="next_section_button">
+Read Next: [Lab 7](@ref doc_pages/lab7.md)
+</span>
