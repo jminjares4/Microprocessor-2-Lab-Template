@@ -25,7 +25,7 @@ The objective of these labs is to provide more interactive tasks for students to
 * Window 
   * Link to install ESP-IDF Windows Installer: [Window Installer](https://dl.espressif.com/dl/esp-idf/?idf=4.4)
 
-## **How to initialize ESP32 Installation submodule**
+## **Submodules**
 
 ```bash
 git submodule update --init --recursive
