@@ -178,11 +178,11 @@ Example</h2>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(<span class="keywordtype">void</span>){</div>
 <div class="line">  <span class="comment">/* Initialize OUTPUTs */</span></div>
-<div class="line">  gpio_pad_select_gpio(ONBOARD_LED); <span class="comment">// select the GPIO pins</span></div>
+<div class="line">  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); <span class="comment">// select the GPIO pins</span></div>
 <div class="line">  gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); <span class="comment">// set as output</span></div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Intialize INPUTs */</span></div>
-<div class="line">  gpio_pad_select_gpio(BUTTON_1); <span class="comment">//select input </span></div>
+<div class="line">  esp_rom_gpio_pad_select_gpio(BUTTON_1); <span class="comment">//select input </span></div>
 <div class="line">  gpio_set_direction(BUTTON_1, GPIO_MODE_INPUT); <span class="comment">//set as input</span></div>
 <div class="line">  gpio_set_pull_mode(BUTTON_1, GPIO_PULLDOWN_ONLY); <span class="comment">//set as pull-down</span></div>
 <div class="line"> </div>

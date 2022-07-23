@@ -168,7 +168,7 @@ Example</h2>
 <div class="line"><span class="preprocessor">#define ONBOARD_LED 2</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(<span class="keywordtype">void</span>){</div>
-<div class="line">  gpio_pad_select_gpio(ONBOARD_LED); <span class="comment">// select the GPIO pins</span></div>
+<div class="line">  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); <span class="comment">// select the GPIO pins</span></div>
 <div class="line">  gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); <span class="comment">// set as output</span></div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">while</span>(1){</div>
@@ -217,7 +217,7 @@ Lab Template</h2>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; i++) <span class="comment">// itierate over the size of the array</span></div>
 <div class="line">    {</div>
-<div class="line">        gpio_pad_select_gpio(out[i]);                 <span class="comment">// select the GPIO pins</span></div>
+<div class="line">        esp_rom_gpio_pad_select_gpio(out[i]);                 <span class="comment">// select the GPIO pins</span></div>
 <div class="line">        gpio_set_direction(out[i], GPIO_MODE_OUTPUT); <span class="comment">// set direction as outputs</span></div>
 <div class="line">    }</div>
 <div class="line">    <span class="keywordflow">return</span>;</div>
@@ -277,7 +277,7 @@ Lab Template</h2>
 </div><!-- fragment --><hr  />
  <h1><a class="anchor" id="autotoc_md15"></a>
 C helpful functions</h1>
-<p >For this lab, there are three main function from ESPRESSIF that are important. First is to select which GPIO pin is going to be used by the following function. <code>gpio_pad_select(gpio_num_t gpio_num)</code>. The first parameter <code>gpio_num</code> is the GPIO pin that is going to be used, for instance if we want to use the <em><b>onboard led</b></em> we should put a 2 on <code>gpio_num</code> such as <code>gpio_pad_select(2)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_pad_select_gpio(gpio_num_t gpio_num);             </div>
+<p >For this lab, there are three main function from ESPRESSIF that are important. First is to select which GPIO pin is going to be used by the following function. <code>gpio_pad_select(gpio_num_t gpio_num)</code>. The first parameter <code>gpio_num</code> is the GPIO pin that is going to be used, for instance if we want to use the <em><b>onboard led</b></em> we should put a 2 on <code>gpio_num</code> such as <code>gpio_pad_select(2)</code>. </p><div class="fragment"><div class="line">esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             </div>
 </div><!-- fragment --><p> Next, another important function is the selection of the direction GPIO pin. Therefore we must use <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> and for this lab we only care of <em><code>GPIO_MODE_OUTPUT</code></em> as we will be using outputs. </p><div class="fragment"><div class="line">esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);</div>
 </div><!-- fragment --><p> Lastly, <code>gpio_set_level(gpio_num_t gpio_num, uint32_t level)</code> as the name states set the level of the GPIO pin that we pass throught the function. Passing a <b>0</b> is set to low and <b>1</b> is set to high respectively. </p><div class="fragment"><div class="line">esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level); <span class="comment">// set LOGIC high</span></div>
 </div><!-- fragment --><p >The following function <code>vTaskDelay( const TickType_t xTicksToDelay)</code> is use to generate delay with ESP32 and it part of FreeRTOS, we will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> vTaskDelay(<span class="keyword">const</span> TickType_t xTicksToDelay);</div>
