@@ -49,7 +49,7 @@ Here is an example of a single GPIO set as ouptut and toggling the onboard led.
 #define ONBOARD_LED 2
 
 void app_main(void){
-  gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
+  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
   gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); // set as output
 
   while(1){
@@ -105,7 +105,7 @@ void setOutputs(uint8_t *out, int size)
 {
     for (int i = 0; i < size; i++) // itierate over the size of the array
     {
-        gpio_pad_select_gpio(out[i]);                 // select the GPIO pins
+        esp_rom_gpio_pad_select_gpio(out[i]);                 // select the GPIO pins
         gpio_set_direction(out[i], GPIO_MODE_OUTPUT); // set direction as outputs
     }
     return;
@@ -184,7 +184,7 @@ void app_main(void)
 
 For this lab, there are three main function from ESPRESSIF that are important. First is to select which GPIO pin is going to be used by the following function. `gpio_pad_select(gpio_num_t gpio_num)`. The first parameter `gpio_num` is the GPIO pin that is going to be used, for instance if we want to use the ***onboard led*** we should put a 2 on `gpio_num` such as `gpio_pad_select(2)`.
 ~~~c
-esp_err_t gpio_pad_select_gpio(gpio_num_t gpio_num);             
+esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             
 ~~~
 Next, another important function is the selection of the direction GPIO pin. Therefore we must use `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` and for this lab we only care of <i>`GPIO_MODE_OUTPUT`</i> as we will be using outputs.
 ~~~c 

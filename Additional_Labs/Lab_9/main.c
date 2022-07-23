@@ -212,7 +212,7 @@ static void http_server_netconn_serve(struct netconn *conn)
     u16_t buflen;
     err_t err;
     //Set onboard led as output for the led to blink
-    gpio_pad_select_gpio(BLINK_GPIO);
+    esp_rom_gpio_pad_select_gpio(BLINK_GPIO);
     gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
     /* Read the data from the port, blocking if nothing yet there.
     We assume the request (the part we care about) is in one netbuf */
