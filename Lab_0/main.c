@@ -66,7 +66,7 @@ void setOutputs(uint8_t *out, int size)
 {
     for (int i = 0; i < size; i++) // itierate over the size of the array
     {
-        gpio_pad_select_gpio(out[i]);                 // select the GPIO pins
+        esp_rom_gpio_pad_select_gpio(out[i]);                 // select the GPIO pins
         gpio_set_direction(out[i], GPIO_MODE_OUTPUT); // set direction as outputs
     }
     return;

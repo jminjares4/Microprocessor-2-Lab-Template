@@ -309,7 +309,7 @@ void setADC()
 
 void setGPIO()
 {
-    gpio_pad_select_gpio(onboardLED);
+    esp_rom_gpio_pad_select_gpio(onboardLED);
     gpio_set_direction(onboardLED, GPIO_MODE_OUTPUT);
 }
 

@@ -57,11 +57,11 @@ Here is an example of a single GPIO set as ouptut and an input button. The follo
 
 void app_main(void){
   /* Initialize OUTPUTs */
-  gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
+  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
   gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); // set as output
 
   /* Intialize INPUTs */
-  gpio_pad_select_gpio(BUTTON_1); //select input 
+  esp_rom_gpio_pad_select_gpio(BUTTON_1); //select input 
   gpio_set_direction(BUTTON_1, GPIO_MODE_INPUT); //set as input
   gpio_set_pull_mode(BUTTON_1, GPIO_PULLDOWN_ONLY); //set as pull-down
 
