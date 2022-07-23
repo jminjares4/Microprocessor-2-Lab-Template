@@ -10,5 +10,6 @@ var files_dup =
     [ "Lab_5", "dir_551a90dc9a395ec036762bd36cd1dc5e.html", "dir_551a90dc9a395ec036762bd36cd1dc5e" ],
     [ "Lab_6", "dir_c961c6a17c25e1b2f524512a44047efe.html", "dir_c961c6a17c25e1b2f524512a44047efe" ],
     [ "Lab_7", "dir_d41343b896031ba06870331f2ef11066.html", "dir_d41343b896031ba06870331f2ef11066" ],
-    [ "Lab_8", "dir_b4e0c25656a62c8d686c66acbb39a601.html", "dir_b4e0c25656a62c8d686c66acbb39a601" ]
+    [ "Lab_8", "dir_b4e0c25656a62c8d686c66acbb39a601.html", "dir_b4e0c25656a62c8d686c66acbb39a601" ],
+    [ "sample_project", "dir_20eee6a9a053e8ece72bcd22e521721b.html", "dir_20eee6a9a053e8ece72bcd22e521721b" ]
 ];
