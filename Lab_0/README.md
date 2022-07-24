@@ -1,8 +1,8 @@
 <div align='center'>
-<img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
-<h1>
-<p style="color:#1982d2">Electrical and Computer Engineering Department</p>
-</h1>
+  <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
+  <h1>
+    <span style="color: #1982d2">Electrical and Computer Engineering Department</span>
+  </h1>
 </div>
 
 # [**Lab 0 LED Lightshow :zap:**](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
