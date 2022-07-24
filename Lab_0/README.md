@@ -1,9 +1,12 @@
 <div align='center'>
+  <a href="https://www.utep.edu/engineering/ece/">
   <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
   <h1>
-    [Electrical and Computer Engineering Department]() <!--To make blue text-->
+  Electrical and Computer Engineering Department
   </h1>
+  </a>
 </div>
+
 
 # [**Lab 0 LED Lightshow :zap:**](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
 
