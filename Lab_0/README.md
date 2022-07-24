@@ -1,7 +1,7 @@
 <div align='center'>
   <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
   <h1>
-    <span style="color: #1982d2">Electrical and Computer Engineering Department</span>
+    [Electrical and Computer Engineering Department]() <!--To make blue text-->
   </h1>
 </div>
 
