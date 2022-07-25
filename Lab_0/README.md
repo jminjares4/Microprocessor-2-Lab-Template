@@ -1,9 +1,9 @@
 <div align='center'>
   <a href="https://www.utep.edu/engineering/ece/">
-  <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
-  <h1>
-  Electrical and Computer Engineering Department
-  </h1>
+    <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
+    <h1>
+      Electrical and Computer Engineering Department
+    </h1>
   </a>
 </div>
 
@@ -202,7 +202,7 @@ Furthermore, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` sets the logi
 | Value | Logic |
 |:---   | :---  |
 | **0** | low   |
-|**1**  | high  |
+| **1** | high  |
 ~~~c
 esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level); // set LOGIC high
 ~~~
