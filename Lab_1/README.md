@@ -1,18 +1,29 @@
+<div align='center'>
+  <a href="https://www.utep.edu/engineering/ece/">
+    <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
+    <h1>
+      Electrical and Computer Engineering Department
+    </h1>
+  </a>
+</div>
+
 # **Lab 1 LED Controller :zap:**
+
 ## **Objective:**
----
-* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additionals led sequence that the student developed which be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have complete from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
-  
-    **Buttons**
-    * Button 1 -> start `sweeper`, pull-down
-    * Button 2 -> start `led chaser` pull-down
-    * Button 3 -> toggle `onboard led` pull-down
+* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additionals led sequence that the student developed and be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have complete from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
+
+  | Button | Function     | Mode      |
+  | :---   |  :---        | :---      |
+  | B0     | `Sweeper`    | Pull-down |
+  | B1     | `Led chaser` | Pull-down |
+  | B2     | `Toggle`     | Pull-down |
 
 - ***Undergrad Bonus:***
   * Create an other LED sequence and add another button, as pull-up. 
 - ***Grad Bonus:***
-  * Add button to start lightshow that was done in the previous lab
-  * Do a reset button which will turn off all LEDs 
+  * Add button to start lightshow from previous lab, as pull-up
+  * Do a reset button which will turn off all LEDs, as pull-up
+
 ### ESP32 Pinout
 ~~~
                                          +-----------------------+
@@ -41,88 +52,93 @@
                                          +-----------------------+
 ~~~
 ### **Example**
-Here is an example of a single GPIO set as ouptut and an input button. The following code will turn the onboard LED as long as the button is press.
+Here is an example of a how to use ESP32 GPIO function calls for input and output. The following code will turn the onboard LED as long as the button is press.
+
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
-#define HIGH 1
-#define LOW  0
-#define ONBOARD_LED 2
+#define LOW  0  /* LOGIC LOW*/
+#define HIGH 1  /* LOGIC HIGH*/
+#define ONBOARD_LED 2 /* ONBOARD LED GPIO Pin*/
 
-#define BUTTON_1 23
+#define BUTTON_0 23 /* Button 1 */
 
 void app_main(void){
+
   /* Initialize OUTPUTs */
   esp_rom_gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
   gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); // set as output
 
   /* Intialize INPUTs */
   esp_rom_gpio_pad_select_gpio(BUTTON_1); //select input 
-  gpio_set_direction(BUTTON_1, GPIO_MODE_INPUT); //set as input
-  gpio_set_pull_mode(BUTTON_1, GPIO_PULLDOWN_ONLY); //set as pull-down
+  gpio_set_direction(BUTTON_0, GPIO_MODE_INPUT); //set as input
+  gpio_set_pull_mode(BUTTON_0, GPIO_PULLDOWN_ONLY); //set as pull-down
 
   while(1){
-    int res gpio_get_level(BUTTON_1);
+    
+    int res = gpio_get_level(BUTTON_0); //get gpio level
     vTaskDelay(10/portTICK_PERIOD_MS); //debounce the button
+    
     if(res == 1){
         gpio_set_level(ONBOARD_LED, HIGH); // set high
     }else{
         gpio_set_level(ONBOARD_LED, LOW); //set low
     }
-    // ternary operator
+    
+    /* ternary operator */
     //res ? gpio_set_level(ONBOARD_LED, HIGH) : gpio_set_level(ONBOARD_LED, LOW);
+    
     vTaskDelay(100/portTICK_PERIOD_MS); //avoid WDT trigger
   }  
 }
 ~~~
+
 ### **Lab Template**
 ~~~c
 /*
     Author:     Jesus Minjares and Erick A. Baca
                 Master of Science in Computer Engineering   
 
-    Course:     EE 5190 Laboratory for Microprocessors Systems II    
+    Course:     EE 4178/5190 Laboratory for Microprocessors Systems II       
      
     Lab 1:
         Objective:
-        Understand how to use the gpio driver library from ESPRESSIF. The lab will consist of using a 
-        `sweeper`, `led chaser` and any additionals led sequence that the student developed which be
-        selected via an input. Students must have a total of three buttons. First button must start `sweeper`
-        function which student must have complete from the previous lab. Next, the second button must start the 
-        `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
+              Understand how to use the gpio driver library from `Espressif`. The lab will consist of
+              using a `sweeper`, `led chaser` and any additionals led sequence that the student developed
+              and be selected via an input. Students must have a total of three buttons. First button must 
+              start `sweeper` function which student must have complete from the previous lab. Next, the 
+              second button must start the `led chaser` function. Lastly, the third button must toggle 
+              the state of the onboard led.
 
-    Buttons 
-    -------------
-    Button 1 -> start `sweeper`, pull-up
-    Button 2 -> start `led chaser` pull-down
-    Button 3 -> toggle `onboard led` pull-up
+        Undergrad Bonus:
+              Create an other LED sequence and add another button, as pull-up. 
+        Grad Bonus:
+              Add button to start lightshow from previous lab
+              Do a reset button which will turn off all LEDs 
 
-    Bonus
-    -------------
-    - Undergrad Bonus:
-        * Create an other LED sequence and add another button, button configuration does not matter. 
-    - Grad Bonus:
-        * Add button to start lightshow that was done in the previous lab
-        * Do a reset button which will turn off all LEDs 
+        | Button |  Function    |   Mode    | 
+        |--------|--------------|-----------|
+        | B0     | `Sweeper`    | Pull-down |
+        | B1     | `Led chaser` | Pull-down |
+        | B2     | `Toggle`     | Pull-down |
 */
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
-/* Logic MACROs */
-#define HIGH 1
-#define LOW 0
+#define LOW  0  /* LOGIC LOW*/
+#define HIGH 1  /* LOGIC HIGH*/
 
 /**
  * @brief setInputs will initialize uint8_t array as inputs
  *
  * @param led uint8_t * array which hold GPIOs pins
  * @param size size of the array
- * @return None void
+ * @return None
  * @note initialize gpio before using them
  */
 void setInputs(uint8_t *in, int size)
@@ -140,7 +156,7 @@ void setInputs(uint8_t *in, int size)
  *
  * @param out uint8_t * array which hold GPIOs pins
  * @param size size of the array
- * @return None void
+ * @return None
  * @note initialize gpio before using them
  */
 void setOutputs(uint8_t *out, int size)
@@ -157,6 +173,7 @@ void setOutputs(uint8_t *out, int size)
  * 
  * @param led uint8_t * array which hold GPIOs pins
  * @param size size of the array
+ * @return None
  */
 void sweep(uint8_t *led, int size)
 {
@@ -173,6 +190,7 @@ void light_show(){
  * 
  * @param led uint8_t * array which hold GPIOs pins
  * @param size size of the array
+ * @return None
  */
 void led_chaser(uint8_t *led, int size)
 {
@@ -195,7 +213,6 @@ void app_main(void)
     /* Initialize Outputs */
     setOutputs(led, led_size);
 
-    int speed = 500; // 0.5 second delay
     while (1)
     {
         vTaskDelay(5/portTICK_PERIOD_MS); //debounce button
@@ -204,17 +221,15 @@ void app_main(void)
         if(button0 == 1){
           // sweep();
         }
-        }else{
+        else{
           vTaskDelay(100/portTICK_PERIOD_MS); //100ms to avoid WDT errors
         }
+    }
 }
 ~~~
 
-
----
 ## **C helpful functions**
-
-For this lab, there are couple additional functions from ESPRESSIF that are important for using inputs. As the previous lab, we must set the direction of the GPIO pin by using `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)`. Previously we used *`GPIO_MODE_OUTPUT`* as we using outputs, however now that we will be using *`GPIO_MODE_INPUT`* for inputs.
+For this lab, there are couple additional functions from ESPRESSIF that are important for using inputs. As the previous lab, we must set the direction of the GPIO pin by using `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)`. Previously we used *`GPIO_MODE_OUTPUT`* as we using outputs, however now that we will be using inputs, we need *`GPIO_MODE_INPUT`*.
 ~~~c 
 esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);
 ~~~
@@ -223,7 +238,12 @@ Next, as the name states `gpio_get_level(gpio_num_tgpio_num)` returns the curren
 ~~~c
 int gpio_get_level(gpio_num_ tgpio_num);
 ~~~
-Lastly, two function that are very important when using inputs is the setup for either pull-up or pull-down: `gpio_pulldown_en(gpio_num_t gpio_num)` and `gpio_pullup_en(gpio_num_t gpio_num)`. Here is an figure for pull-up and pull-down configuration. Pull-up is set to `high`, therefore to read the input as a **0**. Therfore, for pull-down as it set to `low`, it must read a **1** as it input.  
+| Value | Logic |
+|:---   | :---  |
+| **0** | low   |
+| **1** | high  |
+
+Lastly, there are two additional functions that are crucial when using inputs. There are two configuration for inputs either pull-up or pull-down: `gpio_pulldown_en(gpio_num_t gpio_num)` and `gpio_pullup_en(gpio_num_t gpio_num)`. Here is an figure for pull-up and pull-down configuration.
 ~~~c
 esp_err_t gpio_pullup_en(gpio_num_t gpio_num);
 ~~~
@@ -232,8 +252,7 @@ esp_err_t gpio_pulldown_en(gpio_num_t gpio_num);
 ~~~
 
 ### **Pull-up and Pull-down Configuration**
-
-<img width="413" alt="button configuation" src="https://user-images.githubusercontent.com/60948298/144836131-96f04e0f-c7f7-443f-b35c-814fb9db4e29.png">
+<img width="413" alt="button configuation" src="../images/button_config.png">
 
 ### **Additional Links**
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
