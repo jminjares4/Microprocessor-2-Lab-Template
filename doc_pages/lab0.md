@@ -184,7 +184,7 @@ For this lab, there are three main function from ESPRESSIF that are important. F
 ~~~c
 esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             
 ~~~
-Next, `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` allow the user to set the direction of the GPIO pin. For this lab we only going to use *`GPIO_MODE_OUTPUT`* for the mode.
+Next, `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` allow the user to set the direction of the GPIO pin. For this lab we only going to use <i>`GPIO_MODE_OUTPUT`</i> for the mode.
 ~~~c 
 esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);
 ~~~
@@ -192,7 +192,7 @@ Furthermore, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` sets the logi
 | Value | Logic |
 |:---   | :---  |
 | **0** | low   |
-|**1**  | high  |
+| **1** | high  |
 ~~~c
 esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level); // set LOGIC high
 ~~~
