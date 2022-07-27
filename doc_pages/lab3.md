@@ -152,7 +152,13 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
-@see [GitHub Lab 3](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3)
+## GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3">
+ <img src="github.png">
+ </a>
+[Lab 3 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3)
+</div>
 
 <span class="next_section_button">
 Read Next: [Lab 4](@ref doc_pages/lab4.md)
