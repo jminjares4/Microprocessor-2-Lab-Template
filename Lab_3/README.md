@@ -1,17 +1,29 @@
+<div align='center'>
+  <a href="https://www.utep.edu/engineering/ece/">
+    <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
+    <h1>
+      Electrical and Computer Engineering Department
+    </h1>
+  </a>
+</div>
+
 # **Lab 3 Introduction to FreeRTOS :zap:**
 
-## **Objective:**
----
-* Understand how to use the FreeRTOS with [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#).
+## **Objective**
+
+* Understand how to use the FreeRTOS with [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating two main tasks. `Task 1` will toggle *onboard led* every **250 ms**, and `Task 2` must print **'Hello World!** every **2 seconds**.
   
-    **Tasks**
-    * Task 1 -> toggle `onboard led`
-    * Task 2 -> print `hello world` every second
+| **Tasks**  | **Objective**             |
+| :---   | :---                          |
+| Task 1 | Toggle `onboard led` @ 250 ms |
+| Task 2 | Print `Hello World!` @ 2 sec  |
+
 - ***Undergrad Bonus:***
-  * Create an other task that will toggle the led and print it state in the terminal
+  * Create an additional task that toggles external led and print it state
 - ***Grad Bonus:***
-  * Create addtional task of to run any led sequence of the previous labs and it should run every 5 seconds
-### **ESP32 Pinout**
+  * Create an addtional task that run any led sequence of the previous labs and it should run every 5 seconds
+
+## **ESP32 Pinout**
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -39,7 +51,7 @@
                                          +-----------------------+
 ~~~
 
-### **Example**
+## **Example**
 Here is a simple example of creating a task with FreeRTOS. The task is called `task1` which is it own function. `Task 1` will turn the `onboard led` for 2 seconds and turn off for another 2 seconds.
 ~~~c
 #include <stdio.h>
@@ -47,23 +59,23 @@ Here is a simple example of creating a task with FreeRTOS. The task is called `t
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
-#define ONBOARD_LED 2
-#define HIGH 1
-#define LOW  0
+#define LOW  0  /* LOGIC LOW*/
+#define HIGH 1  /* LOGIC HIGH*/
+#define ONBOARD_LED 2 /* ONBOARD LED GPIO Pin*/
 
 void task1(void *pvParameter){
     /* Select the GPIO pin that is going to be used */
-    gpio_pad_select(ONBOARD_LED);
+    esp_rom_gpio_pad_select_gpio(ONBOARD_LED);
     /* Set the direction of the GPIO pin as OUTPUT */
     gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT);
 
     while(1){
         /*Set the ONBOARD_LED as HIGH | 1 */
         gpio_set_level(ONBOARD_LED, HIGH);
-        vTaskDelay(2000 / portTICK_RATE_MS); // 2 second delay
+        vTaskDelay(2000 / portTICK_PERIOD_MS); // 2 second delay
         /*Set the ONBOARD_LED as LOW | 0 */
         gpio_set_level(ONBOARD_LED, LOW);
-        vTaskDelay(2000 / portTICK_RATE_MS); // 2 second delay
+        vTaskDelay(2000 / portTICK_PERIOD_MS); // 2 second delay
     }
 }
 void app_main(void){
@@ -72,28 +84,33 @@ void app_main(void){
 }
 ~~~
 
-### **Template Code**
+## **Lab Template**
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
 #include "driver/gpio.h"
+
 /* Define pin 13 as a “BLINK_GPIO” */
 #define BLINK_GPIO 13
+
 /* Code for the hello_task task */
 void hello_task(void *pvParameter)
 {
     
 }
+
 /* Code for the blinky task */
 void blinky_task(void *pvParameter)
 {
     
 }
+
 void led_sequence_task(void *pvParameter){
 
 }
+
 void app_main()
 {
     /* Create the task defined by xTaskCreate.*/
@@ -111,14 +128,13 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
 *`xTaskCreate(`* **&example_task**,**"example task"**, **2048**, **NULL**, **NULL** *`);`*
 
 
-| Data type         | Variable name | Description |
-|--------------|:-----:|-----------:|
-| `TaskFunction_t`          |  *pvTaskCode*     | task function name |
-| `const char *`            |  *pcName*         | name to associate the task|
-| `configSTACK_DEPTH_TYPE`  | *usStackDepth*    |    stack size       |
-| `void *`                  |  *pvParameters*   | arguments  |
-| `TaskHandle_t *`          |  *pxCreatedTask*  | handle to store task  |
-
+| Data type                 | Variable name     | Description                 |
+| :---                      |      :---         | ---:                        |
+| `TaskFunction_t`          |  *pvTaskCode*     | task function name          |
+| `const char *`            |  *pcName*         | name to associate the task  |
+| `configSTACK_DEPTH_TYPE`  |  *usStackDepth*   | stack size                  |
+| `void *`                  |  *pvParameters*   | arguments                   |
+| `TaskHandle_t *`          |  *pxCreatedTask*  | handle to store task        |
 
 ~~~c 
  BaseType_t xTaskCreate( TaskFunction_t pvTaskCode,
@@ -130,12 +146,12 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
                         );
 ~~~
 
-### **Additional Links**
+## **Additional Links**
 * [FreeRTOS Espressif Documenation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html)
 * [FreeRTOS Documenation](https://www.freertos.org/a00125.html)
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
----
-### **Authors**
+
+## **Authors**
 * [***Jesus Minjares***](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
