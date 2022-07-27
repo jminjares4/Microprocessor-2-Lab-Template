@@ -34,7 +34,7 @@ git submodule update --init --recursive
 ## **Labs**
 - [Lab 0 Lightshow](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
 - [Lab 1 LED Controller with Inputs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_1)
-- [Lab 2 Microwave](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2)
+- [Lab 2 Interrupts: Fire Alarm!](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2)
 - [Lab 3 Introduction to FreeRTOS](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3) 
 - [Lab 4 FreeRTOS: Semaphores](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_4)
 - [Lab 5 FreeRTOS: Queue](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5)
