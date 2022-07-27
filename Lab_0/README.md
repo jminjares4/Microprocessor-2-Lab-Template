@@ -48,7 +48,7 @@
 
 
 ## **Example**
-Here is an example of a how to use ESP32 GPIO function calls. The example program toggles the onboard LED of the ESP board.
+Here is an example of a how to use ESP32 GPIO function calls. The program toggles ESP onboard LED every other second.
 ~~~c
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
