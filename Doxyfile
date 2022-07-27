@@ -882,7 +882,7 @@ INPUT                  =    doc_pages/mainpage.md \
                             doc_pages/lab7.md \
                             doc_pages/lab8.md \
                             doc_pages/additional_lab.md \
-                            doc_pages/lcd.md    \
+                            doc_pages/esp_lcd.md    \
                             . \
 
 # This tag can be used to specify the character encoding of the source files
