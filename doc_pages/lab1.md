@@ -1,14 +1,16 @@
 # Lab 1 LED Controller
 
-## Objective:
+## Objective
 * Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additionals led sequence that the student developed and be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have complete from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the
 state of the onboard led.
 
+<div align='center'>
 | Button | Function     | Mode      |
 | :---   |  :---        | :---      |
 | B0     | `Sweeper`    | Pull-down |
 | B1     | `Led chaser` | Pull-down |
 | B2     | `Toggle`     | Pull-down |
+</div>
 
 - Undergrad Bonus:
   * Create an other LED sequence and add another button, as pull-up. 
@@ -16,7 +18,7 @@ state of the onboard led.
   * Add button to start lightshow from previous lab, as pull-up
   * Do a reset button which will turn off all LEDs, as pull-up
 
-### ESP32 Pinout
+## ESP32 Pinout
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -43,7 +45,7 @@ state of the onboard led.
                                          | O                   O |
                                          +-----------------------+
 ~~~
-### Example
+## Example
 Here is an example of a how to use ESP32 GPIO function calls for input and output. The following code will turn the onboard LED as long as the button is press.
 
 ~~~c
@@ -88,7 +90,7 @@ void app_main(void){
 }
 ~~~
 
-### Lab Template
+## Lab Template
 ~~~c
 /*
     Author:     Jesus Minjares and Erick A. Baca
@@ -244,14 +246,14 @@ esp_err_t gpio_pullup_en(gpio_num_t gpio_num);
 esp_err_t gpio_pulldown_en(gpio_num_t gpio_num);
 ~~~
 
-### Pull-up and Pull-down Configuration
+## Pull-up and Pull-down Configuration
 
 <img width="413" alt="button configuation" src="button_config.png">
 
-### Additional Links
+## Additional Links
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 
-### Authors
+## Authors
 * [***Jesus Minjares***](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)

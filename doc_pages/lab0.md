@@ -1,6 +1,6 @@
 # Lab 0 LED Lightshow
 
-## Objective:
+## Objective
 * Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and a `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then most significant bit to lowest bit. While `led chaser` will have a single led iterating from the lowest to most significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
 
 - ***Undergrad Bonus:***
@@ -8,7 +8,7 @@
 - ***Grad Bonus:***
   * Create a light show with different sequences and patterns as you like. Have fun!
 
-### ESP32 Pinout
+## ESP32 Pinout
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -37,7 +37,7 @@
 ~~~
 
 
-### Example
+## Example
 Here is an example of a how to use ESP32 GPIO function calls. The example program toggles the onboard LED of the ESP board.
 ~~~c
 #include "freertos/FreeRTOS.h"
@@ -61,7 +61,7 @@ void app_main(void){
 }
 ~~~
 
-### Lab Template
+## Lab Template
 ~~~c
 /*
     Author:     Jesus Minjares and Erick A. Baca
@@ -202,13 +202,13 @@ Lastly, the following function  `vTaskDelay( const TickType_t xTicksToDelay)` is
 void vTaskDelay(const TickType_t xTicksToDelay);
 ~~~
 
-### Warning!
+## Warning!
 Depending of the version of **ESP-IDF** that you may have, some libraries and function calls that may be **deprecate**! If you get an warning message when using `esp_rom_gpio_pad_select_gpio` please use `gpio_pad_select_gpio`. 
 
-### Additional Links
+## Additional Links
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 
-### Authors
+## Authors
 * [***Jesus Minjares***](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
