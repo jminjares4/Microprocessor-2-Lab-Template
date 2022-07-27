@@ -12,11 +12,13 @@
 ## **Objective**
 
 * Understand how to use the FreeRTOS with [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating two main tasks. `Task 1` will toggle *onboard led* every **250 ms**, and `Task 2` must print **'Hello World!** every **2 seconds**.
-  
+
+<div align='center'>
 | **Tasks**  | **Objective**             |
 | :---   | :---                          |
 | Task 1 | Toggle `onboard led` @ 250 ms |
 | Task 2 | Print `Hello World!` @ 2 sec  |
+</div>
 
 - ***Undergrad Bonus:***
   * Create an additional task that toggles external led and print it state
