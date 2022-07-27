@@ -256,7 +256,7 @@ esp_err_t gpio_pulldown_en(gpio_num_t gpio_num);
 
 ## **Additional Links**
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
----
+
 ## **Authors**
 * [***Jesus Minjares***](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
