@@ -262,6 +262,16 @@ The bit mask in `gpio_config_t` is an `uint64_t` value and ESP32 uses `enum` for
 uint64_t bitmask = (1ULL << ONBOARD_LED); /* Convert onboard led value to unsigned long long */
 ```
 
+## Add led driver to ESP32 Project
+1) Copy driver folder
+2) Paste into esp project
+3) Edit project CMakeLists.txt to use led.c:
+```cmake
+idf_component_register(SRCS "main.c"
+                            "driver/led.c"
+                    INCLUDE_DIRS ".")
+```
+
 ## Additional Links
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 
