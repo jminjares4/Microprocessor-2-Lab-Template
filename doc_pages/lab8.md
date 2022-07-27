@@ -102,7 +102,7 @@ void app_main()
 ~~~
 
 ## C helpful functions
-For this Lab, there is two additional function from ESPRESSIF that are important while using DAC. The function needed to enamble the DAC `dac_output_enable(dac_channel_t channel)`, the channel is is sepcific for 2 channels which are declare on the structure below.
+For this Lab, there is two additional function from Espressif that are important while using DAC. The function needed to enamble the DAC `dac_output_enable(dac_channel_t channel)`, the channel is is sepcific for 2 channels which are declare on the structure below.
 ~~~c
 typedef enum {
     DAC_CHANNEL_1 = 0,    /*!< DAC channel 1 is GPIO25(ESP32) / GPIO17(ESP32S2) */

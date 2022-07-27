@@ -180,7 +180,7 @@ void app_main(void)
 ~~~
 
 ## C helpful functions
-For this lab, there are three main function from ESPRESSIF that are important. First, is to select which GPIO pin is going to be used by the following function: `esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num)`. The first parameter `gpio_num` is the GPIO pin that is going to be used, for instance if we want to use the ***onboard led*** we should put a 2 on `gpio_num` such as `esp_rom_gpio_pad_select_gpio(2)`.
+For this lab, there are three main function from Espressif that are important. First, is to select which GPIO pin is going to be used by the following function: `esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num)`. The first parameter `gpio_num` is the GPIO pin that is going to be used, for instance if we want to use the ***onboard led*** we should put a 2 on `gpio_num` such as `esp_rom_gpio_pad_select_gpio(2)`.
 ~~~c
 esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             
 ~~~

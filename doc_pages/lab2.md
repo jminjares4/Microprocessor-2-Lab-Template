@@ -1,18 +1,17 @@
-# Lab 2 Interrupts
+# Lab 2 Interrupts: Fire Alarm!
 
-### Objective
-* Given the program template shown in listing 1, edit it so that the code so that you replicate the functions of a microwave.
-* The code is expected to have a total of 6 buttons which will simulate the functions of the microwave. 
-  - The first and second button should control a counter that goes up or down. 
-  - The next two buttons should act as a start or reset counter.
-  - The last 2 buttons are your inteerupts which simulates if the door open or closes. Since the lab is a microwave the timer should stop in the event that the door open button is been pressed the timer should stop and cannnot start again until the close door button has been pressed
-* Print the counter time as you add or subtract the total amount of time the microwave will run. Then when the timer start button is pressed the counter should display in the screen as it goes down every 500 ms.
+## Objective
+    Understand how to use the [Espressif GPIO interrupts](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio). This lab will consist
+    of simulating your own **fire alarm** :police_car_light:!!! There is an additional driver that was developed 
+    to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down
+    configuration.
 
-### Bonus
-* Modify the code by using the gpio_config_t to create an output LED which will display when the door is open or close.+10
-* Create anothe interrupt button which do the pause option in the microwave.+10
-
-### ESP32 Pinout
+- **Undergrad Bonus:**
+    * Display fire alarm status in terminal whenever it is active
+- **Grad Bonus:**
+    * Add another LED to indicate when fire alarm is disable
+                
+## ESP32 Pinout
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -39,192 +38,192 @@
                                          | O                   O |
                                          +-----------------------+
 ~~~
-### Example
-Here is an example of a single GPIO set as ouptut and an input button. The following code will turn the onboard LED as long as the button is press.
+
+## Example
+Here is an example of a how to use ESP32 GPIO advance setup. The following code will toggle the onboard LED if button is pressed and have a external LED toggling every half second.
+
 ~~~c
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h" 
 #include "freertos/task.h" 
 #include "driver/gpio.h"
 
-#define ESP_INTR_FLAG_DEFAULT 0 
-#define ONBOARDLED 2
-#define GPIO_OUTPUT_PIN_SEL (1ULL << ONBOARDLED)
+#define ESP_INTR_FLAG_DEFAULT 0 /* Interrupt flag configuration */
 
-#define TOOGLELED 22
-#define GPIO_INPUT_PIN_SEL (1ULL << TOOGLELED)
+#define LOW     0       /* low logic  */
+#define HIGH    1       /* high logic */
 
-static void IRAM_ATTR gpio_isr_handler(void* arg) {
-  GPIO.out ^= BIT2;
+#define ONBOARD_LED     2    /* onboard led pin  */
+#define EXTERNAL_LED    22   /* external led pin  */
+#define BUTTON          23   /* button pin  */
+
+/**
+ * @brief Toggle gpio pin
+ * 
+ * @param pin gpio pin
+ * @return None
+ */
+void toggle(gpio_num_t pin){
+    /* Get current level and toggle LED */
+    gpio_get_level(pin) ? gpio_set_level(pin, LOW) : gpio_set_level(pin, HIGH);
 }
-void setUpInterrupts() {
-    gpio_config_t io_conf;  //Access the GPIO strcuture
-    //INPUT     
-    io_conf.intr_type = GPIO_INTR_POSEDGE;  //Set up as Positive Edge
-    io_conf.mode = GPIO_MODE_INPUT;     //Set pins as input
-    io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;  //Set all the interrupt buttons  
-    io_conf.pull_down_en = 1;   //Enable as a pulldown button
-    io_conf.pull_up_en = 0; 
+
+/* GPIO interrupt handler */
+static void IRAM_ATTR gpio_isr_handler(void* arg) {
+    /* store argument */
+    gpio_num_t gpio = (gpio_num_t) arg;
+
+    /* toggle LED */
+    toggle(gpio);
+
+}
+
+/* GPIO setup */
+void gpio_setup() {
+    /* IO configuration */
+    gpio_config_t io_conf;
+    
+    /* Input configuration */
+    io_conf.intr_type = GPIO_INTR_POSEDGE;  /* Set up as Positive Edge */ 
+    io_conf.mode = GPIO_MODE_INPUT;     /* Set pins as input */
+    io_conf.pin_bit_mask = (1ULL << BUTTON);  /* Add input bit mask */
+    io_conf.pull_down_en = 1;   /* Enable pulldown */
+    io_conf.pull_up_en = 0;     /* Disable pullup */
+
+    /* Set configuration */
     gpio_config(&io_conf);
 
-    //OUTPUT 
-    io_conf.intr_type = GPIO_INTR_DISABLE;  //Its an output so the interrupt is disable
-    io_conf.mode = GPIO_MODE_OUTPUT;    //Set pin as output
-    io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL; //Set up all the LED that we are going to use
-    io_conf.pull_down_en = 0; 
-    io_conf.pull_up_en = 0; 
+    /* Output configuration */
+    io_conf.intr_type = GPIO_INTR_DISABLE;  /* Disable interrupt */
+    io_conf.mode = GPIO_MODE_OUTPUT;        /* Set as output*/
+    io_conf.pin_bit_mask = (1ULL << ONBOARD_LED) | (1ULL << EXTERNAL_LED); /* Add output bit mask */
+    io_conf.pull_down_en = 0;   /* Disable pulldown */
+    io_conf.pull_up_en = 0;     /* Disable pullup */
+
+    /* Set configuration */
     gpio_config(&io_conf);
 
-    //Set ISR 
+    /* Set default interrupt flag */
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);    //Ste the flag for th einterrupt
 
-    /*Let the buttons selected to interract with the interrupt*/
-    gpio_isr_handler_add(TOOGLELED, gpio_isr_handler, (void*) TOOGLELED);        
+    /* Add ISR handler */
+    gpio_isr_handler_add(BUTTON, gpio_isr_handler, (void*) BUTTON); 
+
 }
 void app_main() {
-    /*Setup the interrupt buttons and LEDs*/
-    setUpInterrupts();
+
+    /* Setup the GPIOs */
+    gpio_setup();
+
     while(1){
-         vTaskDelay(100/portTICK_PERIOD_MS);
+         toggle(EXTERNAL_LED); /* Toggle external led */
+         vTaskDelay(500/portTICK_PERIOD_MS); /* .5 second delay */
     }
+
 }
 ~~~
-### Lab Template
+
+## Lab Template
 ~~~c
-/*
-    Author:     Jesus Minjares and Erick A. Baca
-                Master of Science in Computer Engineering   
-    Course:     EE 5190 Laboratory for Microprocessors Systems II    
-     
-    Lab 2:
-        Objective:
-            The main objective for this lab is to learn how to properly use interrupt buttons in the
-            ESP32. The lab is main objective is to create a microwave which inteerupts the timer if 
-            the door is open. 
-        Bonus Undergrad:
-            Use the same gpio_config_t to  an create output to display when the door is open or close.
-        Bonus Grad:
-            Use another button to create a stop action.
-*/
 #include <stdio.h>
-#include "sdkconfig.h"
-#include "freertos/FreeRTOS.h" 
-#include "freertos/task.h" 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include "driver/gpio.h"
+#include "driver/led.h"
 
+#define ESP_INTR_FLAG_DEFAULT   0   /* Interrupt flag configuration */
 
-#define TIMERUP_BUTTON  3
-#define TIMERDOWN_BUTTON 21
-#define STARTTIMER_BUTTON 19
-#define RESETTIMER_BUTTON 18
+#define ONBOARD_LED             2   /* Onboard led */
+/* Update with custom pins */
+#define SMOKE_DETECTOR_PIN      0  /* Smoke detector pin */
+#define DISABLE_ALARM_PIN       0  /* Disable alarm pin */
 
-#define ESP_INTR_FLAG_DEFAULT 0 
-#define LED1 2
-#define LED2 15
-#define GPIO_OUTPUT_PIN_SEL (1ULL << LED2 | 1ULL << LED1)
+/******************************************************************
+ * \struct fire_alarm_t
+ * \brief Fire alarm object
+ * @see led.h
+ * 
+ * ### Example
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.c
+ * typedef struct {
+ *      led_t indicator;
+ *      gpio_num_t smokeDetector;
+ *      gpio_num_t disableAlarm;
+ *      bool active;
+ * }fire_alarm_t;
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *******************************************************************/
+typedef struct{
+    led_t indicator;
+    gpio_num_t  smokeDetector;
+    gpio_num_t  disableAlarm;
+    bool active;
+}fire_alarm_t;
 
-#define DOORCLOSE 23
-#define DOOROPEN 22
-#define STOPBUTTON 5
-#define GPIO_INPUT_PIN_SEL (1ULL << DOORCLOSE | 1ULL << DOOROPEN | 1ULL << STOPBUTTON)
+/* Global fire alarm object */
+fire_alarm_t utep_alarm;
 
-int doorFlag = 0;   //Flag for the door if its open or close
-int stopFlag = 0;   //Flag for stop button
-int count = 0;      //Variable that stores the total counter time
+/* GPIO interrupt handler */
+static void IRAM_ATTR gpio_interrupt_handler(void * arg) {
+    /* Typecast argument */
+    gpio_num_t gpio = (gpio_num_t) arg;
 
-#define _BONUS_ TRUE
-//#define _BONUS_GRAD_ TRUE
-
-/**
- * @brief Interrupt function 
- *
- * @param arg uint32_t * int which holds GPIO number the interrupt came  to
- * @return None void
- * @note initialize interrupt before using them
- */
-static void IRAM_ATTR gpio_isr_handler(void* arg) {  
-    uint32_t gpio_num = (uint32_t) arg; //Save the argument into a variable to compare the flag outputted
-
-}
-
-void microwave() {
-    /*Save the Value of the buttons in a designated variable*/
-    //read button 0
-    //read button 1
-    //read button 2
-    //read button 3
-
-    /*If the first button is pressed add 10 seconds to the total time*/
-
-    /*If the second button is pressed subtract 10 seconds to the total time*/
-        /*If the time is lower that 0 keep the time as 0*/
-        /*Else subtract the total time by 10*/
-    /*If the thrid button is pressed, start the count down*/
-        //Iterrate the counter
-            //If by any chance the interrupt stop flag is activate stop the count down
-            //Clear the stop flag
-            //If by any chance the interrupt door open flag is activate stop the count down
-            //Print the remaining time 
-    /*If the fourth button is pressed reset the counter time*/
+    /* Check if smoke detector pin has been pressed or disable alarm */
+    
 }
 
 /**
- * @brief setInputs will initialize uint8_t array as inputs
- *
- * @param led uint8_t * array which hold GPIOs pins
- * @param size size of the array
- * @return None void
- * @note initialize gpio before using them
+ * @brief Set up fire alarm interrupt
+ * 
+ * @param alarm pointer to fire alarm object
+ * @return None
  */
-void setInputs(uint8_t *in, int size)
-{
-    for (int i = 0; i < size; i++) // itierate over the size of the array
-    {
-        // select the GPIO pins
-        // set direction as inputs
-    }
-    return;
-}
-/**
- * @brief setUpInterrupts will initialize the interrupt buttons stored 
- *        in GPIO_INPUT_PIN_SEL and GPIO_OUTPUT_PIN_SEL
- * @note initialize gpio before using them
- */
-void setUpInterrupts() {
-    gpio_config_t io_conf;  //Access the GPIO strcuture
-    //INPUT     
-    io_conf.intr_type =     
-    io_conf.mode = //Set pins as input
-    io_conf.pin_bit_mask =  //Set all the interrupt buttons  
-    io_conf.pull_down_en = ;   //Enable as a pulldown button
-    io_conf.pull_up_en = ; 
+void fire_alarm_interrupt_setup(fire_alarm_t * const alarm){
+
+    /* IO configuration */
+    gpio_config_t io_conf;
+
+    /* Interrupt configuration */
+    io_conf.intr_type =  ;
+    io_conf.mode = ;
+    io_conf.pin_bit_mask = ;
+    io_conf.pull_down_en = ;
+    io_conf.pull_up_en = ;
+    
+    /* Set configuration */
     gpio_config(&io_conf);
 
-    gpio_isr_handler_add(, gpio_isr_handler, (void*));     //Setup the interruptbutton that access the interrupt function
+    /* Set default interrupt flag */
+    gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);    
+   
+    /* Add ISR handler */
+    gpio_isr_handler_add(alarm->startFireAlarm, gpio_interrupt_handler, (void *) alarm->smokeDetector);
+    /* Add missing interrupt */
 }
 
-void app_main() {
-    /*Set up Array for normal GPIOS*/
-    uint8_t button[] = {3};
-    int button_size = sizeof(button) / sizeof(uint8_t);
-    /* Initialize Inputs */
-    setInputs(button, button_size);
-    /*Setup the interrupt buttons and LEDs*/
-    setUpInterrupts();
-    printf("Time: %d\n", count);
+void app_main(void)
+{
+    /* Initialize fire alarm object */
+
+    /* Enable led*/
+    
     while(1){
-        microwave();
-         vTaskDelay(100/portTICK_PERIOD_MS);
+        /* Check if alarm has been activate */
+        if(utep_alarm.active){
+            /* Toggle indicator led @ 500 ms */
+           
+        }else{
+            /* 100 ms delay */
+            vTaskDelay(100 / portTICK_PERIOD_MS);
+        }
     }
+
 }
 ~~~
 
-
----
 ## C helpful functions
 
-For this lab, there are couple additional functions from ESPRESSIF that are important for using inputs. In the previous lab we use the function `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` in order to set our inputs and outputs. In this lab, we will use the `gpio_config_t` which will help us setup the interrupt function.
+For this lab, there are a couple of additional functions from `Espressif` that are important for using inputs. In the previous lab, we had used `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` set our inputs and outputs. However, will now use a different approach by using `gpio_config_t`. This new apporach allows to create input and output in a more condense fashion with structures. The structure has various member with their own data type. Please look into them to select the correct value when developing the lab.
 ~~~c 
 typedef struct {
     uint64_t pin_bit_mask;          /*!< GPIO pin: set with bit mask, each bit maps to a GPIO */
@@ -234,46 +233,39 @@ typedef struct {
     gpio_int_type_t intr_type;      /*!< GPIO interrupt type                                  */
 } gpio_config_t;
 ~~~
-In order to fill in the structure `gpio_config_t`, each variable is refference to another structure. Inside the `uint64_t pin_bin_mask` it need a to bit shift the pin number that converts from a int to an unsigned long long by using `1ULL << BUTTON`. After tknowing the the next variables have different function structures. For the `gpio_mode_t mode`, use the listing below in order to set what your button will do ass well if you want to set it up as an output. If you are using the output mode just remember that in ordet o call an output you nned to use `GPIO.out = BIT#`.
-~~~c
-typedef enum {
-    GPIO_MODE_DISABLE = GPIO_MODE_DEF_DISABLE,                                                         /*!< GPIO mode : disable input and output             */
-    GPIO_MODE_INPUT = GPIO_MODE_DEF_INPUT,                                                             /*!< GPIO mode : input only                           */
-    GPIO_MODE_OUTPUT = GPIO_MODE_DEF_OUTPUT,                                                           /*!< GPIO mode : output only mode                     */
-    GPIO_MODE_OUTPUT_OD = ((GPIO_MODE_DEF_OUTPUT) | (GPIO_MODE_DEF_OD)),                               /*!< GPIO mode : output only with open-drain mode     */
-    GPIO_MODE_INPUT_OUTPUT_OD = ((GPIO_MODE_DEF_INPUT) | (GPIO_MODE_DEF_OUTPUT) | (GPIO_MODE_DEF_OD)), /*!< GPIO mode : output and input with open-drain mode*/
-    GPIO_MODE_INPUT_OUTPUT = ((GPIO_MODE_DEF_INPUT) | (GPIO_MODE_DEF_OUTPUT)),                         /*!< GPIO mode : output and input mode                */
-} gpio_mode_t;
-~~~
-Then in the next two points of the `gpio_config_t` which are `gpio_pulldown_t` or `gpio_pullup_t` is where the button is enable as a pulldown or as a pullup. Finally the last configuration `gpio_int_type_t`, it decides what type of edge will the button read and the cofiguration is shown below. 
-~~~c
-typedef enum {
-    GPIO_INTR_DISABLE = 0,     /*!< Disable GPIO interrupt                             */
-    GPIO_INTR_POSEDGE = 1,     /*!< GPIO interrupt type : rising edge                  */
-    GPIO_INTR_NEGEDGE = 2,     /*!< GPIO interrupt type : falling edge                 */
-    GPIO_INTR_ANYEDGE = 3,     /*!< GPIO interrupt type : both rising and falling edge */
-    GPIO_INTR_LOW_LEVEL = 4,   /*!< GPIO interrupt type : input low level trigger      */
-    GPIO_INTR_HIGH_LEVEL = 5,  /*!< GPIO interrupt type : input high level trigger     */
-    GPIO_INTR_MAX,
-} gpio_int_type_t;
-~~~
-Next, you will need to set the interrupt flag into 0 which uses the function : `gpio_install_isr_service(int intr_alloc_flags)`
+
+There are significant difference in how to set the interrupts. Here is a brief description of pull-up and pull-down to help you for the lab.
+
+| Interrupt Configuration | Description     | Logic             |
+| :---                    | :---            | :---              |
+| **Pull-up**             | Falling edge    | **1** -> **0**    |
+| **Pull-down**           | Rising edge     | **0** -> **1**    |
+
+For this lab will we keep the interrupt flag to its default settings which would be `0`. In order to set the interrupt flag, the following function is required: `gpio_install_isr_service(int intr_alloc_flags)`.
 ~~~c
 esp_err_t gpio_install_isr_service(int intr_alloc_flags)
 ~~~
-Lastly, there is a function that allows the interrupt button to enter the `static void IRAM_ATTR gpio_isr_handler(void* arg)`. In order to enter this function you need to declare using the function `gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)`.
+
+Lastly, `static void IRAM_ATTR gpio_isr_handler(void* arg)` is the interrupt service routine and can be alter if necessary as long as it has `IRAM_ATTR` which indicated its an interrupt. Also, in order to add any input to enter the interrupt routine, you must `add` it to isr handler:  `gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)`.
 ~~~c
 esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)
 ~~~
 
 ### Pull-up and Pull-down Configuration
 
-<img width="413" alt="button configuation" src="https://user-images.githubusercontent.com/60948298/144836131-96f04e0f-c7f7-443f-b35c-814fb9db4e29.png">
+<img width="413" alt="button configuation" src="../images/button_config.png">
 
-### Additional Links
+## Warning
+The bit mask in `gpio_config_t` is an `uint64_t` value and ESP32 uses `enum` for its pinout. Therefore, in order to mask the bits correctly you must bit shift desire pin by an unsigned long long (`ULL`). 
+```c
+#define ONBOARD_LED     2 /* ESP32 onboard led */
+uint64_t bitmask = (1ULL << ONBOARD_LED); /* Convert onboard led value to unsigned long long */
+```
+
+## Additional Links
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 
-### Authors
+## Authors
 * [***Jesus Minjares***](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
@@ -281,7 +273,13 @@ esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
-@see [GitHub Lab 2](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2)
+## GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2">
+ <img src="github.png">
+ </a>
+[Lab 2 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2)
+</div>
 
 <span class="next_section_button">
 Read Next: [Lab 3](@ref doc_pages/lab3.md)

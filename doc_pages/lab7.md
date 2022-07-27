@@ -199,7 +199,7 @@ void app_main()
 ---
 ## C helpful functions
 
-For this Lab, there are couple additional functions from ESPRESSIF that are important for using ADC. First is understanding what bit width are you planning to read using the function `adc1_config_width(adc_bits_width_t width_bit)`. The higher the bit width, the accurate the ADC reading will be.
+For this Lab, there are couple additional functions from Espressif that are important for using ADC. First is understanding what bit width are you planning to read using the function `adc1_config_width(adc_bits_width_t width_bit)`. The higher the bit width, the accurate the ADC reading will be.
 ~~~c
 typedef enum {
 #if CONFIG_IDF_TARGET_ESP32
