@@ -7,7 +7,7 @@
   </a>
 </div>
 
-# **Lab 2 Interrupts: Fire Alarm! :police_car_light:**
+# **Lab 2 Interrupts: Fire Alarm! :rotating_light:**
 
 ## **Objective**
     Understand how to use the [Espressif GPIO interrupts](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio). This lab will consist
