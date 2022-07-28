@@ -46,18 +46,26 @@
 #include "freertos/queue.h"
 
 /* Undergraduate Bonus */
+/**
+ * @brief Undergraduate bonus
+ * 
+ */
 typedef struct {
-    char str[10];
-    int32_t val;
+    char str[10]; /*!< string */
+    int32_t val;  /*!< value */
 }Undergaduate_t;
 
 /* Graduate Bonus */
+/**
+ * @brief Graduate bonus
+ * 
+ */
 typedef struct {
-    char str[10];
-    int32_t val;
-    char studentName[15];
-    uint32_t studentID;
-    bool isLedOn;
+    char str[10];           /*!< string */
+    int32_t val;            /*!< value */
+    char studentName[15];   /*!< student name */
+    uint32_t studentID;     /*!< student id */
+    bool isLedOn;           /*!< led state */
 }Graduate_t;
 
 /* Global Queue handle */

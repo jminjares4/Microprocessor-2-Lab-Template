@@ -33,26 +33,16 @@
 #define SMOKE_DETECTOR_PIN      0  /* Smoke detector pin */
 #define DISABLE_ALARM_PIN       0  /* Disable alarm pin */
 
-/******************************************************************
+/**
  * \struct fire_alarm_t
  * \brief Fire alarm object
- * @see led.h
- * 
- * ### Example
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.c
- * typedef struct {
- *      led_t indicator;
- *      gpio_num_t smokeDetector;
- *      gpio_num_t disableAlarm;
- *      bool active;
- * }fire_alarm_t;
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *******************************************************************/
+ * @see led.h 
+ */
 typedef struct{
-    led_t indicator;
-    gpio_num_t  smokeDetector;
-    gpio_num_t  disableAlarm;
-    bool active;
+    led_t indicator;            /*!< led indicator */
+    gpio_num_t  smokeDetector;  /*!< smoke detector pin */
+    gpio_num_t  disableAlarm;   /*!< disable alarm pin */
+    bool active;                /*!< fire alarm state */
 }fire_alarm_t;
 
 /* Global fire alarm object */
