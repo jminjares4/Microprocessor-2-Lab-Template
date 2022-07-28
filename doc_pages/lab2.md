@@ -50,8 +50,8 @@ Here is an example of a how to use ESP32 GPIO advance setup. The following code 
 
 #define ESP_INTR_FLAG_DEFAULT 0 /* Interrupt flag configuration */
 
-#define LOW     0       /* low logic  */
-#define HIGH    1       /* high logic */
+#define LOW     0   /* low logic  */
+#define HIGH    1   /* high logic */
 
 #define ONBOARD_LED     2    /* onboard led pin  */
 #define EXTERNAL_LED    22   /* external led pin  */
@@ -104,7 +104,7 @@ void gpio_setup() {
     gpio_config(&io_conf);
 
     /* Set default interrupt flag */
-    gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);    //Ste the flag for th einterrupt
+    gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
 
     /* Add ISR handler */
     gpio_isr_handler_add(BUTTON, gpio_isr_handler, (void*) BUTTON); 
@@ -134,6 +134,7 @@ void app_main() {
 #define ESP_INTR_FLAG_DEFAULT   0   /* Interrupt flag configuration */
 
 #define ONBOARD_LED             2   /* Onboard led */
+
 /* Update with custom pins */
 #define SMOKE_DETECTOR_PIN      0  /* Smoke detector pin */
 #define DISABLE_ALARM_PIN       0  /* Disable alarm pin */
@@ -223,7 +224,7 @@ void app_main(void)
 
 ## C helpful functions
 
-For this lab, there are a couple of additional functions from `Espressif` that are important for using inputs. In the previous lab, we had used `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` set our inputs and outputs. However, will now use a different approach by using `gpio_config_t`. This new apporach allows to create input and output in a more condense fashion with structures. The structure has various member with their own data type. Please look into them to select the correct value when developing the lab.
+For this lab, there are a couple of additional functions from `Espressif` that are important for using inputs. In the previous lab, we had used `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` set our inputs and outputs. However, will now use a different approach by using `gpio_config_t`. This new apporach allows to create input and output in a more condense fashion with structures. The structure has various members with their own data types. Please look into them inorder select the correct value when developing the lab.
 ~~~c 
 typedef struct {
     uint64_t pin_bit_mask;          /*!< GPIO pin: set with bit mask, each bit maps to a GPIO */

@@ -27,6 +27,7 @@
 #define ESP_INTR_FLAG_DEFAULT   0   /* Interrupt flag configuration */
 
 #define ONBOARD_LED             2   /* Onboard led */
+
 /* Update with custom pins */
 #define SMOKE_DETECTOR_PIN      0  /* Smoke detector pin */
 #define DISABLE_ALARM_PIN       0  /* Disable alarm pin */
@@ -92,6 +93,7 @@ void fire_alarm_interrupt_setup(fire_alarm_t * const alarm){
     /* Add ISR handler */
     gpio_isr_handler_add(alarm->startFireAlarm, gpio_interrupt_handler, (void *) alarm->smokeDetector);
     /* Add missing interrupt */
+
 }
 
 void app_main(void)
