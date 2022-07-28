@@ -3,6 +3,7 @@
 ## Objective
 * Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and a `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then most significant bit to lowest bit. While `led chaser` will have a single led iterating from the lowest to most significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
 
+## Bonus
 - ***Undergrad Bonus:***
   * Do the `led chaser`
 - ***Grad Bonus:***
@@ -63,24 +64,6 @@ void app_main(void){
 
 ## Lab Template
 ~~~c
-/*
-    Author:     Jesus Minjares and Erick A. Baca
-                Master of Science in Computer Engineering   
-
-    Course:     EE 4178/5190 Laboratory for Microprocessors Systems II    
-     
-    Lab 0:
-        Objective:
-                Understand how to use the gpio driver library from `Espressif`. The lab will
-                consist of creating a `sweeper` and a `led chaser`. The `sweeper` will iterate over
-                mutiple LEDs by turning from the lowest to highest bit and then most significant bit
-                to lowest bit. While `led chaser` will have a single led iterating from the lowest to most
-                significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
-        Undergrad Bonus:
-                Do the `led chaser`
-        Grad Bonus:
-                Create at least 4 different sequences or patterns and do a light show! 
-*/
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
