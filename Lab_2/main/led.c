@@ -1,3 +1,14 @@
+/**
+ * @file led.c
+ * @author Jesus Minjares (https://github.com/jminjares4)
+ * @brief Custom LED driver source file
+ * @version 0.1
+ * @date 2022-07-25
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "driver/led.h"
 #include "driver/gpio.h"
 

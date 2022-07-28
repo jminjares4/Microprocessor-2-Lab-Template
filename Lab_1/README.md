@@ -18,6 +18,7 @@
 | B1     | `Led chaser` | Pull-down |
 | B2     | `Toggle`     | Pull-down |
 
+## **Bonus**
 - ***Undergrad Bonus:***
   * Create an other LED sequence and add another button, as pull-up. 
 - ***Grad Bonus:***

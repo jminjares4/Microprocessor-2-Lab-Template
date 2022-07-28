@@ -18,6 +18,7 @@
 | Task 1 | Toggle `onboard led` @ 250 ms |
 | Task 2 | Print `Hello World!` @ 2 sec  |
 
+## **Bonus**
 - ***Undergrad Bonus:***
   * Create an additional task that toggles external led and print it state
 - ***Grad Bonus:***
@@ -89,7 +90,6 @@ void app_main(void){
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_system.h"
 #include "driver/gpio.h"
 
 /* Define pin 13 as a “BLINK_GPIO” */

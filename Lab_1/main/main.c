@@ -6,24 +6,26 @@
      
     Lab 1:
         Objective:
-              Understand how to use the gpio driver library from `Espressif`. The lab will consist of
-              using a `sweeper`, `led chaser` and any additionals led sequence that the student developed
-              and be selected via an input. Students must have a total of three buttons. First button must 
-              start `sweeper` function which student must have complete from the previous lab. Next, the 
-              second button must start the `led chaser` function. Lastly, the third button must toggle the
-              state of the onboard led.
+            Understand how to use the gpio driver library from `Espressif`. The lab will consist of
+            using a `sweeper`, `led chaser` and any additionals led sequence that the student developed
+            and be selected via an input. Students must have a total of three buttons. First button must 
+            start `sweeper` function which student must have complete from the previous lab. Next, the 
+            second button must start the `led chaser` function. Lastly, the third button must toggle the
+            state of the onboard led.
 
-        Undergrad Bonus:
-              Create an other LED sequence and add another button, as pull-up. 
-        Grad Bonus:
-              Add button to start lightshow from previous lab
-              Do a reset button which will turn off all LEDs 
+            | Button |  Function    |   Mode    | 
+            | :---   | :---         | :---      |  
+            | B0     | `Sweeper`    | Pull-down |
+            | B1     | `Led chaser` | Pull-down |
+            | B2     | `Toggle`     | Pull-down |
 
-        | Button |  Function    |   Mode    | 
-        |--------|--------------|-----------|
-        | B0     | `Sweeper`    | Pull-down |
-        | B1     | `Led chaser` | Pull-down |
-        | B2     | `Toggle`     | Pull-down |
+        Bonus:
+            Undergrad Bonus:
+                Create an other LED sequence and add another button, as pull-up. 
+            Grad Bonus:
+                Add button to start lightshow from previous lab
+                Do a reset button which will turn off all LEDs 
+
 */
 
 #include <stdio.h>

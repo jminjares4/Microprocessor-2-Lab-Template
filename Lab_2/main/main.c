@@ -11,9 +11,10 @@
                 to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down
                 configuration.
 
-        Undergrad Bonus:
+        Bonus:
+            Undergrad Bonus:
                 Display fire alarm status in terminal whenever it is active
-        Grad Bonus:
+            Grad Bonus:
                 Add another LED to indicate when fire alarm is disable
                 
  */
