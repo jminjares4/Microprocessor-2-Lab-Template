@@ -2,7 +2,7 @@
 
 ## Objective
     Understand how to use the [Espressif GPIO interrupts](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio). This lab will consist
-    of simulating your own **fire alarm** :police_car_light:!!! There is an additional driver that was developed 
+    of simulating your own **fire alarm**!!! There is an additional driver that was developed 
     to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down
     configuration.
 
@@ -245,7 +245,7 @@ esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void
 
 ### Pull-up and Pull-down Configuration
 
-<img width="413" alt="button configuation" src="../images/button_config.png">
+<img width="413" alt="button configuation" src="button_config.png">
 
 ## Warning
 The bit mask in `gpio_config_t` is an `uint64_t` value and ESP32 uses `enum` for its pinout. Therefore, in order to mask the bits correctly you must bit shift desire pin by an unsigned long long (`ULL`). 
@@ -255,9 +255,11 @@ uint64_t bitmask = (1ULL << ONBOARD_LED); /* Convert onboard led value to unsign
 ```
 
 ## Add led driver to ESP32 Project
-1) Copy driver folder
-2) Paste into esp project
-3) Edit project CMakeLists.txt to use led.c:
+<ol>
+<li>Copy driver folder</li>
+<li>Paste into esp project</li>
+<li>Edit project CMakeLists.txt to use led.c:</li>
+</ol>
 ```cmake
 idf_component_register(SRCS "main.c"
                             "driver/led.c"

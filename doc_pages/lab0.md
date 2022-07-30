@@ -153,13 +153,12 @@ void app_main(void)
       //lightShow(led,size); //bonus 
 
       // Toggle LED using index of your array
-      gpio_set_level(led[0]);
+      gpio_set_level(led[0], LOW);
       vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
-      gpio_set_evel(led[0];)
+      gpio_set_level(led[0], HIGH);
       vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
     }
 }
-
 ~~~
 
 ## C helpful functions
@@ -177,7 +176,7 @@ Furthermore, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` sets the logi
 | **0** | low   |
 | **1** | high  |
 ~~~c
-esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level); // set LOGIC high
+esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level);
 ~~~
 
 Lastly, the following function  `vTaskDelay( const TickType_t xTicksToDelay)` is use to generate delay with ESP32 and it part of FreeRTOS, you will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds

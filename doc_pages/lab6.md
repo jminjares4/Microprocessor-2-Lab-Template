@@ -178,7 +178,7 @@ void app_main()
 
 ## C helpful functions
 
-We have use queues in the previous lab to send data from one task to another. However, it this lab we need to send data from an interrupt to a task. Therefore, a special function is need to send data to the queue: **`xQueueSendFromISR()`**. Similar to the previous lab functions that we have use to send data in a queue, `xQueueSendFromISR` is similar with a different parameter. To keep it simple, please set `BaseType_t *pxHigherPriorityTaskWoken` parameter set to *`NULL`*.
+We have use queues in the previous lab to send data from one task to another. However, it this lab we need to send data from an interrupt to a task. Therefore, a special function is need to send data to the queue: <strong>`xQueueSendFromISR()`</strong>. Similar to the previous lab functions that we have use to send data in a queue, `xQueueSendFromISR` is similar with a different parameter. To keep it simple, please set `BaseType_t *pxHigherPriorityTaskWoken` parameter set to <i>`NULL`</i>.
 ~~~c
  BaseType_t xQueueSendFromISR(
                                 QueueHandle_t xQueue,
@@ -187,7 +187,7 @@ We have use queues in the previous lab to send data from one task to another. Ho
                              );
 ~~~
 
-For more information of how to use [Queues](@ref doc_pages/lab5.md) and [Interrupts](@ref lab2.md), please see previous labs.
+For more information of how to use [Queues](@ref doc_pages/lab5.md) and [Interrupts](@ref doc_pages/lab2.md), please see previous labs.
 
 ## Pull-up and Pull-down Configuration
 

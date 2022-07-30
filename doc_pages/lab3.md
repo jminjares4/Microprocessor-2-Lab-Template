@@ -130,13 +130,14 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
 
 
 ~~~c 
- BaseType_t xTaskCreate( TaskFunction_t pvTaskCode,
-                         const char * const pcName,
-                         configSTACK_DEPTH_TYPE usStackDepth,
-                         void *pvParameters,
-                         UBaseType_t uxPriority,
-                         TaskHandle_t *pxCreatedTask
-                        );
+ BaseType_t xTaskCreate( 
+                          TaskFunction_t pvTaskCode,
+                          const char * const pcName,
+                          configSTACK_DEPTH_TYPE usStackDepth,
+                          void *pvParameters,
+                          UBaseType_t uxPriority,
+                          TaskHandle_t *pxCreatedTask
+                       );
 ~~~
 
 ## Additional Links
