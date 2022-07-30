@@ -63,7 +63,7 @@
 
 ## Example 1
 
-The following example is a quick demostration of how to use queues with FreeRTOS on the ESP32. First, a queue is created as a global variable to have name `myQueue`. Next, that variable must store an instance of a queue by `xQueueCreate` function. `Task 1` will send `data` which store a `10` to `Task 2` every second. `Task 2` will recieve data through the queue and display it in the terminal. 
+The following example is a quick demostration of how to use queues with FreeRTOS on the ESP32. First, a queue is created as a global variable to have name `myQueue`. Next, that variable must store an instance of a queue by `xQueueCreate` function. `Task 1` will send `data` which store a `10` to `Task 2` every second. `Task 2` will receive data through the queue and display it in the terminal. 
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -93,7 +93,7 @@ void exampleTask2(void *pvParameters){
     while(1){
         /* Wait 100 ticks to receive queue, store in storeData */
         if(xQueueReceive(myQueue, &storeData, (TickType_t)100) == pdPASS){
-            printf("Data receive from task 1: %d\n", storeData); /* display data recieve */
+            printf("Data receive from task 1: %d\n", storeData); /* display data receive */
             vTaskDelay(100/portTICK_PERIOD_MS); /* 100 ms */ 
         }
         vTaskDelay(500/portTICK_PERIOD_MS); /* 500 ms */

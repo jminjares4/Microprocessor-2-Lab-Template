@@ -9,7 +9,7 @@
             Understand how to use queues and interrupts with FreeRTOS Queues. In this lab, students
             will learn how to send qyedata between tasks using interrupts. Student must create a program
             that uses `gpio` interrupts as in Lab 2, please feel free to use either configuration (Pull-up | Pull-down).
-            The interrupt service routine (ISR) should send data (gpio pin number) to a queue and recieve by task: `print_task`.
+            The interrupt service routine (ISR) should send data (gpio pin number) to a queue and receive by task: `print_task`.
             The `print_task` must receive the data and display it. For instance, if the interrupt was trigger by pin 23, the output
             would be: "GPIO 23 received!!!". 
 

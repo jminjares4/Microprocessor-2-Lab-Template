@@ -52,7 +52,7 @@
 ~~~
 
 ## Example 1
-The following example is a brief demostration of how to use semaphore. `Task 1` will run every 2 second and give a sempahore for `Task 2` to run. `Task 2` will consistently wait to receive the sempahore which `Task 1` will provide every 2 seconds. Once `Task 2` recieve the semaphore from `Task 1` it will run and print `"Task 2 is running!!"`.
+The following example is a brief demostration of how to use semaphore. `Task 1` will run every 2 second and give a sempahore for `Task 2` to run. `Task 2` will consistently wait to receive the sempahore which `Task 1` will provide every 2 seconds. Once `Task 2` receive the semaphore from `Task 1` it will run and print `"Task 2 is running!!"`.
 
 ~~~c
 #include <stdio.h>
@@ -99,7 +99,7 @@ void app_main(void){
 ~~~
 
 ## Example 2
-The following example is a more advance demostration of how to use semaphore. `Task 1` will wait for `mySemaphore1` and once it recieves it, it will give `mySeamphore2`. `Task 2` will recieve the semaphore from `Task 1` and run. Once `Task 2` task is done, `mySemaphore1` will be give back for `Task 1` to run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrate the true purpose of semaphores.
+The following example is a more advance demostration of how to use semaphore. `Task 1` will wait for `mySemaphore1` and once it recieves it, it will give `mySeamphore2`. `Task 2` will receive the semaphore from `Task 1` and run. Once `Task 2` task is done, `mySemaphore1` will be give back for `Task 1` to run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrate the true purpose of semaphores.
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
