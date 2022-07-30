@@ -2,7 +2,7 @@
     Author:     Jesus Minjares and Erick Baca
                 Master of Science in Computer Engineering
     
-    Course:     EE 5190 Laboratory for Microprocessors Systems II
+    Course:     EE 4178/5190 Laboratory for Microprocessors Systems II
 
     Lab 5:
         Objective:

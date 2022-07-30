@@ -11,7 +11,7 @@
 
 ## **Bonus**
 - ***Undergrad Bonus:***
-  *  Modify the code to use the structure down below on a queue.
+  *  Modify the code to use the `structure` down below on a **queue**.
     ~~~c
     typedef struct {
         char str[10];
@@ -20,7 +20,7 @@
     ~~~
 
 - ***Grad Bonus:***
-  *  Modify the code to use the structure down below on a queue. Also, add an LED to change states based on `isLedOn`.
+  *  Modify the code to use the `structure` down below on a **queue**. Also, *add* an LED to change **states** based on `isLedOn`.
     ~~~c
     typedef struct {
         char str[10];
@@ -265,10 +265,10 @@ BaseType_t xQueueReceive(
 * [FreeRTOS Documenation](https://www.freertos.org/a00125.html)
 
 ## **Authors**
-* [***Jesus Minjares***](https://github.com/jminjares4)
+* [**Jesus Minjares**](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
-* [***Erick Baca***](https://github.com/eabaca2419)
+* [**Erick Baca**](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 

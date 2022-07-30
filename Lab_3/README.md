@@ -13,16 +13,16 @@
 
 * Understand how to use the FreeRTOS with [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating two main tasks. `Task 1` will toggle *onboard led* every **250 ms**, and `Task 2` must print **'Hello World!** every **2 seconds**.
 
-| **Tasks**  | **Objective**             |
-| :---   | :---                          |
-| Task 1 | Toggle `onboard led` @ 250 ms |
-| Task 2 | Print `Hello World!` @ 2 sec  |
+| Tasks      | Objective                     |
+| :---       | :---                          |
+| Task 1     | Toggle `onboard led` @ 250 ms |
+| Task 2     | Print `Hello World!` @ 2 sec  |
 
 ## **Bonus**
 - ***Undergrad Bonus:***
-  * Create an additional task that toggles external led and print it state
+  * Create an `additional task` that toggles external **led** and print it **state**
 - ***Grad Bonus:***
-  * Create an addtional task that run any led sequence of the previous labs and it should run every 5 seconds
+  * Create an `addtional task` that run any *led sequence* of the previous labs and it should run every **5 seconds**
 
 ## **ESP32 Pinout**
 ~~~
@@ -153,10 +153,10 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 
 ## **Authors**
-* [***Jesus Minjares***](https://github.com/jminjares4)
+* [**Jesus Minjares**](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
-* [***Erick Baca***](https://github.com/eabaca2419)
+* [**Erick Baca**](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 

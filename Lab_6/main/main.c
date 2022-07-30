@@ -2,7 +2,7 @@
     Author:     Jesus Minjares and Erick Baca
                 Master of Science in Computer Engineering
     
-    Course:     EE 5190 Laboratory for Microprocessors Systems II
+    Course:     EE 4178/5190 Laboratory for Microprocessors Systems II
 
     Lab 6:
         Objective:
@@ -23,10 +23,10 @@
 
         Bonus:
             Undergrad Bonus:
-                Modify code to use two more interrupts. 
+                Modify code to use 2 more interrupts. 
             
             Grad Bonus:
-                Modify code to use two more interrupts and add two LEDs. 
+                Modify code to use 2 more interrupts and add 2 LEDs. 
                 Each interrupt must toggle its corresponding LED. 
 
 
