@@ -1,14 +1,33 @@
-# **Lab 7 Peripherals and Queues:ADC and PWM (LEDC) :zap:**
+<div align='center'>
+  <a href="https://www.utep.edu/engineering/ece/">
+    <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
+    <h1>
+      Electrical and Computer Engineering Department
+    </h1>
+  </a>
+</div>
 
-### **Objective**
-*** 
-* The objective for this lab is to understand how use the LEDC and ADC API's of espressif. In this lab, create 2 task: one that will initiallize the peripherals and perform ADC readings every 100 millisecond. The ADC input reading should come from a 10K potentiometer and store its information into a queue. For the second task, output a PWM signal which gets it's duty cycle updated based on the queue value send from the ADC task.
+# **Lab 7 Peripherals and Queues: ADC and PWM (LEDC) :zap:**
 
-### **Bonus**
-***
-* Add a port interrupt to stop and start the PWM signal.+10
-* Create another task with two more PWM pins using the LEDC driver and start on at the highest duty cycle and then drop down. When it reaches 0 start the next pin from 0 to the highest duty cycle and go back doing the same pattern. This will give the illusion of a wave.
-### **ESP32 Pinout**
+## **Objective**
+
+* The objective for this lab is to understand how use the Espressif [`LEDC`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html) 
+  and [`ADC`](https://docs.espressif.com/projects/esp-idf/en/v4.2/esp32/api-reference/peripherals/adc.html) drivers. In this lab, create 2 task: adc and pwm task. 
+  The `adc task` perform ADC readings every 100 millisecond (10 hertz). This task must store the adc reading and be sent through a queue. Lastly,
+  `pwm task` should receive the queue data from the `adc task` and update `ledc` duty cycle. 
+
+| Task          |  Description               | Queue        |
+| :---          | :---                       | :---         |
+| `adc_task`    | Read analog value @ 10 hz  | send data    |
+| `pwm_task`    | Update duty cycle          | receive data |
+
+## **Bonus**
+- ***Undergrad Bonus***
+  - Add `gpio` interrupt to start and stop **PWM** signal
+- ***Grad Bonus***
+  - Modifiy code to use **2** more PWM pins. 
+
+## **ESP32 Pinout**
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -35,68 +54,84 @@
                                          | O                   O |
                                          +-----------------------+
 ~~~
-### **Example 1**
-Here is an example of a single ADC channel that will read information from a potentiometer and will print the information to the screen.
+
+## **Example 1**
+Here is an example of a single ADC channel that will read and print value to the screen.
 ~~~c
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include <driver/adc.h>
 
-void ADCtask(void *pvParameter){
+/* ADC task */
+void ADCtask(void *pvParameters){
     while(1){
-        //every 100ms
-        vTaskDelay(100/portTICK_PERIOD_MS);
-        /*Read adc value @ CHANNEL 6*/
+        /* Read adc value @ CHANNEL 6*/
         int val = adc1_get_raw(ADC1_CHANNEL_6);   
-        /*Print ADC reading*/
-
+        vTaskDelay(100/portTICK_PERIOD_MS); /* 100 ms */
+        
+        /* Print reading */
+        printf("ADC val: %d\n", val);
     }
 }
+
 /* Set ADC */
-void setADC(){
+void adc_setup(void){
+
     /*Set the ADC with @ 12 bits -> 2^12 = 4096*/
     adc1_config_width(ADC_WIDTH_BIT_12);
+
     /*Set CHANNEL 6 @ 2600 mV*/
     adc1_config_channel_atten(ADC1_CHANNEL_6, ADC_ATTEN_DB_11); 
+    
 }
+
 void app_main(void){
     /* set ADC*/
-    setADC();
+    adc_setup();
     /* Create Tasks */
     xTaskCreate(&ADCtask, "ADCtask", 2048,NULL, 5, NULL);
 }
 ~~~
-### **Example 2**
+
+## **Example 2**
 Here is an example of a PWM signal using the LEDC API to dim an LED.
 ~~~c
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include <driver/ledc.h>
 
-#define ONBOARD_LED 2               //ONBOARD GPIO LED
+#define ONBOARD_LED 2  /* Onboard LED */
 
-void PWMtask(void *pvParameter){
+#define MAX_DUTY    4096 /* max duty cycle */
+
+/* PWM task */
+void PWMtask(void *pvParameters){
     int i = 0;
     while(1){
-        for (i = 0; i < MAX_DUTY; i += 10){ //Iterrate the duty cycle of channel 1 to its highest point
-            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i); //set duty 
+        /* Iterate over channel 1 duty cycle, increase */
+        for (i = 0; i < MAX_DUTY; i += 10){ 
+            /* set duty cycle */
+            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i);
+            /* update duty cycle */
             ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1); //update duty 
-             vTaskDelay(10/portTICK_PERIOD_MS); //100ms to avoid WDT errors
-        } 
-        for (i = MAX_DUTY; i > 0; i -= 10){ //Iterrate the duty cycle of channel 1 to 0
-            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i); //set duty 
+            vTaskDelay(10/portTICK_PERIOD_MS); /* 10ms */ 
+        }
+        /* Iterate over channel 1 duty cycle, decrease */
+        for (i = MAX_DUTY; i > 0; i -= 10){ 
+            /* set duty cycle */
+            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i);
+            /* update duty cycle */
             ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1); //update duty 
-             vTaskDelay(10/portTICK_PERIOD_MS); //100ms to avoid WDT errors
+            vTaskDelay(10/portTICK_PERIOD_MS); /* 10ms */ 
         }
     }
 }
+
 /* Set PWM */
-void setPWM(){
+void pwm_setup(void){
     /*
         Set LEDC Timer:
                         5000hz
@@ -120,85 +155,123 @@ void setPWM(){
                         TIMER_1
                         LOW_SPEED
                         0 duty
+                        Max duty 
     */
-    ledc_channel_config_t tChaConfig;
-    tChaConfig.gpio_num = ONBOARD_LED;    
-    tChaConfig.speed_mode = LEDC_LOW_SPEED_MODE;
-    tChaConfig.channel = LEDC_CHANNEL_1;
-    tChaConfig.intr_type = LEDC_INTR_DISABLE;
-    tChaConfig.timer_sel = LEDC_TIMER_1;
-    tChaConfig.duty = 0;
-    tChaConfig.hpoint = 4096;   //Highest point for the PWM is at 4096
-    ledc_channel_config(&tChaConfig);
+    ledc_channel_config_t channelConfig;
+    channelConfig.gpio_num = ONBOARD_LED;    
+    channelConfig.speed_mode = LEDC_LOW_SPEED_MODE;
+    channelConfig.channel = LEDC_CHANNEL_1;
+    channelConfig.intr_type = LEDC_INTR_DISABLE;
+    channelConfig.timer_sel = LEDC_TIMER_1;
+    channelConfig.duty = 0;
+    channelConfig.hpoint = MAX_DUTY;   
+    ledc_channel_config(&channelConfig);
 }
+
 void app_main(void){
+
     /* set PWM*/
-    setPWM();
+    pwm_setup();
+
     /* Create Tasks */
     xTaskCreate(&PWMtask, "PWMtask", 2048, NULL, 5, NULL);
+    
 }
 ~~~
-### **Template Code**
+
+## **Lab Template**
 ~~~c
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include <driver/ledc.h>
 #include <driver/adc.h>
-static xQueueHandle duty_queue = NULL;
-void ADCtask(void *pvParameter)
+
+/* Global queue handle */
+QueueHandle_t duty_queue = NULL;
+
+/* ADC task */
+void ADCtask(void *pvParameters)
 {
     while (1)
     {
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+       /* Read adc channel*/
+
+       /* Send data to queue */
     }
 }
-void PWMtask(void *pvParameter)
+
+/* PWM task */
+void PWMtask(void *pvParameters)
 {
     while (1)
     {
-        ledc_set_duty();
-        ledc_update_duty();
+        /* Receive data */
+
+        /* Update duty cycle */
+
     }
 }
-void setADC()
+
+/* ADC setup */
+void adc_setup(void)
 {
-    adc1_config_width();
-    adc1_config_channel_atten(, );
+    /* Set adc */
 }
-void setPWM()
+
+/* PWM setup */ 
+void pwm_setup(void)
 {
-    ledc_timer_config_t timerConfig;
-    timerConfig.duty_resolution = ;
-    timerConfig.timer_num = ;
-    timerConfig.freq_hz = ;
-    timerConfig.speed_mode = ;
-    ledc_timer_config(&timerConfig);
-    ledc_channel_config_t tChaConfig;
-    tChaConfig.gpio_num = ;
-    tChaConfig.speed_mode = ;
-    tChaConfig.channel = ;
-    tChaConfig.intr_type = ;
-    tChaConfig.timer_sel = ;
-    tChaConfig.duty = ;
-    ledc_channel_config(&tChaConfig);
+
 }
+
 void app_main()
 {
-    setADC();
-    setPWM();
-    duty_queue = xQueueCreate(10, sizeof(int));
+    /* Setup ADC and PWM */
+
+    /* Create queue */
+
+    /* Create tasks */
     xTaskCreate(&ADCtask, "ADCtask", 2048, NULL, 5, NULL);
     xTaskCreate(&PWMtask, "PWMtask", 2048, NULL, 5, NULL);
 }
 ~~~
 
----
 ## **C helpful functions**
 
-For this Lab, there are couple additional functions from ESPRESSIF that are important for using ADC. First is understanding what bit width are you planning to read using the function `adc1_config_width(adc_bits_width_t width_bit)`. The higher the bit width, the accurate the ADC reading will be.
+Espressif ADC driver requires the following structures and enumeration inorder to set the correct pin and operation. There are a few GPIO that
+are avaiable to use analog converter. Depending on the ESP32, there are slight difference between the pinout so please verify the hardware. 
+~~~c
+typedef enum {
+    ADC1_CHANNEL_0 = 0, /*!< ADC1 channel 0 is GPIO36 */
+    ADC1_CHANNEL_1,     /*!< ADC1 channel 1 is GPIO37 */
+    ADC1_CHANNEL_2,     /*!< ADC1 channel 2 is GPIO38 */
+    ADC1_CHANNEL_3,     /*!< ADC1 channel 3 is GPIO39 */
+    ADC1_CHANNEL_4,     /*!< ADC1 channel 4 is GPIO32 */
+    ADC1_CHANNEL_5,     /*!< ADC1 channel 5 is GPIO33 */
+    ADC1_CHANNEL_6,     /*!< ADC1 channel 6 is GPIO34 */
+    ADC1_CHANNEL_7,     /*!< ADC1 channel 7 is GPIO35 */
+    ADC1_CHANNEL_MAX,
+} adc1_channel_t;
+~~~
+~~~c
+typedef enum {
+    ADC2_CHANNEL_0 = 0, /*!< ADC2 channel 0 is GPIO4  (ESP32), GPIO11 (ESP32-S2) */
+    ADC2_CHANNEL_1,     /*!< ADC2 channel 1 is GPIO0  (ESP32), GPIO12 (ESP32-S2) */
+    ADC2_CHANNEL_2,     /*!< ADC2 channel 2 is GPIO2  (ESP32), GPIO13 (ESP32-S2) */
+    ADC2_CHANNEL_3,     /*!< ADC2 channel 3 is GPIO15 (ESP32), GPIO14 (ESP32-S2) */
+    ADC2_CHANNEL_4,     /*!< ADC2 channel 4 is GPIO13 (ESP32), GPIO15 (ESP32-S2) */
+    ADC2_CHANNEL_5,     /*!< ADC2 channel 5 is GPIO12 (ESP32), GPIO16 (ESP32-S2) */
+    ADC2_CHANNEL_6,     /*!< ADC2 channel 6 is GPIO14 (ESP32), GPIO17 (ESP32-S2) */
+    ADC2_CHANNEL_7,     /*!< ADC2 channel 7 is GPIO27 (ESP32), GPIO18 (ESP32-S2) */
+    ADC2_CHANNEL_8,     /*!< ADC2 channel 8 is GPIO25 (ESP32), GPIO19 (ESP32-S2) */
+    ADC2_CHANNEL_9,     /*!< ADC2 channel 9 is GPIO26 (ESP32), GPIO20 (ESP32-S2) */
+    ADC2_CHANNEL_MAX,
+} adc2_channel_t;
+~~~
+The ESP has default 12 bit max width conversion but depending on the hardware, it can go upto 13 bit. To keep everything simple, please 
+do not exceed 12 bit width. Espressif ADC width is selected by `adc_bit_width_t` enumeration down below. 
 ~~~c
 typedef enum {
 #if CONFIG_IDF_TARGET_ESP32
@@ -214,23 +287,20 @@ typedef enum {
     ADC_WIDTH_MAX,
 } adc_bits_width_t;
 ~~~
-Next, you need to take into consideration that the ESP32 has specific pin for each channel for ADC1. `adc1_config_channel_atten(adc1_channel_t channel, adc_atten_t atten)` this functions is being use to delcare which channel will you be reading from. Below you will see the channel numbers with its designated GPIO pins.
+
+Espressif ADC driver has an attenuation feature to limit voltage reading to desire range. The `adc_atten_t` enumeration allows to select desire range of 
+the adc channel. Please go over the example program to get an idea of how the **ADC** driver works. 
 ~~~c
 typedef enum {
-    ADC1_CHANNEL_0 = 0, /*!< ADC1 channel 0 is GPIO36 */
-    ADC1_CHANNEL_1,     /*!< ADC1 channel 1 is GPIO37 */
-    ADC1_CHANNEL_2,     /*!< ADC1 channel 2 is GPIO38 */
-    ADC1_CHANNEL_3,     /*!< ADC1 channel 3 is GPIO39 */
-    ADC1_CHANNEL_4,     /*!< ADC1 channel 4 is GPIO32 */
-    ADC1_CHANNEL_5,     /*!< ADC1 channel 5 is GPIO33 */
-    ADC1_CHANNEL_6,     /*!< ADC1 channel 6 is GPIO34 */
-    ADC1_CHANNEL_7,     /*!< ADC1 channel 7 is GPIO35 */
-    ADC1_CHANNEL_MAX,
-} adc1_channel_t;
+    ADC_ATTEN_DB_0   = 0,  ///<No input attenumation, ADC can measure up to approx. 800 mV
+    ADC_ATTEN_DB_2_5 = 1,  ///<The input voltage of ADC will be attenuated extending the range of measurement by about 2.5 dB (1.33 x)
+    ADC_ATTEN_DB_6   = 2,  ///<The input voltage of ADC will be attenuated extending the range of measurement by about 6 dB (2 x)
+    ADC_ATTEN_DB_11  = 3,  ///<The input voltage of ADC will be attenuated extending the range of measurement by about 11 dB (3.55 x)
+} adc_atten_t;
 ~~~
-Lastly, in order to aquire the ADC reading you will use the function `int adc1_get_raw(adc1_channel_t channel)`.
 
-Now for the the LEDC API to create a PWM signal, in order to set up this function you will need to fill two structures. First you need to setup the structure `ledc_timer_config_t` where you put the duty resolution, timer, frequency and clock source. 
+Next, Espressif LEDC driver requires to use the following structures. `ledc_timer_config_t` structure set
+the duty resolution, timer, frequency and clock source. 
 ~~~c
 typedef struct {
     ledc_mode_t speed_mode;                /*!< LEDC speed speed_mode, high-speed mode or low-speed mode */
@@ -245,7 +315,8 @@ typedef struct {
                                                 For low speed channels, you can also specify the source clock using LEDC_USE_RTC8M_CLK, in this case, all low speed channel's source clock must be RTC8M_CLK*/
 } ledc_timer_config_t;
 ~~~
-Next, you will need to fill out the channel structure which is `ledc_channel_config_t` where you will select the pin number, speed mode, channel (which is the one we setup before), intr type, timer select (which use for the previuos timer structure), duty cycle and hpoint.
+Furthermore, `ledc_channel_config_t` structure allows to select the pin number, speed mode, channel, intr type, timer select, duty cycle and hpoint. For more detail, please see Espressif documentation and go
+over the example programs to understand how to use it properly.
 ~~~c
 typedef struct {
     int gpio_num;                   /*!< the LEDC output gpio_num, if you want to use gpio16, gpio_num = 16 */
@@ -261,16 +332,15 @@ typedef struct {
 
 } ledc_channel_config_t;
 ~~~
-Then the functions to change the duty cycle is `ledc_set_duty(ledc_mode_t speed_mode, ledc_channel_t channel, uint32_t duty)` and to actually update the change you need the function ` ledc_update_duty(ledc_mode_t speed_mode, ledc_channel_t channel)`. 
+Additionally, `ledc_set_duty(ledc_mode_t speed_mode, ledc_channel_t channel, uint32_t duty)` is use to set the duty cycle  and to actually update the duty you need to use ` ledc_update_duty(ledc_mode_t speed_mode, ledc_channel_t channel)`. 
+Lastly, `LEDC` driver allows users to control the operation of the timer: `ledc_timer_pause(ledc_mode_t speed_mode, ledc_timer_t timer_sel)` and `ledc_timer_resume(ledc_mode_t speed_mode, ledc_timer_t timer_sel)`.
 
-Finally the last important function while using the LEDC API is a way to pause the timer `ledc_timer_pause(ledc_mode_t speed_mode, ledc_timer_t timer_sel)` and to resume the timer `ledc_timer_resume(ledc_mode_t speed_mode, ledc_timer_t timer_sel)`.
-
-### **Additional Links**
+## **Additional Links**
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 * [Espressif ADC Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html)
 * [Espressif LEDC Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html)
----
-### **Authors**
+
+## **Authors**
 * [***Jesus Minjares***](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
