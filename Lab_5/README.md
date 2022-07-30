@@ -111,7 +111,7 @@ void app_main(void){
 
 ## **Example 2**
 
-The following example shows how to pass argument through a task. As mention in previous labs, `xTaskCreate` has various parameters that we went briefly in detail. However, the 4th argument is use to pass an argument to the task. In the bottom code, `Task 1` recieves an argument, this example may come handy when developing more advance task to reduce and create more abstract tasks. 
+The following example shows how to pass argument through a task. As mention in previous labs, `xTaskCreate` has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, `Task 1` recieves an argument, this example may come handy when developing more advance task to reduce and create more abstract tasks. 
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"

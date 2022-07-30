@@ -74,24 +74,6 @@ void app_main(void){
 
 ## **Lab Template**
 ~~~c
-/*
-    Author:     Jesus Minjares and Erick A. Baca
-                Master of Science in Computer Engineering   
-
-    Course:     EE 4178/5190 Laboratory for Microprocessors Systems II    
-     
-    Lab 0:
-        Objective:
-                Understand how to use the gpio driver library from `Espressif`. The lab will
-                consist of creating a `sweeper` and a `led chaser`. The `sweeper` will iterate over
-                mutiple LEDs by turning from the lowest to highest bit and then most significant bit
-                to lowest bit. While `led chaser` will have a single led iterating from the lowest to most
-                significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
-        Undergrad Bonus:
-                Do the `led chaser`
-        Grad Bonus:
-                Create at least 4 different sequences or patterns and do a light show! 
-*/
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -181,13 +163,12 @@ void app_main(void)
       //lightShow(led,size); //bonus 
 
       // Toggle LED using index of your array
-      gpio_set_level(led[0]);
+      gpio_set_level(led[0], LOW);
       vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
-      gpio_set_evel(led[0];)
+      gpio_set_level(led[0], HIGH);
       vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
     }
 }
-
 ~~~
 
 ## **C helpful functions**
@@ -205,7 +186,7 @@ Furthermore, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` sets the logi
 | **0** | low   |
 | **1** | high  |
 ~~~c
-esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level); // set LOGIC high
+esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level);
 ~~~
 
 Lastly, the following function  `vTaskDelay( const TickType_t xTicksToDelay)` is use to generate delay with ESP32 and it part of FreeRTOS, you will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds

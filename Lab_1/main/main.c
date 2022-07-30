@@ -118,14 +118,14 @@ void app_main(void)
 
     while (1)
     {
-        vTaskDelay(5/portTICK_PERIOD_MS); //debounce button
-        int button0 = gpio_get_level(button[0]); //read button 0
-        // add additonal buttons 
+        vTaskDelay(5/portTICK_PERIOD_MS); /* debounce button */
+        int button0 = gpio_get_level(button[0]); /* read button 0 */
+        /* add additonal buttons */ 
         if(button0 == 1){
-          // sweep();
+         
         }
         else{
-          vTaskDelay(100/portTICK_PERIOD_MS); //100ms to avoid WDT errors
+          vTaskDelay(100/portTICK_PERIOD_MS); /* 100ms to avoid WDT errors */
         }
     }
 }

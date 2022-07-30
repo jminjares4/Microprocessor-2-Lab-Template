@@ -1,3 +1,12 @@
+<div align='center'>
+  <a href="https://www.utep.edu/engineering/ece/">
+    <img src="../images/university_of_texas_at_el_paso_logo.png" height="200">
+    <h1>
+      Electrical and Computer Engineering Department
+    </h1>
+  </a>
+</div>
+
 # **Lab 6 GPIO, Interrupts, and Queues :zap:**
 
 ## **Objective**
