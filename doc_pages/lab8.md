@@ -45,7 +45,7 @@ Here is an example of a single DAC channel doing a square wave.
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-void createSineWave(void *pvParameter){
+void createSineWave(void *pvParameters){
     /* Enable DAC output */
     dac_output_enable(DAC_CHANNEL_1);
     while(1){
@@ -70,7 +70,7 @@ void app_main(void){
 #include <driver/dac.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-void createTriangleWave(void *pvParameter)
+void createTriangleWave(void *pvParameters)
 {
     dac_output_enable(DAC_CHANNEL_1);
     static int i = 0;
@@ -81,7 +81,7 @@ void createTriangleWave(void *pvParameter)
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
-void createSineWave(void *pvParameter)
+void createSineWave(void *pvParameters)
 {
     dac_output_enable(DAC_CHANNEL_2);
     static int i = 0;

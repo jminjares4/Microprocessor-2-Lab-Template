@@ -4,12 +4,12 @@
 
 * Understand how to use the queues with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be using queues to send data among tasks. Students must create queue to send and receive data between two tasks. Task 1 must send an integer i.e (`10`) and then modified to use a string i.e (`"Fall 2022"`). Task 2 should receive the data and print it.
 
-<center>
+<div align='center'>
 | Task          |  Description                     |
 | :---          | :---                             |
 | **Task 1**    | Send data to **queue**           |
 | **Task 2**    | Receive **queue** data and print |
-</center>
+</div>
 
 ## Bonus
 - ***Undergrad Bonus:***
@@ -74,7 +74,7 @@ The following example is a quick demostration of how to use queues with FreeRTOS
 QueueHandle_t myQueue;
 
 /* Example task 1 */
-void exampleTask1(void *pvParameter){
+void exampleTask1(void *pvParameters){
     /* data to be sent */
     int data = 10;
     while(1){
@@ -86,7 +86,7 @@ void exampleTask1(void *pvParameter){
 }
 
 /* Example task 2 */
-void exampleTask2(void *pvParameter){
+void exampleTask2(void *pvParameters){
     /* variable to store data */
     int storeData;
 

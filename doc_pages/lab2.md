@@ -80,7 +80,7 @@ static void IRAM_ATTR gpio_isr_handler(void* arg) {
 }
 
 /* GPIO setup */
-void gpio_setup() {
+void gpio_setup(void) {
     /* IO configuration */
     gpio_config_t io_conf;
     

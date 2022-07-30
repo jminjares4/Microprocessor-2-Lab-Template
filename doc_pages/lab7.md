@@ -44,7 +44,7 @@ Here is an example of a single ADC channel that will read information from a pot
 #include "freertos/task.h"
 #include <driver/adc.h>
 
-void ADCtask(void *pvParameter){
+void ADCtask(void *pvParameters){
     while(1){
         //every 100ms
         vTaskDelay(100/portTICK_PERIOD_MS);
@@ -80,7 +80,7 @@ Here is an example of a PWM signal using the LEDC API to dim an LED.
 
 #define ONBOARD_LED 2               //ONBOARD GPIO LED
 
-void PWMtask(void *pvParameter){
+void PWMtask(void *pvParameters){
     int i = 0;
     while(1){
         for (i = 0; i < MAX_DUTY; i += 10){ //Iterrate the duty cycle of channel 1 to its highest point
@@ -149,14 +149,14 @@ void app_main(void){
 #include <driver/ledc.h>
 #include <driver/adc.h>
 static xQueueHandle duty_queue = NULL;
-void ADCtask(void *pvParameter)
+void ADCtask(void *pvParameters)
 {
     while (1)
     {
         vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
-void PWMtask(void *pvParameter)
+void PWMtask(void *pvParameters)
 {
     while (1)
     {
