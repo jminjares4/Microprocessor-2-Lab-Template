@@ -1,13 +1,34 @@
 # Lab 8 DAC Peripheral
 
-### Objective
-* The objective for this lab is to use and understand the DAC driver of espressif. The ESP32 DAC has a 8-bit resolution therefore the output ranges from 0-255 bits or 0.0-3.3V. Knowing this, for this lab use GPIO 25 to generate a sine wave and in GPIO 26 generate a triangle wave. 
+## Objective
 
-### Bonus
-* Make a Sawtooth wave in GPIO 25.
-* Make the sine wave have a 10 hz frequency.
+* The objective for this lab understand how to use Espressif [`DAC`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/dac.html) driver. Digital to Analog Converter (DAC) is a peripheral that converts to digital signals to analog signals. The ESP32 has *DAC* of 8-bit resolution ranging from 0-255 bit value or 0.0-3.3V. ESP32 has **only** two DAC channels: channel 1 (GPIO 25) and channel 2 (GPIO 26). Students must generate a triangle wave with `channel 1` and sine wave with `channel 2`.
 
-### ESP32 Pinout
+<div align='center'>
+| Tasks         |   Description                       |
+| :---          |   :---                              |
+| Triangle Wave | create triangle wave with `GPIO 25` |
+| Sine Wave     | create sine wave with `GPIO 26`     |
+<br>
+| GPIO Pin | DAC Channel   |
+| :---     | :---          |
+| `GPIO 25`  | Channel 1   |
+| `GPIO 26`  | Channel 2   | 
+<br>
+| Digital   | Analog    |
+| :---      | :---      |
+| 0         | 0.0 v     |
+| ...       | ...       |
+| 255       | 3.3 v     |
+</div>
+
+## Bonus
+- ***Undergrad Bonus***
+  - Replace `triangle` wave with a `saw-tooth` wave
+- ***Grad Bonus***
+  - Modify `sine` wave to operate @ **10** hertz
+
+## ESP32 Pinout
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -35,74 +56,96 @@
                                          +-----------------------+
 ~~~
 
-### Example 1
+## Example
 Here is an example of a single DAC channel doing a square wave.
 ~~~c
 #include <stdio.h>
 #include <math.h>
-#include "sdkconfig.h"
 #include <driver/dac.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-void createSineWave(void *pvParameter){
-    /* Enable DAC output */
+/* Create square wave */
+void createSquareWave(void *pvParameters){
+
+    /* Enable DAC output through channel 1 */
     dac_output_enable(DAC_CHANNEL_1);
     while(1){
-        /* Square wave */
-            dac_output_voltage(DAC_CHANNEL_2, 255); //DAC output
-            vTaskDelay(100/portTICK_PERIOD_MS); //every 100/1000 sec
-            dac_output_voltage(DAC_CHANNEL_2, 0); //DAC output
-            vTaskDelay(10/portTICK_PERIOD_MS); //every 100/1000 sec
+        /* Generate square wave */
+        dac_output_voltage(DAC_CHANNEL_2, 255); /* DAC max output: 3.3v */
+        vTaskDelay(100/portTICK_PERIOD_MS); /* 100ms */
+        dac_output_voltage(DAC_CHANNEL_2, 0);   /* DAC min output: 0v*/
+        vTaskDelay(10/portTICK_PERIOD_MS); /* 100ms */
     }
 }
+
 void app_main(void){
-    //create task for DAC channel
+    /* Create task */
     xTaskCreate(&createSquareWave, "createSquareWave", 4096, NULL, 5, NULL);
 }
 ~~~
 
-### Template Code
+## Lab Template
 ~~~c
 #include <stdio.h>
 #include <math.h>
-#include "sdkconfig.h"
 #include <driver/dac.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-void createTriangleWave(void *pvParameter)
+
+/* Triangle wave task */
+void createTriangleWave(void *pvParameters)
 {
+    /* Enable DAC channel 1 */
     dac_output_enable(DAC_CHANNEL_1);
+    /* create variable to store value */
     static int i = 0;
+
     while (1)
     {
+        /* Generate triangle wave */
+
+        /* output voltage through channel 1 */
         dac_output_voltage(DAC_CHANNEL_1, i);
-        // compute trialgular waveform value
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+
+        vTaskDelay(10 / portTICK_PERIOD_MS); /* 10 ms*/
     }
 }
-void createSineWave(void *pvParameter)
+
+/* Sine wave task */
+void createSineWave(void *pvParameters)
 {
+    /* Enable DAC channel 2 */
     dac_output_enable(DAC_CHANNEL_2);
+    /* Variables to compute sine wave */
     static int i = 0;
     float val;
-    int n;
+    int n = 0;
+
     while (1)
     {
-        // compute sine waveform value
+        /* Compute sine wave */
+        
+
+        /* output voltage through channel 2 */
         dac_output_voltage(DAC_CHANNEL_2, n);
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+
+        vTaskDelay(10 / portTICK_PERIOD_MS);  /* 10 ms*/
     }
 }
+
 void app_main()
 {
+    /* Create tasks */
     xTaskCreate(&createTriangleWave, "createTriangleWave", 4096, NULL, 5, NULL);
     xTaskCreate(&createSineWave, "createSineWave", 4096, NULL, 5, NULL);
 }
 ~~~
 
 ## C helpful functions
-For this Lab, there is two additional function from ESPRESSIF that are important while using DAC. The function needed to enamble the DAC `dac_output_enable(dac_channel_t channel)`, the channel is is sepcific for 2 channels which are declare on the structure below.
+
+For this Lab, there is two additional function from Espressif that are important to use DAC peripheral. 
+As previously mentioned before, ESP32 has **2** DAC channels. The channel is enable by using: `dac_output_enable(dac_channel_t channel)`. `dac_channel_t` is an enumeration that is provided down below. Please select the correct channel based on the GPIO pin. 
 ~~~c
 typedef enum {
     DAC_CHANNEL_1 = 0,    /*!< DAC channel 1 is GPIO25(ESP32) / GPIO17(ESP32S2) */
@@ -110,21 +153,28 @@ typedef enum {
     DAC_CHANNEL_MAX,
 } dac_channel_t;
 ~~~
-Finally, the last function needed in order to produce a DAC output will be `dac_output_voltage(dac_channel_t channel, uint8_t dac_value)` which you need to put the DAC enabled pin and the actual DAC value. Note: The DAC output value has a 8-bit resolution which its max ouput is a 255 value which represents 3.3V.
+Finally, the following function is use to produce an DAC output: `dac_output_voltage(dac_channel_t channel, uint8_t dac_value)`. The DAC output value has a 8-bit resolution, please see the table provide in *Objective* section. 
 
-### Additional Links
+## Additional Links
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 * [Espressif DAC Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/dac.html)
 
-### Authors
-* [***Jesus Minjares***](https://github.com/jminjares4)
+## Authors
+* [**Jesus Minjares**](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
-* [***Erick Baca***](https://github.com/eabaca2419)
+* [**Erick Baca**](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
-@see [GitHub Lab 8](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8)
+
+## GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8">
+ <img src="github.png">
+ </a>
+[Lab 8 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8)
+</div>
 
 <span class="next_section_button">
 Read Next: [Additional Labs](@ref doc_pages/additional_labs.md)

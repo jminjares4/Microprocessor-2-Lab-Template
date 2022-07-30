@@ -1,14 +1,19 @@
 # Additional Labs
 
-These are additional labs that may or may not be used in the course. The following labs consist of using `ESP22 IOT` 
-interface with an <strong>http server</strong>.
+These are additional labs that may or may not be used in the course. The following labs consist of using `ESP22 IOT` interface with an <strong>http server</strong>.
 
 ## Labs
 - [Lab 9 WiFi and Internet of Things (IOT)](@ref LAB_9)
 - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](@ref LAB_10)
 - [Lab 11 WiFi and IOT: ADC MOnitor](@ref LAB_11)
 
-@see [GitHub Additional Labs](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs)
+### Additional Lab GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs">
+ <img src="github.png">
+ </a>
+[Additional Labs Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs)
+</div>
 
 \subsection LAB_9 Lab 9 WiFi and Internet of Things (IOT)
 
@@ -176,7 +181,13 @@ void app_main()
 
 ~~~
 
-@see [GitHub Lab 9](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_9)
+#### Lab 9 GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_9">
+ <img src="github.png">
+ </a>
+[Lab 9 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_9)
+</div>
 
 \subsection LAB_10 Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control
 
@@ -345,7 +356,13 @@ void app_main()
 }
 ~~~
 
-@see [GitHub Lab 10](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10)
+#### Lab 10 GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10">
+ <img src="github.png">
+ </a>
+[Lab 10 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10)
+</div>
 
 \subsection LAB_11 Lab 11 WiFi and Internet of Things (IOT): ADC Monitor
 
@@ -499,13 +516,19 @@ void app_main()
 }
 ~~~
 
-@see [GitHub Lab 11](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11)
+#### Lab 11 GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11">
+ <img src="github.png">
+ </a>
+[Lab 11 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11)
+</div>
 
 # Authors
-* [***Jesus Minjares***](https://github.com/jminjares4)
+* [**Jesus Minjares**](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
-* [***Erick Baca***](https://github.com/eabaca2419)
+* [**Erick Baca**](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 

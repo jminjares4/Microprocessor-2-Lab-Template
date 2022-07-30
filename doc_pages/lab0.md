@@ -1,13 +1,15 @@
 # Lab 0 LED Lightshow
 
-## Objective:
-* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and also `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then turn off the most significant bit to lowest bit. While `led chaser` as the name states will haven a single led iterating from the lowest to most significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
+## Objective
+* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and a `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then most significant bit to lowest bit. While `led chaser` will have a single led iterating from the lowest to most significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
 
+## Bonus
 - ***Undergrad Bonus:***
   * Do the `led chaser`
 - ***Grad Bonus:***
-  * Create a light show with different sequences and patterns as you like. Have fun!
-### ESP32 Pinout
+  * Create a `light show` with different sequences and patterns as you like. Have fun!
+
+## ESP32 Pinout
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -36,17 +38,16 @@
 ~~~
 
 
-### Example
-Here is an example of a single GPIO set as ouptut and toggling the onboard led.
+## Example
+Here is an example of a how to use ESP32 GPIO function calls. The program toggles ESP onboard LED every other second.
 ~~~c
-#include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
-#define HIGH 1
-#define LOW  0
-#define ONBOARD_LED 2
+#define LOW  0  /* LOGIC LOW*/
+#define HIGH 1  /* LOGIC HIGH*/
+#define ONBOARD_LED 2 /* ONBOARD LED GPIO Pin*/
 
 void app_main(void){
   esp_rom_gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
@@ -54,51 +55,29 @@ void app_main(void){
 
   while(1){
     gpio_set_level(ONBOARD_LED, HIGH); // set high
-    vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 seccond delay
+    vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
     gpio_set_level(ONBOARD_LED, LOW); //set low
-    vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 seccond delay
+    vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
   }  
 }
 ~~~
 
-### Lab Template
+## Lab Template
 ~~~c
-/*
-    Author:     Jesus Minjares and Erick A. Baca
-                Master of Science in Computer Engineering   
-
-    Course:     EE 5190 Laboratory for Microprocessors Systems II    
-     
-    Lab 0:
-        Objective:
-                Understand how to use the gpio driver library from ESPRESSIF. The lab will consist of creating 
-                a `sweeper` and also `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from 
-                the lowest to highest bit and then turn off the most significant bit to lowest bit. While `led chaser` 
-                as the name states will haven a single led iterating from the lowest to most significant bit. 
-        Undergrad Bonus:
-                The first bonus deals with having an LED chaser. The 
-                LED should turn ON in sequential order; however, only
-                one LED should be ON at a time.
-        Grad Bonus:
-                For the Graduate Bonus, it is expected to be creative 
-                and original. The bonus consist in create a light show
-                with more that 4 distinct sequences or patterns that
-                the student likes or can do.
-*/
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
-#define HIGH    1
-#define LOW     0
+#define LOW  0  /* LOGIC LOW*/
+#define HIGH 1  /* LOGIC HIGH*/
 
 /**
  * @brief setOutputs will initialize uint8_t array as outputs
  *
  * @param out uint8_t * array which hold GPIOs pins
  * @param size size of the array
- * @return None void
+ * @return None
  * @note initialize gpio before using them
  */
 void setOutputs(uint8_t *out, int size)
@@ -116,6 +95,7 @@ void setOutputs(uint8_t *out, int size)
  * 
  * @param led uint8_t * array which hold GPIOs pins
  * @param size size of the array
+ * @return None
  */
 void sweep(uint8_t *led, int size)
 {
@@ -134,6 +114,7 @@ void sweep(uint8_t *led, int size)
  * 
  * @param led uint8_t * array which hold GPIOs pins
  * @param size size of the array
+ * @return None
  */
 void led_chaser(uint8_t *led, int size)
 {
@@ -152,6 +133,7 @@ void led_chaser(uint8_t *led, int size)
  * 
  * @param led uint8_t * array which hold GPIOs pins
  * @param size size of the array
+ * @return None
  */
 void lightShow(uint8_t *led, int size)
 {
@@ -171,46 +153,58 @@ void app_main(void)
       //lightShow(led,size); //bonus 
 
       // Toggle LED using index of your array
-      gpio_set_level(led[0]);
+      gpio_set_level(led[0], LOW);
       vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
-      gpio_set_evel(led[0];)
+      gpio_set_level(led[0], HIGH);
       vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
+    }
 }
-
 ~~~
 
----
 ## C helpful functions
-
-For this lab, there are three main function from ESPRESSIF that are important. First is to select which GPIO pin is going to be used by the following function. `gpio_pad_select(gpio_num_t gpio_num)`. The first parameter `gpio_num` is the GPIO pin that is going to be used, for instance if we want to use the ***onboard led*** we should put a 2 on `gpio_num` such as `gpio_pad_select(2)`.
+For this lab, there are three main function from Espressif that are important. First, is to select which GPIO pin is going to be used by the following function: `esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num)`. The first parameter `gpio_num` is the GPIO pin that is going to be used, for instance if we want to use the ***onboard led*** we should put a 2 on `gpio_num` such as `esp_rom_gpio_pad_select_gpio(2)`.
 ~~~c
 esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             
 ~~~
-Next, another important function is the selection of the direction GPIO pin. Therefore we must use `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` and for this lab we only care of <i>`GPIO_MODE_OUTPUT`</i> as we will be using outputs.
+Next, `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` allow the user to set the direction of the GPIO pin. For this lab we only going to use <i>`GPIO_MODE_OUTPUT`</i> for the mode.
 ~~~c 
 esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);
 ~~~
-Lastly, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` as the name states set the level of the GPIO pin that we pass throught the function. Passing a **0** is set to low and **1** is set to high respectively.
+Furthermore, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` sets the logic level of the GPIO pin that we pass throught the function. <br>
+| Value | Logic |
+|:---   | :---  |
+| **0** | low   |
+| **1** | high  |
 ~~~c
-esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level); // set LOGIC high
+esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level);
 ~~~
 
-The following function  `vTaskDelay( const TickType_t xTicksToDelay)` is use to generate delay with ESP32 and it part of FreeRTOS, we will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds
+Lastly, the following function  `vTaskDelay( const TickType_t xTicksToDelay)` is use to generate delay with ESP32 and it part of FreeRTOS, you will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds
 ~~~c
 void vTaskDelay(const TickType_t xTicksToDelay);
 ~~~
-### Additional Links
+
+## Warning!
+Depending of the version of **ESP-IDF** that you may have, some libraries and function calls that may be **deprecate**! If you get an warning message when using `esp_rom_gpio_pad_select_gpio` please use `gpio_pad_select_gpio`. 
+
+## Additional Links
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)
 
-### Authors
-* [***Jesus Minjares***](https://github.com/jminjares4)
+## Authors
+* [**Jesus Minjares**](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
-* [***Erick Baca***](https://github.com/eabaca2419)
+* [**Erick Baca**](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
-@see [GitHub Lab 0](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
+## GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0">
+ <img src="github.png">
+ </a>
+[Lab 0 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0)
+</div>
 
 <span class="next_section_button">
 Read Next: [Lab 1](@ref doc_pages/lab1.md)

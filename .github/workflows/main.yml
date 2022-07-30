@@ -1,4 +1,4 @@
-# This is a basic workflow to help you get started with Actions
+# Action workflow to generate doxygen documentation and publish gh-pages
 
 name: Documentation
 

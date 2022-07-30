@@ -1,35 +1,39 @@
 # Lab 5 FreeRTOS: Queue
 
-## Objective:
-* Understand how to use the queues with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be using queues to send data among tasks. 
+## Objective
 
-* Create a program which will create a queue to send and receive data.
-* Send data to the queue from multiple tasks, sending integers `10` and `20` also  for strings `“EE4178”` and `“Fall2021”`.
-* Receive and print data from the queue
+* Understand how to use the queues with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be using queues to send data among tasks. Students must create queue to send and receive data between two tasks. Task 1 must send an integer i.e (`10`) and then modified to use a string i.e (`"Fall 2022"`). Task 2 should receive the data and print it.
 
-### Bonus
+<div align='center'>
+| Task          |  Description                     |
+| :---          | :---                             |
+| **Task 1**    | Send data to **queue**           |
+| **Task 2**    | Receive **queue** data and print |
+</div>
+
+## Bonus
 - ***Undergrad Bonus:***
-  *  Modify the code by sending structures on a queue.
-~~~c
-typedef struct {
-    char str[10];
-    int32_t val;
-}Undergaduate_t;
-~~~
+    *  Modify the code to use the `structure` down below on a **queue**.
+    ~~~c
+    typedef struct {
+        char str[10];
+        int32_t val;
+    }Undergaduate_t;
+    ~~~
 
 - ***Grad Bonus:***
-  *  Modify the code by sending structures on a queue. If `isLedOn` *true*, turn the `LED` else, turn off.
-~~~c
-typedef struct {
-    char str[10];
-    int32_t val;
-    char studentName[15];
-    uint32_t studentID;
-    bool isLedOn;
-}Graduate_t;
-~~~
+    *  Modify the code to use the `structure` down below on a **queue**. Also, *add* an LED to change **states** based on `isLedOn`.
+    ~~~c
+    typedef struct {
+        char str[10];
+        int32_t val;
+        char studentName[15];
+        uint32_t studentID;
+        bool isLedOn;
+    }Graduate_t;
+    ~~~
 
-### ESP32 Pinout
+## ESP32 Pinout
 ~~~
                                          +-----------------------+
                                          | O      | USB |      O |
@@ -57,12 +61,11 @@ typedef struct {
                                          +-----------------------+
 ~~~
 
-### Example 1
+## Example 1
 
-The following example is a quick demostration of how to use queues with FreeRTOS on the ESP32. First, a queue is create as a global variable to scope accessiblity name `myQueue`. Next, that variable must store an instance of a queue by `xQueueCreate` function. `Task 1` will send `data` which store a `10` to `Task 2` every second. `Task 2` will recieve data through the queue and display it in the terminal. 
+The following example is a quick demostration of how to use queues with FreeRTOS on the ESP32. First, a queue is created as a global variable to have name `myQueue`. Next, that variable must store an instance of a queue by `xQueueCreate` function. `Task 1` will send `data` which store a `10` to `Task 2` every second. `Task 2` will receive data through the queue and display it in the terminal. 
 ~~~c
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
@@ -70,104 +73,99 @@ The following example is a quick demostration of how to use queues with FreeRTOS
 /* Global Queue handle */
 QueueHandle_t myQueue;
 
-void exampleTask1(void *pvParameter){
+/* Example task 1 */
+void exampleTask1(void *pvParameters){
+    /* data to be sent */
     int data = 10;
     while(1){
+        /* Send data to back of the queue */
         xQueueSendToBack(myQueue, &data, 0);
-        vTaskDelay(1000/portTICK_RATE_MS);
+        /* 1 second delay */
+        vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }
-void exampleTask2(void *pvParameter){
+
+/* Example task 2 */
+void exampleTask2(void *pvParameters){
+    /* variable to store data */
     int storeData;
 
     while(1){
+        /* Wait 100 ticks to receive queue, store in storeData */
         if(xQueueReceive(myQueue, &storeData, (TickType_t)100) == pdPASS){
-            printf("Data receive from task 1: %d\n", storeData); // display data recieve
-            vTaskDelay(100/portTICK_RATE_MS); // 100 ms 
+            printf("Data receive from task 1: %d\n", storeData); /* display data receive */
+            vTaskDelay(100/portTICK_PERIOD_MS); /* 100 ms */ 
         }
-        vTaskDelay(500/portTICK_RATE_MS); // 500 ms 
+        vTaskDelay(500/portTICK_PERIOD_MS); /* 500 ms */
     }
 }
 
 void app_main(void){
+    /* Create a queue of size 5 */
     myQueue = xQueueCreate(5, sizeof(int));
-    xTaskCreate(&exmapleTask1, "example task 1", 2048, NULL, 4, NULL);
-    xTaskCreate(&exampleTask2, "example task 2), 2048, NULL, 4, NULL);
+    
+    /* Create tasks */
+    xTaskCreate(&exampleTask1, "example task 1", 2048, NULL, 4, NULL);
+    xTaskCreate(&exampleTask2, "example task 2", 2048, NULL, 4, NULL);
+    
 }
 ~~~
 
-### Example 2
+## Example 2
 
-The following example is an demostration of how to pass argument through a task. As mention in previous labs, `xTaskCreate` has the various parameters that we went briefly in detail. The 4th argument is the argument that is pass to the task. In the bottom code, `Task 1` is recieving the data store in `number` when it being created in main. 
+The following example shows how to pass argument through a task. As mention in previous labs, `xTaskCreate` has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, `Task 1` recieves an argument, this example may come handy when developing more advance task to reduce and create more abstract tasks. 
 ~~~c
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-int number = 69; // make it fun
+int number = 69; /* random number */
 
+/* Task 1 */
 void task1(void *pvParameters){
-    int data = (int)pvParameters; //type cast data
+    int data = (int)pvParameters; /* type cast data */
     while(1){
-        printf("Data recieved: %d\n",data); //print message 
-        vTaskDelay(2000/portTICK_RATE_MS); // 2 second delay
+        printf("Data recieved: %d\n",data); /* print message */
+        vTaskDelay(2000 / portTICK_PERIOD_MS); /* 2 second delay */
     }
 }
 void app_main(void){
+
+    /* Create task */
     xTaskCreate(&task1, "Task 1", 2048, (void*)number, 4, NULL);
+    
 }
 ~~~
 
-### Example 3
-The following code is similar to the previous example however the major difference is using `global` and `static` variables.`static` keyword states that the variable that we create will store its data in the static memory.
+## Example 3
+The following code is similar to the previous example however the major difference is using `global` and `static` variables. The `static` keyword states that the variable that we create will store its data in the static memory. 
 ~~~c
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+/* Task 1 */
 void task1(void *pvParameters){
-    int data = (int)pvParameters; //type cast data
+    int data = (int)pvParameters; /* type cast data */
     while(1){
-        printf("Data recieved: %d\n",data); //print message 
-        vTaskDelay(2000/portTICK_RATE_MS); // 2 second delay
+        printf("Data recieved: %d\n",data); /* print message */
+        vTaskDelay(2000 / portTICK_PERIOD_MS); /* 2 second delay */
     }
 }
 void app_main(void){
-    static int number = 420; // make it fun
+
+    /* Create a static variable if have value store in static memory */
+    static int number = 420; /* random number */
+
+    /* Create task */
     xTaskCreate(&task1, "Task 1", 2048, (void*)number, 4, NULL);
+
 }
 ~~~
 
-
-### Template Code
-
+## Lab Template
 ~~~c
-/*
-    Author:     Jesus Minjares and Erick Baca
-                Master of Science in Computer Engineering
-    Course:     EE 5190 Laboratory for Microprocessors Systems II
-
-    Lab 5:
-
-                Understand how to use the queues with FreeRTOS. In this lab,
-                the main focus will be using queues to send data among tasks. 
-
-                * Create a program which will create a queue to send and receive data.
-                * Send data to the queue from multiple tasks, sending integers `10` and `20`
-                  also  for strings `“EE4178”` and `“Fall2021”`.
-                * Receive and print data from the queue
-
-            Bonus
-                - Undergrad Bonus:
-                    * Modify the code by sending structures on a queue.
-                - Grad Bonus:
-                    * Modify the code by sending structures on a queue.
-                      If `isLedOn` *true*, turn the `LED` else, turn off.
-*/
 #include <stdio.h>
-#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
@@ -190,37 +188,27 @@ typedef struct {
 /* Global Queue handle */
 QueueHandle_t xQueue;
 
+/* Task 1 */
 void task1(void *pvParameters){
-    int32_t data = (int32_t)pvParameters; //store data pass by argument
+    int32_t data; /* store data */
     while(1){
-        xQueueSendToBack(xQueue, &data, 0); //send data to the queue
-        vTaskDelay(1000/portTICK_RATE_MS); // 1 second delay
+        /* Send data from queue */
     }
 }
 
+/* Task 2 */
 void task2(void *pvParameters){
-    int32_t dataReceive;
+    int32_t dataReceive; /* store queue data */
 
     while(1){
-        if(xQueueReceive(xQueue, &dataReceive, (TickType_t)1000) == pdPASS){
-            printf("Data received: %d\n", dataReceive); //print data received 
-            vTaskDelay(100 / portTick_RATE_MS);  //100 ms
-        }
+        /* Wait to receive from queue */
     }
 }
-
-
-// if you do not want to use static, comment the ones in main and uncomment these ones
-// int32_t data1 = 10;
-// int32_t data2 = 20;
 
 void app_main(void){
-    /*  Create static variable so they will be store in static memory
-        and once the main terminate, it content will not be corrupted.
-
-        If you do not want to use static variables make the global!!! :)
+    /*
+        Create data to be sent: global or static variables
     */
-    static int32_t data1 = 10, data2 = 20;
 
     /* Create Queue of type int32_t */
     xQueue = xQueueCreate(5, sizeof(int32_t));
@@ -228,11 +216,9 @@ void app_main(void){
     /* Check if the queue was create successfully */
     if(xQueue != NULL){
         /* Create sender tasks and send int32_t as arguments */
-        xTaskCreate(&task1, "Task 1a ", 2048, (void *)data1, 1, NULL);
-        xTaskCreate(&task1, "Task 1b", 2048, (void *)data2, 1, NULL);
 
         /* Create reciever task */
-        xTaskCreate(&task2,"Task 2", 2048, NULL, 2, NULL);
+
     }
 }
 ~~~
@@ -243,50 +229,59 @@ For this lab, there are few important function calls that are going to be used t
 
 First, `xQueueCreate` is the function you must call if you want to create a queue. `xQueueCreate` has two parameters, `UBaseType_t` uxQueueLength, and `UBaseType_t` uxItemSize. Therefore, if we wanted to create a queue of `float`'s we would do the following:
 ~~~c
-QueueHandle_t myQueue; //global queue
+QueueHandle_t myQueue; /* global queue */
 ...
-myQueue = xQueueCreate(10, sizeof(float)); //create a queue of float with a max size of 5
+myQueue = xQueueCreate(10, sizeof(float)); /* create a queue of float with a max size of 5 */
 ~~~
-
 ~~~c
 QueueHandle_t xQueueCreate( UBaseType_t uxQueueLength, UBaseType_t uxItemSize );
 ~~~
 
-Next, `xQueueSendToBack` and `xQueueSendToFront` are similar function with the slight differnet of where they send the data to the queue. As the name suggests, `xQueueSendToBack`, sends the data to the back of the queue. Both function have three parameters, `QueueHandle_t` xQueue, `const void *` pvItemToQueue, `TickType_t` xTicksToWait.
-Therefore, if want to send something through our queue we would set the queue in which the data will be sent, pass by reference the data, and how long we wait to the send the data.
+Next, `xQueueSendToBack` and `xQueueSendToFront` are similar function with the slight difference of how they send the data to the queue. As the name suggests, `xQueueSendToBack`, sends the data to the back of the queue. Both function have three parameters, `QueueHandle_t` xQueue, `const void *` pvItemToQueue, `TickType_t` xTicksToWait.
 ~~~c
  BaseType_t xQueueSendToBack(
-                                   QueueHandle_t xQueue,
-                                   const void * pvItemToQueue,
-                                   TickType_t xTicksToWait
-                               );
+                                QueueHandle_t xQueue,
+                                const void * pvItemToQueue,
+                                TickType_t xTicksToWait
+                            );
 ~~~
 ~~~c
  BaseType_t xQueueSendToFront(
-                                   QueueHandle_t xQueue,
-                                   const void * pvItemToQueue,
-                                   TickType_t xTicksToWait
-                               );
+                                QueueHandle_t xQueue,
+                                const void * pvItemToQueue,
+                                TickType_t xTicksToWait
+                             );
 ~~~
 Lastly, `xQueueReceive` is the opposite of `xQueueSendToBack` and `xQueueSendToFront` in the sense that it will store the data in `void * const` pvBuffer. 
 ~~~c
-BaseType_t xQueueReceive(QueueHandle_txQueue, void *const pvBuffer, TickType_t xTicksToWait)
+BaseType_t xQueueReceive(
+                            QueueHandle_t xQueue, 
+                            void *const pvBuffer, 
+                            TickType_t xTicksToWait
+                        );
 ~~~
 
-### Additional Links
+## Additional Links
 * [FreeRTOS Queue](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api)
 * [FreeRTOS Espressif Documenation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html)
 * [FreeRTOS Documenation](https://www.freertos.org/a00125.html)
 
-### Authors
-* [***Jesus Minjares***](https://github.com/jminjares4)
+
+## Authors
+* [**Jesus Minjares**](https://github.com/jminjares4)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/jesusminjares/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/jminjares4)
-* [***Erick Baca***](https://github.com/eabaca2419)
+* [**Erick Baca**](https://github.com/eabaca2419)
   * **Master of Science in Computer Engineering** <br>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat)](https://www.linkedin.com/in/erick-baca/) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&style=flat)](https://github.com/eabaca2419)
 
-@see [GitHub Lab 5](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5)
+## GitHub
+<div align='left'>
+ <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5">
+ <img src="github.png">
+ </a>
+[Lab 5 Repository](https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5)
+</div>
 
 <span class="next_section_button">
 Read Next: [Lab 6](@ref doc_pages/lab6.md)

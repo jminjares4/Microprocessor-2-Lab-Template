@@ -1,7 +1,7 @@
 /*
     Author:     Jesus Minjares and Erick Baca
                 Master of Science in Computer Engineering
-    Course:     EE 5190 Laboratory for Microprocessors Systems II
+    Course:     EE 4178/5190 Laboratory for Microprocessors Systems II
     Lab 9:      The purpose of this lab is to wifi module of the ESP32 and connect
                 with the ESP32 as a http server from a client. 
     Pinout:
