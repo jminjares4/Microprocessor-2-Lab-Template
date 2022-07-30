@@ -31,18 +31,18 @@
 #define BLINK_GPIO 13
 
 /* Code for the hello_task task */
-void hello_task(void *pvParameter)
+void hello_task(void *pvParameters)
 {
     
 }
 
 /* Code for the blinky task */
-void blinky_task(void *pvParameter)
+void blinky_task(void *pvParameters)
 {
     
 }
 
-void led_sequence_task(void *pvParameter){
+void led_sequence_task(void *pvParameters){
 
 }
 

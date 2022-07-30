@@ -40,7 +40,7 @@
 SemaphoreHandle_t xSemaphore = NULL;
 
 /* Task 1 */
-void task1(void *pvParameter)
+void task1(void *pvParameters)
 {
     while(1)
     {
@@ -50,7 +50,7 @@ void task1(void *pvParameter)
 }
 
 /* Task 2 */
-void task2(void *pvParameter)
+void task2(void *pvParameters)
 {
     while(1)
     {

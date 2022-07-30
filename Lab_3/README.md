@@ -64,7 +64,7 @@ Here is a simple example of creating a task with FreeRTOS. The task is called `t
 #define HIGH 1  /* LOGIC HIGH*/
 #define ONBOARD_LED 2 /* ONBOARD LED GPIO Pin*/
 
-void task1(void *pvParameter){
+void task1(void *pvParameters){
     /* Select the GPIO pin that is going to be used */
     esp_rom_gpio_pad_select_gpio(ONBOARD_LED);
     /* Set the direction of the GPIO pin as OUTPUT */
@@ -96,18 +96,18 @@ void app_main(void){
 #define BLINK_GPIO 13
 
 /* Code for the hello_task task */
-void hello_task(void *pvParameter)
+void hello_task(void *pvParameters)
 {
     
 }
 
 /* Code for the blinky task */
-void blinky_task(void *pvParameter)
+void blinky_task(void *pvParameters)
 {
     
 }
 
-void led_sequence_task(void *pvParameter){
+void led_sequence_task(void *pvParameters){
 
 }
 

@@ -72,7 +72,7 @@ The following example is a quick demostration of how to use queues with FreeRTOS
 QueueHandle_t myQueue;
 
 /* Example task 1 */
-void exampleTask1(void *pvParameter){
+void exampleTask1(void *pvParameters){
     /* data to be sent */
     int data = 10;
     while(1){
@@ -84,7 +84,7 @@ void exampleTask1(void *pvParameter){
 }
 
 /* Example task 2 */
-void exampleTask2(void *pvParameter){
+void exampleTask2(void *pvParameters){
     /* variable to store data */
     int storeData;
 

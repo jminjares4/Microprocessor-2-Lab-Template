@@ -10,7 +10,7 @@
 # **Lab 2 Interrupts: Fire Alarm! :rotating_light:**
 
 ## **Objective**
-* Understand how to use the [Espressif GPIO interrupts](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio). This lab will consist of simulating your own **fire alarm**! There is an additional driver that was developed  to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down configuration.
+* Understand how to use the [Espressif GPIO interrupts](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio). This lab will consist of simulating your own **fire alarm**! There is an additional driver that was developed to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down configuration.
 
 ## **Bonus**
 - **Undergrad Bonus:**
@@ -86,7 +86,7 @@ static void IRAM_ATTR gpio_isr_handler(void* arg) {
 }
 
 /* GPIO setup */
-void gpio_setup() {
+void gpio_setup(void) {
     /* IO configuration */
     gpio_config_t io_conf;
     

@@ -71,7 +71,7 @@ The following example is a brief demostration of how to use semaphore. `Task 1` 
 SemaphoreHandle_t mySemaphore = NULL;
 
 /* Example task 1 */
-void exampleTask1(void *pvParameter){
+void exampleTask1(void *pvParameters){
     while(1){
         /* Give semaphor to run Task 2*/
         xSemaphoreGive(mySemaphore); 
@@ -81,7 +81,7 @@ void exampleTask1(void *pvParameter){
 }
 
 /* Example task 2 */
-void exmapleTask2(void *pvParameter){
+void exmapleTask2(void *pvParameters){
     while(1){
          /* wait for 1000 ticks to receive semaphore */
          if(xSemaphoreTake(mySemaphore, 1000/portTICK_RATE_MS) == pdTRUE){ 
@@ -118,7 +118,7 @@ SemaphoreHandle_t mySemaphore1 = NULL;
 SemaphoreHandle_t mySemaphore2 = NULL;
 
 /* Example task 1 */
-void exampleTask1(void *pvParameter){
+void exampleTask1(void *pvParameters){
     while(1){
         /* Check if semaphore was received every 100 ticks */
         if(xSemaphoreTake(mySemaphore1, (TickType_t)100 ) == pdTRUE){ /
@@ -132,7 +132,7 @@ void exampleTask1(void *pvParameter){
 }
 
 /* Example task 2 */
-void exampleTask2(void *pvParameter){
+void exampleTask2(void *pvParameters){
     while(1){
          /* wait for atleast 100 ms to receive semaphore */
          if(xSemaphoreTake(mySemaphore2, 100/portTICK_PERIOD_MS) == pdTRUE){ 
@@ -171,7 +171,7 @@ void app_main(void){
 SemaphoreHandle_t xSemaphore = NULL;
 
 /* Task 1 */
-void task1(void *pvParameter)
+void task1(void *pvParameters)
 {
     while(1)
     {
@@ -181,7 +181,7 @@ void task1(void *pvParameter)
 }
 
 /* Task 2 */
-void task2(void *pvParameter)
+void task2(void *pvParameters)
 {
     while(1)
     {
