@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['task1_0',['task1',['../df/d70/_lab__4_2main_8c.html#a39542ccd929d82b3d70434fc6c03cde9',1,'task1(void *pvParameter):&#160;main.c'],['../da/de1/_lab__5_2main_8c.html#a84106f7527d0055cc41983bbf4bbf957',1,'task1(void *pvParameters):&#160;main.c']]],
-  ['task2_1',['task2',['../df/d70/_lab__4_2main_8c.html#a8873379ac3ff18bce730e90e44aaf384',1,'task2(void *pvParameter):&#160;main.c'],['../da/de1/_lab__5_2main_8c.html#a87cba80a8641aa95d02601894c779cc2',1,'task2(void *pvParameters):&#160;main.c']]]
+  ['setadc_0',['setADC',['../db/d95/_additional___labs_2_lab__11_2main_8c.html#a1559de05c1c2d81a0ae06743397d761b',1,'main.c']]],
+  ['setgpio_1',['setGPIO',['../db/d95/_additional___labs_2_lab__11_2main_8c.html#a4d05aaf14a926c0839fb77a5cb6fc19d',1,'main.c']]],
+  ['setinputs_2',['setInputs',['../d7/d62/_lab__1_2main_2main_8c.html#af77b3872f6434d30845284ab3cbfd591',1,'main.c']]],
+  ['setoutputs_3',['setOutputs',['../d3/db7/_lab__0_2main_2main_8c.html#a55a185439e570cb8341fb8149b84988e',1,'setOutputs(uint8_t *out, int size):&#160;main.c'],['../d7/d62/_lab__1_2main_2main_8c.html#a55a185439e570cb8341fb8149b84988e',1,'setOutputs(uint8_t *out, int size):&#160;main.c']]],
+  ['setuppwm_4',['setUpPWM',['../dd/d74/_additional___labs_2_lab__10_2main_8c.html#a898dc750081ac7a409cb1df73da352d2',1,'main.c']]],
+  ['sweep_5',['sweep',['../d3/db7/_lab__0_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c'],['../d7/d62/_lab__1_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c']]]
 ];

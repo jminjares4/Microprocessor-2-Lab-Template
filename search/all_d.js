@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['resettimer_5fbutton_0',['RESETTIMER_BUTTON',['../dd/d25/_lab__2_2main_8c.html#ad6e0b1050e68334585277814fa09c810',1,'main.c']]]
+  ['pin_0',['pin',['../d0/dbe/structled__t.html#ac9e5f6e409f17ed146f5fbbaccbaa59e',1,'led_t']]],
+  ['print_5ftask_1',['print_task',['../d1/d59/_lab__6_2main_2main_8c.html#acb72179382d32fb25e469ceb9ce94fe3',1,'main.c']]],
+  ['pwm_5fsetup_2',['pwm_setup',['../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1',1,'main.c']]],
+  ['pwmtask_3',['PWMtask',['../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32',1,'main.c']]]
 ];

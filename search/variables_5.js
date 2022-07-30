@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['xqueue_0',['xQueue',['../da/de1/_lab__5_2main_8c.html#aa78b6121b7586233293fb6cba5e19206',1,'main.c']]],
-  ['xsemaphore_1',['xSemaphore',['../df/d70/_lab__4_2main_8c.html#a0639b448c4862618f597670523ef9975',1,'main.c']]]
+  ['utep_5falarm_0',['utep_alarm',['../d2/d6b/_lab__2_2main_2main_8c.html#af95f3e6cbe25afb526761258f1b12056',1,'main.c']]]
 ];

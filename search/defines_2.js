@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['doorclose_0',['DOORCLOSE',['../dd/d25/_lab__2_2main_8c.html#ae8c64ac9d06605f851825b2061c609f6',1,'main.c']]],
-  ['dooropen_1',['DOOROPEN',['../dd/d25/_lab__2_2main_8c.html#a76d64b5d3d5da58d531d5ebd1c4a7891',1,'main.c']]]
+  ['disable_5falarm_5fpin_0',['DISABLE_ALARM_PIN',['../d2/d6b/_lab__2_2main_2main_8c.html#a196780f7f864bd0ebdf0ab72e5f51e13',1,'main.c']]]
 ];

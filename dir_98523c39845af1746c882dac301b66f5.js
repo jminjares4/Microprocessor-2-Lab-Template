@@ -1,4 +1,4 @@
 var dir_98523c39845af1746c882dac301b66f5 =
 [
-    [ "main.c", "dd/d25/_lab__2_2main_8c.html", "dd/d25/_lab__2_2main_8c" ]
+    [ "main", "dir_23f9ff28cf43357f68d25a3773d8751e.html", "dir_23f9ff28cf43357f68d25a3773d8751e" ]
 ];

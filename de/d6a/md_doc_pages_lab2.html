@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Microprocessor 2 Labs: Lab 2 Interrupts</title>
+<title>Microprocessor 2 Labs: Lab 2 Interrupts: Fire Alarm!</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -114,29 +114,26 @@ $(document).ready(function(){initNavTree('de/d6a/md_doc_pages_lab2.html','../../
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Lab 2 Interrupts </div></div>
+  <div class="headertitle"><div class="title">Lab 2 Interrupts: Fire Alarm! </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md29"></a>
-Objective</h2>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md32"></a>
+Objective</h1>
+<p >Understand how to use the <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio">Espressif GPIO interrupts</a>. This lab will consist of simulating your own <b>fire alarm</b>!!! There is an additional driver that was developed to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down configuration.</p>
+<h1><a class="anchor" id="autotoc_md33"></a>
+Bonus</h1>
 <ul>
-<li>Given the program template shown in listing 1, edit it so that the code so that you replicate the functions of a microwave.</li>
-<li>The code is expected to have a total of 6 buttons which will simulate the functions of the microwave.<ul>
-<li>The first and second button should control a counter that goes up or down.</li>
-<li>The next two buttons should act as a start or reset counter.</li>
-<li>The last 2 buttons are your inteerupts which simulates if the door open or closes. Since the lab is a microwave the timer should stop in the event that the door open button is been pressed the timer should stop and cannnot start again until the close door button has been pressed</li>
+<li><b>Undergrad Bonus:</b><ul>
+<li>Display fire alarm <code>status</code> in terminal whenever it is <b>active</b></li>
 </ul>
 </li>
-<li>Print the counter time as you add or subtract the total amount of time the microwave will run. Then when the timer start button is pressed the counter should display in the screen as it goes down every 500 ms.</li>
+<li><b>Grad Bonus:</b><ul>
+<li>Add another <code>LED</code> to indicate when <em>fire alarm</em> is <b>disable</b></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
-Bonus</h2>
-<ul>
-<li>Modify the code by using the gpio_config_t to create an output LED which will display when the door is open or close.+10</li>
-<li>Create anothe interrupt button which do the pause option in the microwave.+10</li>
+</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md31"></a>
-ESP32 Pinout</h2>
+<h1><a class="anchor" id="autotoc_md34"></a>
+ESP32 Pinout</h1>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
 <div class="line">                                        |        -------        |</div>
@@ -161,226 +158,231 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md32"></a>
-Example</h2>
-<p >Here is an example of a single GPIO set as ouptut and an input button. The following code will turn the onboard LED as long as the button is press. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md35"></a>
+Example</h1>
+<p >Here is an example of a how to use ESP32 GPIO advance setup. The following code will toggle the onboard LED if button is pressed and have a external LED toggling every half second.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span> </div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span> </div>
 <div class="line"><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define ESP_INTR_FLAG_DEFAULT 0 </span></div>
-<div class="line"><span class="preprocessor">#define ONBOARDLED 2</span></div>
-<div class="line"><span class="preprocessor">#define GPIO_OUTPUT_PIN_SEL (1ULL &lt;&lt; ONBOARDLED)</span></div>
+<div class="line"><span class="preprocessor">#define ESP_INTR_FLAG_DEFAULT 0 </span><span class="comment">/* Interrupt flag configuration */</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define TOOGLELED 22</span></div>
-<div class="line"><span class="preprocessor">#define GPIO_INPUT_PIN_SEL (1ULL &lt;&lt; TOOGLELED)</span></div>
+<div class="line"><span class="preprocessor">#define LOW     0   </span><span class="comment">/* low logic  */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define HIGH    1   </span><span class="comment">/* high logic */</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> IRAM_ATTR gpio_isr_handler(<span class="keywordtype">void</span>* arg) {</div>
-<div class="line">  GPIO.out ^= BIT2;</div>
+<div class="line"><span class="preprocessor">#define ONBOARD_LED     2    </span><span class="comment">/* onboard led pin  */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define EXTERNAL_LED    22   </span><span class="comment">/* external led pin  */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define BUTTON          23   </span><span class="comment">/* button pin  */</span><span class="preprocessor"></span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> toggle(gpio_num_t pin){</div>
+<div class="line">    <span class="comment">/* Get current level and toggle LED */</span></div>
+<div class="line">    gpio_get_level(pin) ? gpio_set_level(pin, <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a>) : gpio_set_level(pin, <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>);</div>
 <div class="line">}</div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d25/_lab__2_2main_8c.html#abca9c49bc40ba3533a50c2e19c0cd354">setUpInterrupts</a>() {</div>
-<div class="line">    gpio_config_t io_conf;  <span class="comment">//Access the GPIO strcuture</span></div>
-<div class="line">    <span class="comment">//INPUT     </span></div>
-<div class="line">    io_conf.intr_type = GPIO_INTR_POSEDGE;  <span class="comment">//Set up as Positive Edge</span></div>
-<div class="line">    io_conf.mode = GPIO_MODE_INPUT;     <span class="comment">//Set pins as input</span></div>
-<div class="line">    io_conf.pin_bit_mask = <a class="code hl_define" href="../../dd/d25/_lab__2_2main_8c.html#a6971319b736532e14915f0bd246d2225">GPIO_INPUT_PIN_SEL</a>;  <span class="comment">//Set all the interrupt buttons  </span></div>
-<div class="line">    io_conf.pull_down_en = 1;   <span class="comment">//Enable as a pulldown button</span></div>
-<div class="line">    io_conf.pull_up_en = 0; </div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* GPIO interrupt handler */</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> IRAM_ATTR gpio_isr_handler(<span class="keywordtype">void</span>* arg) {</div>
+<div class="line">    <span class="comment">/* store argument */</span></div>
+<div class="line">    gpio_num_t gpio = (gpio_num_t) arg;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* toggle LED */</span></div>
+<div class="line">    toggle(gpio);</div>
+<div class="line"> </div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* GPIO setup */</span></div>
+<div class="line"><span class="keywordtype">void</span> gpio_setup(<span class="keywordtype">void</span>) {</div>
+<div class="line">    <span class="comment">/* IO configuration */</span></div>
+<div class="line">    gpio_config_t io_conf;</div>
+<div class="line">    </div>
+<div class="line">    <span class="comment">/* Input configuration */</span></div>
+<div class="line">    io_conf.intr_type = GPIO_INTR_POSEDGE;  <span class="comment">/* Set up as Positive Edge */</span> </div>
+<div class="line">    io_conf.mode = GPIO_MODE_INPUT;     <span class="comment">/* Set pins as input */</span></div>
+<div class="line">    io_conf.pin_bit_mask = (1ULL &lt;&lt; BUTTON);  <span class="comment">/* Add input bit mask */</span></div>
+<div class="line">    io_conf.pull_down_en = 1;   <span class="comment">/* Enable pulldown */</span></div>
+<div class="line">    io_conf.pull_up_en = 0;     <span class="comment">/* Disable pullup */</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Set configuration */</span></div>
 <div class="line">    gpio_config(&amp;io_conf);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">//OUTPUT </span></div>
-<div class="line">    io_conf.intr_type = GPIO_INTR_DISABLE;  <span class="comment">//Its an output so the interrupt is disable</span></div>
-<div class="line">    io_conf.mode = GPIO_MODE_OUTPUT;    <span class="comment">//Set pin as output</span></div>
-<div class="line">    io_conf.pin_bit_mask = <a class="code hl_define" href="../../dd/d25/_lab__2_2main_8c.html#a5c4c5254e51413a4277d98b77f4c60c7">GPIO_OUTPUT_PIN_SEL</a>; <span class="comment">//Set up all the LED that we are going to use</span></div>
-<div class="line">    io_conf.pull_down_en = 0; </div>
-<div class="line">    io_conf.pull_up_en = 0; </div>
+<div class="line">    <span class="comment">/* Output configuration */</span></div>
+<div class="line">    io_conf.intr_type = GPIO_INTR_DISABLE;  <span class="comment">/* Disable interrupt */</span></div>
+<div class="line">    io_conf.mode = GPIO_MODE_OUTPUT;        <span class="comment">/* Set as output*/</span></div>
+<div class="line">    io_conf.pin_bit_mask = (1ULL &lt;&lt; <a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>) | (1ULL &lt;&lt; EXTERNAL_LED); <span class="comment">/* Add output bit mask */</span></div>
+<div class="line">    io_conf.pull_down_en = 0;   <span class="comment">/* Disable pulldown */</span></div>
+<div class="line">    io_conf.pull_up_en = 0;     <span class="comment">/* Disable pullup */</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Set configuration */</span></div>
 <div class="line">    gpio_config(&amp;io_conf);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">//Set ISR </span></div>
-<div class="line">    gpio_install_isr_service(<a class="code hl_define" href="../../dd/d25/_lab__2_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a>);    <span class="comment">//Ste the flag for th einterrupt</span></div>
+<div class="line">    <span class="comment">/* Set default interrupt flag */</span></div>
+<div class="line">    gpio_install_isr_service(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a>);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">/*Let the buttons selected to interract with the interrupt*/</span></div>
-<div class="line">    gpio_isr_handler_add(TOOGLELED, gpio_isr_handler, (<span class="keywordtype">void</span>*) TOOGLELED);        </div>
+<div class="line">    <span class="comment">/* Add ISR handler */</span></div>
+<div class="line">    gpio_isr_handler_add(BUTTON, gpio_isr_handler, (<span class="keywordtype">void</span>*) BUTTON); </div>
+<div class="line"> </div>
 <div class="line">}</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>() {</div>
-<div class="line">    <span class="comment">/*Setup the interrupt buttons and LEDs*/</span></div>
-<div class="line">    <a class="code hl_function" href="../../dd/d25/_lab__2_2main_8c.html#abca9c49bc40ba3533a50c2e19c0cd354">setUpInterrupts</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Setup the GPIOs */</span></div>
+<div class="line">    gpio_setup();</div>
+<div class="line"> </div>
 <div class="line">    <span class="keywordflow">while</span>(1){</div>
-<div class="line">         vTaskDelay(100/portTICK_PERIOD_MS);</div>
+<div class="line">         toggle(EXTERNAL_LED); <span class="comment">/* Toggle external led */</span></div>
+<div class="line">         vTaskDelay(500/portTICK_PERIOD_MS); <span class="comment">/* .5 second delay */</span></div>
 <div class="line">    }</div>
+<div class="line"> </div>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_a5c4c5254e51413a4277d98b77f4c60c7"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#a5c4c5254e51413a4277d98b77f4c60c7">GPIO_OUTPUT_PIN_SEL</a></div><div class="ttdeci">#define GPIO_OUTPUT_PIN_SEL</div><div class="ttdef"><b>Definition:</b> main.c:58</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_a6971319b736532e14915f0bd246d2225"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#a6971319b736532e14915f0bd246d2225">GPIO_INPUT_PIN_SEL</a></div><div class="ttdeci">#define GPIO_INPUT_PIN_SEL</div><div class="ttdef"><b>Definition:</b> main.c:63</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_abca9c49bc40ba3533a50c2e19c0cd354"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#abca9c49bc40ba3533a50c2e19c0cd354">setUpInterrupts</a></div><div class="ttdeci">void setUpInterrupts()</div><div class="ttdoc">setUpInterrupts will initialize the interrupt buttons stored in GPIO_INPUT_PIN_SEL and GPIO_OUTPUT_PI...</div><div class="ttdef"><b>Definition:</b> main.c:127</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_af8baf7d9859733667317e58c0ff707d1"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a></div><div class="ttdeci">#define ESP_INTR_FLAG_DEFAULT</div><div class="ttdef"><b>Definition:</b> main.c:55</div></div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md33"></a>
-Lab Template</h2>
-<div class="fragment"><div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    Author:     Jesus Minjares and Erick A. Baca</span></div>
-<div class="line"><span class="comment">                Master of Science in Computer Engineering   </span></div>
-<div class="line"><span class="comment">    Course:     EE 5190 Laboratory for Microprocessors Systems II    </span></div>
-<div class="line"><span class="comment">     </span></div>
-<div class="line"><span class="comment">    Lab 2:</span></div>
-<div class="line"><span class="comment">        Objective:</span></div>
-<div class="line"><span class="comment">            The main objective for this lab is to learn how to properly use interrupt buttons in the</span></div>
-<div class="line"><span class="comment">            ESP32. The lab is main objective is to create a microwave which inteerupts the timer if </span></div>
-<div class="line"><span class="comment">            the door is open. </span></div>
-<div class="line"><span class="comment">        Bonus Undergrad:</span></div>
-<div class="line"><span class="comment">            Use the same gpio_config_t to  an create output to display when the door is open or close.</span></div>
-<div class="line"><span class="comment">        Bonus Grad:</span></div>
-<div class="line"><span class="comment">            Use another button to create a stop action.</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span> </div>
-<div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span> </div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:27</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:26</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:30</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_af8baf7d9859733667317e58c0ff707d1"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a></div><div class="ttdeci">#define ESP_INTR_FLAG_DEFAULT</div><div class="ttdef"><b>Definition:</b> main.c:28</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md36"></a>
+Lab Template</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../db/da0/led_8h.html">driver/led.h</a>&quot;</span></div>
 <div class="line"> </div>
+<div class="line"><span class="preprocessor">#define ESP_INTR_FLAG_DEFAULT   0   </span><span class="comment">/* Interrupt flag configuration */</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define TIMERUP_BUTTON  3</span></div>
-<div class="line"><span class="preprocessor">#define TIMERDOWN_BUTTON 21</span></div>
-<div class="line"><span class="preprocessor">#define STARTTIMER_BUTTON 19</span></div>
-<div class="line"><span class="preprocessor">#define RESETTIMER_BUTTON 18</span></div>
+<div class="line"><span class="preprocessor">#define ONBOARD_LED             2   </span><span class="comment">/* Onboard led */</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define ESP_INTR_FLAG_DEFAULT 0 </span></div>
-<div class="line"><span class="preprocessor">#define LED1 2</span></div>
-<div class="line"><span class="preprocessor">#define LED2 15</span></div>
-<div class="line"><span class="preprocessor">#define GPIO_OUTPUT_PIN_SEL (1ULL &lt;&lt; LED2 | 1ULL &lt;&lt; LED1)</span></div>
+<div class="line"><span class="comment">/* Update with custom pins */</span></div>
+<div class="line"><span class="preprocessor">#define SMOKE_DETECTOR_PIN      0  </span><span class="comment">/* Smoke detector pin */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define DISABLE_ALARM_PIN       0  </span><span class="comment">/* Disable alarm pin */</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define DOORCLOSE 23</span></div>
-<div class="line"><span class="preprocessor">#define DOOROPEN 22</span></div>
-<div class="line"><span class="preprocessor">#define STOPBUTTON 5</span></div>
-<div class="line"><span class="preprocessor">#define GPIO_INPUT_PIN_SEL (1ULL &lt;&lt; DOORCLOSE | 1ULL &lt;&lt; DOOROPEN | 1ULL &lt;&lt; STOPBUTTON)</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>{</div>
+<div class="line">    <a class="code hl_struct" href="../../d0/dbe/structled__t.html">led_t</a> indicator;            </div>
+<div class="line">    gpio_num_t  smokeDetector;  </div>
+<div class="line">    gpio_num_t  disableAlarm;   </div>
+<div class="line">    <span class="keywordtype">bool</span> active;                </div>
+<div class="line">}<a class="code hl_struct" href="../../d8/db4/structfire__alarm__t.html">fire_alarm_t</a>;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code hl_variable" href="../../dd/d25/_lab__2_2main_8c.html#ae74eccd566e82e668d7031863efe6fbe">doorFlag</a> = 0;   <span class="comment">//Flag for the door if its open or close</span></div>
-<div class="line"><span class="keywordtype">int</span> <a class="code hl_variable" href="../../dd/d25/_lab__2_2main_8c.html#a34dabc2467bce0d04c80b8f680944684">stopFlag</a> = 0;   <span class="comment">//Flag for stop button</span></div>
-<div class="line"><span class="keywordtype">int</span> <a class="code hl_variable" href="../../dd/d25/_lab__2_2main_8c.html#ad43c3812e6d13e0518d9f8b8f463ffcf">count</a> = 0;      <span class="comment">//Variable that stores the total counter time</span></div>
+<div class="line"><span class="comment">/* Global fire alarm object */</span></div>
+<div class="line"><a class="code hl_struct" href="../../d8/db4/structfire__alarm__t.html">fire_alarm_t</a> <a class="code hl_variable" href="../../d2/d6b/_lab__2_2main_2main_8c.html#af95f3e6cbe25afb526761258f1b12056">utep_alarm</a>;</div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define _BONUS_ TRUE</span></div>
-<div class="line"><span class="comment">//#define _BONUS_GRAD_ TRUE</span></div>
+<div class="line"><span class="comment">/* GPIO interrupt handler */</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> IRAM_ATTR gpio_interrupt_handler(<span class="keywordtype">void</span> * arg) {</div>
+<div class="line">    <span class="comment">/* Typecast argument */</span></div>
+<div class="line">    gpio_num_t gpio = (gpio_num_t) arg;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> IRAM_ATTR gpio_isr_handler(<span class="keywordtype">void</span>* arg) {  </div>
-<div class="line">    uint32_t gpio_num = (uint32_t) arg; <span class="comment">//Save the argument into a variable to compare the flag outputted</span></div>
-<div class="line"> </div>
+<div class="line">    <span class="comment">/* Check if smoke detector pin has been pressed or disable alarm */</span></div>
+<div class="line">    </div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d25/_lab__2_2main_8c.html#a54b6949db9f778db0db3aa04f9302e94">microwave</a>() {</div>
-<div class="line">    <span class="comment">/*Save the Value of the buttons in a designated variable*/</span></div>
-<div class="line">    <span class="comment">//read button 0</span></div>
-<div class="line">    <span class="comment">//read button 1</span></div>
-<div class="line">    <span class="comment">//read button 2</span></div>
-<div class="line">    <span class="comment">//read button 3</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a83e34c167ff267499a76636ec568a1c9">fire_alarm_interrupt_setup</a>(<a class="code hl_struct" href="../../d8/db4/structfire__alarm__t.html">fire_alarm_t</a> * <span class="keyword">const</span> alarm){</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">/*If the first button is pressed add 10 seconds to the total time*/</span></div>
+<div class="line">    <span class="comment">/* IO configuration */</span></div>
+<div class="line">    gpio_config_t io_conf;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">/*If the second button is pressed subtract 10 seconds to the total time*/</span></div>
-<div class="line">        <span class="comment">/*If the time is lower that 0 keep the time as 0*/</span></div>
-<div class="line">        <span class="comment">/*Else subtract the total time by 10*/</span></div>
-<div class="line">    <span class="comment">/*If the thrid button is pressed, start the count down*/</span></div>
-<div class="line">        <span class="comment">//Iterrate the counter</span></div>
-<div class="line">            <span class="comment">//If by any chance the interrupt stop flag is activate stop the count down</span></div>
-<div class="line">            <span class="comment">//Clear the stop flag</span></div>
-<div class="line">            <span class="comment">//If by any chance the interrupt door open flag is activate stop the count down</span></div>
-<div class="line">            <span class="comment">//Print the remaining time </span></div>
-<div class="line">    <span class="comment">/*If the fourth button is pressed reset the counter time*/</span></div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/db3/_lab__1_2main_8c.html#af77b3872f6434d30845284ab3cbfd591">setInputs</a>(uint8_t *in, <span class="keywordtype">int</span> size)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; i++) <span class="comment">// itierate over the size of the array</span></div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">// select the GPIO pins</span></div>
-<div class="line">        <span class="comment">// set direction as inputs</span></div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span>;</div>
-<div class="line">}</div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d25/_lab__2_2main_8c.html#abca9c49bc40ba3533a50c2e19c0cd354">setUpInterrupts</a>() {</div>
-<div class="line">    gpio_config_t io_conf;  <span class="comment">//Access the GPIO strcuture</span></div>
-<div class="line">    <span class="comment">//INPUT     </span></div>
-<div class="line">    io_conf.intr_type =     </div>
-<div class="line">    io_conf.mode = <span class="comment">//Set pins as input</span></div>
-<div class="line">    io_conf.pin_bit_mask =  <span class="comment">//Set all the interrupt buttons  </span></div>
-<div class="line">    io_conf.pull_down_en = ;   <span class="comment">//Enable as a pulldown button</span></div>
-<div class="line">    io_conf.pull_up_en = ; </div>
+<div class="line">    <span class="comment">/* Interrupt configuration */</span></div>
+<div class="line">    io_conf.intr_type =  ;</div>
+<div class="line">    io_conf.mode = ;</div>
+<div class="line">    io_conf.pin_bit_mask = ;</div>
+<div class="line">    io_conf.pull_down_en = ;</div>
+<div class="line">    io_conf.pull_up_en = ;</div>
+<div class="line">    </div>
+<div class="line">    <span class="comment">/* Set configuration */</span></div>
 <div class="line">    gpio_config(&amp;io_conf);</div>
 <div class="line"> </div>
-<div class="line">    gpio_isr_handler_add(, gpio_isr_handler, (<span class="keywordtype">void</span>*));     <span class="comment">//Setup the interruptbutton that access the interrupt function</span></div>
+<div class="line">    <span class="comment">/* Set default interrupt flag */</span></div>
+<div class="line">    gpio_install_isr_service(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a>);    </div>
+<div class="line">   </div>
+<div class="line">    <span class="comment">/* Add ISR handler */</span></div>
+<div class="line">    gpio_isr_handler_add(alarm-&gt;startFireAlarm, gpio_interrupt_handler, (<span class="keywordtype">void</span> *) alarm-&gt;<a class="code hl_variable" href="../../d8/db4/structfire__alarm__t.html#a2c671aea37ed0d915f0660a950936e54">smokeDetector</a>);</div>
+<div class="line">    <span class="comment">/* Add missing interrupt */</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>() {</div>
-<div class="line">    <span class="comment">/*Set up Array for normal GPIOS*/</span></div>
-<div class="line">    uint8_t button[] = {3};</div>
-<div class="line">    <span class="keywordtype">int</span> button_size = <span class="keyword">sizeof</span>(button) / <span class="keyword">sizeof</span>(uint8_t);</div>
-<div class="line">    <span class="comment">/* Initialize Inputs */</span></div>
-<div class="line">    <a class="code hl_function" href="../../d6/db3/_lab__1_2main_8c.html#af77b3872f6434d30845284ab3cbfd591">setInputs</a>(button, button_size);</div>
-<div class="line">    <span class="comment">/*Setup the interrupt buttons and LEDs*/</span></div>
-<div class="line">    <a class="code hl_function" href="../../dd/d25/_lab__2_2main_8c.html#abca9c49bc40ba3533a50c2e19c0cd354">setUpInterrupts</a>();</div>
-<div class="line">    printf(<span class="stringliteral">&quot;Time: %d\n&quot;</span>, <a class="code hl_variable" href="../../dd/d25/_lab__2_2main_8c.html#ad43c3812e6d13e0518d9f8b8f463ffcf">count</a>);</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">/* Initialize fire alarm object */</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Enable led*/</span></div>
+<div class="line">    </div>
 <div class="line">    <span class="keywordflow">while</span>(1){</div>
-<div class="line">        <a class="code hl_function" href="../../dd/d25/_lab__2_2main_8c.html#a54b6949db9f778db0db3aa04f9302e94">microwave</a>();</div>
-<div class="line">         vTaskDelay(100/portTICK_PERIOD_MS);</div>
+<div class="line">        <span class="comment">/* Check if alarm has been activate */</span></div>
+<div class="line">        <span class="keywordflow">if</span>(<a class="code hl_variable" href="../../d2/d6b/_lab__2_2main_2main_8c.html#af95f3e6cbe25afb526761258f1b12056">utep_alarm</a>.<a class="code hl_variable" href="../../d8/db4/structfire__alarm__t.html#a4afb679790ccaa02ebc3ff69cc0ad2aa">active</a>){</div>
+<div class="line">            <span class="comment">/* Toggle indicator led @ 500 ms */</span></div>
+<div class="line">           </div>
+<div class="line">        }<span class="keywordflow">else</span>{</div>
+<div class="line">            <span class="comment">/* 100 ms delay */</span></div>
+<div class="line">            vTaskDelay(100 / portTICK_PERIOD_MS);</div>
+<div class="line">        }</div>
 <div class="line">    }</div>
+<div class="line"> </div>
 <div class="line">}</div>
-<div class="ttc" id="a_lab__1_2main_8c_html_af77b3872f6434d30845284ab3cbfd591"><div class="ttname"><a href="../../d6/db3/_lab__1_2main_8c.html#af77b3872f6434d30845284ab3cbfd591">setInputs</a></div><div class="ttdeci">void setInputs(uint8_t *in, int size)</div><div class="ttdoc">setInputs will initialize uint8_t array as inputs</div><div class="ttdef"><b>Definition:</b> main.c:71</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_a34dabc2467bce0d04c80b8f680944684"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#a34dabc2467bce0d04c80b8f680944684">stopFlag</a></div><div class="ttdeci">int stopFlag</div><div class="ttdef"><b>Definition:</b> main.c:66</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_a54b6949db9f778db0db3aa04f9302e94"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#a54b6949db9f778db0db3aa04f9302e94">microwave</a></div><div class="ttdeci">void microwave()</div><div class="ttdef"><b>Definition:</b> main.c:84</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_ad43c3812e6d13e0518d9f8b8f463ffcf"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#ad43c3812e6d13e0518d9f8b8f463ffcf">count</a></div><div class="ttdeci">int count</div><div class="ttdef"><b>Definition:</b> main.c:67</div></div>
-<div class="ttc" id="a_lab__2_2main_8c_html_ae74eccd566e82e668d7031863efe6fbe"><div class="ttname"><a href="../../dd/d25/_lab__2_2main_8c.html#ae74eccd566e82e668d7031863efe6fbe">doorFlag</a></div><div class="ttdeci">int doorFlag</div><div class="ttdef"><b>Definition:</b> main.c:65</div></div>
-</div><!-- fragment --><hr  />
- <h1><a class="anchor" id="autotoc_md35"></a>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_a83e34c167ff267499a76636ec568a1c9"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a83e34c167ff267499a76636ec568a1c9">fire_alarm_interrupt_setup</a></div><div class="ttdeci">void fire_alarm_interrupt_setup(fire_alarm_t *const alarm)</div><div class="ttdoc">Set up fire alarm interrupt.</div><div class="ttdef"><b>Definition:</b> main.c:66</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_af95f3e6cbe25afb526761258f1b12056"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#af95f3e6cbe25afb526761258f1b12056">utep_alarm</a></div><div class="ttdeci">fire_alarm_t utep_alarm</div><div class="ttdef"><b>Definition:</b> main.c:49</div></div>
+<div class="ttc" id="aled_8h_html"><div class="ttname"><a href="../../db/da0/led_8h.html">led.h</a></div><div class="ttdoc">Custom LED driver header file.</div></div>
+<div class="ttc" id="astructfire__alarm__t_html"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html">fire_alarm_t</a></div><div class="ttdoc">Fire alarm object.</div><div class="ttdef"><b>Definition:</b> main.c:41</div></div>
+<div class="ttc" id="astructfire__alarm__t_html_a2c671aea37ed0d915f0660a950936e54"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html#a2c671aea37ed0d915f0660a950936e54">fire_alarm_t::smokeDetector</a></div><div class="ttdeci">gpio_num_t smokeDetector</div><div class="ttdef"><b>Definition:</b> main.c:43</div></div>
+<div class="ttc" id="astructfire__alarm__t_html_a4afb679790ccaa02ebc3ff69cc0ad2aa"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html#a4afb679790ccaa02ebc3ff69cc0ad2aa">fire_alarm_t::active</a></div><div class="ttdeci">bool active</div><div class="ttdef"><b>Definition:</b> main.c:45</div></div>
+<div class="ttc" id="astructled__t_html"><div class="ttname"><a href="../../d0/dbe/structled__t.html">led_t</a></div><div class="ttdoc">LED object.</div><div class="ttdef"><b>Definition:</b> led.h:38</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md37"></a>
 C helpful functions</h1>
-<p >For this lab, there are couple additional functions from ESPRESSIF that are important for using inputs. In the previous lab we use the function <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> in order to set our inputs and outputs. In this lab, we will use the <code>gpio_config_t</code> which will help us setup the interrupt function. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<p >For this lab, there are a couple of additional functions from <code>Espressif</code> that are important for using inputs. In the previous lab, we had used <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> set our inputs and outputs. However, will now use a different approach by using <code>gpio_config_t</code>. This new apporach allows to create input and output in a more condense fashion with structures. The structure has various members with their own data types. Please look into them inorder select the correct value when developing the lab. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    uint64_t pin_bit_mask;          </div>
 <div class="line">    gpio_mode_t mode;               </div>
 <div class="line">    gpio_pullup_t pull_up_en;       </div>
 <div class="line">    gpio_pulldown_t pull_down_en;   </div>
 <div class="line">    gpio_int_type_t intr_type;      </div>
 <div class="line">} gpio_config_t;</div>
-</div><!-- fragment --><p> In order to fill in the structure <code>gpio_config_t</code>, each variable is refference to another structure. Inside the <code>uint64_t pin_bin_mask</code> it need a to bit shift the pin number that converts from a int to an unsigned long long by using <code>1ULL &lt;&lt; BUTTON</code>. After tknowing the the next variables have different function structures. For the <code>gpio_mode_t mode</code>, use the listing below in order to set what your button will do ass well if you want to set it up as an output. If you are using the output mode just remember that in ordet o call an output you nned to use <code>GPIO.out = BIT#</code>. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line">    GPIO_MODE_DISABLE = GPIO_MODE_DEF_DISABLE,                                                         </div>
-<div class="line">    GPIO_MODE_INPUT = GPIO_MODE_DEF_INPUT,                                                             </div>
-<div class="line">    GPIO_MODE_OUTPUT = GPIO_MODE_DEF_OUTPUT,                                                           </div>
-<div class="line">    GPIO_MODE_OUTPUT_OD = ((GPIO_MODE_DEF_OUTPUT) | (GPIO_MODE_DEF_OD)),                               </div>
-<div class="line">    GPIO_MODE_INPUT_OUTPUT_OD = ((GPIO_MODE_DEF_INPUT) | (GPIO_MODE_DEF_OUTPUT) | (GPIO_MODE_DEF_OD)), </div>
-<div class="line">    GPIO_MODE_INPUT_OUTPUT = ((GPIO_MODE_DEF_INPUT) | (GPIO_MODE_DEF_OUTPUT)),                         </div>
-<div class="line">} gpio_mode_t;</div>
-</div><!-- fragment --><p> Then in the next two points of the <code>gpio_config_t</code> which are <code>gpio_pulldown_t</code> or <code>gpio_pullup_t</code> is where the button is enable as a pulldown or as a pullup. Finally the last configuration <code>gpio_int_type_t</code>, it decides what type of edge will the button read and the cofiguration is shown below. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line">    GPIO_INTR_DISABLE = 0,     </div>
-<div class="line">    GPIO_INTR_POSEDGE = 1,     </div>
-<div class="line">    GPIO_INTR_NEGEDGE = 2,     </div>
-<div class="line">    GPIO_INTR_ANYEDGE = 3,     </div>
-<div class="line">    GPIO_INTR_LOW_LEVEL = 4,   </div>
-<div class="line">    GPIO_INTR_HIGH_LEVEL = 5,  </div>
-<div class="line">    GPIO_INTR_MAX,</div>
-<div class="line">} gpio_int_type_t;</div>
-</div><!-- fragment --><p> Next, you will need to set the interrupt flag into 0 which uses the function : <code>gpio_install_isr_service(int intr_alloc_flags)</code> </p><div class="fragment"><div class="line">esp_err_t gpio_install_isr_service(<span class="keywordtype">int</span> intr_alloc_flags)</div>
-</div><!-- fragment --><p> Lastly, there is a function that allows the interrupt button to enter the <code>static void IRAM_ATTR gpio_isr_handler(void* arg)</code>. In order to enter this function you need to declare using the function <code>gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, <span class="keywordtype">void</span> *args)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md36"></a>
+</div><!-- fragment --><p >There are significant difference in how to set the interrupts. Here is a brief description of pull-up and pull-down to help you for the lab.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Interrupt Configuration   </th><th class="markdownTableHeadLeft">Description   </th><th class="markdownTableHeadLeft">Logic    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>Pull-up</b>   </td><td class="markdownTableBodyLeft">Falling edge   </td><td class="markdownTableBodyLeft"><b>1</b> -&gt; <b>0</b>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>Pull-down</b>   </td><td class="markdownTableBodyLeft">Rising edge   </td><td class="markdownTableBodyLeft"><b>0</b> -&gt; <b>1</b>   </td></tr>
+</table>
+<p >For this lab will we keep the interrupt flag to its default settings which would be <code>0</code>. In order to set the interrupt flag, the following function is required: <code>gpio_install_isr_service(int intr_alloc_flags)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_install_isr_service(<span class="keywordtype">int</span> intr_alloc_flags)</div>
+</div><!-- fragment --><p >Lastly, <code>static void IRAM_ATTR gpio_isr_handler(void* arg)</code> is the interrupt service routine and can be alter if necessary as long as it has <code>IRAM_ATTR</code> which indicated its an interrupt. Also, in order to add any input to enter the interrupt routine, you must <code>add</code> it to isr handler: <code>gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, <span class="keywordtype">void</span> *args)</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md38"></a>
 Pull-up and Pull-down Configuration</h2>
-<p ><img src="https://user-images.githubusercontent.com/60948298/144836131-96f04e0f-c7f7-443f-b35c-814fb9db4e29.png" alt="button configuation" width="413" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md37"></a>
-Additional Links</h2>
+<p ><img src="../../button_config.png" alt="button configuation" width="413" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md39"></a>
+Warning</h1>
+<p >The bit mask in <code>gpio_config_t</code> is an <code>uint64_t</code> value and ESP32 uses <code>enum</code> for its pinout. Therefore, in order to mask the bits correctly you must bit shift desire pin by an unsigned long long (<code>ULL</code>). </p><div class="fragment"><div class="line"><span class="preprocessor">#define ONBOARD_LED     2 </span><span class="comment">/* ESP32 onboard led */</span><span class="preprocessor"></span></div>
+<div class="line">uint64_t bitmask = (1ULL &lt;&lt; <a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>); <span class="comment">/* Convert onboard led value to unsigned long long */</span></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md40"></a>
+Add led driver to ESP32 Project</h1>
+<ol>
+<li>
+Copy driver folder </li>
+<li>
+Paste into esp project </li>
+<li>
+Edit project CMakeLists.txt to use <a class="el" href="../../de/dbb/led_8c.html" title="Custom LED driver source file.">led.c</a>: </li>
+</ol>
+<div class="fragment"><div class="line">idf_component_register(SRCS &quot;main.c&quot;</div>
+<div class="line">                            &quot;driver/led.c&quot;</div>
+<div class="line">                    INCLUDE_DIRS &quot;.&quot;)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md41"></a>
+Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md38"></a>
-Authors</h2>
+<h1><a class="anchor" id="autotoc_md42"></a>
+Authors</h1>
 <ul>
-<li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>
+<li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
 <li><b>Master of Science in Computer Engineering</b> <br  />
  <a href="https://www.linkedin.com/in/jesusminjares/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;style=flat" alt="LinkedIn" class="inline"/></a> <a href="https://github.com/jminjares4"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;style=flat" alt="GitHub" class="inline"/></a></li>
 </ul>
 </li>
-<li><a href="https://github.com/eabaca2419"><em><b>Erick Baca</b></em></a><ul>
+<li><a href="https://github.com/eabaca2419"><b>Erick Baca</b></a><ul>
 <li><b>Master of Science in Computer Engineering</b> <br  />
  <a href="https://www.linkedin.com/in/erick-baca/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;style=flat" alt="LinkedIn" class="inline"/></a> <a href="https://github.com/eabaca2419"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;style=flat" alt="GitHub" class="inline"/></a></li>
 </ul>
 </li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2">GitHub Lab 2</a></dd></dl>
-<p><span class="next_section_button"> Read Next: <a class="el" href="../../d3/d14/md_doc_pages_lab3.html">Lab 3</a> </span> </p>
+<h1><a class="anchor" id="autotoc_md43"></a>
+GitHub</h1>
+<div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2">Lab 2 Repository</a> </div><p ><span class="next_section_button"> Read Next: <a class="el" href="../../d3/d14/md_doc_pages_lab3.html">Lab 3</a> </span> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

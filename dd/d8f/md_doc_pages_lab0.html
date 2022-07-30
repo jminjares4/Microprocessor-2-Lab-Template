@@ -118,20 +118,24 @@ $(document).ready(function(){initNavTree('dd/d8f/md_doc_pages_lab0.html','../../
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md10"></a>
-Objective:</h1>
+Objective</h1>
 <ul>
-<li>Understand how to use the gpio driver library from <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a>. The lab will consist of creating a <code>sweeper</code> and also <code>led chaser</code>. The <code>sweeper</code> will iterate over mutiple LEDs by turning from the lowest to highest bit and then turn off the most significant bit to lowest bit. While <code>led chaser</code> as the name states will haven a single led iterating from the lowest to most significant bit. For both the <code>sweeper</code> and <code>led chaser</code> use up to 6 GPIOs.</li>
+<li>Understand how to use the gpio driver library from <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a>. The lab will consist of creating a <code>sweeper</code> and a <code>led chaser</code>. The <code>sweeper</code> will iterate over mutiple LEDs by turning from the lowest to highest bit and then most significant bit to lowest bit. While <code>led chaser</code> will have a single led iterating from the lowest to most significant bit. For both the <code>sweeper</code> and <code>led chaser</code> use up to 6 GPIOs.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md11"></a>
+Bonus</h1>
+<ul>
 <li><em><b>Undergrad Bonus:</b></em><ul>
 <li>Do the <code>led chaser</code></li>
 </ul>
 </li>
 <li><em><b>Grad Bonus:</b></em><ul>
-<li>Create a light show with different sequences and patterns as you like. Have fun! </li>
+<li>Create a <code>light show</code> with different sequences and patterns as you like. Have fun!</li>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
-ESP32 Pinout</h2>
+<h1><a class="anchor" id="autotoc_md12"></a>
+ESP32 Pinout</h1>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
 <div class="line">                                        |        -------        |</div>
@@ -156,64 +160,42 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
-Example</h2>
-<p >Here is an example of a single GPIO set as ouptut and toggling the onboard led. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+Example</h1>
+<p >Here is an example of a how to use ESP32 GPIO function calls. The program toggles ESP onboard LED every other second. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define HIGH 1</span></div>
-<div class="line"><span class="preprocessor">#define LOW  0</span></div>
-<div class="line"><span class="preprocessor">#define ONBOARD_LED 2</span></div>
+<div class="line"><span class="preprocessor">#define LOW  0  </span><span class="comment">/* LOGIC LOW*/</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define HIGH 1  </span><span class="comment">/* LOGIC HIGH*/</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define ONBOARD_LED 2 </span><span class="comment">/* ONBOARD LED GPIO Pin*/</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(<span class="keywordtype">void</span>){</div>
-<div class="line">  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); <span class="comment">// select the GPIO pins</span></div>
-<div class="line">  gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); <span class="comment">// set as output</span></div>
+<div class="line">  esp_rom_gpio_pad_select_gpio(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>); <span class="comment">// select the GPIO pins</span></div>
+<div class="line">  gpio_set_direction(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>, GPIO_MODE_OUTPUT); <span class="comment">// set as output</span></div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">while</span>(1){</div>
-<div class="line">    gpio_set_level(ONBOARD_LED, <a class="code hl_define" href="../../d0/d98/_lab__0_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>); <span class="comment">// set high</span></div>
-<div class="line">    vTaskDelay(1000 / portTICK_PERIOD_MS); <span class="comment">// 1 seccond delay</span></div>
-<div class="line">    gpio_set_level(ONBOARD_LED, <a class="code hl_define" href="../../d0/d98/_lab__0_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a>); <span class="comment">//set low</span></div>
-<div class="line">    vTaskDelay(1000 / portTICK_PERIOD_MS); <span class="comment">// 1 seccond delay</span></div>
+<div class="line">    gpio_set_level(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>, <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>); <span class="comment">// set high</span></div>
+<div class="line">    vTaskDelay(1000 / portTICK_PERIOD_MS); <span class="comment">// 1 second delay</span></div>
+<div class="line">    gpio_set_level(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>, <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a>); <span class="comment">//set low</span></div>
+<div class="line">    vTaskDelay(1000 / portTICK_PERIOD_MS); <span class="comment">// 1 second delay</span></div>
 <div class="line">  }  </div>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-<div class="ttc" id="a_lab__0_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:54</div></div>
-<div class="ttc" id="a_lab__0_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:55</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
-Lab Template</h2>
-<div class="fragment"><div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    Author:     Jesus Minjares and Erick A. Baca</span></div>
-<div class="line"><span class="comment">                Master of Science in Computer Engineering   </span></div>
-<div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">    Course:     EE 5190 Laboratory for Microprocessors Systems II    </span></div>
-<div class="line"><span class="comment">     </span></div>
-<div class="line"><span class="comment">    Lab 0:</span></div>
-<div class="line"><span class="comment">        Objective:</span></div>
-<div class="line"><span class="comment">                Understand how to use the gpio driver library from ESPRESSIF. The lab will consist of creating </span></div>
-<div class="line"><span class="comment">                a `sweeper` and also `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from </span></div>
-<div class="line"><span class="comment">                the lowest to highest bit and then turn off the most significant bit to lowest bit. While `led chaser` </span></div>
-<div class="line"><span class="comment">                as the name states will haven a single led iterating from the lowest to most significant bit. </span></div>
-<div class="line"><span class="comment">        Undergrad Bonus:</span></div>
-<div class="line"><span class="comment">                The first bonus deals with having an LED chaser. The </span></div>
-<div class="line"><span class="comment">                LED should turn ON in sequential order; however, only</span></div>
-<div class="line"><span class="comment">                one LED should be ON at a time.</span></div>
-<div class="line"><span class="comment">        Grad Bonus:</span></div>
-<div class="line"><span class="comment">                For the Graduate Bonus, it is expected to be creative </span></div>
-<div class="line"><span class="comment">                and original. The bonus consist in create a light show</span></div>
-<div class="line"><span class="comment">                with more that 4 distinct sequences or patterns that</span></div>
-<div class="line"><span class="comment">                the student likes or can do.</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:27</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:26</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:30</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
+Lab Template</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define HIGH    1</span></div>
-<div class="line"><span class="preprocessor">#define LOW     0</span></div>
+<div class="line"><span class="preprocessor">#define LOW  0  </span><span class="comment">/* LOGIC LOW*/</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define HIGH 1  </span><span class="comment">/* LOGIC HIGH*/</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/d98/_lab__0_2main_8c.html#a55a185439e570cb8341fb8149b84988e">setOutputs</a>(uint8_t *out, <span class="keywordtype">int</span> size)</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/db7/_lab__0_2main_2main_8c.html#a55a185439e570cb8341fb8149b84988e">setOutputs</a>(uint8_t *out, <span class="keywordtype">int</span> size)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; i++) <span class="comment">// itierate over the size of the array</span></div>
 <div class="line">    {</div>
@@ -223,7 +205,7 @@ Lab Template</h2>
 <div class="line">    <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/d98/_lab__0_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7">sweep</a>(uint8_t *led, <span class="keywordtype">int</span> size)</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/db7/_lab__0_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7">sweep</a>(uint8_t *led, <span class="keywordtype">int</span> size)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> i = 0; i &lt; size; i++) <span class="comment">//iterate over the size of the array</span></div>
 <div class="line">    {</div>
@@ -235,7 +217,7 @@ Lab Template</h2>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/d98/_lab__0_2main_8c.html#aba31417398d96e30a6c367c7f61617fe">led_chaser</a>(uint8_t *led, <span class="keywordtype">int</span> size)</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/db7/_lab__0_2main_2main_8c.html#aba31417398d96e30a6c367c7f61617fe">led_chaser</a>(uint8_t *led, <span class="keywordtype">int</span> size)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; i++) <span class="comment">//iterate over the size of the array</span></div>
 <div class="line">    {</div>
@@ -247,7 +229,7 @@ Lab Template</h2>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/d98/_lab__0_2main_8c.html#a0d9303965e874a5f64926db615282426">lightShow</a>(uint8_t *led, <span class="keywordtype">int</span> size)</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/db7/_lab__0_2main_2main_8c.html#a0d9303965e874a5f64926db615282426">lightShow</a>(uint8_t *led, <span class="keywordtype">int</span> size)</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">/*Use all prior functions to create a custom light show */</span></div>
 <div class="line">}</div>
@@ -257,7 +239,7 @@ Lab Template</h2>
 <div class="line">    <span class="comment">/*GPIOs pins*/</span></div>
 <div class="line">    uint8_t led[] = {2}; <span class="comment">//create an array of single led </span></div>
 <div class="line">    <span class="keywordtype">int</span> size = <span class="keyword">sizeof</span>(led)/<span class="keyword">sizeof</span>(uint8_t); <span class="comment">//get size of the array, use sizeof() to allow scalabilty </span></div>
-<div class="line">    <a class="code hl_function" href="../../d0/d98/_lab__0_2main_8c.html#a55a185439e570cb8341fb8149b84988e">setOutputs</a>(led,size); <span class="comment">//intialize GPIOs pins</span></div>
+<div class="line">    <a class="code hl_function" href="../../d3/db7/_lab__0_2main_2main_8c.html#a55a185439e570cb8341fb8149b84988e">setOutputs</a>(led,size); <span class="comment">//intialize GPIOs pins</span></div>
 <div class="line">    <span class="keywordflow">while</span> (1)</div>
 <div class="line">    {</div>
 <div class="line">      <span class="comment">// sweep(led, size); //sweep function</span></div>
@@ -265,43 +247,56 @@ Lab Template</h2>
 <div class="line">      <span class="comment">//lightShow(led,size); //bonus </span></div>
 <div class="line"> </div>
 <div class="line">      <span class="comment">// Toggle LED using index of your array</span></div>
-<div class="line">      gpio_set_level(led[0]);</div>
+<div class="line">      gpio_set_level(led[0], <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a>);</div>
 <div class="line">      vTaskDelay(1000 / portTICK_PERIOD_MS); <span class="comment">// 1 second delay</span></div>
-<div class="line">      gpio_set_evel(led[0];)</div>
+<div class="line">      gpio_set_level(led[0], <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>);</div>
 <div class="line">      vTaskDelay(1000 / portTICK_PERIOD_MS); <span class="comment">// 1 second delay</span></div>
+<div class="line">    }</div>
 <div class="line">}</div>
-<div class="ttc" id="a_lab__0_2main_8c_html_a0d9303965e874a5f64926db615282426"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#a0d9303965e874a5f64926db615282426">lightShow</a></div><div class="ttdeci">void lightShow(uint8_t *led, int size)</div><div class="ttdoc">lightShow user define light show</div><div class="ttdef"><b>Definition:</b> main.c:117</div></div>
-<div class="ttc" id="a_lab__0_2main_8c_html_a55a185439e570cb8341fb8149b84988e"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#a55a185439e570cb8341fb8149b84988e">setOutputs</a></div><div class="ttdeci">void setOutputs(uint8_t *out, int size)</div><div class="ttdoc">setOutputs will initialize uint8_t array as outputs</div><div class="ttdef"><b>Definition:</b> main.c:65</div></div>
-<div class="ttc" id="a_lab__0_2main_8c_html_aba31417398d96e30a6c367c7f61617fe"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#aba31417398d96e30a6c367c7f61617fe">led_chaser</a></div><div class="ttdeci">void led_chaser(uint8_t *led, int size)</div><div class="ttdoc">led_chaser led chaser will make a single led to iterate over the array</div><div class="ttdef"><b>Definition:</b> main.c:99</div></div>
-<div class="ttc" id="a_lab__0_2main_8c_html_ae2b25158970fc0a4d4c4f291b1f747f7"><div class="ttname"><a href="../../d0/d98/_lab__0_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7">sweep</a></div><div class="ttdeci">void sweep(uint8_t *led, int size)</div><div class="ttdoc">sweep function will sweep among the GPIOs</div><div class="ttdef"><b>Definition:</b> main.c:81</div></div>
-</div><!-- fragment --><hr  />
- <h1><a class="anchor" id="autotoc_md15"></a>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_a0d9303965e874a5f64926db615282426"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a0d9303965e874a5f64926db615282426">lightShow</a></div><div class="ttdeci">void lightShow(uint8_t *led, int size)</div><div class="ttdoc">lightShow user define light show</div><div class="ttdef"><b>Definition:</b> main.c:92</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_a55a185439e570cb8341fb8149b84988e"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a55a185439e570cb8341fb8149b84988e">setOutputs</a></div><div class="ttdeci">void setOutputs(uint8_t *out, int size)</div><div class="ttdoc">setOutputs will initialize uint8_t array as outputs</div><div class="ttdef"><b>Definition:</b> main.c:37</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_aba31417398d96e30a6c367c7f61617fe"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#aba31417398d96e30a6c367c7f61617fe">led_chaser</a></div><div class="ttdeci">void led_chaser(uint8_t *led, int size)</div><div class="ttdoc">led_chaser led chaser will make a single led to iterate over the array</div><div class="ttdef"><b>Definition:</b> main.c:73</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_ae2b25158970fc0a4d4c4f291b1f747f7"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7">sweep</a></div><div class="ttdeci">void sweep(uint8_t *led, int size)</div><div class="ttdoc">sweep function will sweep among the GPIOs</div><div class="ttdef"><b>Definition:</b> main.c:54</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
 C helpful functions</h1>
-<p >For this lab, there are three main function from ESPRESSIF that are important. First is to select which GPIO pin is going to be used by the following function. <code>gpio_pad_select(gpio_num_t gpio_num)</code>. The first parameter <code>gpio_num</code> is the GPIO pin that is going to be used, for instance if we want to use the <em><b>onboard led</b></em> we should put a 2 on <code>gpio_num</code> such as <code>gpio_pad_select(2)</code>. </p><div class="fragment"><div class="line">esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             </div>
-</div><!-- fragment --><p> Next, another important function is the selection of the direction GPIO pin. Therefore we must use <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> and for this lab we only care of <em><code>GPIO_MODE_OUTPUT</code></em> as we will be using outputs. </p><div class="fragment"><div class="line">esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);</div>
-</div><!-- fragment --><p> Lastly, <code>gpio_set_level(gpio_num_t gpio_num, uint32_t level)</code> as the name states set the level of the GPIO pin that we pass throught the function. Passing a <b>0</b> is set to low and <b>1</b> is set to high respectively. </p><div class="fragment"><div class="line">esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level); <span class="comment">// set LOGIC high</span></div>
-</div><!-- fragment --><p >The following function <code>vTaskDelay( const TickType_t xTicksToDelay)</code> is use to generate delay with ESP32 and it part of FreeRTOS, we will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> vTaskDelay(<span class="keyword">const</span> TickType_t xTicksToDelay);</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md16"></a>
-Additional Links</h2>
+<p >For this lab, there are three main function from Espressif that are important. First, is to select which GPIO pin is going to be used by the following function: <code>esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num)</code>. The first parameter <code>gpio_num</code> is the GPIO pin that is going to be used, for instance if we want to use the <em><b>onboard led</b></em> we should put a 2 on <code>gpio_num</code> such as <code>esp_rom_gpio_pad_select_gpio(2)</code>. </p><div class="fragment"><div class="line">esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             </div>
+</div><!-- fragment --><p> Next, <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> allow the user to set the direction of the GPIO pin. For this lab we only going to use <em><code>GPIO_MODE_OUTPUT</code></em> for the mode. </p><div class="fragment"><div class="line">esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);</div>
+</div><!-- fragment --><p> Furthermore, <code>gpio_set_level(gpio_num_t gpio_num, uint32_t level)</code> sets the logic level of the GPIO pin that we pass throught the function. <br  />
+ </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Value   </th><th class="markdownTableHeadLeft">Logic    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>0</b>   </td><td class="markdownTableBodyLeft">low    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>1</b>   </td><td class="markdownTableBodyLeft">high   </td></tr>
+</table>
+<div class="fragment"><div class="line">esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level);</div>
+</div><!-- fragment --><p >Lastly, the following function <code>vTaskDelay( const TickType_t xTicksToDelay)</code> is use to generate delay with ESP32 and it part of FreeRTOS, you will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> vTaskDelay(<span class="keyword">const</span> TickType_t xTicksToDelay);</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md16"></a>
+Warning!</h1>
+<p >Depending of the version of <b>ESP-IDF</b> that you may have, some libraries and function calls that may be <b>deprecate</b>! If you get an warning message when using <code>esp_rom_gpio_pad_select_gpio</code> please use <code>gpio_pad_select_gpio</code>.</p>
+<h1><a class="anchor" id="autotoc_md17"></a>
+Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md17"></a>
-Authors</h2>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Authors</h1>
 <ul>
-<li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>
+<li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
 <li><b>Master of Science in Computer Engineering</b> <br  />
  <a href="https://www.linkedin.com/in/jesusminjares/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;style=flat" alt="LinkedIn" class="inline"/></a> <a href="https://github.com/jminjares4"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;style=flat" alt="GitHub" class="inline"/></a></li>
 </ul>
 </li>
-<li><a href="https://github.com/eabaca2419"><em><b>Erick Baca</b></em></a><ul>
+<li><a href="https://github.com/eabaca2419"><b>Erick Baca</b></a><ul>
 <li><b>Master of Science in Computer Engineering</b> <br  />
  <a href="https://www.linkedin.com/in/erick-baca/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;style=flat" alt="LinkedIn" class="inline"/></a> <a href="https://github.com/eabaca2419"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;style=flat" alt="GitHub" class="inline"/></a></li>
 </ul>
 </li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0">GitHub Lab 0</a></dd></dl>
-<p><span class="next_section_button"> Read Next: <a class="el" href="../../dd/d91/md_doc_pages_lab1.html">Lab 1</a> </span> </p>
+<h1><a class="anchor" id="autotoc_md19"></a>
+GitHub</h1>
+<div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0">Lab 0 Repository</a> </div><p ><span class="next_section_button"> Read Next: <a class="el" href="../../dd/d91/md_doc_pages_lab1.html">Lab 1</a> </span> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

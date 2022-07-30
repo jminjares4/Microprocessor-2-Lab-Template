@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Microprocessor 2 Labs: Lab 7 Peripherals and Queues:ADC and PWM (LEDC)</title>
+<title>Microprocessor 2 Labs: Lab 7 Peripherals and Queues: ADC and PWM (LEDC)</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -114,22 +114,36 @@ $(document).ready(function(){initNavTree('d0/d10/md_doc_pages_lab7.html','../../
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Lab 7 Peripherals and Queues:ADC and PWM (LEDC) </div></div>
+  <div class="headertitle"><div class="title">Lab 7 Peripherals and Queues: ADC and PWM (LEDC) </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md78"></a>
-Objective</h2>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md89"></a>
+Objective</h1>
 <ul>
-<li>The objective for this lab is to understand how use the LEDC and ADC API's of espressif. In this lab, create 2 task: one that will initiallize the peripherals and perform ADC readings every 100 millisecond. The ADC input reading should come from a 10K potentiometer and store its information into a queue. For the second task, output a PWM signal which gets it's duty cycle updated based on the queue value send from the ADC task.</li>
+<li>The objective for this lab is to understand how use the Espressif <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html"><code>LEDC</code></a> and <a href="https://docs.espressif.com/projects/esp-idf/en/v4.2/esp32/api-reference/peripherals/adc.html"><code>ADC</code></a> drivers. In this lab, create 2 task: adc and pwm task. The <code>adc task</code> perform ADC readings every 100 millisecond (10 hertz). This task must store the adc reading and be sent through a queue. Lastly, <code>pwm task</code> should receive the queue data from the <code>adc task</code> and update <code>ledc</code> duty cycle. <div align="center"> <table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Task   </th><th class="markdownTableHeadLeft">Description   </th><th class="markdownTableHeadLeft">Queue    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>adc_task</code>   </td><td class="markdownTableBodyLeft">Read analog value @ 10 hz   </td><td class="markdownTableBodyLeft">send data    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>pwm_task</code>   </td><td class="markdownTableBodyLeft">Update duty cycle   </td><td class="markdownTableBodyLeft">receive data   </td></tr>
+</table>
+</div></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md79"></a>
-Bonus</h2>
+<h1><a class="anchor" id="autotoc_md90"></a>
+Bonus</h1>
 <ul>
-<li>Add a port interrupt to stop and start the PWM signal.+10</li>
-<li>Create another task with two more PWM pins using the LEDC driver and start on at the highest duty cycle and then drop down. When it reaches 0 start the next pin from 0 to the highest duty cycle and go back doing the same pattern. This will give the illusion of a wave.</li>
+<li><em><b>Undergrad Bonus</b></em><ul>
+<li>Add <code>gpio</code> interrupt to start and stop <b>PWM</b> signal</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md80"></a>
-ESP32 Pinout</h2>
+</li>
+<li><em><b>Grad Bonus</b></em><ul>
+<li>Modifiy code to use <b>2</b> more PWM pins.</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md91"></a>
+ESP32 Pinout</h1>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
 <div class="line">                                        |        -------        |</div>
@@ -154,68 +168,82 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md81"></a>
-Example 1</h2>
-<p >Here is an example of a single ADC channel that will read information from a potentiometer and will print the information to the screen. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md92"></a>
+Example 1</h1>
+<p >Here is an example of a single ADC channel that will read and print value to the screen. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;driver/adc.h&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#ab1f0b0173df09f2644d17c8309f5e7e6">ADCtask</a>(<span class="keywordtype">void</span> *pvParameter){</div>
+<div class="line"><span class="comment">/* ADC task */</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#aa4ac14df5a56a681fb69aef5cffc5e95">ADCtask</a>(<span class="keywordtype">void</span> *pvParameters){</div>
 <div class="line">    <span class="keywordflow">while</span>(1){</div>
-<div class="line">        <span class="comment">//every 100ms</span></div>
-<div class="line">        vTaskDelay(100/portTICK_PERIOD_MS);</div>
-<div class="line">        <span class="comment">/*Read adc value @ CHANNEL 6*/</span></div>
+<div class="line">        <span class="comment">/* Read adc value @ CHANNEL 6*/</span></div>
 <div class="line">        <span class="keywordtype">int</span> val = adc1_get_raw(ADC1_CHANNEL_6);   </div>
-<div class="line">        <span class="comment">/*Print ADC reading*/</span></div>
-<div class="line"> </div>
+<div class="line">        vTaskDelay(100/portTICK_PERIOD_MS); <span class="comment">/* 100 ms */</span></div>
+<div class="line">        </div>
+<div class="line">        <span class="comment">/* Print reading */</span></div>
+<div class="line">        printf(<span class="stringliteral">&quot;ADC val: %d\n&quot;</span>, val);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
+<div class="line"> </div>
 <div class="line"><span class="comment">/* Set ADC */</span></div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d95/_additional___labs_2_lab__11_2main_8c.html#a1559de05c1c2d81a0ae06743397d761b">setADC</a>(){</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a3c5d2bf67a701f0cb6556568addb2266">adc_setup</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">/*Set the ADC with @ 12 bits -&gt; 2^12 = 4096*/</span></div>
 <div class="line">    adc1_config_width(ADC_WIDTH_BIT_12);</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">/*Set CHANNEL 6 @ 2600 mV*/</span></div>
 <div class="line">    adc1_config_channel_atten(ADC1_CHANNEL_6, ADC_ATTEN_DB_11); </div>
+<div class="line">    </div>
 <div class="line">}</div>
+<div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(<span class="keywordtype">void</span>){</div>
 <div class="line">    <span class="comment">/* set ADC*/</span></div>
-<div class="line">    <a class="code hl_function" href="../../db/d95/_additional___labs_2_lab__11_2main_8c.html#a1559de05c1c2d81a0ae06743397d761b">setADC</a>();</div>
+<div class="line">    <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a3c5d2bf67a701f0cb6556568addb2266">adc_setup</a>();</div>
 <div class="line">    <span class="comment">/* Create Tasks */</span></div>
-<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#ab1f0b0173df09f2644d17c8309f5e7e6">ADCtask</a>, <span class="stringliteral">&quot;ADCtask&quot;</span>, 2048,NULL, 5, NULL);</div>
+<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#aa4ac14df5a56a681fb69aef5cffc5e95">ADCtask</a>, <span class="stringliteral">&quot;ADCtask&quot;</span>, 2048,NULL, 5, NULL);</div>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-<div class="ttc" id="a_additional___labs_2_lab__11_2main_8c_html_a1559de05c1c2d81a0ae06743397d761b"><div class="ttname"><a href="../../db/d95/_additional___labs_2_lab__11_2main_8c.html#a1559de05c1c2d81a0ae06743397d761b">setADC</a></div><div class="ttdeci">void setADC()</div><div class="ttdef"><b>Definition:</b> main.c:304</div></div>
-<div class="ttc" id="a_lab__7_2main_8c_html_ab1f0b0173df09f2644d17c8309f5e7e6"><div class="ttname"><a href="../../d2/de5/_lab__7_2main_8c.html#ab1f0b0173df09f2644d17c8309f5e7e6">ADCtask</a></div><div class="ttdeci">void ADCtask(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:54</div></div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md82"></a>
-Example 2</h2>
+<div class="ttc" id="a_lab__7_2main_2main_8c_html_a3c5d2bf67a701f0cb6556568addb2266"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a3c5d2bf67a701f0cb6556568addb2266">adc_setup</a></div><div class="ttdeci">void adc_setup(void)</div><div class="ttdef"><b>Definition:</b> main.c:60</div></div>
+<div class="ttc" id="a_lab__7_2main_2main_8c_html_aa4ac14df5a56a681fb69aef5cffc5e95"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#aa4ac14df5a56a681fb69aef5cffc5e95">ADCtask</a></div><div class="ttdeci">void ADCtask(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:37</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md93"></a>
+Example 2</h1>
 <p >Here is an example of a PWM signal using the LEDC API to dim an LED. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/queue.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;driver/ledc.h&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define ONBOARD_LED 2               </span><span class="comment">//ONBOARD GPIO LED</span></div>
+<div class="line"><span class="preprocessor">#define ONBOARD_LED 2  </span><span class="comment">/* Onboard LED */</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a0bd975b0eb36325185ed80775ccc184a">PWMtask</a>(<span class="keywordtype">void</span> *pvParameter){</div>
+<div class="line"><span class="preprocessor">#define MAX_DUTY    4096 </span><span class="comment">/* max duty cycle */</span><span class="preprocessor"></span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* PWM task */</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>(<span class="keywordtype">void</span> *pvParameters){</div>
 <div class="line">    <span class="keywordtype">int</span> i = 0;</div>
 <div class="line">    <span class="keywordflow">while</span>(1){</div>
-<div class="line">        <span class="keywordflow">for</span> (i = 0; i &lt; MAX_DUTY; i += 10){ <span class="comment">//Iterrate the duty cycle of channel 1 to its highest point</span></div>
-<div class="line">            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i); <span class="comment">//set duty </span></div>
+<div class="line">        <span class="comment">/* Iterate over channel 1 duty cycle, increase */</span></div>
+<div class="line">        <span class="keywordflow">for</span> (i = 0; i &lt; MAX_DUTY; i += 10){ </div>
+<div class="line">            <span class="comment">/* set duty cycle */</span></div>
+<div class="line">            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i);</div>
+<div class="line">            <span class="comment">/* update duty cycle */</span></div>
 <div class="line">            ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1); <span class="comment">//update duty </span></div>
-<div class="line">             vTaskDelay(10/portTICK_PERIOD_MS); <span class="comment">//100ms to avoid WDT errors</span></div>
-<div class="line">        } </div>
-<div class="line">        <span class="keywordflow">for</span> (i = MAX_DUTY; i &gt; 0; i -= 10){ <span class="comment">//Iterrate the duty cycle of channel 1 to 0</span></div>
-<div class="line">            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i); <span class="comment">//set duty </span></div>
+<div class="line">            vTaskDelay(10/portTICK_PERIOD_MS); <span class="comment">/* 10ms */</span> </div>
+<div class="line">        }</div>
+<div class="line">        <span class="comment">/* Iterate over channel 1 duty cycle, decrease */</span></div>
+<div class="line">        <span class="keywordflow">for</span> (i = MAX_DUTY; i &gt; 0; i -= 10){ </div>
+<div class="line">            <span class="comment">/* set duty cycle */</span></div>
+<div class="line">            ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,i);</div>
+<div class="line">            <span class="comment">/* update duty cycle */</span></div>
 <div class="line">            ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1); <span class="comment">//update duty </span></div>
-<div class="line">             vTaskDelay(10/portTICK_PERIOD_MS); <span class="comment">//100ms to avoid WDT errors</span></div>
+<div class="line">            vTaskDelay(10/portTICK_PERIOD_MS); <span class="comment">/* 10ms */</span> </div>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line">}</div>
+<div class="line"> </div>
 <div class="line"><span class="comment">/* Set PWM */</span></div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a2c1738c14a5e96f331efc4e5882f67c7">setPWM</a>(){</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a>(<span class="keywordtype">void</span>){</div>
 <div class="line">    <span class="comment">/*</span></div>
 <div class="line"><span class="comment">        Set LEDC Timer:</span></div>
 <div class="line"><span class="comment">                        5000hz</span></div>
@@ -239,84 +267,116 @@ Example 2</h2>
 <div class="line"><span class="comment">                        TIMER_1</span></div>
 <div class="line"><span class="comment">                        LOW_SPEED</span></div>
 <div class="line"><span class="comment">                        0 duty</span></div>
+<div class="line"><span class="comment">                        Max duty </span></div>
 <div class="line"><span class="comment">    */</span></div>
-<div class="line">    ledc_channel_config_t tChaConfig;</div>
-<div class="line">    tChaConfig.gpio_num = ONBOARD_LED;    </div>
-<div class="line">    tChaConfig.speed_mode = LEDC_LOW_SPEED_MODE;</div>
-<div class="line">    tChaConfig.channel = LEDC_CHANNEL_1;</div>
-<div class="line">    tChaConfig.intr_type = LEDC_INTR_DISABLE;</div>
-<div class="line">    tChaConfig.timer_sel = LEDC_TIMER_1;</div>
-<div class="line">    tChaConfig.duty = 0;</div>
-<div class="line">    tChaConfig.hpoint = 4096;   <span class="comment">//Highest point for the PWM is at 4096</span></div>
-<div class="line">    ledc_channel_config(&amp;tChaConfig);</div>
+<div class="line">    ledc_channel_config_t channelConfig;</div>
+<div class="line">    channelConfig.gpio_num = <a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>;    </div>
+<div class="line">    channelConfig.speed_mode = LEDC_LOW_SPEED_MODE;</div>
+<div class="line">    channelConfig.channel = LEDC_CHANNEL_1;</div>
+<div class="line">    channelConfig.intr_type = LEDC_INTR_DISABLE;</div>
+<div class="line">    channelConfig.timer_sel = LEDC_TIMER_1;</div>
+<div class="line">    channelConfig.duty = 0;</div>
+<div class="line">    channelConfig.hpoint = MAX_DUTY;   </div>
+<div class="line">    ledc_channel_config(&amp;channelConfig);</div>
 <div class="line">}</div>
+<div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">/* set PWM*/</span></div>
-<div class="line">    <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a2c1738c14a5e96f331efc4e5882f67c7">setPWM</a>();</div>
+<div class="line">    <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a>();</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">/* Create Tasks */</span></div>
-<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a0bd975b0eb36325185ed80775ccc184a">PWMtask</a>, <span class="stringliteral">&quot;PWMtask&quot;</span>, 2048, NULL, 5, NULL);</div>
+<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>, <span class="stringliteral">&quot;PWMtask&quot;</span>, 2048, NULL, 5, NULL);</div>
+<div class="line">    </div>
 <div class="line">}</div>
-<div class="ttc" id="a_lab__7_2main_8c_html_a0bd975b0eb36325185ed80775ccc184a"><div class="ttname"><a href="../../d2/de5/_lab__7_2main_8c.html#a0bd975b0eb36325185ed80775ccc184a">PWMtask</a></div><div class="ttdeci">void PWMtask(void *pvParameter)</div><div class="ttdef"><b>Definition:</b> main.c:61</div></div>
-<div class="ttc" id="a_lab__7_2main_8c_html_a2c1738c14a5e96f331efc4e5882f67c7"><div class="ttname"><a href="../../d2/de5/_lab__7_2main_8c.html#a2c1738c14a5e96f331efc4e5882f67c7">setPWM</a></div><div class="ttdeci">void setPWM()</div><div class="ttdef"><b>Definition:</b> main.c:74</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md83"></a>
-Template Code</h2>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:30</div></div>
+<div class="ttc" id="a_lab__7_2main_2main_8c_html_a2d1c3e7be837352ae08245dc9396e7e1"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a></div><div class="ttdeci">void pwm_setup(void)</div><div class="ttdef"><b>Definition:</b> main.c:66</div></div>
+<div class="ttc" id="a_lab__7_2main_2main_8c_html_af449d6a027ba3cff41528f12a08dff32"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a></div><div class="ttdeci">void PWMtask(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:48</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md94"></a>
+Lab Template</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;sdkconfig.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/queue.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;driver/ledc.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;driver/adc.h&gt;</span></div>
-<div class="line"><span class="keyword">static</span> xQueueHandle duty_queue = NULL;</div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#ab1f0b0173df09f2644d17c8309f5e7e6">ADCtask</a>(<span class="keywordtype">void</span> *pvParameter)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* Global queue handle */</span></div>
+<div class="line">QueueHandle_t <a class="code hl_variable" href="../../dc/d12/_lab__7_2main_2main_8c.html#a1dbfc3fa6e8af6057fc4ee35f29c064f">duty_queue</a> = NULL;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* ADC task */</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#aa4ac14df5a56a681fb69aef5cffc5e95">ADCtask</a>(<span class="keywordtype">void</span> *pvParameters)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">while</span> (1)</div>
 <div class="line">    {</div>
-<div class="line">        vTaskDelay(100 / portTICK_PERIOD_MS);</div>
+<div class="line">       <span class="comment">/* Read adc channel*/</span></div>
+<div class="line"> </div>
+<div class="line">       <span class="comment">/* Send data to queue */</span></div>
 <div class="line">    }</div>
 <div class="line">}</div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a0bd975b0eb36325185ed80775ccc184a">PWMtask</a>(<span class="keywordtype">void</span> *pvParameter)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* PWM task */</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>(<span class="keywordtype">void</span> *pvParameters)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">while</span> (1)</div>
 <div class="line">    {</div>
-<div class="line">        ledc_set_duty();</div>
-<div class="line">        ledc_update_duty();</div>
+<div class="line">        <span class="comment">/* Receive data */</span></div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">/* Update duty cycle */</span></div>
+<div class="line"> </div>
 <div class="line">    }</div>
 <div class="line">}</div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d95/_additional___labs_2_lab__11_2main_8c.html#a1559de05c1c2d81a0ae06743397d761b">setADC</a>()</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* ADC setup */</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a3c5d2bf67a701f0cb6556568addb2266">adc_setup</a>(<span class="keywordtype">void</span>)</div>
 <div class="line">{</div>
-<div class="line">    adc1_config_width();</div>
-<div class="line">    adc1_config_channel_atten(, );</div>
+<div class="line">    <span class="comment">/* Set adc */</span></div>
 <div class="line">}</div>
-<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a2c1738c14a5e96f331efc4e5882f67c7">setPWM</a>()</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* PWM setup */</span> </div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a>(<span class="keywordtype">void</span>)</div>
 <div class="line">{</div>
-<div class="line">    ledc_timer_config_t timerConfig;</div>
-<div class="line">    timerConfig.duty_resolution = ;</div>
-<div class="line">    timerConfig.timer_num = ;</div>
-<div class="line">    timerConfig.freq_hz = ;</div>
-<div class="line">    timerConfig.speed_mode = ;</div>
-<div class="line">    ledc_timer_config(&amp;timerConfig);</div>
-<div class="line">    ledc_channel_config_t tChaConfig;</div>
-<div class="line">    tChaConfig.gpio_num = ;</div>
-<div class="line">    tChaConfig.speed_mode = ;</div>
-<div class="line">    tChaConfig.channel = ;</div>
-<div class="line">    tChaConfig.intr_type = ;</div>
-<div class="line">    tChaConfig.timer_sel = ;</div>
-<div class="line">    tChaConfig.duty = ;</div>
-<div class="line">    ledc_channel_config(&amp;tChaConfig);</div>
+<div class="line"> </div>
 <div class="line">}</div>
+<div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>()</div>
 <div class="line">{</div>
-<div class="line">    <a class="code hl_function" href="../../db/d95/_additional___labs_2_lab__11_2main_8c.html#a1559de05c1c2d81a0ae06743397d761b">setADC</a>();</div>
-<div class="line">    <a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a2c1738c14a5e96f331efc4e5882f67c7">setPWM</a>();</div>
-<div class="line">    duty_queue = xQueueCreate(10, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div>
-<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#ab1f0b0173df09f2644d17c8309f5e7e6">ADCtask</a>, <span class="stringliteral">&quot;ADCtask&quot;</span>, 2048, NULL, 5, NULL);</div>
-<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../d2/de5/_lab__7_2main_8c.html#a0bd975b0eb36325185ed80775ccc184a">PWMtask</a>, <span class="stringliteral">&quot;PWMtask&quot;</span>, 2048, NULL, 5, NULL);</div>
+<div class="line">    <span class="comment">/* Setup ADC and PWM */</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Create queue */</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Create tasks */</span></div>
+<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#aa4ac14df5a56a681fb69aef5cffc5e95">ADCtask</a>, <span class="stringliteral">&quot;ADCtask&quot;</span>, 2048, NULL, 5, NULL);</div>
+<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>, <span class="stringliteral">&quot;PWMtask&quot;</span>, 2048, NULL, 5, NULL);</div>
 <div class="line">}</div>
-</div><!-- fragment --><hr  />
- <h1><a class="anchor" id="autotoc_md85"></a>
+<div class="ttc" id="a_lab__7_2main_2main_8c_html_a1dbfc3fa6e8af6057fc4ee35f29c064f"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a1dbfc3fa6e8af6057fc4ee35f29c064f">duty_queue</a></div><div class="ttdeci">QueueHandle_t duty_queue</div><div class="ttdef"><b>Definition:</b> main.c:34</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md95"></a>
 C helpful functions</h1>
-<p >For this Lab, there are couple additional functions from ESPRESSIF that are important for using ADC. First is understanding what bit width are you planning to read using the function <code>adc1_config_width(adc_bits_width_t width_bit)</code>. The higher the bit width, the accurate the ADC reading will be. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<p >Espressif ADC driver requires the following structures and enumeration inorder to set the correct pin and operation. There are a few GPIO that are avaiable to use analog converter. Depending on the ESP32, there are slight difference between the pinout so please verify the hardware. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line">    ADC1_CHANNEL_0 = 0, </div>
+<div class="line">    ADC1_CHANNEL_1,     </div>
+<div class="line">    ADC1_CHANNEL_2,     </div>
+<div class="line">    ADC1_CHANNEL_3,     </div>
+<div class="line">    ADC1_CHANNEL_4,     </div>
+<div class="line">    ADC1_CHANNEL_5,     </div>
+<div class="line">    ADC1_CHANNEL_6,     </div>
+<div class="line">    ADC1_CHANNEL_7,     </div>
+<div class="line">    ADC1_CHANNEL_MAX,</div>
+<div class="line">} adc1_channel_t;</div>
+</div><!-- fragment --> <div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line">    ADC2_CHANNEL_0 = 0, </div>
+<div class="line">    ADC2_CHANNEL_1,     </div>
+<div class="line">    ADC2_CHANNEL_2,     </div>
+<div class="line">    ADC2_CHANNEL_3,     </div>
+<div class="line">    ADC2_CHANNEL_4,     </div>
+<div class="line">    ADC2_CHANNEL_5,     </div>
+<div class="line">    ADC2_CHANNEL_6,     </div>
+<div class="line">    ADC2_CHANNEL_7,     </div>
+<div class="line">    ADC2_CHANNEL_8,     </div>
+<div class="line">    ADC2_CHANNEL_9,     </div>
+<div class="line">    ADC2_CHANNEL_MAX,</div>
+<div class="line">} adc2_channel_t;</div>
+</div><!-- fragment --><p> The ESP has default 12 bit max width conversion but depending on the hardware, it can go upto 13 bit. To keep everything simple, please do not exceed 12 bit width. Espressif ADC width is selected by <code>adc_bit_width_t</code> enumeration down below. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
 <div class="line"><span class="preprocessor">#if CONFIG_IDF_TARGET_ESP32</span></div>
 <div class="line">    ADC_WIDTH_BIT_9  = 0, </div>
 <div class="line">    ADC_WIDTH_BIT_10 = 1, </div>
@@ -329,19 +389,13 @@ C helpful functions</h1>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line">    ADC_WIDTH_MAX,</div>
 <div class="line">} adc_bits_width_t;</div>
-</div><!-- fragment --><p> Next, you need to take into consideration that the ESP32 has specific pin for each channel for ADC1. <code>adc1_config_channel_atten(adc1_channel_t channel, adc_atten_t atten)</code> this functions is being use to delcare which channel will you be reading from. Below you will see the channel numbers with its designated GPIO pins. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line">    ADC1_CHANNEL_0 = 0, </div>
-<div class="line">    ADC1_CHANNEL_1,     </div>
-<div class="line">    ADC1_CHANNEL_2,     </div>
-<div class="line">    ADC1_CHANNEL_3,     </div>
-<div class="line">    ADC1_CHANNEL_4,     </div>
-<div class="line">    ADC1_CHANNEL_5,     </div>
-<div class="line">    ADC1_CHANNEL_6,     </div>
-<div class="line">    ADC1_CHANNEL_7,     </div>
-<div class="line">    ADC1_CHANNEL_MAX,</div>
-<div class="line">} adc1_channel_t;</div>
-</div><!-- fragment --><p> Lastly, in order to aquire the ADC reading you will use the function <code>int adc1_get_raw(adc1_channel_t channel)</code>.</p>
-<p >Now for the the LEDC API to create a PWM signal, in order to set up this function you will need to fill two structures. First you need to setup the structure <code>ledc_timer_config_t</code> where you put the duty resolution, timer, frequency and clock source. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+</div><!-- fragment --><p >Espressif ADC driver has an attenuation feature to limit voltage reading to desire range. The <code>adc_atten_t</code> enumeration allows to select desire range of the adc channel. Please go over the example program to get an idea of how the <b>ADC</b> driver works. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line">    ADC_ATTEN_DB_0   = 0,  </div>
+<div class="line">    ADC_ATTEN_DB_2_5 = 1,  </div>
+<div class="line">    ADC_ATTEN_DB_6   = 2,  </div>
+<div class="line">    ADC_ATTEN_DB_11  = 3,  </div>
+<div class="line">} adc_atten_t;</div>
+</div><!-- fragment --><p >Next, Espressif LEDC driver requires to use the following structures. <code>ledc_timer_config_t</code> structure set the duty resolution, timer, frequency and clock source. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    ledc_mode_t speed_mode;                </div>
 <div class="line">    <span class="keyword">union </span>{</div>
 <div class="line">        ledc_timer_bit_t duty_resolution;  </div>
@@ -351,7 +405,7 @@ C helpful functions</h1>
 <div class="line">    uint32_t freq_hz;                      </div>
 <div class="line">    ledc_clk_cfg_t clk_cfg;                </div>
 <div class="line">} ledc_timer_config_t;</div>
-</div><!-- fragment --><p> Next, you will need to fill out the channel structure which is <code>ledc_channel_config_t</code> where you will select the pin number, speed mode, channel (which is the one we setup before), intr type, timer select (which use for the previuos timer structure), duty cycle and hpoint. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+</div><!-- fragment --><p> Furthermore, <code>ledc_channel_config_t</code> structure allows to select the pin number, speed mode, channel, intr type, timer select, duty cycle and hpoint. For more detail, please see Espressif documentation and go over the example programs to understand how to use it properly. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    <span class="keywordtype">int</span> gpio_num;                   </div>
 <div class="line">    ledc_mode_t speed_mode;         </div>
 <div class="line">    ledc_channel_t channel;         </div>
@@ -363,31 +417,31 @@ C helpful functions</h1>
 <div class="line">        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> output_invert: 1;</div>
 <div class="line">    } flags;                        </div>
 <div class="line">} ledc_channel_config_t;</div>
-</div><!-- fragment --><p> Then the functions to change the duty cycle is <code>ledc_set_duty(ledc_mode_t speed_mode, ledc_channel_t channel, uint32_t duty)</code> and to actually update the change you need the function <code>ledc_update_duty(ledc_mode_t speed_mode, ledc_channel_t channel)</code>.</p>
-<p >Finally the last important function while using the LEDC API is a way to pause the timer <code>ledc_timer_pause(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code> and to resume the timer <code>ledc_timer_resume(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code>.</p>
-<h2><a class="anchor" id="autotoc_md86"></a>
-Additional Links</h2>
+</div><!-- fragment --><p> Additionally, <code>ledc_set_duty(ledc_mode_t speed_mode, ledc_channel_t channel, uint32_t duty)</code> is use to set the duty cycle and to actually update the duty you need to use <code>ledc_update_duty(ledc_mode_t speed_mode, ledc_channel_t channel)</code>. Lastly, <code>LEDC</code> driver allows users to control the operation of the timer: <code>ledc_timer_pause(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code> and <code>ledc_timer_resume(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code>.</p>
+<h1><a class="anchor" id="autotoc_md96"></a>
+Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html">Espressif ADC Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html">Espressif LEDC Driver API</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md87"></a>
-Authors</h2>
+<h1><a class="anchor" id="autotoc_md97"></a>
+Authors</h1>
 <ul>
-<li><a href="https://github.com/jminjares4"><em><b>Jesus Minjares</b></em></a><ul>
+<li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
 <li><b>Master of Science in Computer Engineering</b> <br  />
  <a href="https://www.linkedin.com/in/jesusminjares/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;style=flat" alt="LinkedIn" class="inline"/></a> <a href="https://github.com/jminjares4"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;style=flat" alt="GitHub" class="inline"/></a></li>
 </ul>
 </li>
-<li><a href="https://github.com/eabaca2419"><em><b>Erick Baca</b></em></a><ul>
+<li><a href="https://github.com/eabaca2419"><b>Erick Baca</b></a><ul>
 <li><b>Master of Science in Computer Engineering</b> <br  />
  <a href="https://www.linkedin.com/in/erick-baca/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;style=flat" alt="LinkedIn" class="inline"/></a> <a href="https://github.com/eabaca2419"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;style=flat" alt="GitHub" class="inline"/></a></li>
 </ul>
 </li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7">GitHub Lab 7</a></dd></dl>
-<p><span class="next_section_button"> Read Next: <a class="el" href="../../dc/df4/md_doc_pages_lab8.html">Lab 8</a> </span> </p>
+<h1><a class="anchor" id="autotoc_md98"></a>
+GitHub</h1>
+<div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7">Lab 7 Repository</a> </div><p ><span class="next_section_button"> Read Next: <a class="el" href="../../dc/df4/md_doc_pages_lab8.html">Lab 8</a> </span> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
