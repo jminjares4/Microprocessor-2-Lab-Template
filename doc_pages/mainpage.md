@@ -36,7 +36,7 @@ git submodule update --init --recursive
 ## Labs
 - [Lab 0 Lightshow](lab0.md)
 - [Lab 1 LED Controller with Inputs](lab1.md)
-- [Lab 2 Microwave](lab2.md)
+- [Lab 2 Interrupts: Fire Alarm!](lab2.md)
 - [Lab 3 Introduction to FreeRTOS](lab3.md) 
 - [Lab 4 FreeRTOS: Semaphores](lab4.md)
 - [Lab 5 FreeRTOS: Queue](lab5.md)
