@@ -42,7 +42,7 @@ void led_enable(led_t * const led){
  * @return None
  */
 void led_on(led_t * const led){
-    gpio_set_direction(led->pin, LED_HIGH);
+    gpio_set_level(led->pin, LED_HIGH);
     led->state = ON;
 }
 
@@ -54,7 +54,7 @@ void led_on(led_t * const led){
  * @return None
  */
 void led_off(led_t * const led){
-    gpio_set_direction(led->pin, LED_LOW);
+    gpio_set_level(led->pin, LED_LOW);
     led->state = OFF;
 }
 
