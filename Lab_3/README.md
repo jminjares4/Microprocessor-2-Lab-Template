@@ -124,7 +124,7 @@ void app_main()
 
 ## **C helpful functions**
 
-For this lab, the most important function call is `xTaskCreate` which is a function in `task.h` file. This function has a few parameter that must be pass on when calling the function. For instance we want to create a simple that call `example_task` which has a stack of `2048` and it will have no arguments or handle; it will be the following:
+For this lab, the most important function call is `xTaskCreate` which is a function in `task.h` file. This function has few parameters that must be pass on when calling the function. For instance, if we want to create a simple task that call `example_task` which has a stack of `2048` and it will have no arguments or handle; it will be the following:
 *`xTaskCreate(`* **&example_task**,**"example task"**, **2048**, **NULL**, **NULL** *`);`*
 
 
