@@ -75,5 +75,5 @@ void led_off(led_t *const led)
  */
 void led_toggle(led_t *const led)
 {
-    (led->state) == ON  ? led_on(led) : led_off(led);
+    (led->state) == ON  ? led_off(led) : led_on(led);
 }
