@@ -292,7 +292,7 @@ Lab Template</h1>
 <div class="line">    gpio_install_isr_service(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a>);    </div>
 <div class="line">   </div>
 <div class="line">    <span class="comment">/* Add ISR handler */</span></div>
-<div class="line">    gpio_isr_handler_add(alarm-&gt;startFireAlarm, gpio_interrupt_handler, (<span class="keywordtype">void</span> *) alarm-&gt;<a class="code hl_variable" href="../../d8/db4/structfire__alarm__t.html#a2c671aea37ed0d915f0660a950936e54">smokeDetector</a>);</div>
+<div class="line">    gpio_isr_handler_add(alarm-&gt;<a class="code hl_variable" href="../../d8/db4/structfire__alarm__t.html#a2c671aea37ed0d915f0660a950936e54">smokeDetector</a>, gpio_interrupt_handler, (<span class="keywordtype">void</span> *) alarm-&gt;<a class="code hl_variable" href="../../d8/db4/structfire__alarm__t.html#a2c671aea37ed0d915f0660a950936e54">smokeDetector</a>);</div>
 <div class="line">    <span class="comment">/* Add missing interrupt */</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
