@@ -82,7 +82,7 @@ void fire_alarm_interrupt_setup(fire_alarm_t * const alarm){
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);    
    
     /* Add ISR handler */
-    gpio_isr_handler_add(alarm->startFireAlarm, gpio_interrupt_handler, (void *) alarm->smokeDetector);
+    gpio_isr_handler_add(alarm->smokeDetector, gpio_interrupt_handler, (void *) alarm->smokeDetector);
     /* Add missing interrupt */
 
 }
