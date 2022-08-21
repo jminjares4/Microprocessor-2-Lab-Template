@@ -2,7 +2,7 @@
 
 ## **Objective**
 
-* Understand how to use the queues with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be using queues to send data among tasks. Students must create queue to send and receive data between two tasks. Task 1 must send an integer i.e (`10`) and then modified to use a string i.e (`"Fall 2022"`). Task 2 should receive the data and print it.
+* Understand how to use the queues with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, the main focus will be using queues to send data among tasks. Students must a create queue to send and receive data between two tasks. Task 1 must send an integer i.e. (`10`) and then modified to use a string i.e. (`"Fall 2022"`). Task 2 should receive the data and print it.
 
 | Task          |  Description                     |
 | :---          | :---                             |
@@ -11,7 +11,7 @@
 
 ## **Bonus**
 - ***Undergrad Bonus:***
-  *  Modify the code to use the `structure` down below on a **queue**.
+  *  Modify the code to use the `structure` provided below on a **queue**.
     ~~~c
     typedef struct {
         char str[10];
@@ -20,7 +20,7 @@
     ~~~
 
 - ***Grad Bonus:***
-  *  Modify the code to use the `structure` down below on a **queue**. Also, *add* an LED to change **states** based on `isLedOn`.
+  *  Modify the code to use the `structure` provided below on a **queue**. Also, *add* an LED to change **states** based on `isLedOn`.
     ~~~c
     typedef struct {
         char str[10];
@@ -61,7 +61,7 @@
 
 ### **Example 1**
 
-The following example is a quick demostration of how to use queues with FreeRTOS on the ESP32. First, a queue is created as a global variable to have name `myQueue`. Next, that variable must store an instance of a queue by `xQueueCreate` function. `Task 1` will send `data` which store a `10` to `Task 2` every second. `Task 2` will receive data through the queue and display it in the terminal. 
+The following example is a quick demostration of how to use queues with FreeRTOS on the ESP32. First, a queue is created as a global variable to have the name `myQueue`. Next, that variable must store an instance of a queue by `xQueueCreate` function. `Task 1` will send `data` which stores a `10` to `Task 2` every second. `Task 2` will receive data through the queue and display it in the terminal. 
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -111,7 +111,7 @@ void app_main(void){
 
 ## **Example 2**
 
-The following example shows how to pass argument through a task. As mention in previous labs, `xTaskCreate` has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, `Task 1` recieves an argument, this example may come handy when developing more advance task to reduce and create more abstract tasks. 
+The following example shows how to pass an argument through a task. As mention in previous labs, `xTaskCreate` has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, `Task 1` recieves an argument, this example may come handy when developing more advance tasks to reduce and create more abstract tasks. 
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -136,7 +136,7 @@ void app_main(void){
 ~~~
 
 ## **Example 3**
-The following code is similar to the previous example however, the major difference is using `global` and `static` variables. The `static` keyword states that the variable that we create will store its data in the static memory. 
+The following code is similar to the previous example, however, the major difference is using `global` and `static` variables. The `static` keyword states that the variable that we create will store its data in the static memory. 
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -225,7 +225,7 @@ void app_main(void){
 
 For this lab, there are few important function calls that are going to be used throughout the lab. Queues are created by using `QueueHandle_t` data type. For instance, **`QueueHandle_t`** *myQueue* is how you would create a queue.
 
-First, `xQueueCreate` is the function you must call if you want to create a queue. `xQueueCreate` has two parameters, `UBaseType_t` uxQueueLength, and `UBaseType_t` uxItemSize. Therefore, if we wanted to create a queue of `float`'s we would do the following:
+First, `xQueueCreate` is the function you must call if you want to create a queue. `xQueueCreate` has two parameters, `UBaseType_t` uxQueueLength, and `UBaseType_t` uxItemSize. Therefore, if we wanted to create a queue of `floats` we would do the following:
 ~~~c
 QueueHandle_t myQueue; /* global queue */
 ...
@@ -235,7 +235,7 @@ myQueue = xQueueCreate(10, sizeof(float)); /* create a queue of float with a max
 QueueHandle_t xQueueCreate( UBaseType_t uxQueueLength, UBaseType_t uxItemSize );
 ~~~
 
-Next, `xQueueSendToBack` and `xQueueSendToFront` are similar function with the slight difference of how they send the data to the queue. As the name suggests, `xQueueSendToBack`, sends the data to the back of the queue. Both function have three parameters, `QueueHandle_t` xQueue, `const void *` pvItemToQueue, `TickType_t` xTicksToWait.
+Next, `xQueueSendToBack` and `xQueueSendToFront` are similar functions with the difference of how they send the data to the queue. As the name suggests, `xQueueSendToBack`, sends the data to the back of the queue. Both function have three parameters, `QueueHandle_t` xQueue, `const void *` pvItemToQueue, `TickType_t` xTicksToWait.
 ~~~c
  BaseType_t xQueueSendToBack(
                                 QueueHandle_t xQueue,
