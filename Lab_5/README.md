@@ -136,7 +136,7 @@ void app_main(void){
 ~~~
 
 ## **Example 3**
-The following code is similar to the previous example however the major difference is using `global` and `static` variables. The `static` keyword states that the variable that we create will store its data in the static memory. 
+The following code is similar to the previous example however, the major difference is using `global` and `static` variables. The `static` keyword states that the variable that we create will store its data in the static memory. 
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"

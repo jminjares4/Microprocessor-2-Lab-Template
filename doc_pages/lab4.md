@@ -1,14 +1,14 @@
 # Lab 4 FreeRTOS: Semaphores
 
 ## Objective
-* Understand how to use the semaphore with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html). In this lab, the main focus will be using semaphores to sycnrhonize various tasks. Student must create four different tasks. Task 1 should run every two seconds. Task 2 should run twice as fast as task one. Task 3 should run every time either task 1 or task 2 run. Lastly, task 4 should run every time task 3 runs. Each task must display <i>"Task X running"</i>. 
+* Understand how to use the semaphore with [`FreeRTOS`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html). In this lab, the main focus will be using semaphores to sycnrhonize various tasks. Students must create four different tasks. Task 1 should run every two seconds. Task 2 should run twice as fast as task 1. Task 3 should run every time either task 1 or task 2 run. Lastly, task 4 should run every time task 3 runs. Each task must display <i>"Task X running"</i>. 
 
 <div align='center'>
 | Task          | Priority      | Description                           |
 | :---          | :---          | :---                                  | 
 | **Task 1**    | *High*        | Run every 2 seconds                   | 
 | **Task 2**    | *High*        | Run twice as fast as Task 1           |     
-| **Task 3**   | *Low*          | Run everytime either Task 1 or Task 2 |    
+| **Task 3**    | *Low*         | Run everytime either Task 1 or Task 2 |    
 | **Task 4**    | *Low*         | Run everytime Task 3 runs             |   
 <br>
 | Task Note                 |
@@ -20,7 +20,7 @@
 - ***Undergrad Bonus:***
   * Turn an led every time `Task 3` or `Task 4` runs.
 - ***Grad Bonus:***
-  * Create two indepenent tasks: `Task 5` and `Task 6`. `Task 5` will sent a semaphore to `Task 6` which and turn the `onboard led`. 
+  * Create two indepenent tasks: `Task 5` and `Task 6`. `Task 5` will send a semaphore to `Task 6` which turns on the `onboard led`. 
 
 ## ESP32 Pinout
 ~~~
@@ -51,7 +51,7 @@
 ~~~
 
 ## Example 1
-The following example is a brief demostration of how to use semaphore. `Task 1` will run every 2 second and give a sempahore for `Task 2` to run. `Task 2` will consistently wait to receive the sempahore which `Task 1` will provide every 2 seconds. Once `Task 2` receive the semaphore from `Task 1` it will run and print `"Task 2 is running!!"`.
+The following example is a brief demostration of how to use a semaphores. `Task 1` will run every 2 second and give a semaphore for `Task 2` to run. `Task 2` will consistently wait to receive the semaphore which `Task 1` will provide every 2 seconds. Once `Task 2` receives the semaphore from `Task 1` it will run and print `"Task 2 is running!!"`.
 
 ~~~c
 #include <stdio.h>
@@ -73,7 +73,7 @@ void exampleTask1(void *pvParameters){
 }
 
 /* Example task 2 */
-void exmapleTask2(void *pvParameters){
+void exampleTask2(void *pvParameters){
     while(1){
          /* wait for 1000 ticks to receive semaphore */
          if(xSemaphoreTake(mySemaphore, 1000/portTICK_RATE_MS) == pdTRUE){ 
@@ -98,7 +98,7 @@ void app_main(void){
 ~~~
 
 ## Example 2
-The following example is a more advance demostration of how to use semaphore. `Task 1` will wait for `mySemaphore1` and once it recieves it, it will give `mySeamphore2`. `Task 2` will receive the semaphore from `Task 1` and run. Once `Task 2` task is done, `mySemaphore1` will be give back for `Task 1` to run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrate the true purpose of semaphores.
+The following example is a more advance demostration of how to use semaphore. `Task 1` will wait for `mySemaphore1` and once it recieves it, it will give `mySeamphore2`. `Task 2` will receive the semaphore from `Task 1` and run. Once `Task 2` task is done, `mySemaphore1` will be given back to `Task 1` and run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrates the true purpose of semaphores.
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -198,7 +198,7 @@ void app_main()
 
 For this lab, there are few important function calls that are going to be used throughout the lab. Semaphores are created by using `SemaphoreHandle_t` data type. For instance, `SemaphoreHandle_t` *mySemaphore* is how you would create a semaphore.
 
-To be able to allocate an instance of an semaphore, you will need the following function: `xSemaphoreCreateBinary`. There are different types of semaphores, however we will only look at the binary semaphore for now. A binary semaphore as the name states has a binary behavior such that it can have a value of `0` or `1`.
+To be able to allocate an instance of a semaphore, you will need the following function: `xSemaphoreCreateBinary`. There are different types of semaphores, however, we will only look at the binary semaphore for now. A binary semaphore has a behavior that holds a value of `0` or `1`.
 ~~~c
 SemaphoreHandle_t xSemaphoreCreateBinary( void );
 ~~~
@@ -206,7 +206,8 @@ Next, `xSemaphoreGive` will set a `0` in the semaphore. Therefore, by setting a 
 ~~~c
 void xSemaphoreGive( SemaphoreHandle_t xSemaphore );
 ~~~
-Lastly, `xSemaphoreTake` is the opposite from the prior function. Therefore, it will set a `1` meaning that the semaphore is being use. However, `xSemaphoreTake` will require two parameters ` SemaphoreHandle_t xSemaphore` and `TickType_t xTicksToWait`. You must pass by value the instance of a semaphore and also how long are you planning to wait for the semaphore. If you receive the semaphore during the provided time frame, `xSemaphoreTake` will return `pdTRUE` else `pdFALSE`.
+
+Lastly, `xSemaphoreTake` is the opposite from the previous function, as it will set a `1` and used the semaphore. However, `xSemaphoreTake` will require two parameters `SemaphoreHandle_t xSemaphore` and `TickType_t xTicksToWait`. You must pass by value the instance of a semaphore and how long to wait for the semaphore. If you receive the semaphore during the provided time frame, `xSemaphoreTake` will return `pdTRUE` otherwise `pdFALSE`.
 ~~~c
  xSemaphoreTake( SemaphoreHandle_t xSemaphore, TickType_t xTicksToWait );
 ~~~

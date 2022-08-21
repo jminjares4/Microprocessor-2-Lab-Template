@@ -211,7 +211,7 @@ void app_main(void)
 ~~~
 
 ## **C helpful functions**
-For this lab, there are additional functions from Espressif that are important for using inputs. As the previous lab, we must set the direction of the GPIO pin by using `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)`. Previously we used *`GPIO_MODE_OUTPUT`* as we using outputs, however now that we will be using inputs, we need *`GPIO_MODE_INPUT`*.
+For this lab, there are additional functions from Espressif that are important for using inputs. As the previous lab, we must set the direction of the GPIO pin by using `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)`. Previously we used *`GPIO_MODE_OUTPUT`* as we using outputs, however, now that we will be using inputs, we need *`GPIO_MODE_INPUT`*.
 ~~~c 
 esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);
 ~~~

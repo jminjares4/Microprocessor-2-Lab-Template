@@ -7,9 +7,9 @@
     Lab 4:
         Objective:
             Understand how to use the semaphore with FreeRTOS. In this lab, the main focus
-            will be using semaphores to sycnrhonize various tasks. Student must create four 
+            will be using semaphores to sycnrhonize various tasks. Students must create four 
             different tasks. Task 1 should run every two seconds. Task 2 should run twice as
-            fast as task one. Task 3 should run every time either task 1 or task 2 run. Lastly,
+            fast as task 1. Task 3 should run every time either task 1 or task 2 run. Lastly,
             task 4 should run every time task 3 runs. Each task must display "Task X running". 
 
             | Task          | Priority      | Description                           |
@@ -27,7 +27,7 @@
                     Turn an led every time `Task 3` or `Task 4` runs.
             Grad Bonus:
                     Create two indepenent tasks: `Task 5` and `Task 6`.
-                    `Task 5` will sent a semaphore to `Task 6` which and turn the `onboard led`. 
+                    `Task 5` will send a semaphore to `Task 6` which turns on the `onboard led`. 
 
 */
 
