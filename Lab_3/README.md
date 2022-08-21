@@ -11,7 +11,7 @@
 
 ## **Objective**
 
-* Understand how to use the FreeRTOS with [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating two main tasks. `Task 1` will toggle *onboard led* every **250 ms**, and `Task 2` must print **'Hello World!** every **2 seconds**.
+* Understand how to use the FreeRTOS with [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating two main tasks. `Task 1` must toggle *onboard led* every **250 ms**, and `Task 2` must print **'Hello World!** every **2 seconds**.
 
 | Tasks      | Objective                     |
 | :---       | :---                          |
@@ -20,9 +20,9 @@
 
 ## **Bonus**
 - ***Undergrad Bonus:***
-  * Create an `additional task` that toggles external **led** and print it **state**
+  * Create an `additional task` that toggles an external **led** and print it **states**
 - ***Grad Bonus:***
-  * Create an `addtional task` that run any *led sequence* of the previous labs and it should run every **5 seconds**
+  * Create an `addtional task` that runs any *led sequence* from the previous labs and it should run every **5 seconds**
 
 ## **ESP32 Pinout**
 ~~~
@@ -73,10 +73,11 @@ void task1(void *pvParameters){
     while(1){
         /*Set the ONBOARD_LED as HIGH | 1 */
         gpio_set_level(ONBOARD_LED, HIGH);
-        vTaskDelay(2000 / portTICK_PERIOD_MS); // 2 second delay
+        vTaskDelay(2000 / portTICK_PERIOD_MS); /* 2 second delay */
+
         /*Set the ONBOARD_LED as LOW | 0 */
         gpio_set_level(ONBOARD_LED, LOW);
-        vTaskDelay(2000 / portTICK_PERIOD_MS); // 2 second delay
+        vTaskDelay(2000 / portTICK_PERIOD_MS); /* 2 second delay */
     }
 }
 void app_main(void){
@@ -115,7 +116,7 @@ void app_main()
 {
     /* Create the task defined by xTaskCreate.*/
     xTaskCreate(&hello_task, "hello_task", 2048, NULL, 5, NULL);
-    xTaskCreate(&blinky, "blinky", 512, NULL, 5, NULL);
+    xTaskCreate(&blinky_task, "blinky_task", 512, NULL, 5, NULL);
 
     /*Create any additional tasks*/
     
@@ -124,15 +125,15 @@ void app_main()
 
 ## **C helpful functions**
 
-For this lab, the most important function call is `xTaskCreate` which is a function in `task.h` file. This function has few parameters that must be pass on when calling the function. For instance, if we want to create a simple task that call `example_task` which has a stack of `2048` and it will have no arguments or handle; it will be the following:
-*`xTaskCreate(`* **&example_task**,**"example task"**, **2048**, **NULL**, **NULL** *`);`*
-
+For this lab, the most important function call is `xTaskCreate` which is a function in `task.h` file. This function has few parameters that must be pass on when calling the function. For instance, if we want to create a simple task that calls `example_task` which has a stack of `2048` and it will have no arguments or handle; it will be the following:
+`xTaskCreate(` **&example_task**, **example task**, **2048**, **5**, **NULL**, **NULL** `);`
 
 | Data type                 | Variable name     | Description                 |
 | :---                      |      :---         | ---:                        |
 | `TaskFunction_t`          |  *pvTaskCode*     | task function name          |
 | `const char *`            |  *pcName*         | name to associate the task  |
 | `configSTACK_DEPTH_TYPE`  |  *usStackDepth*   | stack size                  |
+| `UBaseType_t`             |  *uxPriority*     | task priority               |
 | `void *`                  |  *pvParameters*   | arguments                   |
 | `TaskHandle_t *`          |  *pxCreatedTask*  | handle to store task        |
 

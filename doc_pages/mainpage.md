@@ -15,14 +15,14 @@
 </div>
 
 ## Objective
-The objective of these labs is to provide more interactive tasks for students to be engaged in Microprocessor 2. Some labs will be new, and others will be from the previous semester but with better documentation.
+The objective of these labs is to provide more interactive tasks for students to be engaged in Microprocessor 2. Some labs will be reused from the previous semester but with better documentation.
 
 ## Setup
 * Students must have an `ESP32`
 * Install either `Visual Studio Code` or `Eclipse` 
 
 ## Installation
-* Window's Linux Subystem, MacOS, or Linux
+* Window's Linux Subsystem, MacOS, or Linux
   * Use the following link to install all the dependencies in the terminal and follow the guide: [ESP32 Installation](https://github.com/jminjares4/ESP32_Installation)
 * Window 
   * Link to install ESP-IDF Windows Installer: [Window Installer](https://dl.espressif.com/dl/esp-idf/?idf=4.4)

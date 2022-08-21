@@ -21,10 +21,10 @@
 
         Bonus:
             Undergrad Bonus:
-                Create an other LED sequence and add another button, as pull-up. 
+                Create another LED sequence and add another button, as pull-up. 
             Grad Bonus:
                 Add button to start lightshow from previous lab
-                Do a reset button which will turn off all LEDs 
+                Do a reset button which will turns off all LEDs 
 
 */
 
@@ -46,11 +46,15 @@
  */
 void setInputs(uint8_t *in, int size)
 {
-    for (int i = 0; i < size; i++) // itierate over the size of the array
+    /* iterate over the size of the array */
+    for (int i = 0; i < size; i++)
     {
-                 // select the GPIO pins
-                // set direction as inputs
-                // set as pull-down
+        /* select the GPIO pins */
+
+        /* set direction as inputs */
+
+        /* set as pull-down */
+
     }
     return;
 }
@@ -64,7 +68,8 @@ void setInputs(uint8_t *in, int size)
  */
 void setOutputs(uint8_t *out, int size)
 {
-    for (int i = 0; i < size; i++) // itierate over the size of the array
+    /* iterate over the size of the array */
+    for (int i = 0; i < size; i++) 
     {
        
     }
@@ -103,7 +108,8 @@ void led_chaser(uint8_t *led, int size)
 void app_main(void)
 {
     /* Select GPIOs output and store in led array */
-    uint8_t led[] = {13}; //replace with your GPIO pins 
+    uint8_t led[] = {13}; /*replace with your GPIO pins */
+    
     /* Select GPIOs inputs and store in button array */
     uint8_t button[] = {22, 23};
 
@@ -113,6 +119,7 @@ void app_main(void)
 
     /* Initialize Inputs */
     setInputs(button, button_size);
+
     /* Initialize Outputs */
     setOutputs(led, led_size);
 

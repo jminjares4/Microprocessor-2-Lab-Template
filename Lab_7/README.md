@@ -11,10 +11,7 @@
 
 ## **Objective**
 
-* The objective for this lab is to understand how use the Espressif [`LEDC`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html) 
-  and [`ADC`](https://docs.espressif.com/projects/esp-idf/en/v4.2/esp32/api-reference/peripherals/adc.html) drivers. In this lab, create 2 task: adc and pwm task. 
-  The `adc task` perform ADC readings every 100 millisecond (10 hertz). This task must store the adc reading and be sent through a queue. Lastly,
-  `pwm task` should receive the queue data from the `adc task` and update `ledc` duty cycle. 
+* The objective for this lab is to understand how use the Espressif [`LEDC`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html) and [`ADC`](https://docs.espressif.com/projects/esp-idf/en/v4.2/esp32/api-reference/peripherals/adc.html) drivers. In this lab, create 2 task: adc and pwm task. The `adc task` performs ADC readings every 100 millisecond (10 hertz). This task must store the adc readings and be sent through a queue. Lastly, `pwm task` should receive the queue data from the `adc task` and update `ledc` duty cycle. 
 
 | Task          |  Description               | Queue        |
 | :---          | :---                       | :---         |
@@ -240,8 +237,7 @@ void app_main()
 
 ## **C helpful functions**
 
-Espressif ADC driver requires the following structures and enumeration inorder to set the correct pin and operation. There are a few GPIO that
-are avaiable to use analog converter. Depending on the ESP32, there are slight difference between the pinout so please verify the hardware. 
+Espressif ADC driver requires the following structures and enumerations in order to set the correct pin and operation. There are a few GPIOs that are avaiable to use analog converter. Depending on the ESP32, there are slight difference between the pinout so please verify the hardware. 
 ~~~c
 typedef enum {
     ADC1_CHANNEL_0 = 0, /*!< ADC1 channel 0 is GPIO36 */
@@ -270,8 +266,7 @@ typedef enum {
     ADC2_CHANNEL_MAX,
 } adc2_channel_t;
 ~~~
-The ESP has default 12 bit max width conversion but depending on the hardware, it can go upto 13 bit. To keep everything simple, please 
-do not exceed 12 bit width. Espressif ADC width is selected by `adc_bit_width_t` enumeration down below. 
+The ESP has default 12 bit max width conversion but depending on the hardware, it can go up to 13 bit. To keep everything simple, please do not exceed 12 bit width. Espressif ADC width is selected by `adc_bit_width_t` enumeration down below. 
 ~~~c
 typedef enum {
 #if CONFIG_IDF_TARGET_ESP32
@@ -288,8 +283,7 @@ typedef enum {
 } adc_bits_width_t;
 ~~~
 
-Espressif ADC driver has an attenuation feature to limit voltage reading to desire range. The `adc_atten_t` enumeration allows to select desire range of 
-the adc channel. Please go over the example program to get an idea of how the **ADC** driver works. 
+Espressif ADC driver has an attenuation feature to limit voltage reading to a fix range. The `adc_atten_t` enumeration allows to select the range of the adc channel. Please go over the example program to get an idea of how the **ADC** driver works. 
 ~~~c
 typedef enum {
     ADC_ATTEN_DB_0   = 0,  ///<No input attenumation, ADC can measure up to approx. 800 mV
@@ -315,8 +309,7 @@ typedef struct {
                                                 For low speed channels, you can also specify the source clock using LEDC_USE_RTC8M_CLK, in this case, all low speed channel's source clock must be RTC8M_CLK*/
 } ledc_timer_config_t;
 ~~~
-Furthermore, `ledc_channel_config_t` structure allows to select the pin number, speed mode, channel, intr type, timer select, duty cycle and hpoint. For more detail, please see Espressif documentation and go
-over the example programs to understand how to use it properly.
+Furthermore, `ledc_channel_config_t` structure allows to select the pin number, speed mode, channel, intr type, timer select, duty cycle and hpoint. For more details, please see Espressif documentation and go over the example programs to understand how to use it properly.
 ~~~c
 typedef struct {
     int gpio_num;                   /*!< the LEDC output gpio_num, if you want to use gpio16, gpio_num = 16 */

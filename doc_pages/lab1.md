@@ -14,10 +14,10 @@ state of the onboard led.
 
 ## Bonus 
 - ***Undergrad Bonus:***
-  * Create an other `LED` sequence and add another **button**, as `pull-up`. 
+  * Create another `LED` sequence and add another **button**, as `pull-up`. 
 - ***Grad Bonus:***
   * Add **button** to start lightshow from previous lab, as `pull-up`
-  * Do a **reset button** which will turn off all LEDs, as `pull-up`
+  * Do a **reset button** which will turns off all LEDs, as `pull-up`
 
 ## ESP32 Pinout
 ~~~
@@ -47,7 +47,7 @@ state of the onboard led.
                                          +-----------------------+
 ~~~
 ## Example
-Here is an example of a how to use ESP32 GPIO function calls for input and output. The following code will turn the onboard LED as long as the button is press.
+Here is an example of how to use ESP32 GPIO function calls for inputs. The following code will turn the onboard LED as long as the button is pressed.
 
 ~~~c
 #include <stdio.h>
@@ -64,29 +64,30 @@ Here is an example of a how to use ESP32 GPIO function calls for input and outpu
 void app_main(void){
 
   /* Initialize OUTPUTs */
-  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
-  gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); // set as output
+  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); /* select GPIO pins */
+  gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); /* set as output */
 
   /* Intialize INPUTs */
-  esp_rom_gpio_pad_select_gpio(BUTTON_1); //select input 
-  gpio_set_direction(BUTTON_0, GPIO_MODE_INPUT); //set as input
-  gpio_set_pull_mode(BUTTON_0, GPIO_PULLDOWN_ONLY); //set as pull-down
+  esp_rom_gpio_pad_select_gpio(BUTTON_1); /* select GPIO pin */
+  gpio_set_direction(BUTTON_0, GPIO_MODE_INPUT); /* set as input */
+  gpio_set_pull_mode(BUTTON_0, GPIO_PULLDOWN_ONLY); /* set as pull-down */
 
   while(1){
-
-    int res = gpio_get_level(BUTTON_0); //get gpio level
-    vTaskDelay(10/portTICK_PERIOD_MS); //debounce the button
+    /* read gpio level */
+    int res = gpio_get_level(BUTTON_0); 
+    vTaskDelay(10/portTICK_PERIOD_MS); /* debounce button */
     
+    /* Check return value */
     if(res == 1){
-        gpio_set_level(ONBOARD_LED, HIGH); // set high
+        gpio_set_level(ONBOARD_LED, HIGH); /* set high */
     }else{
-        gpio_set_level(ONBOARD_LED, LOW); //set low
+        gpio_set_level(ONBOARD_LED, LOW); /* set low */
     }
     
     /* ternary operator */
     //res ? gpio_set_level(ONBOARD_LED, HIGH) : gpio_set_level(ONBOARD_LED, LOW);
     
-    vTaskDelay(100/portTICK_PERIOD_MS); //avoid WDT trigger
+    vTaskDelay(100/portTICK_PERIOD_MS); /* avoid WDT trigger */
   }  
 }
 ~~~
@@ -111,11 +112,15 @@ void app_main(void){
  */
 void setInputs(uint8_t *in, int size)
 {
-    for (int i = 0; i < size; i++) // itierate over the size of the array
+    /* iterate over the size of the array */
+    for (int i = 0; i < size; i++)
     {
-                 // select the GPIO pins
-                // set direction as inputs
-                // set as pull-down
+        /* select the GPIO pins */
+
+        /* set direction as inputs */
+
+        /* set as pull-down */
+
     }
     return;
 }
@@ -129,7 +134,8 @@ void setInputs(uint8_t *in, int size)
  */
 void setOutputs(uint8_t *out, int size)
 {
-    for (int i = 0; i < size; i++) // itierate over the size of the array
+    /* iterate over the size of the array */
+    for (int i = 0; i < size; i++) 
     {
        
     }
@@ -168,7 +174,8 @@ void led_chaser(uint8_t *led, int size)
 void app_main(void)
 {
     /* Select GPIOs output and store in led array */
-    uint8_t led[] = {13}; //replace with your GPIO pins 
+    uint8_t led[] = {13}; /*replace with your GPIO pins */
+    
     /* Select GPIOs inputs and store in button array */
     uint8_t button[] = {22, 23};
 
@@ -178,6 +185,7 @@ void app_main(void)
 
     /* Initialize Inputs */
     setInputs(button, button_size);
+
     /* Initialize Outputs */
     setOutputs(led, led_size);
 
@@ -197,8 +205,7 @@ void app_main(void)
 ~~~
 
 ## C helpful functions
-
-For this lab, there are couple additional functions from Espressif that are important for using inputs. As the previous lab, we must set the direction of the GPIO pin by using `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)`. Previously we used <i>`GPIO_MODE_OUTPUT`</i> as we using outputs, however now that we will be using inputs, we need <i>`GPIO_MODE_INPUT`</i>.
+For this lab, there are additional functions from Espressif that are important for using inputs. As the previous lab, we must set the direction of the GPIO pin by using `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)`. Previously we used <strong>`GPIO_MODE_OUTPUT`</strong> as we using outputs, however, now that we will be using inputs, we need <strong>`GPIO_MODE_INPUT`</strong>.
 ~~~c 
 esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);
 ~~~
@@ -207,12 +214,14 @@ Next, as the name states `gpio_get_level(gpio_num_tgpio_num)` returns the curren
 ~~~c
 int gpio_get_level(gpio_num_ tgpio_num);
 ~~~
+<div align='center'>
 | Value | Logic |
 |:---   | :---  |
 | **0** | low   |
 | **1** | high  |
+</div>
 
-Lastly, there are two additional functions that are crucial when using inputs. There are two configuration for inputs either pull-up or pull-down: `gpio_pulldown_en(gpio_num_t gpio_num)` and `gpio_pullup_en(gpio_num_t gpio_num)`. Here is an figure for pull-up and pull-down configuration.
+Lastly, there are two additional functions that are crucial when using inputs. There are two configurations for inputs either pull-up or pull-down: `gpio_pulldown_en(gpio_num_t gpio_num)` and `gpio_pullup_en(gpio_num_t gpio_num)`. Down below are the configuration for both pull-up and pull-down.
 ~~~c
 esp_err_t gpio_pullup_en(gpio_num_t gpio_num);
 ~~~

@@ -8,8 +8,8 @@
         Objective:
             Understand how to use the queues with FreeRTOS. In this lab, 
             the main focus will be using queues to send data among tasks. 
-            Students must create queue to send and receive data between two tasks.
-            Task 1 must send an integer i.e (`10`) and then modified to use a string i.e ("Fall 2022").
+            Students must a create queue to send and receive data between two tasks.
+            Task 1 must send an integer i.e. (`10`) and then modified to use a string i.e. ("Fall 2022").
             Task 2 should receive the data and print it.
 
             | Task          |  Description                     |
@@ -19,7 +19,7 @@
 
         Bonus:
             Undergrad Bonus:
-                Modify the code to use the structure down below on a queue.   
+                Modify the code to use the structure provided below on a queue.   
 
                 typedef struct {
                     char str[10];
@@ -27,7 +27,7 @@
                 }Undergaduate_t;
    
             Grad Bonus:
-                Modify the code to use the structure down below on a queue.
+                Modify the code to use the structure provided below on a queue.
                 Also, add an LED to change states based on `isLedOn`.
                 
                 typedef struct {
