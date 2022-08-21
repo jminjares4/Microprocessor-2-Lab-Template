@@ -7,8 +7,8 @@
     Lab 7:
         Objective:
             The objective for this lab is to understand how use the Espressif `LEDC` and `ADC` drivers. In this lab, 
-            create 2 task: adc and pwm task. The `adc task` perform ADC readings every 100 millisecond (10 hertz). 
-            This task must store the adc reading and be sent through a queue. Lastly, `pwm task` should receive 
+            create 2 task: adc and pwm task. The `adc task` performs ADC readings every 100 millisecond (10 hertz). 
+            This task must store the adc readings and be sent through a queue. Lastly, `pwm task` should receive 
             the queue data from the `adc task` and update `ledc` duty cycle. 
 
             | Task          |  Description               | Queue        |
