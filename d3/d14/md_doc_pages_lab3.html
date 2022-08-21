@@ -117,10 +117,10 @@ $(document).ready(function(){initNavTree('d3/d14/md_doc_pages_lab3.html','../../
   <div class="headertitle"><div class="title">Lab 3 Introduction to FreeRTOS </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md46"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md45"></a>
 Objective</h1>
 <ul>
-<li>Understand how to use the FreeRTOS with <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a>. The lab will consist of creating two main tasks. <code>Task 1</code> will toggle <em>onboard led</em> every <b>250 ms</b>, and <code>Task 2</code> must print <b>'Hello World!'</b> every <b>2 seconds</b>.</li>
+<li>Understand how to use the FreeRTOS with <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a>. The lab will consist of creating two main tasks. <code>Task 1</code> must toggle <em>onboard led</em> every <b>250 ms</b>, and <code>Task 2</code> must print <b>'Hello World!'</b> every <b>2 seconds</b>.</li>
 </ul>
 <div align="center"> <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -130,19 +130,19 @@ Objective</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">Task 2   </td><td class="markdownTableBodyLeft">Print <code>Hello World!</code> @ 2 sec   </td></tr>
 </table>
-</div><h1><a class="anchor" id="autotoc_md47"></a>
+</div><h1><a class="anchor" id="autotoc_md46"></a>
 Bonus</h1>
 <ul>
 <li><em><b>Undergrad Bonus:</b></em><ul>
-<li>Create an <code>additional task</code> that toggles external <b>led</b> and print it <b>state</b></li>
+<li>Create an <code>additional task</code> that toggles an external <b>led</b> and print it <b>states</b></li>
 </ul>
 </li>
 <li><em><b>Grad Bonus:</b></em><ul>
-<li>Create an <code>addtional task</code> that run any <em>led sequence</em> of the previous labs and it should run every <b>5 seconds</b></li>
+<li>Create an <code>addtional task</code> that runs any <em>led sequence</em> from the previous labs and it should run every <b>5 seconds</b></li>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md48"></a>
+<h1><a class="anchor" id="autotoc_md47"></a>
 ESP32 Pinout</h1>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -168,7 +168,7 @@ ESP32 Pinout</h1>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md49"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md48"></a>
 Example</h1>
 <p >Here is a simple example of creating a task with FreeRTOS. The task is called <code>task1</code> which is it own function. <code>Task 1</code> will turn the <code>onboard led</code> for 2 seconds and turn off for another 2 seconds. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -199,11 +199,11 @@ Example</h1>
 <div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../db/de2/_lab__4_2main_2main_8c.html#a84106f7527d0055cc41983bbf4bbf957">task1</a>, <span class="stringliteral">&quot;task1&quot;</span>, 2048, NULL, 5, NULL);</div>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-<div class="ttc" id="a_lab__0_2main_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:27</div></div>
-<div class="ttc" id="a_lab__0_2main_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:26</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:28</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:27</div></div>
 <div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:30</div></div>
 <div class="ttc" id="a_lab__4_2main_2main_8c_html_a84106f7527d0055cc41983bbf4bbf957"><div class="ttname"><a href="../../db/de2/_lab__4_2main_2main_8c.html#a84106f7527d0055cc41983bbf4bbf957">task1</a></div><div class="ttdeci">void task1(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:43</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md50"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md49"></a>
 Lab Template</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -233,7 +233,7 @@ Lab Template</h1>
 <div class="line">{</div>
 <div class="line">    <span class="comment">/* Create the task defined by xTaskCreate.*/</span></div>
 <div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../d5/da6/_lab__3_2main_2main_8c.html#a1f468f9ff6043a17bb10583a3ee31a31">hello_task</a>, <span class="stringliteral">&quot;hello_task&quot;</span>, 2048, NULL, 5, NULL);</div>
-<div class="line">    xTaskCreate(&amp;blinky, <span class="stringliteral">&quot;blinky&quot;</span>, 512, NULL, 5, NULL);</div>
+<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../d5/da6/_lab__3_2main_2main_8c.html#a65c29b6292296c5ae374d213f34afc33">blinky_task</a>, <span class="stringliteral">&quot;blinky_task&quot;</span>, 512, NULL, 5, NULL);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/*Create any additional tasks*/</span></div>
 <div class="line">    </div>
@@ -241,10 +241,10 @@ Lab Template</h1>
 <div class="ttc" id="a_lab__3_2main_2main_8c_html_a1f468f9ff6043a17bb10583a3ee31a31"><div class="ttname"><a href="../../d5/da6/_lab__3_2main_2main_8c.html#a1f468f9ff6043a17bb10583a3ee31a31">hello_task</a></div><div class="ttdeci">void hello_task(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:34</div></div>
 <div class="ttc" id="a_lab__3_2main_2main_8c_html_a65c29b6292296c5ae374d213f34afc33"><div class="ttname"><a href="../../d5/da6/_lab__3_2main_2main_8c.html#a65c29b6292296c5ae374d213f34afc33">blinky_task</a></div><div class="ttdeci">void blinky_task(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:40</div></div>
 <div class="ttc" id="a_lab__3_2main_2main_8c_html_a9f78c05371e41b6f6269844b420578fb"><div class="ttname"><a href="../../d5/da6/_lab__3_2main_2main_8c.html#a9f78c05371e41b6f6269844b420578fb">led_sequence_task</a></div><div class="ttdeci">void led_sequence_task(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:45</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md51"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md50"></a>
 C helpful functions</h1>
-<p >For this lab, the most important function call is <code>xTaskCreate</code> which is a function in <code>task.h</code> file. This function has few parameter that must be pass on when calling the function. For instance, if we want to create a simple task that call <code>example_task</code> which has a stack of <code>2048</code> and it will have no arguments or handle; it will be the following: <code>xTaskCreate(</code> <b>&amp;example_task</b>,<b>example task</b>, <b>2048</b>, <b>NULL</b>, <b>NULL</b> <code>);</code></p>
-<table class="markdownTable">
+<p >For this lab, the most important function call is <code>xTaskCreate</code> which is a function in <code>task.h</code> file. This function has few parameters that must be pass on when calling the function. For instance, if we want to create a simple task that calls <code>example_task</code> which has a stack of <code>2048</code>, a priority of 5 and it will have no arguments or handle; it will be the following: <code>xTaskCreate(</code> <b>&amp;example_task</b>, <b>example task</b>, <b>2048</b>, <b>5</b>, <b>NULL</b>, <b>NULL</b> <code>);</code></p>
+<div align="center"> <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Data type   </th><th class="markdownTableHeadLeft">Variable name   </th><th class="markdownTableHeadRight">Description    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -254,11 +254,13 @@ C helpful functions</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>configSTACK_DEPTH_TYPE</code>   </td><td class="markdownTableBodyLeft"><em>usStackDepth</em>   </td><td class="markdownTableBodyRight">stack size    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>void *</code>   </td><td class="markdownTableBodyLeft"><em>pvParameters</em>   </td><td class="markdownTableBodyRight">arguments    </td></tr>
+<td class="markdownTableBodyLeft"><code>UBaseType_t</code>   </td><td class="markdownTableBodyLeft"><em>uxPriority</em>   </td><td class="markdownTableBodyRight">task priority    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>void *</code>   </td><td class="markdownTableBodyLeft"><em>pvParameters</em>   </td><td class="markdownTableBodyRight">arguments    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>TaskHandle_t *</code>   </td><td class="markdownTableBodyLeft"><em>pxCreatedTask</em>   </td><td class="markdownTableBodyRight">handle to store task   </td></tr>
 </table>
-<div class="fragment"><div class="line">BaseType_t xTaskCreate( </div>
+</div><div class="fragment"><div class="line">BaseType_t xTaskCreate( </div>
 <div class="line">                         TaskFunction_t pvTaskCode,</div>
 <div class="line">                         <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keyword">const</span> pcName,</div>
 <div class="line">                         configSTACK_DEPTH_TYPE usStackDepth,</div>
@@ -266,14 +268,14 @@ C helpful functions</h1>
 <div class="line">                         UBaseType_t uxPriority,</div>
 <div class="line">                         TaskHandle_t *pxCreatedTask</div>
 <div class="line">                      );</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md52"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md51"></a>
 Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html">FreeRTOS Espressif Documenation</a></li>
 <li><a href="https://www.freertos.org/a00125.html">FreeRTOS Documenation</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md53"></a>
+<h1><a class="anchor" id="autotoc_md52"></a>
 Authors</h1>
 <ul>
 <li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
@@ -287,7 +289,7 @@ Authors</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md54"></a>
+<h1><a class="anchor" id="autotoc_md53"></a>
 GitHub</h1>
 <div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3">Lab 3 Repository</a> </div><p ><span class="next_section_button"> Read Next: <a class="el" href="../../da/d3e/md_doc_pages_lab4.html">Lab 4</a> </span> </p>
 </div></div><!-- contents -->

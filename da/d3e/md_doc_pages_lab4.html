@@ -117,10 +117,10 @@ $(document).ready(function(){initNavTree('da/d3e/md_doc_pages_lab4.html','../../
   <div class="headertitle"><div class="title">Lab 4 FreeRTOS: Semaphores </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md56"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md55"></a>
 Objective</h1>
 <ul>
-<li>Understand how to use the semaphore with <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html"><code>FreeRTOS</code></a>. In this lab, the main focus will be using semaphores to sycnrhonize various tasks. Student must create four different tasks. Task 1 should run every two seconds. Task 2 should run twice as fast as task one. Task 3 should run every time either task 1 or task 2 run. Lastly, task 4 should run every time task 3 runs. Each task must display <em>"Task X running"</em>.</li>
+<li>Understand how to use the semaphore with <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html"><code>FreeRTOS</code></a>. In this lab, the main focus will be using semaphores to sycnrhonize various tasks. Students must create four different tasks. Task 1 should run every two seconds. Task 2 should run twice as fast as task 1. Task 3 should run every time either task 1 or task 2 run. Lastly, task 4 should run every time task 3 runs. Each task must display <em>"Task X running"</em>.</li>
 </ul>
 <div align="center"> <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -141,7 +141,7 @@ Objective</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">Low priority <b>numbers</b> denote <b>low</b> priority tasks.   </td></tr>
 </table>
-</div><h1><a class="anchor" id="autotoc_md57"></a>
+</div><h1><a class="anchor" id="autotoc_md56"></a>
 Bonus</h1>
 <ul>
 <li><em><b>Undergrad Bonus:</b></em><ul>
@@ -149,11 +149,11 @@ Bonus</h1>
 </ul>
 </li>
 <li><em><b>Grad Bonus:</b></em><ul>
-<li>Create two indepenent tasks: <code>Task 5</code> and <code>Task 6</code>. <code>Task 5</code> will sent a semaphore to <code>Task 6</code> which and turn the <code>onboard led</code>.</li>
+<li>Create two indepenent tasks: <code>Task 5</code> and <code>Task 6</code>. <code>Task 5</code> will send a semaphore to <code>Task 6</code> which turns on the <code>onboard led</code>.</li>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md58"></a>
+<h1><a class="anchor" id="autotoc_md57"></a>
 ESP32 Pinout</h1>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -179,9 +179,9 @@ ESP32 Pinout</h1>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md59"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md58"></a>
 Example 1</h1>
-<p >The following example is a brief demostration of how to use semaphore. <code>Task 1</code> will run every 2 second and give a sempahore for <code>Task 2</code> to run. <code>Task 2</code> will consistently wait to receive the sempahore which <code>Task 1</code> will provide every 2 seconds. Once <code>Task 2</code> receive the semaphore from <code>Task 1</code> it will run and print <code>"Task 2 is running!!"</code>.</p>
+<p >The following example is a brief demostration of how to use a semaphores. <code>Task 1</code> will run every 2 second and give a semaphore for <code>Task 2</code> to run. <code>Task 2</code> will consistently wait to receive the semaphore which <code>Task 1</code> will provide every 2 seconds. Once <code>Task 2</code> receives the semaphore from <code>Task 1</code> it will run and print <code>"Task 2 is running!!"</code>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
@@ -201,7 +201,7 @@ Example 1</h1>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* Example task 2 */</span></div>
-<div class="line"><span class="keywordtype">void</span> exmapleTask2(<span class="keywordtype">void</span> *pvParameters){</div>
+<div class="line"><span class="keywordtype">void</span> exampleTask2(<span class="keywordtype">void</span> *pvParameters){</div>
 <div class="line">    <span class="keywordflow">while</span>(1){</div>
 <div class="line">         <span class="comment">/* wait for 1000 ticks to receive semaphore */</span></div>
 <div class="line">         <span class="keywordflow">if</span>(xSemaphoreTake(mySemaphore, 1000/portTICK_RATE_MS) == pdTRUE){ </div>
@@ -224,9 +224,9 @@ Example 1</h1>
 <div class="line"> </div>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md60"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md59"></a>
 Example 2</h1>
-<p >The following example is a more advance demostration of how to use semaphore. <code>Task 1</code> will wait for <code>mySemaphore1</code> and once it recieves it, it will give <code>mySeamphore2</code>. <code>Task 2</code> will receive the semaphore from <code>Task 1</code> and run. Once <code>Task 2</code> task is done, <code>mySemaphore1</code> will be give back for <code>Task 1</code> to run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrate the true purpose of semaphores. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<p >The following example is a more advance demostration of how to use semaphore. <code>Task 1</code> will wait for <code>mySemaphore1</code> and once it recieves it, it will give <code>mySeamphore2</code>. <code>Task 2</code> will receive the semaphore from <code>Task 1</code> and run. Once <code>Task 2</code> task is done, <code>mySemaphore1</code> will be given back to <code>Task 1</code> and run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrates the true purpose of semaphores. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/semphr.h&quot;</span></div>
@@ -276,7 +276,7 @@ Example 2</h1>
 <div class="line">    <span class="comment">/* Give the semaphore for task 1 to run */</span></div>
 <div class="line">    xSemaphoreGive(mySemaphore1); </div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md61"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md60"></a>
 Lab Template</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -319,20 +319,20 @@ Lab Template</h1>
 <div class="ttc" id="a_lab__4_2main_2main_8c_html_a0639b448c4862618f597670523ef9975"><div class="ttname"><a href="../../db/de2/_lab__4_2main_2main_8c.html#a0639b448c4862618f597670523ef9975">xSemaphore</a></div><div class="ttdeci">SemaphoreHandle_t xSemaphore</div><div class="ttdef"><b>Definition:</b> main.c:40</div></div>
 <div class="ttc" id="a_lab__4_2main_2main_8c_html_a84106f7527d0055cc41983bbf4bbf957"><div class="ttname"><a href="../../db/de2/_lab__4_2main_2main_8c.html#a84106f7527d0055cc41983bbf4bbf957">task1</a></div><div class="ttdeci">void task1(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:43</div></div>
 <div class="ttc" id="a_lab__4_2main_2main_8c_html_a87cba80a8641aa95d02601894c779cc2"><div class="ttname"><a href="../../db/de2/_lab__4_2main_2main_8c.html#a87cba80a8641aa95d02601894c779cc2">task2</a></div><div class="ttdeci">void task2(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:53</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md62"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md61"></a>
 C helpful functions</h1>
 <p >For this lab, there are few important function calls that are going to be used throughout the lab. Semaphores are created by using <code>SemaphoreHandle_t</code> data type. For instance, <code>SemaphoreHandle_t</code> <em>mySemaphore</em> is how you would create a semaphore.</p>
-<p >To be able to allocate an instance of an semaphore, you will need the following function: <code>xSemaphoreCreateBinary</code>. There are different types of semaphores, however we will only look at the binary semaphore for now. A binary semaphore as the name states has a binary behavior such that it can have a value of <code>0</code> or <code>1</code>. </p><div class="fragment"><div class="line">SemaphoreHandle_t xSemaphoreCreateBinary( <span class="keywordtype">void</span> );</div>
+<p >To be able to allocate an instance of a semaphore, you will need the following function: <code>xSemaphoreCreateBinary</code>. There are different types of semaphores, however, we will only look at the binary semaphore for now. A binary semaphore has a behavior that holds a value of <code>0</code> or <code>1</code>. </p><div class="fragment"><div class="line">SemaphoreHandle_t xSemaphoreCreateBinary( <span class="keywordtype">void</span> );</div>
 </div><!-- fragment --><p> Next, <code>xSemaphoreGive</code> will set a <code>0</code> in the semaphore. Therefore, by setting a <code>0</code> it will state that the semaphore is ready to be used. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> xSemaphoreGive( SemaphoreHandle_t <a class="code hl_variable" href="../../db/de2/_lab__4_2main_2main_8c.html#a0639b448c4862618f597670523ef9975">xSemaphore</a> );</div>
-</div><!-- fragment --><p> Lastly, <code>xSemaphoreTake</code> is the opposite from the prior function. Therefore, it will set a <code>1</code> meaning that the semaphore is being use. However, <code>xSemaphoreTake</code> will require two parameters <code>SemaphoreHandle_t xSemaphore</code> and <code>TickType_t xTicksToWait</code>. You must pass by value the instance of a semaphore and also how long are you planning to wait for the semaphore. If you receive the semaphore during the provided time frame, <code>xSemaphoreTake</code> will return <code>pdTRUE</code> else <code>pdFALSE</code>. </p><div class="fragment"><div class="line">xSemaphoreTake( SemaphoreHandle_t <a class="code hl_variable" href="../../db/de2/_lab__4_2main_2main_8c.html#a0639b448c4862618f597670523ef9975">xSemaphore</a>, TickType_t xTicksToWait );</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md63"></a>
+</div><!-- fragment --><p >Lastly, <code>xSemaphoreTake</code> is the opposite from the previous function, as it will set a <code>1</code> and used the semaphore. However, <code>xSemaphoreTake</code> will require two parameters <code>SemaphoreHandle_t xSemaphore</code> and <code>TickType_t xTicksToWait</code>. You must pass by value the instance of a semaphore and how long to wait for the semaphore. If you receive the semaphore during the provided time frame, <code>xSemaphoreTake</code> will return <code>pdTRUE</code> otherwise <code>pdFALSE</code>. </p><div class="fragment"><div class="line">xSemaphoreTake( SemaphoreHandle_t <a class="code hl_variable" href="../../db/de2/_lab__4_2main_2main_8c.html#a0639b448c4862618f597670523ef9975">xSemaphore</a>, TickType_t xTicksToWait );</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md62"></a>
 Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html">FreeRTOS Semphores</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html">FreeRTOS Espressif Documenation</a></li>
 <li><a href="https://www.freertos.org/a00125.html">FreeRTOS Documenation</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md64"></a>
+<h1><a class="anchor" id="autotoc_md63"></a>
 Authors</h1>
 <ul>
 <li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
@@ -346,7 +346,7 @@ Authors</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md65"></a>
+<h1><a class="anchor" id="autotoc_md64"></a>
 GitHub</h1>
 <div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_4"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_4">Lab 4 Repository</a> </div><p ><span class="next_section_button"> Read Next: <a class="el" href="../../d1/d00/md_doc_pages_lab5.html">Lab 5</a> </span> </p>
 </div></div><!-- contents -->

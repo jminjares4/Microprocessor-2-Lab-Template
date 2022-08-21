@@ -119,7 +119,9 @@ $(document).ready(function(){initNavTree('de/d6a/md_doc_pages_lab2.html','../../
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md32"></a>
 Objective</h1>
-<p >Understand how to use the <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio">Espressif GPIO interrupts</a>. This lab will consist of simulating your own <b>fire alarm</b>!!! There is an additional driver that was developed to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down configuration.</p>
+<ul>
+<li>Understand how to use the <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio">Espressif GPIO interrupts</a>. This lab will consist of simulating your own <b>fire alarm</b>!!! There is an additional driver that was developed to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down configuration.</li>
+</ul>
 <h1><a class="anchor" id="autotoc_md33"></a>
 Bonus</h1>
 <ul>
@@ -160,7 +162,7 @@ ESP32 Pinout</h1>
 <div class="line">                                        +-----------------------+</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md35"></a>
 Example</h1>
-<p >Here is an example of a how to use ESP32 GPIO advance setup. The following code will toggle the onboard LED if button is pressed and have a external LED toggling every half second.</p>
+<p >Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led if the button is pressed.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span> </div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span> </div>
@@ -234,13 +236,13 @@ Example</h1>
 <div class="line"> </div>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-<div class="ttc" id="a_lab__0_2main_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:27</div></div>
-<div class="ttc" id="a_lab__0_2main_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:26</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:28</div></div>
+<div class="ttc" id="a_lab__0_2main_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:27</div></div>
 <div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:30</div></div>
 <div class="ttc" id="a_lab__2_2main_2main_8c_html_af8baf7d9859733667317e58c0ff707d1"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a></div><div class="ttdeci">#define ESP_INTR_FLAG_DEFAULT</div><div class="ttdef"><b>Definition:</b> main.c:28</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md36"></a>
 LED driver Example</h1>
-<p >Here is an example of a how to use the led driver. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
+<p >Here is an example of a how to use the <a class="el" href="../../db/da0/led_8h.html">led driver</a>. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../db/da0/led_8h.html">driver/led.h</a>&quot;</span></div>
 <div class="line"> </div>
@@ -354,15 +356,14 @@ Lab Template</h1>
 <div class="ttc" id="astructfire__alarm__t_html_a4afb679790ccaa02ebc3ff69cc0ad2aa"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html#a4afb679790ccaa02ebc3ff69cc0ad2aa">fire_alarm_t::active</a></div><div class="ttdeci">bool active</div><div class="ttdef"><b>Definition:</b> main.c:45</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md38"></a>
 C helpful functions</h1>
-<p >For this lab, there are a couple of additional functions from <code>Espressif</code> that are important for using inputs. In the previous lab, we had used <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> set our inputs and outputs. However, will now use a different approach by using <code>gpio_config_t</code>. This new apporach allows to create input and output in a more condense fashion with structures. The structure has various members with their own data types. Please look into them inorder select the correct value when developing the lab. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<p >For this lab, there are a couple of additional functions from <code>Espressif</code> that are important for using inputs. In the previous lab, we had used <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> set our inputs and outputs. However, will now use a different approach by using <code>gpio_config_t</code>. This new apporach allows users to create inputs and outputs in a more condense fashion with structures. The structure has various members with their own data types. Please look into them in order to select the correct values when developing the lab. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    uint64_t pin_bit_mask;          </div>
 <div class="line">    gpio_mode_t mode;               </div>
 <div class="line">    gpio_pullup_t pull_up_en;       </div>
 <div class="line">    gpio_pulldown_t pull_down_en;   </div>
 <div class="line">    gpio_int_type_t intr_type;      </div>
 <div class="line">} gpio_config_t;</div>
-</div><!-- fragment --><p >There are significant difference in how to set the interrupts. Here is a brief description of pull-up and pull-down to help you for the lab.</p>
-<table class="markdownTable">
+</div><!-- fragment --><p >There are significant difference in how to set the interrupts. Here is a brief description of pull-up and pull-down to help you for the lab. </p><div align="center"> <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Interrupt Configuration   </th><th class="markdownTableHeadLeft">Description   </th><th class="markdownTableHeadLeft">Logic    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -370,16 +371,13 @@ C helpful functions</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><b>Pull-down</b>   </td><td class="markdownTableBodyLeft">Rising edge   </td><td class="markdownTableBodyLeft"><b>0</b> -&gt; <b>1</b>   </td></tr>
 </table>
-<p >For this lab will we keep the interrupt flag to its default settings which would be <code>0</code>. In order to set the interrupt flag, the following function is required: <code>gpio_install_isr_service(int intr_alloc_flags)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_install_isr_service(<span class="keywordtype">int</span> intr_alloc_flags)</div>
-</div><!-- fragment --><p >Lastly, <code>static void IRAM_ATTR gpio_isr_handler(void* arg)</code> is the interrupt service routine and can be alter if necessary as long as it has <code>IRAM_ATTR</code> which indicated its an interrupt. Also, in order to add any input to enter the interrupt routine, you must <code>add</code> it to isr handler: <code>gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, <span class="keywordtype">void</span> *args)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md39"></a>
-Pull-up and Pull-down Configuration</h2>
-<p ><img src="../../button_config.png" alt="button configuation" width="413" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md40"></a>
+</div><p >For this lab will we keep the interrupt flag to its default settings which would be <code>0</code>. In order to set the interrupt flag, the following function is required: <code>gpio_install_isr_service(int intr_alloc_flags)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_install_isr_service(<span class="keywordtype">int</span> intr_alloc_flags)</div>
+</div><!-- fragment --><p >Lastly, <code>static void IRAM_ATTR gpio_isr_handler(void* arg)</code> is the interrupt service routine and can be modified if necessary as long as it has <code>IRAM_ATTR</code> which itis required for interrupts. Also, in order to add any input to enter the interrupt routine, you must <code>add</code> it to isr handler: <code>gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)</code>. </p><div class="fragment"><div class="line">esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, <span class="keywordtype">void</span> *args)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md39"></a>
 Warning</h1>
-<p >The bit mask in <code>gpio_config_t</code> is an <code>uint64_t</code> value and ESP32 uses <code>enum</code> for its pinout. Therefore, in order to mask the bits correctly you must bit shift desire pin by an unsigned long long (<code>ULL</code>). </p><div class="fragment"><div class="line"><span class="preprocessor">#define ONBOARD_LED     2 </span><span class="comment">/* ESP32 onboard led */</span><span class="preprocessor"></span></div>
+<p >The bit mask in <code>gpio_config_t</code> is an <code>uint64_t</code> value and ESP32 uses <code>enum</code> for its pinout. Therefore, in order to mask the bits correctly you must bit shift the desire pin by an unsigned long long (<code>ULL</code>). </p><div class="fragment"><div class="line"><span class="preprocessor">#define ONBOARD_LED     2 </span><span class="comment">/* ESP32 onboard led */</span><span class="preprocessor"></span></div>
 <div class="line">uint64_t bitmask = (1ULL &lt;&lt; <a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>); <span class="comment">/* Convert onboard led value to unsigned long long */</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md41"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md40"></a>
 Add led driver to ESP32 Project</h1>
 <ol>
 <li>
@@ -392,12 +390,12 @@ Edit project CMakeLists.txt to use <a class="el" href="../../de/dbb/led_8c.html"
 <div class="fragment"><div class="line">idf_component_register(SRCS &quot;main.c&quot;</div>
 <div class="line">                            &quot;driver/led.c&quot;</div>
 <div class="line">                    INCLUDE_DIRS &quot;.&quot;)</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md42"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md41"></a>
 Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md43"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 Authors</h1>
 <ul>
 <li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
@@ -411,7 +409,7 @@ Authors</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md44"></a>
+<h1><a class="anchor" id="autotoc_md43"></a>
 GitHub</h1>
 <div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2">Lab 2 Repository</a> </div><p ><span class="next_section_button"> Read Next: <a class="el" href="../../d3/d14/md_doc_pages_lab3.html">Lab 3</a> </span> </p>
 </div></div><!-- contents -->

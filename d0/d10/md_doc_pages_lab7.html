@@ -117,10 +117,10 @@ $(document).ready(function(){initNavTree('d0/d10/md_doc_pages_lab7.html','../../
   <div class="headertitle"><div class="title">Lab 7 Peripherals and Queues: ADC and PWM (LEDC) </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md90"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md89"></a>
 Objective</h1>
 <ul>
-<li>The objective for this lab is to understand how use the Espressif <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html"><code>LEDC</code></a> and <a href="https://docs.espressif.com/projects/esp-idf/en/v4.2/esp32/api-reference/peripherals/adc.html"><code>ADC</code></a> drivers. In this lab, create 2 task: adc and pwm task. The <code>adc task</code> perform ADC readings every 100 millisecond (10 hertz). This task must store the adc reading and be sent through a queue. Lastly, <code>pwm task</code> should receive the queue data from the <code>adc task</code> and update <code>ledc</code> duty cycle. <div align="center"> <table class="markdownTable">
+<li>The objective for this lab is to understand how use the Espressif <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html"><code>LEDC</code></a> and <a href="https://docs.espressif.com/projects/esp-idf/en/v4.2/esp32/api-reference/peripherals/adc.html"><code>ADC</code></a> drivers. In this lab, create 2 task: adc and pwm task. The <code>adc task</code> performs ADC readings every 100 millisecond (10 hertz). This task must store the adc readings and be sent through a queue. Lastly, <code>pwm task</code> should receive the queue data from the <code>adc task</code> and update <code>ledc</code> duty cycle. <div align="center"> <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Task   </th><th class="markdownTableHeadLeft">Description   </th><th class="markdownTableHeadLeft">Queue    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -130,7 +130,7 @@ Objective</h1>
 </table>
 </div></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md91"></a>
+<h1><a class="anchor" id="autotoc_md90"></a>
 Bonus</h1>
 <ul>
 <li><em><b>Undergrad Bonus</b></em><ul>
@@ -142,7 +142,7 @@ Bonus</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md92"></a>
+<h1><a class="anchor" id="autotoc_md91"></a>
 ESP32 Pinout</h1>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -168,7 +168,7 @@ ESP32 Pinout</h1>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md93"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md92"></a>
 Example 1</h1>
 <p >Here is an example of a single ADC channel that will read and print value to the screen. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -207,7 +207,7 @@ Example 1</h1>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_a3c5d2bf67a701f0cb6556568addb2266"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a3c5d2bf67a701f0cb6556568addb2266">adc_setup</a></div><div class="ttdeci">void adc_setup(void)</div><div class="ttdef"><b>Definition:</b> main.c:60</div></div>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_aa4ac14df5a56a681fb69aef5cffc5e95"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#aa4ac14df5a56a681fb69aef5cffc5e95">ADCtask</a></div><div class="ttdeci">void ADCtask(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:37</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md94"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md93"></a>
 Example 2</h1>
 <p >Here is an example of a PWM signal using the LEDC API to dim an LED. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -292,7 +292,7 @@ Example 2</h1>
 <div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:30</div></div>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_a2d1c3e7be837352ae08245dc9396e7e1"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a></div><div class="ttdeci">void pwm_setup(void)</div><div class="ttdef"><b>Definition:</b> main.c:66</div></div>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_af449d6a027ba3cff41528f12a08dff32"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a></div><div class="ttdeci">void PWMtask(void *pvParameters)</div><div class="ttdef"><b>Definition:</b> main.c:48</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md95"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md94"></a>
 Lab Template</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -350,9 +350,9 @@ Lab Template</h1>
 <div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>, <span class="stringliteral">&quot;PWMtask&quot;</span>, 2048, NULL, 5, NULL);</div>
 <div class="line">}</div>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_a1dbfc3fa6e8af6057fc4ee35f29c064f"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a1dbfc3fa6e8af6057fc4ee35f29c064f">duty_queue</a></div><div class="ttdeci">QueueHandle_t duty_queue</div><div class="ttdef"><b>Definition:</b> main.c:34</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md96"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md95"></a>
 C helpful functions</h1>
-<p >Espressif ADC driver requires the following structures and enumeration inorder to set the correct pin and operation. There are a few GPIO that are avaiable to use analog converter. Depending on the ESP32, there are slight difference between the pinout so please verify the hardware. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<p >Espressif ADC driver requires the following structures and enumerations in order to set the correct pin and operation. There are a few GPIOs that are avaiable to use analog converter. Depending on the ESP32, there are slight difference between the pinout so please verify the hardware. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
 <div class="line">    ADC1_CHANNEL_0 = 0, </div>
 <div class="line">    ADC1_CHANNEL_1,     </div>
 <div class="line">    ADC1_CHANNEL_2,     </div>
@@ -376,7 +376,7 @@ C helpful functions</h1>
 <div class="line">    ADC2_CHANNEL_9,     </div>
 <div class="line">    ADC2_CHANNEL_MAX,</div>
 <div class="line">} adc2_channel_t;</div>
-</div><!-- fragment --><p> The ESP has default 12 bit max width conversion but depending on the hardware, it can go upto 13 bit. To keep everything simple, please do not exceed 12 bit width. Espressif ADC width is selected by <code>adc_bit_width_t</code> enumeration down below. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+</div><!-- fragment --><p> The ESP has default 12 bit max width conversion but depending on the hardware, it can go up to 13 bit. To keep everything simple, please do not exceed 12 bit width. Espressif ADC width is selected by <code>adc_bit_width_t</code> enumeration down below. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
 <div class="line"><span class="preprocessor">#if CONFIG_IDF_TARGET_ESP32</span></div>
 <div class="line">    ADC_WIDTH_BIT_9  = 0, </div>
 <div class="line">    ADC_WIDTH_BIT_10 = 1, </div>
@@ -389,7 +389,7 @@ C helpful functions</h1>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line">    ADC_WIDTH_MAX,</div>
 <div class="line">} adc_bits_width_t;</div>
-</div><!-- fragment --><p >Espressif ADC driver has an attenuation feature to limit voltage reading to desire range. The <code>adc_atten_t</code> enumeration allows to select desire range of the adc channel. Please go over the example program to get an idea of how the <b>ADC</b> driver works. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+</div><!-- fragment --><p >Espressif ADC driver has an attenuation feature to limit voltage reading to a fix range. The <code>adc_atten_t</code> enumeration allows to select the range of the adc channel. Please go over the example program to get an idea of how the <b>ADC</b> driver works. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
 <div class="line">    ADC_ATTEN_DB_0   = 0,  </div>
 <div class="line">    ADC_ATTEN_DB_2_5 = 1,  </div>
 <div class="line">    ADC_ATTEN_DB_6   = 2,  </div>
@@ -405,7 +405,7 @@ C helpful functions</h1>
 <div class="line">    uint32_t freq_hz;                      </div>
 <div class="line">    ledc_clk_cfg_t clk_cfg;                </div>
 <div class="line">} ledc_timer_config_t;</div>
-</div><!-- fragment --><p> Furthermore, <code>ledc_channel_config_t</code> structure allows to select the pin number, speed mode, channel, intr type, timer select, duty cycle and hpoint. For more detail, please see Espressif documentation and go over the example programs to understand how to use it properly. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+</div><!-- fragment --><p> Furthermore, <code>ledc_channel_config_t</code> structure allows to select the pin number, speed mode, channel, intr type, timer select, duty cycle and hpoint. For more details, please see Espressif documentation and go over the example programs to understand how to use it properly. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    <span class="keywordtype">int</span> gpio_num;                   </div>
 <div class="line">    ledc_mode_t speed_mode;         </div>
 <div class="line">    ledc_channel_t channel;         </div>
@@ -418,14 +418,14 @@ C helpful functions</h1>
 <div class="line">    } flags;                        </div>
 <div class="line">} ledc_channel_config_t;</div>
 </div><!-- fragment --><p> Additionally, <code>ledc_set_duty(ledc_mode_t speed_mode, ledc_channel_t channel, uint32_t duty)</code> is use to set the duty cycle and to actually update the duty you need to use <code>ledc_update_duty(ledc_mode_t speed_mode, ledc_channel_t channel)</code>. Lastly, <code>LEDC</code> driver allows users to control the operation of the timer: <code>ledc_timer_pause(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code> and <code>ledc_timer_resume(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code>.</p>
-<h1><a class="anchor" id="autotoc_md97"></a>
+<h1><a class="anchor" id="autotoc_md96"></a>
 Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html">Espressif ADC Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html">Espressif LEDC Driver API</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md98"></a>
+<h1><a class="anchor" id="autotoc_md97"></a>
 Authors</h1>
 <ul>
 <li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
@@ -439,7 +439,7 @@ Authors</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md99"></a>
+<h1><a class="anchor" id="autotoc_md98"></a>
 GitHub</h1>
 <div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7">Lab 7 Repository</a> </div><p ><span class="next_section_button"> Read Next: <a class="el" href="../../dc/df4/md_doc_pages_lab8.html">Lab 8</a> </span> </p>
 </div></div><!-- contents -->
