@@ -7,7 +7,7 @@
     Lab 3:
         Objective:
             Understand how to use the FreeRTOS with Espressif. The lab will consist of creating 
-            two main tasks. `Task 1` will toggle onboard led every 250 ms, and `Task 2` must print
+            two main tasks. `Task 1` must toggle onboard led every 250 ms, and `Task 2` must print
             'Hello World!' every 2 seconds.
 
             | Tasks  | Objective                     |
@@ -17,9 +17,9 @@
 
         Bonus:
             Undergrad Bonus:
-                Create an other task that will toggle the led and print it state in the terminal
+                Create an additional task that toggles an external led and print it states
             Grad Bonus:
-                Create addtional task of to run any led sequence of the previous labs and it should run every 5 seconds
+                Create an addtional task that runs any led sequence from the previous labs and it should run every 5 seconds
 
 */
 #include <stdio.h>
