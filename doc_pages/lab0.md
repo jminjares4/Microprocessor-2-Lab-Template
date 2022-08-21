@@ -1,7 +1,7 @@
 # Lab 0 LED Lightshow
 
 ## Objective
-* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and a `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then most significant bit to lowest bit. While `led chaser` will have a single led iterating from the lowest to most significant bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
+* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of creating a `sweeper` and a `led chaser`. The `sweeper` will iterate over mutiple LEDs by turning from the lowest to highest bit and then highest to lowest bit. While `led chaser` will have a single led iterating from the lowest to highest bit. For both the `sweeper` and `led chaser` use up to 6 GPIOs.
 
 ## Bonus
 - ***Undergrad Bonus:***
@@ -39,7 +39,7 @@
 
 
 ## Example
-Here is an example of a how to use ESP32 GPIO function calls. The program toggles ESP onboard LED every other second.
+Here is an example of a how to use ESP32 GPIO function calls. The program toggles the onboard LED every other second.
 ~~~c
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -50,14 +50,14 @@ Here is an example of a how to use ESP32 GPIO function calls. The program toggle
 #define ONBOARD_LED 2 /* ONBOARD LED GPIO Pin*/
 
 void app_main(void){
-  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); // select the GPIO pins
-  gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); // set as output
+  esp_rom_gpio_pad_select_gpio(ONBOARD_LED); /* select the GPIO pins */
+  gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); /* set as output */
 
   while(1){
-    gpio_set_level(ONBOARD_LED, HIGH); // set high
-    vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
-    gpio_set_level(ONBOARD_LED, LOW); //set low
-    vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
+    gpio_set_level(ONBOARD_LED, HIGH); /* set high */
+    vTaskDelay(1000 / portTICK_PERIOD_MS); /* 1 second delay */
+    gpio_set_level(ONBOARD_LED, LOW); /* set low */
+    vTaskDelay(1000 / portTICK_PERIOD_MS); /* 1 second delay */
   }  
 }
 ~~~
@@ -82,10 +82,11 @@ void app_main(void){
  */
 void setOutputs(uint8_t *out, int size)
 {
-    for (int i = 0; i < size; i++) // itierate over the size of the array
+    /* itierate over the size of the array */
+    for (int i = 0; i < size; i++) 
     {
-        esp_rom_gpio_pad_select_gpio(out[i]);                 // select the GPIO pins
-        gpio_set_direction(out[i], GPIO_MODE_OUTPUT); // set direction as outputs
+        esp_rom_gpio_pad_select_gpio(out[i]); /* select the GPIO pins */
+        gpio_set_direction(out[i], GPIO_MODE_OUTPUT); /* set direction as outputs */
     }
     return;
 }
@@ -99,11 +100,13 @@ void setOutputs(uint8_t *out, int size)
  */
 void sweep(uint8_t *led, int size)
 {
-    for ( int i = 0; i < size; i++) //iterate over the size of the array
+    /* itierate over the size of the array */
+    for ( int i = 0; i < size; i++)
     {
         
     }
-    for (int i = size - 1; i >= 0; i--) //iterate over the size of hte array 
+    /* itierate over the size of the array */
+    for (int i = size - 1; i >= 0; i--)
     {
       
     }
@@ -118,11 +121,13 @@ void sweep(uint8_t *led, int size)
  */
 void led_chaser(uint8_t *led, int size)
 {
-    for (int i = 0; i < size; i++) //iterate over the size of the array
+    /* itierate over the size of the array */
+    for (int i = 0; i < size; i++)
     {
       
     }
-    for (int i = size - 1; i >= 0; i--) //iterate over the size of hte array 
+    /* itierate over the size of the array */
+    for (int i = size - 1; i >= 0; i--)
     {
       
     }
@@ -143,43 +148,43 @@ void lightShow(uint8_t *led, int size)
 void app_main(void)
 {
     /*GPIOs pins*/
-    uint8_t led[] = {2}; //create an array of single led 
-    int size = sizeof(led)/sizeof(uint8_t); //get size of the array, use sizeof() to allow scalabilty 
-    setOutputs(led,size); //intialize GPIOs pins
+    uint8_t led[] = {2}; /* create an array of single led */
+    int size = sizeof(led)/sizeof(uint8_t); /* get size of the array, use sizeof() to allow scalabilty */
+    setOutputs(led,size); /* intialize GPIOs pins */
     while (1)
     {
-      // sweep(led, size); //sweep function
-      //led_chaser(led,size);
-      //lightShow(led,size); //bonus 
+      /* Added led patterns */
 
-      // Toggle LED using index of your array
+      /* Toggle LED using index of your array */
       gpio_set_level(led[0], LOW);
-      vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
+      vTaskDelay(1000 / portTICK_PERIOD_MS); /* 1 second delay */
       gpio_set_level(led[0], HIGH);
-      vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
+      vTaskDelay(1000 / portTICK_PERIOD_MS); /* 1 second delay */
     }
 }
 ~~~
 
 ## C helpful functions
-For this lab, there are three main function from Espressif that are important. First, is to select which GPIO pin is going to be used by the following function: `esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num)`. The first parameter `gpio_num` is the GPIO pin that is going to be used, for instance if we want to use the ***onboard led*** we should put a 2 on `gpio_num` such as `esp_rom_gpio_pad_select_gpio(2)`.
+For this lab, there are three main functions from Espressif that are important. First, is to select which GPIO pin is going to be used by the following function: `esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num)`. The first parameter `gpio_num` is the GPIO pin that is going to be used, for instance if we want to use the ***onboard led*** we should put a 2 on `gpio_num` such as `esp_rom_gpio_pad_select_gpio(2)`.
 ~~~c
 esp_err_t esp_rom_gpio_pad_select_gpio(gpio_num_t gpio_num);             
 ~~~
-Next, `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` allow the user to set the direction of the GPIO pin. For this lab we only going to use <i>`GPIO_MODE_OUTPUT`</i> for the mode.
+Next, `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` allows the user to set the direction of the GPIO pin. For this lab we are only going to use *`GPIO_MODE_OUTPUT`* for the mode.
 ~~~c 
 esp_err_t gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode);
 ~~~
-Furthermore, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` sets the logic level of the GPIO pin that we pass throught the function. <br>
+Furthermore, `gpio_set_level(gpio_num_t gpio_num, uint32_t level)` sets the logic level of the GPIO pin that we pass through the function. <br>
+<div align='center'>
 | Value | Logic |
 |:---   | :---  |
 | **0** | low   |
 | **1** | high  |
+</div>
 ~~~c
 esp_err_t gpio_set_level(gpio_num_t gpio_num, uint32_t level);
 ~~~
 
-Lastly, the following function  `vTaskDelay( const TickType_t xTicksToDelay)` is use to generate delay with ESP32 and it part of FreeRTOS, you will learn more of it in later labs. Therefore for this lab just use it to generate delay in milliseconds
+Lastly, the following function `vTaskDelay(const TickType_t xTicksToDelay)` is use to generate delay with ESP32 and its part of FreeRTOS, you will learn more of it in later labs. Therefore, for this lab just use it to generate delay in milliseconds.
 ~~~c
 void vTaskDelay(const TickType_t xTicksToDelay);
 ~~~
