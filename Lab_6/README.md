@@ -11,7 +11,7 @@
 
 ## **Objective**
 
-* Understand how to use queues and interrupts with [`FreeRTOS Queues`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, students will learn how to send qyedata between tasks using interrupts. Student must create a program that uses `gpio` interrupts as in Lab 2, please feel free to use either configuration (Pull-up | Pull-down). The interrupt service routine (ISR) should send data (gpio pin number) to a queue and receive by task: `print_task`. The `print_task` must receive the data and display it. For instance, if the interrupt was trigger by pin **23**, the output would be: "GPIO 23 received!!!". 
+* Understand how to use queues and interrupts with [`FreeRTOS Queues`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html#queue-api). In this lab, students will learn how to send data between tasks using interrupts. Student must create a program that uses `gpio` interrupts as in Lab 2, please feel free to use either configuration (Pull-up | Pull-down). The interrupt service routine (ISR) should send data (gpio pin number) to a queue and be receive by task: `print_task`. The `print_task` must receive the data and display it. For instance, if the interrupt was trigger by pin **23**, the output would be: "GPIO 23 received!!!". 
 
 | Task          |    Objective                               |
 | :---          | :---                                       |
@@ -56,7 +56,7 @@
 ~~~
 
 ## **Example**
-Here is an example of a how to use ESP32 GPIO advance setup. The following code will toggle the onboard LED if button is pressed and have a external LED toggling every half second.
+Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led if the button is pressed.
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h" 
@@ -186,7 +186,7 @@ void app_main()
 
 ## **C helpful functions**
 
-We have use queues in the previous lab to send data from one task to another. However, it this lab we need to send data from an interrupt to a task. Therefore, a special function is need to send data to the queue: **`xQueueSendFromISR()`**. Similar to the previous lab functions that we have use to send data in a queue, `xQueueSendFromISR` is similar with a different parameter. To keep it simple, please set `BaseType_t *pxHigherPriorityTaskWoken` parameter set to *`NULL`*.
+We have use queues in the previous lab to send data from one task to another. However, in this lab we need to send data from an interrupt to a task. Therefore, a special function is needed to send data to the queue: **`xQueueSendFromISR()`**. Similar to the previous lab functions that we have use to send data in a queue, `xQueueSendFromISR` is similar with a different parameter. To keep it simple, please set `BaseType_t *pxHigherPriorityTaskWoken` parameter set to *`NULL`*.
 ~~~c
  BaseType_t xQueueSendFromISR(
                                 QueueHandle_t xQueue,
