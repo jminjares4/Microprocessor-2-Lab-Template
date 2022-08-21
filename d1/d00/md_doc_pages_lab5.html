@@ -230,7 +230,7 @@ Example 1</h1>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md70"></a>
 Example 2</h1>
-<p >The following example shows how to pass an argument through a task. As mention in previous labs, <code>xTaskCreate</code> has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, <code>Task 1</code> recieves an argument, this example may come handy when developing more advance tasks to reduce and create more abstract tasks. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<p >The following example shows how to pass an argument through a task. As mention in previous labs, <code>xTaskCreate</code> has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, <code>Task 1</code> receives an argument, this example may come handy when developing more advance tasks to reduce and create more abstract tasks. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
 <div class="line"> </div>
@@ -337,7 +337,7 @@ Lab Template</h1>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md73"></a>
 C helpful functions</h1>
 <p >For this lab, there are few important function calls that are going to be used throughout the lab. Queues are created by using <code>QueueHandle_t</code> data type. For instance, <b><code>QueueHandle_t</code></b> <em>myQueue</em> is how you would create a queue.</p>
-<p >First, <code>xQueueCreate</code> is the function you must call if you want to create a queue. <code>xQueueCreate</code> has two parameters, <code>UBaseType_t</code> uxQueueLength, and <code>UBaseType_t</code> uxItemSize. Therefore, if we wanted to create a queue of <code>floatd</code> we would do the following: </p><div class="fragment"><div class="line">QueueHandle_t myQueue; <span class="comment">/* global queue */</span></div>
+<p >First, <code>xQueueCreate</code> is the function you must call if you want to create a queue. <code>xQueueCreate</code> has two parameters, <code>UBaseType_t</code> uxQueueLength, and <code>UBaseType_t</code> uxItemSize. Therefore, if we wanted to create a queue of <code>floats</code> we would do the following: </p><div class="fragment"><div class="line">QueueHandle_t myQueue; <span class="comment">/* global queue */</span></div>
 <div class="line">...</div>
 <div class="line">myQueue = xQueueCreate(10, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)); <span class="comment">/* create a queue of float with a max size of 5 */</span></div>
 </div><!-- fragment --> <div class="fragment"><div class="line">QueueHandle_t xQueueCreate( UBaseType_t uxQueueLength, UBaseType_t uxItemSize );</div>
