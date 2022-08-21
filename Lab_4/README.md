@@ -106,7 +106,7 @@ void app_main(void){
 ~~~
 
 ## **Example 2**
-The following example is a more advance demostration of how to use semaphores. `Task 1` will wait for `mySemaphore1` and once it recieves it, it will give `mySeamphore2`. `Task 2` will receive the semaphore from `Task 1` and run. Once `Task 2` task is done, `mySemaphore1` will be given back to `Task 1` and run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrates the true purpose of semaphores.
+The following example is a more advance demostration of how to use semaphores. `Task 1` will wait for `mySemaphore1` and once it receives it, it will give `mySeamphore2`. `Task 2` will receive the semaphore from `Task 1` and run. Once `Task 2` task is done, `mySemaphore1` will be given back to `Task 1` and run again. In simple terms, task 1 will run task 2 and task 2 will run task 1. Therefore, task 1 and task 2 synchronize which demostrates the true purpose of semaphores.
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"

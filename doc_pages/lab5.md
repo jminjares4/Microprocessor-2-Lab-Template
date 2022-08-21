@@ -113,7 +113,7 @@ void app_main(void){
 
 ## Example 2
 
-The following example shows how to pass an argument through a task. As mention in previous labs, `xTaskCreate` has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, `Task 1` recieves an argument, this example may come handy when developing more advance tasks to reduce and create more abstract tasks.
+The following example shows how to pass an argument through a task. As mention in previous labs, `xTaskCreate` has various parameters that we went briefly in detail. However, the 4th parameter is use to pass an argument to the task. In the bottom code, `Task 1` receives an argument, this example may come handy when developing more advance tasks to reduce and create more abstract tasks.
 ~~~c
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -227,7 +227,7 @@ void app_main(void){
 
 For this lab, there are few important function calls that are going to be used throughout the lab. Queues are created by using `QueueHandle_t` data type. For instance, <strong>`QueueHandle_t`</strong> *myQueue* is how you would create a queue.
 
-First, `xQueueCreate` is the function you must call if you want to create a queue. `xQueueCreate` has two parameters, `UBaseType_t` uxQueueLength, and `UBaseType_t` uxItemSize. Therefore, if we wanted to create a queue of `floatd` we would do the following:
+First, `xQueueCreate` is the function you must call if you want to create a queue. `xQueueCreate` has two parameters, `UBaseType_t` uxQueueLength, and `UBaseType_t` uxItemSize. Therefore, if we wanted to create a queue of `floats` we would do the following:
 ~~~c
 QueueHandle_t myQueue; /* global queue */
 ...

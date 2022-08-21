@@ -273,7 +273,7 @@ For this lab will we keep the interrupt flag to its default settings which would
 esp_err_t gpio_install_isr_service(int intr_alloc_flags)
 ~~~
 
-Lastly, `static void IRAM_ATTR gpio_isr_handler(void* arg)` is the interrupt service routine and can be modified if necessary as long as it has `IRAM_ATTR` which itis required for interrupts. Also, in order to add any input to enter the interrupt routine, you must `add` it to isr handler: `gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)`.
+Lastly, `static void IRAM_ATTR gpio_isr_handler(void* arg)` is the interrupt service routine and can be modified if necessary as long as it has `IRAM_ATTR` which it is required for interrupts. Also, in order to add any input to enter the interrupt routine, you must `add` it to isr handler: `gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)`.
 ~~~c
 esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)
 ~~~
