@@ -133,7 +133,7 @@ For this lab, the most important function call is `xTaskCreate` which is a funct
 | `TaskFunction_t`          |  *pvTaskCode*     | task function name          |
 | `const char *`            |  *pcName*         | name to associate the task  |
 | `configSTACK_DEPTH_TYPE`  |  *usStackDepth*   | stack size                  |
-| `UBaseType_t`             |  **uxPriority**   | task priority               |
+| `UBaseType_t`             |  *uxPriority*     | task priority               |
 | `void *`                  |  *pvParameters*   | arguments                   |
 | `TaskHandle_t *`          |  *pxCreatedTask*  | handle to store task        |
 
