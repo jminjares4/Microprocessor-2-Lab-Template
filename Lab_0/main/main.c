@@ -37,7 +37,7 @@
  */
 void setOutputs(uint8_t *out, int size)
 {
-    /* itierate over the size of the array */
+    /* iterate over the size of the array */
     for (int i = 0; i < size; i++) 
     {
         esp_rom_gpio_pad_select_gpio(out[i]); /* select the GPIO pins */
@@ -55,12 +55,12 @@ void setOutputs(uint8_t *out, int size)
  */
 void sweep(uint8_t *led, int size)
 {
-    /* itierate over the size of the array */
+    /* iterate over the size of the array */
     for ( int i = 0; i < size; i++)
     {
         
     }
-    /* itierate over the size of the array */
+    /* iterate over the size of the array */
     for (int i = size - 1; i >= 0; i--)
     {
       
@@ -76,12 +76,12 @@ void sweep(uint8_t *led, int size)
  */
 void led_chaser(uint8_t *led, int size)
 {
-    /* itierate over the size of the array */
+    /* iterate over the size of the array */
     for (int i = 0; i < size; i++)
     {
       
     }
-    /* itierate over the size of the array */
+    /* iterate over the size of the array */
     for (int i = size - 1; i >= 0; i--)
     {
       
