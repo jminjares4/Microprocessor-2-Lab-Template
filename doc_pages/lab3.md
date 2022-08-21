@@ -107,7 +107,7 @@ void app_main()
 {
     /* Create the task defined by xTaskCreate.*/
     xTaskCreate(&hello_task, "hello_task", 2048, NULL, 5, NULL);
-    xTaskCreate(&blinky, "blinky", 512, NULL, 5, NULL);
+    xTaskCreate(&blinky_task, "blinky_task", 512, NULL, 5, NULL);
 
     /*Create any additional tasks*/
     
