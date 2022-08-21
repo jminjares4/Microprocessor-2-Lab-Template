@@ -1,10 +1,7 @@
 # Lab 2 Interrupts: Fire Alarm!
 
 ## Objective
-    Understand how to use the [Espressif GPIO interrupts](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio). This lab will consist
-    of simulating your own **fire alarm**!!! There is an additional driver that was developed 
-    to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down
-    configuration.
+* Understand how to use the [Espressif GPIO interrupts](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#api-reference-normal-gpio). This lab will consist of simulating your own **fire alarm**!!! There is an additional driver that was developed  to facilitate the use of LEDs. Student must use 2 external interrupts either pull-up or pull-down configuration.
 
 ## Bonus
 - **Undergrad Bonus:**
@@ -41,7 +38,7 @@
 ~~~
 
 ## Example
-Here is an example of a how to use ESP32 GPIO advance setup. The following code will toggle the onboard LED if button is pressed and have a external LED toggling every half second.
+Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led if the button is pressed.
 
 ~~~c
 #include <stdio.h>
@@ -125,7 +122,7 @@ void app_main() {
 ~~~
 
 ## LED driver Example
-Here is an example of a how to use the led driver.
+Here is an example of a how to use the [led driver](@ref Lab_2/main/driver/led.h).
 ~~~c
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -243,7 +240,7 @@ void app_main(void)
 
 ## C helpful functions
 
-For this lab, there are a couple of additional functions from `Espressif` that are important for using inputs. In the previous lab, we had used `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` set our inputs and outputs. However, will now use a different approach by using `gpio_config_t`. This new apporach allows to create input and output in a more condense fashion with structures. The structure has various members with their own data types. Please look into them inorder select the correct value when developing the lab.
+For this lab, there are a couple of additional functions from `Espressif` that are important for using inputs. In the previous lab, we had used `gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)` set our inputs and outputs. However, will now use a different approach by using `gpio_config_t`. This new apporach allows users to create inputs and outputs in a more condense fashion with structures. The structure has various members with their own data types. Please look into them in order to select the correct values when developing the lab.
 ~~~c 
 typedef struct {
     uint64_t pin_bit_mask;          /*!< GPIO pin: set with bit mask, each bit maps to a GPIO */
@@ -255,28 +252,25 @@ typedef struct {
 ~~~
 
 There are significant difference in how to set the interrupts. Here is a brief description of pull-up and pull-down to help you for the lab.
-
+<div align='center'>
 | Interrupt Configuration | Description     | Logic             |
 | :---                    | :---            | :---              |
 | **Pull-up**             | Falling edge    | **1** -> **0**    |
 | **Pull-down**           | Rising edge     | **0** -> **1**    |
+</div>
 
 For this lab will we keep the interrupt flag to its default settings which would be `0`. In order to set the interrupt flag, the following function is required: `gpio_install_isr_service(int intr_alloc_flags)`.
 ~~~c
 esp_err_t gpio_install_isr_service(int intr_alloc_flags)
 ~~~
 
-Lastly, `static void IRAM_ATTR gpio_isr_handler(void* arg)` is the interrupt service routine and can be alter if necessary as long as it has `IRAM_ATTR` which indicated its an interrupt. Also, in order to add any input to enter the interrupt routine, you must `add` it to isr handler:  `gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)`.
+Lastly, `static void IRAM_ATTR gpio_isr_handler(void* arg)` is the interrupt service routine and can be modified if necessary as long as it has `IRAM_ATTR` which itis required for interrupts. Also, in order to add any input to enter the interrupt routine, you must `add` it to isr handler: `gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)`.
 ~~~c
 esp_err_t gpio_isr_handler_add(gpio_num_t gpio_num, gpio_isr_t isr_handler, void *args)
 ~~~
 
-### Pull-up and Pull-down Configuration
-
-<img width="413" alt="button configuation" src="button_config.png">
-
 ## Warning
-The bit mask in `gpio_config_t` is an `uint64_t` value and ESP32 uses `enum` for its pinout. Therefore, in order to mask the bits correctly you must bit shift desire pin by an unsigned long long (`ULL`). 
+The bit mask in `gpio_config_t` is an `uint64_t` value and ESP32 uses `enum` for its pinout. Therefore, in order to mask the bits correctly you must bit shift the desire pin by an unsigned long long (`ULL`). 
 ```c
 #define ONBOARD_LED     2 /* ESP32 onboard led */
 uint64_t bitmask = (1ULL << ONBOARD_LED); /* Convert onboard led value to unsigned long long */
