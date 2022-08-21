@@ -11,7 +11,7 @@
 
 ## **Objective**
 
-* The objective for this lab understand how to use Espressif [`DAC`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/dac.html) driver. Digital to Analog Converter (DAC) is a peripheral that converts to digital signals to analog signals. The ESP32 has *DAC* of 8-bit resolution ranging from 0-255 bit value or 0.0-3.3V. ESP32 has **only** two DAC channels: channel 1 (GPIO 25) and channel 2 (GPIO 26). Students must generate a triangle wave with `channel 1` and sine wave with `channel 2`.
+* The objective for this is to lab understand how to use Espressif [`DAC`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/dac.html) driver. Digital to Analog Converter (DAC) is a peripheral that converts digital signals to analog signals. The ESP32 has *DAC* of 8-bit resolution ranging from 0-255 bit value or 0.0-3.3V. ESP32 has **only** two DAC channels: channel 1 (GPIO 25) and channel 2 (GPIO 26). Students must generate a triangle wave with `channel 1` and sine wave with `channel 2`.
 
 | Tasks         |   Description                       |
 | :---          |   :---                              |
@@ -79,9 +79,9 @@ void createSquareWave(void *pvParameters){
     dac_output_enable(DAC_CHANNEL_1);
     while(1){
         /* Generate square wave */
-        dac_output_voltage(DAC_CHANNEL_2, 255); /* DAC max output: 3.3v */
+        dac_output_voltage(DAC_CHANNEL_1, 255); /* DAC max output: 3.3v */
         vTaskDelay(100/portTICK_PERIOD_MS); /* 100ms */
-        dac_output_voltage(DAC_CHANNEL_2, 0);   /* DAC min output: 0v*/
+        dac_output_voltage(DAC_CHANNEL_1, 0);   /* DAC min output: 0v*/
         vTaskDelay(10/portTICK_PERIOD_MS); /* 100ms */
     }
 }
@@ -151,8 +151,8 @@ void app_main()
 
 ## **C helpful functions**
 
-For this Lab, there is two additional function from Espressif that are important to use DAC peripheral. 
-As previously mentioned before, ESP32 has **2** DAC channels. The channel is enable by using: `dac_output_enable(dac_channel_t channel)`. `dac_channel_t` is an enumeration that is provided down below. Please select the correct channel based on the GPIO pin. 
+For this Lab, there is two additional functions from Espressif that are important to use DAC peripheral. 
+As previously mentioned, ESP32 has **2** DAC channels. The channel is enable by using: `dac_output_enable(dac_channel_t channel)`. `dac_channel_t` is an enumeration that is provided down below. Please select the correct channel based on the GPIO pin and hardware. 
 ~~~c
 typedef enum {
     DAC_CHANNEL_1 = 0,    /*!< DAC channel 1 is GPIO25(ESP32) / GPIO17(ESP32S2) */
@@ -160,7 +160,7 @@ typedef enum {
     DAC_CHANNEL_MAX,
 } dac_channel_t;
 ~~~
-Finally, the following function is use to produce an DAC output: `dac_output_voltage(dac_channel_t channel, uint8_t dac_value)`. The DAC output value has a 8-bit resolution, please see the table provide in *Objective* section. 
+Finally, the following function is use to produce a DAC output: `dac_output_voltage(dac_channel_t channel, uint8_t dac_value)`. The DAC output value has a 8-bit resolution, please see the table provide in *Objective* section. 
 
 ## **Additional Links**
 * [Espressif GPIO Driver API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#)

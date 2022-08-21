@@ -6,8 +6,8 @@
 
     Lab 8: 
         Objective:
-            The objective for this lab understand how to use Espressif `DAC` driver. Digital to Analog Converter (DAC) is
-            a peripheral that converts to digital signals to analog signals. The ESP32 has DAC of 8-bit resolution ranging
+            The objective for this is to lab understand how to use Espressif `DAC` driver. Digital to Analog Converter (DAC) is
+            a peripheral that converts digital signals to analog signals. The ESP32 has DAC of 8-bit resolution ranging
             from 0-255 bit value or 0.0-3.3V. ESP32 has only two DAC channels: channel 1 (GPIO 25) and channel 2 (GPIO 26). 
             Students must generate a triangle wave with `channel 1` and sine wave with `channel 2`.
 
