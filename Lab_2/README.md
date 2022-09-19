@@ -114,7 +114,7 @@ void gpio_setup(void) {
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
 
     /* Add ISR handler */
-    gpio_isr_handler_add(BUTTON, gpio_isr_handler, (void*) BUTTON); 
+    gpio_isr_handler_add(BUTTON, gpio_isr_handler, (void*) ONBOARD_LED)); 
 
 }
 void app_main() {
