@@ -10,7 +10,7 @@
 # **Lab 1 LED Controller :zap:**
 
 ## **Objective**
-* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additional led sequence that the student developed and be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have complete from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
+* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additional led sequence that the student developed and be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have completed from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
 
 | Button | Function     | Mode      |
 | :---   |  :---        | :---      |
