@@ -171,6 +171,7 @@ ESP32 Pinout</h1>
 Example</h1>
 <p >Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led if the button is pressed.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span> </div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span> </div>
 <div class="line"><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
@@ -186,7 +187,9 @@ Example</h1>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> toggle(gpio_num_t pin){</div>
 <div class="line">    <span class="comment">/* Get current level and toggle LED */</span></div>
-<div class="line">    gpio_get_level(pin) ? gpio_set_level(pin, <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a>) : gpio_set_level(pin, <a class="code hl_define" href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>);</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">bool</span> on;  </div>
+<div class="line">    gpio_set_level(pin, on);</div>
+<div class="line">    on = !on;</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* GPIO interrupt handler */</span></div>
@@ -243,10 +246,8 @@ Example</h1>
 <div class="line"> </div>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__10_2main_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdef"><b>Definition:</b> main.c:316</div></div>
-<div class="ttc" id="a_lab__0_2main_2main_8c_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> main.c:28</div></div>
-<div class="ttc" id="a_lab__0_2main_2main_8c_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="../../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> main.c:27</div></div>
-<div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:30</div></div>
-<div class="ttc" id="a_lab__2_2main_2main_8c_html_af8baf7d9859733667317e58c0ff707d1"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a></div><div class="ttdeci">#define ESP_INTR_FLAG_DEFAULT</div><div class="ttdef"><b>Definition:</b> main.c:28</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_a547f7691f0e83d2e9fd22bf5b3c08b0a"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a></div><div class="ttdeci">#define ONBOARD_LED</div><div class="ttdef"><b>Definition:</b> main.c:31</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_af8baf7d9859733667317e58c0ff707d1"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a></div><div class="ttdeci">#define ESP_INTR_FLAG_DEFAULT</div><div class="ttdef"><b>Definition:</b> main.c:29</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md36"></a>
 LED driver Example</h1>
 <p >Here is an example of a how to use the <a class="el" href="../../db/da0/led_8h.html">led driver</a>. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -356,11 +357,11 @@ Lab Template</h1>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">}</div>
-<div class="ttc" id="a_lab__2_2main_2main_8c_html_a83e34c167ff267499a76636ec568a1c9"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a83e34c167ff267499a76636ec568a1c9">fire_alarm_interrupt_setup</a></div><div class="ttdeci">void fire_alarm_interrupt_setup(fire_alarm_t *const alarm)</div><div class="ttdoc">Set up fire alarm interrupt.</div><div class="ttdef"><b>Definition:</b> main.c:66</div></div>
-<div class="ttc" id="a_lab__2_2main_2main_8c_html_af95f3e6cbe25afb526761258f1b12056"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#af95f3e6cbe25afb526761258f1b12056">utep_alarm</a></div><div class="ttdeci">fire_alarm_t utep_alarm</div><div class="ttdef"><b>Definition:</b> main.c:49</div></div>
-<div class="ttc" id="astructfire__alarm__t_html"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html">fire_alarm_t</a></div><div class="ttdoc">Fire alarm object.</div><div class="ttdef"><b>Definition:</b> main.c:41</div></div>
-<div class="ttc" id="astructfire__alarm__t_html_a2c671aea37ed0d915f0660a950936e54"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html#a2c671aea37ed0d915f0660a950936e54">fire_alarm_t::smokeDetector</a></div><div class="ttdeci">gpio_num_t smokeDetector</div><div class="ttdef"><b>Definition:</b> main.c:43</div></div>
-<div class="ttc" id="astructfire__alarm__t_html_a4afb679790ccaa02ebc3ff69cc0ad2aa"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html#a4afb679790ccaa02ebc3ff69cc0ad2aa">fire_alarm_t::active</a></div><div class="ttdeci">bool active</div><div class="ttdef"><b>Definition:</b> main.c:45</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_a83e34c167ff267499a76636ec568a1c9"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#a83e34c167ff267499a76636ec568a1c9">fire_alarm_interrupt_setup</a></div><div class="ttdeci">void fire_alarm_interrupt_setup(fire_alarm_t *const alarm)</div><div class="ttdoc">Set up fire alarm interrupt.</div><div class="ttdef"><b>Definition:</b> main.c:67</div></div>
+<div class="ttc" id="a_lab__2_2main_2main_8c_html_af95f3e6cbe25afb526761258f1b12056"><div class="ttname"><a href="../../d2/d6b/_lab__2_2main_2main_8c.html#af95f3e6cbe25afb526761258f1b12056">utep_alarm</a></div><div class="ttdeci">fire_alarm_t utep_alarm</div><div class="ttdef"><b>Definition:</b> main.c:50</div></div>
+<div class="ttc" id="astructfire__alarm__t_html"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html">fire_alarm_t</a></div><div class="ttdoc">Fire alarm object.</div><div class="ttdef"><b>Definition:</b> main.c:42</div></div>
+<div class="ttc" id="astructfire__alarm__t_html_a2c671aea37ed0d915f0660a950936e54"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html#a2c671aea37ed0d915f0660a950936e54">fire_alarm_t::smokeDetector</a></div><div class="ttdeci">gpio_num_t smokeDetector</div><div class="ttdef"><b>Definition:</b> main.c:44</div></div>
+<div class="ttc" id="astructfire__alarm__t_html_a4afb679790ccaa02ebc3ff69cc0ad2aa"><div class="ttname"><a href="../../d8/db4/structfire__alarm__t.html#a4afb679790ccaa02ebc3ff69cc0ad2aa">fire_alarm_t::active</a></div><div class="ttdeci">bool active</div><div class="ttdef"><b>Definition:</b> main.c:46</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md38"></a>
 C helpful functions</h1>
 <p >For this lab, there are a couple of additional functions from <code>Espressif</code> that are important for using inputs. In the previous lab, we had used <code>gpio_set_direction(gpio_num_t gpio_num, gpio_mode_t mode)</code> set our inputs and outputs. However, will now use a different approach by using <code>gpio_config_t</code>. This new apporach allows users to create inputs and outputs in a more condense fashion with structures. The structure has various members with their own data types. Please look into them in order to select the correct values when developing the lab. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
