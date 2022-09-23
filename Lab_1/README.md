@@ -10,7 +10,7 @@
 # **Lab 1 LED Controller :zap:**
 
 ## **Objective**
-* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additionals led sequence that the student developed and be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have complete from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
+* Understand how to use the gpio driver library from [`Espressif`](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#). The lab will consist of using a `sweeper`, `led chaser` and any additional led sequence that the student developed and be selected via an input. Students must have a total of three buttons. First button must start `sweeper` function which student must have complete from the previous lab. Next, the second button must start the `led chaser` function. Lastly, the third button must toggle the state of the onboard led.
 
 | Button | Function     | Mode      |
 | :---   |  :---        | :---      |
@@ -65,7 +65,7 @@ Here is an example of how to use ESP32 GPIO function calls for inputs. The follo
 #define HIGH 1  /* LOGIC HIGH*/
 #define ONBOARD_LED 2 /* ONBOARD LED GPIO Pin*/
 
-#define BUTTON_0 23 /* Button 1 */
+#define BUTTON_0 23 /* Button 0 */
 
 void app_main(void){
 
@@ -74,7 +74,7 @@ void app_main(void){
   gpio_set_direction(ONBOARD_LED, GPIO_MODE_OUTPUT); /* set as output */
 
   /* Intialize INPUTs */
-  esp_rom_gpio_pad_select_gpio(BUTTON_1); /* select GPIO pin */
+  esp_rom_gpio_pad_select_gpio(BUTTON_0); /* select GPIO pin */
   gpio_set_direction(BUTTON_0, GPIO_MODE_INPUT); /* set as input */
   gpio_set_pull_mode(BUTTON_0, GPIO_PULLDOWN_ONLY); /* set as pull-down */
 
