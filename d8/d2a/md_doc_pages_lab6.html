@@ -242,7 +242,7 @@ Example</h1>
 <div class="line">    gpio_install_isr_service(<a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#af8baf7d9859733667317e58c0ff707d1">ESP_INTR_FLAG_DEFAULT</a>);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Add ISR handler */</span></div>
-<div class="line">    gpio_isr_handler_add(BUTTON, gpio_isr_handler, (<span class="keywordtype">void</span>*) BUTTON); </div>
+<div class="line">    gpio_isr_handler_add(BUTTON, gpio_isr_handler, (<span class="keywordtype">void</span>*) <a class="code hl_define" href="../../d2/d6b/_lab__2_2main_2main_8c.html#a547f7691f0e83d2e9fd22bf5b3c08b0a">ONBOARD_LED</a>); </div>
 <div class="line"> </div>
 <div class="line">}</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>() {</div>
