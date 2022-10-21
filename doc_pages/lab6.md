@@ -73,7 +73,9 @@ Here is an example of how to use ESP32 GPIO advance setup. The following code wi
  */
 void toggle(gpio_num_t pin){
     /* Get current level and toggle LED */
-    gpio_get_level(pin) ? gpio_set_level(pin, LOW) : gpio_set_level(pin, HIGH);
+    static bool on;
+    gpio_set_level(pin, on);
+    on = !on;
 }
 
 /* GPIO interrupt handler */
