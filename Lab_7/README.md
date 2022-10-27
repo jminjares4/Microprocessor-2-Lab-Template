@@ -150,7 +150,7 @@ void pwm_setup(void){
                         GPIO_21
                         LOW_SPEED
                         TIMER_1
-                        LOW_SPEED
+                        INTERRUPT_DISABLE
                         0 duty
                         Max duty 
     */
