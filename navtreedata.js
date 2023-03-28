@@ -170,6 +170,14 @@ var NAVTREE =
         [ "Author", "d8/d5e/md_doc_pages_lab12.html#autotoc_md133", null ]
       ] ]
     ] ],
+    [ "Lab 13: Assignment of Task to Cores", "d2/df1/md_doc_pages_lab13.html", [
+      [ "Objective", "d2/df1/md_doc_pages_lab13.html#autotoc_md135", [
+        [ "ESP32 Pinout", "d2/df1/md_doc_pages_lab13.html#autotoc_md136", null ]
+      ] ],
+      [ "Pre-lab", "d2/df1/md_doc_pages_lab13.html#autotoc_md137", null ],
+      [ "Lab Template", "d2/df1/md_doc_pages_lab13.html#autotoc_md138", null ],
+      [ "Author", "d2/df1/md_doc_pages_lab13.html#autotoc_md139", null ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -195,7 +203,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"df/dad/md_doc_pages_additional_labs.html#autotoc_md115"
+"de/d6a/md_doc_pages_lab2.html#autotoc_md41"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
