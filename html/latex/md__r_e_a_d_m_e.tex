@@ -1,0 +1,88 @@
+
+
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md0}{}\doxysection{$<$strong$>$\+Microprocessor-\/2-\/\+Lab-\/\+Template \+:zap\+:$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md0}
+
+
+\href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/main.yml}{\texttt{ }} \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/actions/workflows/pages/pages-build-deployment}{\texttt{ }} \href{https://jminjares4.github.io/Microprocessor-2-Lab-Template}{\texttt{ }}
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{$<$strong$>$\+Objective$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md1}
+The objective of these labs is to provide more interactive tasks for students to be engaged in Microprocessor 2. Some labs will be reused from the previous semester but with better documentation.\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{$<$strong$>$\+Setup$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Students must have an {\ttfamily ESP32}
+\item Install either {\ttfamily Visual Studio Code} or {\ttfamily Eclipse} 
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{$<$strong$>$\+Installation$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Window\textquotesingle{}s Linux Subsystem, Mac\+OS, or Linux
+\begin{DoxyItemize}
+\item Use the following link to install all the dependencies in the terminal and follow the guide\+: \href{https://github.com/jminjares4/ESP32_Installation}{\texttt{ ESP32 Installation}}
+\end{DoxyItemize}
+\item Window
+\begin{DoxyItemize}
+\item Link to install ESP-\/\+IDF Windows Installer\+: \href{https://dl.espressif.com/dl/esp-idf/?idf=4.4}{\texttt{ Window Installer}}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{$<$strong$>$\+Submodules$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git submodule update -\/-\/init -\/-\/recursive}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{$<$strong$>$\+Labs$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_0}{\texttt{ Lab 0 Lightshow}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_1}{\texttt{ Lab 1 LED Controller with Inputs}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_2}{\texttt{ Lab 2 Interrupts\+: Fire Alarm!}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_3}{\texttt{ Lab 3 Introduction to Free\+RTOS}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_4}{\texttt{ Lab 4 Free\+RTOS\+: Semaphores}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_5}{\texttt{ Lab 5 Free\+RTOS\+: Queue}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_6}{\texttt{ Lab 6 GPIO, Interrupts, and Queues}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7}{\texttt{ Lab 7 Peripheral and Queues\+: ADC and PWM (LEDC)}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_8}{\texttt{ Lab 8 DAC Peripheral}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs}{\texttt{ Additional Labs}}
+\begin{DoxyItemize}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_9}{\texttt{ Lab 9 Wi\+Fi and Internet of Things (IOT)}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_10}{\texttt{ Lab 10 Wi\+Fi and Internet of Things (IOT)\+: Servo Motor Control}}
+\item \href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Additional_Labs/Lab_11}{\texttt{ Lab 11 Wi\+Fi and Internet of Things (IOT)\+: ADC Monitor}}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{$<$strong$>$\+Development$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md6}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Microcontroller   }&\cellcolor{\tableheadbgcolor}\textbf{ Software   }&\cellcolor{\tableheadbgcolor}\textbf{ Enviroment   }&\cellcolor{\tableheadbgcolor}\textbf{ Operating System    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Microcontroller   }&\cellcolor{\tableheadbgcolor}\textbf{ Software   }&\cellcolor{\tableheadbgcolor}\textbf{ Enviroment   }&\cellcolor{\tableheadbgcolor}\textbf{ Operating System    }\\\cline{1-4}
+\endhead
+   &   &   &   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{$<$strong$>$\+License and Release$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md7}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{License}}   }&\cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Release}}    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{License}}   }&\cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Release}}    }\\\cline{1-2}
+\endhead
+\href{https://opensource.org/licenses/MIT}{\texttt{ }}   &\href{https://github.com/jminjares4/Microprocessor-2-Lab-Template/releases}{\texttt{ }}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsubsection{$<$strong$>$\+Authors$<$/strong$>$}\label{md__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/jminjares4}{\texttt{ {\bfseries{Jesus Minjares}}}}
+\begin{DoxyItemize}
+\item {\bfseries{Master of Science in Computer Engineering}} ~\newline
+ \href{https://www.linkedin.com/in/jesusminjares/}{\texttt{ }} \href{https://github.com/jminjares4}{\texttt{ }}
+\end{DoxyItemize}
+\item \href{https://github.com/eabaca2419}{\texttt{ {\bfseries{Erick Baca}}}}
+\begin{DoxyItemize}
+\item {\bfseries{Master of Science in Computer Engineering}} ~\newline
+ \href{https://www.linkedin.com/in/erick-baca/}{\texttt{ }} \href{https://github.com/eabaca2419}{\texttt{ }} 
+\end{DoxyItemize}
+\end{DoxyItemize}
