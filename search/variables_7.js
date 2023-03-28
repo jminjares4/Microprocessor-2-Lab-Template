@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['xqueue_0',['xQueue',['../d2/d61/_lab__5_2main_2main_8c.html#aa78b6121b7586233293fb6cba5e19206',1,'xQueue():&#160;main.c'],['../d1/d59/_lab__6_2main_2main_8c.html#aa78b6121b7586233293fb6cba5e19206',1,'xQueue():&#160;main.c']]],
-  ['xsemaphore_1',['xSemaphore',['../db/de2/_lab__4_2main_2main_8c.html#a0639b448c4862618f597670523ef9975',1,'main.c']]]
+  ['val_0',['val',['../dd/d65/struct_undergaduate__t.html#ae4342fe53e1946bcb26422fb9d886178',1,'Undergaduate_t::val()'],['../d5/de6/struct_graduate__t.html#afd7727bb95f8557602fece0e98fb0b32',1,'Graduate_t::val()']]]
 ];

@@ -25,17 +25,7 @@
 var NAVTREE =
 [
   [ "Microprocessor 2 Labs", "index.html", [
-    [ "Main Page", "index.html", [
-      [ "Objective", "index.html#autotoc_md1", null ],
-      [ "Setup", "index.html#autotoc_md2", null ],
-      [ "Installation", "index.html#autotoc_md3", null ],
-      [ "Submodules", "index.html#autotoc_md4", null ],
-      [ "Labs", "index.html#autotoc_md5", null ],
-      [ "Development", "index.html#autotoc_md6", null ],
-      [ "License and Release", "index.html#autotoc_md7", [
-        [ "Authors", "index.html#autotoc_md8", null ]
-      ] ]
-    ] ],
+    [ "Main Page", "index.html", "index" ],
     [ "Lab 0 LED Lightshow", "dd/d8f/md_doc_pages_lab0.html", [
       [ "Objective", "dd/d8f/md_doc_pages_lab0.html#autotoc_md10", null ],
       [ "Bonus", "dd/d8f/md_doc_pages_lab0.html#autotoc_md11", null ],
@@ -169,6 +159,17 @@ var NAVTREE =
       ] ],
       [ "Authors", "df/dad/md_doc_pages_additional_labs.html#autotoc_md124", null ]
     ] ],
+    [ "Lab 12 UART and LEDC (PWM)", "d8/d5e/md_doc_pages_lab12.html", [
+      [ "Objective", "d8/d5e/md_doc_pages_lab12.html#autotoc_md126", null ],
+      [ "Bonus", "d8/d5e/md_doc_pages_lab12.html#autotoc_md127", [
+        [ "ESP32 Pinout", "d8/d5e/md_doc_pages_lab12.html#autotoc_md128", null ],
+        [ "Example", "d8/d5e/md_doc_pages_lab12.html#autotoc_md129", null ],
+        [ "Lab Template", "d8/d5e/md_doc_pages_lab12.html#autotoc_md130", null ],
+        [ "C Helpful Functions", "d8/d5e/md_doc_pages_lab12.html#autotoc_md131", null ],
+        [ "Additional Links", "d8/d5e/md_doc_pages_lab12.html#autotoc_md132", null ],
+        [ "Author", "d8/d5e/md_doc_pages_lab12.html#autotoc_md133", null ]
+      ] ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -194,7 +195,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"dir_49e1fc186c8eb8afa5934e2f203f3227.html"
+"df/dad/md_doc_pages_additional_labs.html#autotoc_md115"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
