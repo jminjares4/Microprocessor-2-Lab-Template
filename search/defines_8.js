@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['task_5fmemory_0',['TASK_MEMORY',['../d1/d29/_additional___labs_2_lab__12_2main_8c.html#afb0dda7d617e2076f8ea7d0fc28984e2',1,'main.c']]]
+  ['register_5fselect_5fpin_0',['REGISTER_SELECT_PIN',['../d1/dea/esp__lcd_8c.html#aaefbeda8643d2c9f65a0bc7bd31143b9',1,'esp_lcd.c']]]
 ];
