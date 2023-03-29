@@ -170,7 +170,7 @@ var NAVTREE =
         [ "Author", "d8/d5e/md_doc_pages_lab12.html#autotoc_md134", null ]
       ] ]
     ] ],
-    [ "Lab 13: Assignment of Task to Cores", "d2/df1/md_doc_pages_lab13.html", [
+    [ "Lab 13 Assignment of Task to Cores", "d2/df1/md_doc_pages_lab13.html", [
       [ "Objective", "d2/df1/md_doc_pages_lab13.html#autotoc_md136", [
         [ "ESP32 Pinout", "d2/df1/md_doc_pages_lab13.html#autotoc_md137", null ]
       ] ],

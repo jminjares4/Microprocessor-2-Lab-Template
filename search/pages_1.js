@@ -3,7 +3,7 @@ var searchData=
   ['lab_200_20led_20lightshow_0',['Lab 0 LED Lightshow',['../dd/d8f/md_doc_pages_lab0.html',1,'']]],
   ['lab_201_20led_20controller_1',['Lab 1 LED Controller',['../dd/d91/md_doc_pages_lab1.html',1,'']]],
   ['lab_2012_20uart_20and_20ledc_20_28pwm_29_2',['Lab 12 UART and LEDC (PWM)',['../d8/d5e/md_doc_pages_lab12.html',1,'']]],
-  ['lab_2013_3a_20assignment_20of_20task_20to_20cores_3',['Lab 13: Assignment of Task to Cores',['../d2/df1/md_doc_pages_lab13.html',1,'']]],
+  ['lab_2013_20assignment_20of_20task_20to_20cores_3',['Lab 13 Assignment of Task to Cores',['../d2/df1/md_doc_pages_lab13.html',1,'']]],
   ['lab_2014_20adc_20with_20lcd_4',['Lab 14 ADC with LCD',['../d1/d71/md_doc_pages_lab14.html',1,'']]],
   ['lab_202_20interrupts_3a_20fire_20alarm_21_5',['Lab 2 Interrupts: Fire Alarm!',['../de/d6a/md_doc_pages_lab2.html',1,'']]],
   ['lab_203_20introduction_20to_20freertos_6',['Lab 3 Introduction to FreeRTOS',['../d3/d14/md_doc_pages_lab3.html',1,'']]],
