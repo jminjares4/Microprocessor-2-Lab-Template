@@ -1,4 +1,4 @@
-# **Lab 13: Assignment of Task to Cores**
+# **Lab 13 Assignment of Task to Cores**
 
 # **Objective**
 The objective of this lab is to learn how to assign tasks to each of the cores manually. Up until now, you have been making tasks, but never had any control of the actual CPU core. In this lab, you will be assigning each task to the CPU core and will be using a semaphore for some of the tasks!

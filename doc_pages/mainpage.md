@@ -47,6 +47,10 @@ git submodule update --init --recursive
   - [Lab 9 WiFi and Internet of Things (IOT)](@ref LAB_9)
   - [Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control](@ref LAB_10)
   - [Lab 11 WiFi and Internet of Things (IOT): ADC Monitor](@ref LAB_11)
+  - [Lab 12 UART and LEDC (PWM)](lab12.md)
+  - [Lab 13 Assignment of Task to Cores](lab13.md)
+  - [Lab 14 ADC with LCD](lab14.md)
+
 
 ## Development
 |Microcontroller|Software|Enviroment|Operating System|
