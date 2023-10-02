@@ -104,7 +104,7 @@ void gpio_setup(void) {
     /* Input configuration */
     io_conf.intr_type = GPIO_INTR_POSEDGE;  /* Set up as Positive Edge */ 
     io_conf.mode = GPIO_MODE_INPUT;     /* Set pins as input */
-    io_conf.pin_bit_mask = (1ULL << BUTTON_0) | (1ULL << BUTTON_1) | (1ULL << BUTTON_1);  /* Add input bit mask */
+    io_conf.pin_bit_mask = (1ULL << BUTTON_0) | (1ULL << BUTTON_1) | (1ULL << BUTTON_2);  /* Add input bit mask */
     io_conf.pull_down_en = 1;   /* Enable pulldown */
     io_conf.pull_up_en = 0;     /* Disable pullup */
 
