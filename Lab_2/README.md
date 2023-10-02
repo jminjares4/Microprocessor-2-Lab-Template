@@ -47,7 +47,7 @@
 ~~~
 
 ## **Example**
-Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led and external button if they are pressed. THe example code uses to separate interrupts routines.
+Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led and external button if they are pressed. The example code uses to separate interrupts routines.
 
 ~~~c
 #include <stdio.h>
