@@ -38,7 +38,7 @@
 ~~~
 
 ## Example
-Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led if the button is pressed.
+Here is an example of how to use ESP32 GPIO advance setup. The following code will have an external LED toggling every half second and will toggle the onboard led and external button if they are pressed. The example code uses to separate interrupts routines.
 
 ~~~c
 #include <stdio.h>
@@ -54,7 +54,10 @@ Here is an example of how to use ESP32 GPIO advance setup. The following code wi
 
 #define ONBOARD_LED     2    /* onboard led pin  */
 #define EXTERNAL_LED    22   /* external led pin  */
-#define BUTTON          23   /* button pin  */
+#define BUTTON_0        23   /* button pin  */
+#define BUTTON_1        13   /* button pin  */
+#define BUTTON_2        12   /* button pin */
+
 
 /**
  * @brief Toggle gpio pin
@@ -69,13 +72,27 @@ void toggle(gpio_num_t pin){
     on = !on;
 }
 
-/* GPIO interrupt handler */
-static void IRAM_ATTR gpio_isr_handler(void* arg) {
+/* GPIO interrupt led handler  */
+static void IRAM_ATTR gpio_onboard_led_isr_handler(void* arg) {
     /* store argument */
     gpio_num_t gpio = (gpio_num_t) arg;
 
     /* toggle LED */
     toggle(gpio);
+
+}
+
+/* GPIO button interrupt handler */
+static void IRAM_ATTR gpio_button_isr_handler(void * arg){
+    /* store argument */
+    gpio_num_t gpio = (gpio_num_t) arg;
+
+    /* Check if button 0 was pressed */
+    if(gpio == BUTTON_1){
+        gpio_set_level(EXTERNAL_LED, LOW); /* Turn off led */
+    }else{ /* button 1 was pressed*/
+        gpio_set_level(EXTERNAL_LED, HIGH); /* Turn on led */
+    }
 
 }
 
@@ -87,7 +104,7 @@ void gpio_setup(void) {
     /* Input configuration */
     io_conf.intr_type = GPIO_INTR_POSEDGE;  /* Set up as Positive Edge */ 
     io_conf.mode = GPIO_MODE_INPUT;     /* Set pins as input */
-    io_conf.pin_bit_mask = (1ULL << BUTTON);  /* Add input bit mask */
+    io_conf.pin_bit_mask = (1ULL << BUTTON_0) | (1ULL << BUTTON_1) | (1ULL << BUTTON_2);  /* Add input bit mask */
     io_conf.pull_down_en = 1;   /* Enable pulldown */
     io_conf.pull_up_en = 0;     /* Disable pullup */
 
@@ -108,7 +125,11 @@ void gpio_setup(void) {
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
 
     /* Add ISR handler */
-    gpio_isr_handler_add(BUTTON, gpio_isr_handler, (void*) ONBOARD_LED); 
+    gpio_isr_handler_add(BUTTON_0, gpio_onboard_led_isr_handler, (void*) ONBOARD_LED); 
+
+    /* Add ISR handler for buttons */
+    gpio_isr_handler_add(BUTTON_1, gpio_button_isr_handler, (void*) BUTTON_1);
+    gpio_isr_handler_add(BUTTON_2, gpio_button_isr_handler, (void*) BUTTON_2); 
 
 }
 void app_main() {
@@ -123,6 +144,7 @@ void app_main() {
 
 }
 ~~~
+> Use IRAM_ATTR for any function that will use as interrupt routine.
 
 ## LED driver Example
 Here is an example of a how to use the [led driver](@ref Lab_2/main/driver/led.h).
