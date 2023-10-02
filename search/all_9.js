@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['indicator_0',['indicator',['../d8/db4/structfire__alarm__t.html#afa6426d2dff3ffd596c4d09437923c57',1,'fire_alarm_t']]],
-  ['isledon_1',['isLedOn',['../d5/de6/struct_graduate__t.html#a20207fb7b2479f4dc4d6ff2d521b96f3',1,'Graduate_t']]]
+  ['9_20github_0',['Lab 9 GitHub',['../d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md116',1,'']]],
+  ['9_20wifi_20and_20internet_20of_20things_20iot_1',['Lab 9 WiFi and Internet of Things (IOT)',['../d9/dbe/md_doc__pages_2additional__labs.html#LAB_9',1,'']]]
 ];

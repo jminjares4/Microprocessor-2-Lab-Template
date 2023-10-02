@@ -1,8 +1,13 @@
 <map id="Lab_6/main/main.c" name="Lab_6/main/main.c">
-<area shape="rect" id="node1" title=" " alt="" coords="243,5,375,31"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,79,65,104"/>
-<area shape="rect" id="node3" title=" " alt="" coords="89,79,232,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="256,79,361,104"/>
-<area shape="rect" id="node5" title=" " alt="" coords="386,79,501,104"/>
-<area shape="rect" id="node6" title=" " alt="" coords="525,79,617,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="240,5,371,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,65,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,34,81,81,79,75,257,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="88,79,230,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="282,34,199,74,197,69,280,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="254,79,358,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="308,31,308,63,303,63,303,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="382,79,496,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="330,29,404,69,402,74,327,34"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="520,79,611,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="350,29,507,72,506,77,349,34"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="Lab_2/main/driver/led.h" name="Lab_2/main/driver/led.h">
-<area shape="rect" id="node1" title="Custom LED driver header file." alt="" coords="5,5,163,31"/>
-<area shape="rect" id="node2" title=" " alt="" coords="38,79,130,104"/>
+<area shape="rect" id="Node000001" title="Custom LED driver header file." alt="" coords="5,5,162,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="38,79,129,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,31,86,63,81,63,81,31"/>
 </map>

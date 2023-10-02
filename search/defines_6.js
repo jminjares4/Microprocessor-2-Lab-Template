@@ -7,5 +7,5 @@ var searchData=
   ['lcd_5fok_4',['LCD_OK',['../d8/d8e/esp__lcd_8h.html#a7246e715a8e53f519569b649e6ce733d',1,'esp_lcd.h']]],
   ['led_5fhigh_5',['LED_HIGH',['../de/dbb/led_8c.html#a6571e43ee2707aed7540119a848a0275',1,'led.c']]],
   ['led_5flow_6',['LED_LOW',['../de/dbb/led_8c.html#a50886ad5e11e48392cbf52b05a0b6c1f',1,'led.c']]],
-  ['low_7',['LOW',['../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289',1,'LOW():&#160;main.c'],['../d7/d62/_lab__1_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289',1,'LOW():&#160;main.c']]]
+  ['low_7',['low',['../d3/db7/_lab__0_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289',1,'LOW:&#160;main.c'],['../d7/d62/_lab__1_2main_2main_8c.html#ab811d8c6ff3a505312d3276590444289',1,'LOW:&#160;main.c']]]
 ];

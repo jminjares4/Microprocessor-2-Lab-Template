@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['pin_0',['pin',['../d0/dbe/structled__t.html#ac9e5f6e409f17ed146f5fbbaccbaa59e',1,'led_t']]],
-  ['print_5ftask_1',['print_task',['../d1/d59/_lab__6_2main_2main_8c.html#acb72179382d32fb25e469ceb9ce94fe3',1,'main.c']]],
-  ['pwm_5fsetup_2',['pwm_setup',['../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1',1,'main.c']]],
-  ['pwmtask_3',['PWMtask',['../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32',1,'main.c']]]
+  ['blink_5fgpio_0',['blink_gpio',['../d5/da6/_lab__3_2main_2main_8c.html#ab795a48e4796e4b0fca47a1341469d12',1,'BLINK_GPIO:&#160;main.c'],['../dd/d0f/_additional___labs_2_lab__9_2main_8c.html#ab795a48e4796e4b0fca47a1341469d12',1,'BLINK_GPIO:&#160;main.c']]],
+  ['blinky_5ftask_1',['blinky_task',['../d5/da6/_lab__3_2main_2main_8c.html#a65c29b6292296c5ae374d213f34afc33',1,'main.c']]],
+  ['bonus_2',['bonus',['../d8/d9d/md_doc__pages_2lab14.html#autotoc_md143',1,'Bonus'],['../d4/d5d/md_doc__pages_2lab12.html#autotoc_md128',1,'Bonus'],['../d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md122',1,'Bonus'],['../d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md118',1,'Bonus'],['../d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md114',1,'Bonus'],['../d2/d74/md_doc__pages_2lab8.html#autotoc_md101',1,'Bonus'],['../da/d9c/md_doc__pages_2lab7.html#autotoc_md90',1,'Bonus'],['../d1/de9/md_doc__pages_2lab6.html#autotoc_md79',1,'Bonus'],['../d4/d01/md_doc__pages_2lab5.html#autotoc_md67',1,'Bonus'],['../db/da2/md_doc__pages_2lab4.html#autotoc_md56',1,'Bonus'],['../d1/d29/md_doc__pages_2lab3.html#autotoc_md46',1,'Bonus'],['../d9/db4/md_doc__pages_2lab2.html#autotoc_md33',1,'Bonus'],['../d9/d43/md_doc__pages_2lab1.html#autotoc_md22',1,'Bonus'],['../d8/d2a/md_doc__pages_2lab0.html#autotoc_md11',1,'Bonus']]],
+  ['buf_5fsize_3',['BUF_SIZE',['../d1/d29/_additional___labs_2_lab__12_2main_8c.html#a6821bafc3c88dfb2e433a095df9940c6',1,'main.c']]]
 ];

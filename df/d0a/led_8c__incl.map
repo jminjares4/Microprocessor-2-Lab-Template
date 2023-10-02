@@ -1,6 +1,10 @@
 <map id="Lab_2/main/led.c" name="Lab_2/main/led.c">
-<area shape="rect" id="node1" title="Custom LED driver source file." alt="" coords="67,5,189,31"/>
-<area shape="rect" id="node2" href="$db/da0/led_8h.html" title="Custom LED driver header file." alt="" coords="5,79,91,104"/>
-<area shape="rect" id="node3" title=" " alt="" coords="42,152,134,177"/>
-<area shape="rect" id="node4" title=" " alt="" coords="165,79,288,104"/>
+<area shape="rect" id="Node000001" title="Custom LED driver source file." alt="" coords="67,5,188,31"/>
+<area shape="rect" id="Node000002" href="$db/da0/led_8h.html" title="Custom LED driver header file." alt="" coords="5,79,90,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,34,74,71,70,67,112,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="42,153,133,178"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="127,32,97,138,92,137,122,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="165,79,287,105"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="146,29,199,68,196,72,143,34"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="56,104,76,138,71,140,52,106"/>
 </map>

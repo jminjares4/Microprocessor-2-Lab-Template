@@ -1,4 +1,5 @@
 <map id="fire_alarm_t" name="fire_alarm_t">
-<area shape="rect" id="node1" title="Fire alarm object." alt="" coords="5,160,127,267"/>
-<area shape="rect" id="node2" href="$d0/dbe/structled__t.html" title="LED object." alt="" coords="35,5,97,97"/>
+<area shape="rect" id="Node000001" title="Fire alarm object." alt="" coords="5,154,117,259"/>
+<area shape="rect" id="Node000002" href="$d0/dbe/structled__t.html" title="LED object." alt="" coords="35,5,87,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,91,64,137,59,137,59,91"/>
 </map>

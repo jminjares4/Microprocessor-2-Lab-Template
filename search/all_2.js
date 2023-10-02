@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['blink_5fgpio_0',['BLINK_GPIO',['../dd/d0f/_additional___labs_2_lab__9_2main_8c.html#ab795a48e4796e4b0fca47a1341469d12',1,'BLINK_GPIO():&#160;main.c'],['../d5/da6/_lab__3_2main_2main_8c.html#ab795a48e4796e4b0fca47a1341469d12',1,'BLINK_GPIO():&#160;main.c']]],
-  ['blinky_5ftask_1',['blinky_task',['../d5/da6/_lab__3_2main_2main_8c.html#a65c29b6292296c5ae374d213f34afc33',1,'main.c']]],
-  ['buf_5fsize_2',['BUF_SIZE',['../d1/d29/_additional___labs_2_lab__12_2main_8c.html#a6821bafc3c88dfb2e433a095df9940c6',1,'main.c']]]
+  ['2_0',['2',['../db/da2/md_doc__pages_2lab4.html#autotoc_md59',1,'Example 2'],['../d4/d01/md_doc__pages_2lab5.html#autotoc_md70',1,'Example 2'],['../da/d9c/md_doc__pages_2lab7.html#autotoc_md93',1,'Example 2']]],
+  ['2_20interrupts_3a_20fire_20alarm_1',['Lab 2 Interrupts: Fire Alarm!',['../d9/db4/md_doc__pages_2lab2.html',1,'']]]
 ];

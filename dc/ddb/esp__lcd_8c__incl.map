@@ -1,11 +1,19 @@
 <map id="Additional_Labs/Lab_14/esp_lcd.c" name="Additional_Labs/Lab_14/esp_lcd.c">
-<area shape="rect" id="node1" title="Liquid Crystal Display source file." alt="" coords="327,5,469,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,65,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="90,93,154,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="179,93,321,119"/>
-<area shape="rect" id="node5" title=" " alt="" coords="345,93,451,119"/>
-<area shape="rect" id="node6" title=" " alt="" coords="475,93,598,119"/>
-<area shape="rect" id="node7" href="$d8/d8e/esp__lcd_8h.html" title="Liquid Crystal Display header file." alt="" coords="622,93,699,119"/>
-<area shape="rect" id="node9" title=" " alt="" coords="723,93,801,119"/>
-<area shape="rect" id="node8" title=" " alt="" coords="615,167,707,192"/>
+<area shape="rect" id="Node000001" title="Liquid Crystal Display source file." alt="" coords="324,5,464,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,65,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="324,43,80,96,79,91,323,38"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="89,94,152,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="326,49,167,95,166,90,325,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="176,94,318,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="358,49,284,89,281,84,356,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="342,94,446,120"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="396,46,396,78,391,78,391,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="470,94,592,120"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="429,44,498,84,496,88,427,49"/>
+<area shape="rect" id="Node000007" href="$d8/d8e/esp__lcd_8h.html" title="Liquid Crystal Display header file." alt="" coords="617,94,693,120"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="460,44,603,87,601,92,458,49"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="717,94,793,120"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="465,39,702,90,701,96,464,44"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="609,168,701,193"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="658,120,658,152,652,152,652,120"/>
 </map>
