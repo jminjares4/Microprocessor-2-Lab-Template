@@ -203,7 +203,7 @@ void PWMtask(void *pvParameters){
 	ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1);
     while(1){
         // loop through the song
-        for(int note = 0; note < total_notes; notes++){
+        for(int note = 0; note < total_notes; note++){
             if(freq[note] != REST){
 		        ledc_timer_resume(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);
 				ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,freq[note]);
