@@ -334,7 +334,7 @@ Example 3</h1>
 <div class="line">    ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1);</div>
 <div class="line">    <span class="keywordflow">while</span>(1){</div>
 <div class="line">        <span class="comment">// loop through the song</span></div>
-<div class="line">        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> note = 0; note &lt; total_notes; notes++){</div>
+<div class="line">        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> note = 0; note &lt; total_notes; note++){</div>
 <div class="line">            <span class="keywordflow">if</span>(freq[note] != REST){</div>
 <div class="line">                ledc_timer_resume(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);</div>
 <div class="line">                ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,freq[note]);</div>
