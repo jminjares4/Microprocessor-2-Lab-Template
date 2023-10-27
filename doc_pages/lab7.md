@@ -168,7 +168,7 @@ void app_main(void){
 }
 ~~~
 
-## **Example 3**
+## Example 3
 This example can display the use of PWM on the ESP32 using a buzzer with a center frequency of 2.7k Hz. It will play the tune of mary had a little lamb changing the frequency to play the notes.
 ~~~c
 #include <stdio.h>
