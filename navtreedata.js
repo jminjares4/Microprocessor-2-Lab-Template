@@ -118,74 +118,75 @@ var NAVTREE =
       [ "ESP32 Pinout", "da/d9c/md_doc__pages_2lab7.html#autotoc_md91", null ],
       [ "Example 1", "da/d9c/md_doc__pages_2lab7.html#autotoc_md92", null ],
       [ "Example 2", "da/d9c/md_doc__pages_2lab7.html#autotoc_md93", null ],
-      [ "Lab Template", "da/d9c/md_doc__pages_2lab7.html#autotoc_md94", null ],
-      [ "C helpful functions", "da/d9c/md_doc__pages_2lab7.html#autotoc_md95", null ],
-      [ "Additional Links", "da/d9c/md_doc__pages_2lab7.html#autotoc_md96", null ],
-      [ "Authors", "da/d9c/md_doc__pages_2lab7.html#autotoc_md97", null ],
-      [ "GitHub", "da/d9c/md_doc__pages_2lab7.html#autotoc_md98", null ]
+      [ "<strong>Example 3</strong>", "da/d9c/md_doc__pages_2lab7.html#autotoc_md94", null ],
+      [ "Lab Template", "da/d9c/md_doc__pages_2lab7.html#autotoc_md95", null ],
+      [ "C helpful functions", "da/d9c/md_doc__pages_2lab7.html#autotoc_md96", null ],
+      [ "Additional Links", "da/d9c/md_doc__pages_2lab7.html#autotoc_md97", null ],
+      [ "Authors", "da/d9c/md_doc__pages_2lab7.html#autotoc_md98", null ],
+      [ "GitHub", "da/d9c/md_doc__pages_2lab7.html#autotoc_md99", null ]
     ] ],
     [ "Lab 8 DAC Peripheral", "d2/d74/md_doc__pages_2lab8.html", [
-      [ "Objective", "d2/d74/md_doc__pages_2lab8.html#autotoc_md100", null ],
-      [ "Bonus", "d2/d74/md_doc__pages_2lab8.html#autotoc_md101", null ],
-      [ "ESP32 Pinout", "d2/d74/md_doc__pages_2lab8.html#autotoc_md102", null ],
-      [ "Example", "d2/d74/md_doc__pages_2lab8.html#autotoc_md103", null ],
-      [ "Lab Template", "d2/d74/md_doc__pages_2lab8.html#autotoc_md104", null ],
-      [ "C helpful functions", "d2/d74/md_doc__pages_2lab8.html#autotoc_md105", null ],
-      [ "Additional Links", "d2/d74/md_doc__pages_2lab8.html#autotoc_md106", null ],
-      [ "Authors", "d2/d74/md_doc__pages_2lab8.html#autotoc_md107", null ],
-      [ "GitHub", "d2/d74/md_doc__pages_2lab8.html#autotoc_md108", null ]
+      [ "Objective", "d2/d74/md_doc__pages_2lab8.html#autotoc_md101", null ],
+      [ "Bonus", "d2/d74/md_doc__pages_2lab8.html#autotoc_md102", null ],
+      [ "ESP32 Pinout", "d2/d74/md_doc__pages_2lab8.html#autotoc_md103", null ],
+      [ "Example", "d2/d74/md_doc__pages_2lab8.html#autotoc_md104", null ],
+      [ "Lab Template", "d2/d74/md_doc__pages_2lab8.html#autotoc_md105", null ],
+      [ "C helpful functions", "d2/d74/md_doc__pages_2lab8.html#autotoc_md106", null ],
+      [ "Additional Links", "d2/d74/md_doc__pages_2lab8.html#autotoc_md107", null ],
+      [ "Authors", "d2/d74/md_doc__pages_2lab8.html#autotoc_md108", null ],
+      [ "GitHub", "d2/d74/md_doc__pages_2lab8.html#autotoc_md109", null ]
     ] ],
     [ "Additional Labs", "d9/dbe/md_doc__pages_2additional__labs.html", [
-      [ "Labs", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md111", [
-        [ "Additional Lab GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md112", null ],
+      [ "Labs", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md112", [
+        [ "Additional Lab GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md113", null ],
         [ "Lab 9 WiFi and Internet of Things (IOT)", "d9/dbe/md_doc__pages_2additional__labs.html#LAB_9", [
-          [ "Objective", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md113", null ],
-          [ "Bonus", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md114", null ],
-          [ "Template Code", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md115", null ],
-          [ "Lab 9 GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md116", null ]
+          [ "Objective", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md114", null ],
+          [ "Bonus", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md115", null ],
+          [ "Template Code", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md116", null ],
+          [ "Lab 9 GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md117", null ]
         ] ],
         [ "Lab 10 WiFi and Internet of Things (IOT): Servo Motor Control", "d9/dbe/md_doc__pages_2additional__labs.html#LAB_10", [
-          [ "Objective", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md117", null ],
-          [ "Bonus", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md118", null ],
-          [ "Template Code", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md119", null ],
-          [ "Lab 10 GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md120", null ]
+          [ "Objective", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md118", null ],
+          [ "Bonus", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md119", null ],
+          [ "Template Code", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md120", null ],
+          [ "Lab 10 GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md121", null ]
         ] ],
         [ "Lab 11 WiFi and Internet of Things (IOT): ADC Monitor", "d9/dbe/md_doc__pages_2additional__labs.html#LAB_11", [
-          [ "Goals", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md121", null ],
-          [ "Bonus", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md122", null ],
-          [ "Template Code", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md123", null ],
-          [ "Lab 11 GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md124", null ]
+          [ "Goals", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md122", null ],
+          [ "Bonus", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md123", null ],
+          [ "Template Code", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md124", null ],
+          [ "Lab 11 GitHub", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md125", null ]
         ] ]
       ] ],
-      [ "Authors", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md125", null ]
+      [ "Authors", "d9/dbe/md_doc__pages_2additional__labs.html#autotoc_md126", null ]
     ] ],
     [ "Lab 12 UART and LEDC (PWM)", "d4/d5d/md_doc__pages_2lab12.html", [
-      [ "Objective", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md127", null ],
-      [ "Bonus", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md128", [
-        [ "ESP32 Pinout", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md129", null ],
-        [ "Example", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md130", null ],
-        [ "Lab Template", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md131", null ],
-        [ "C Helpful Functions", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md132", null ],
-        [ "Additional Links", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md133", null ],
-        [ "Author", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md134", null ]
+      [ "Objective", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md128", null ],
+      [ "Bonus", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md129", [
+        [ "ESP32 Pinout", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md130", null ],
+        [ "Example", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md131", null ],
+        [ "Lab Template", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md132", null ],
+        [ "C Helpful Functions", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md133", null ],
+        [ "Additional Links", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md134", null ],
+        [ "Author", "d4/d5d/md_doc__pages_2lab12.html#autotoc_md135", null ]
       ] ]
     ] ],
     [ "Lab 13 Assignment of Task to Cores", "d3/dbe/md_doc__pages_2lab13.html", [
-      [ "Objective", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md136", [
-        [ "ESP32 Pinout", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md137", null ]
+      [ "Objective", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md137", [
+        [ "ESP32 Pinout", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md138", null ]
       ] ],
-      [ "Pre-lab", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md138", null ],
-      [ "Lab Template", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md139", null ],
-      [ "Author", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md140", null ]
+      [ "Pre-lab", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md139", null ],
+      [ "Lab Template", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md140", null ],
+      [ "Author", "d3/dbe/md_doc__pages_2lab13.html#autotoc_md141", null ]
     ] ],
     [ "Lab 14 ADC with LCD", "d8/d9d/md_doc__pages_2lab14.html", [
-      [ "Objective:", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md142", null ],
-      [ "Bonus", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md143", null ],
-      [ "ESP32 Pinout", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md144", null ],
-      [ "LCD Example Code", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md145", null ],
-      [ "Lab Template", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md146", [
-        [ "Warning", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md147", null ],
-        [ "Author:", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md148", null ]
+      [ "Objective:", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md143", null ],
+      [ "Bonus", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md144", null ],
+      [ "ESP32 Pinout", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md145", null ],
+      [ "LCD Example Code", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md146", null ],
+      [ "Lab Template", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md147", [
+        [ "Warning", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md148", null ],
+        [ "Author:", "d8/d9d/md_doc__pages_2lab14.html#autotoc_md149", null ]
       ] ]
     ] ],
     [ "Data Structures", "annotated.html", [
@@ -214,7 +215,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"db/d95/_additional___labs_2_lab__11_2main_8c.html#a4d05aaf14a926c0839fb77a5cb6fc19d"
+"db/d95/_additional___labs_2_lab__11_2main_8c.html#a1559de05c1c2d81a0ae06743397d761b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

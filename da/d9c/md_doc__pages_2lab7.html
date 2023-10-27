@@ -301,6 +301,106 @@ Example 2</h1>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_a2d1c3e7be837352ae08245dc9396e7e1"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a></div><div class="ttdeci">void pwm_setup(void)</div><div class="ttdef"><b>Definition</b> main.c:66</div></div>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_af449d6a027ba3cff41528f12a08dff32"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a></div><div class="ttdeci">void PWMtask(void *pvParameters)</div><div class="ttdef"><b>Definition</b> main.c:48</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md94"></a>
+&lt;strong&gt;Example 3&lt;/strong&gt;</h1>
+<p>This example can display the use of PWM on the ESP32 using a buzzer with a center frequency of 2.7k Hz. It will play the tune of mary had a little lamb changing the frequency to play the notes. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;freertos/queue.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;driver/ledc.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#define BUZZ 21  </span><span class="comment">/* Buzzer */</span><span class="preprocessor"></span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#define MAX_DUTY    4096 </span><span class="comment">/* max duty cycle */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define DUTY50  2048 </span><span class="comment">//50% duty cycle</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Notes for octave meeting the buzzer&#39;s central frequency</span></div>
+<div class="line"><span class="preprocessor">#define E0      2637</span></div>
+<div class="line"><span class="preprocessor">#define D0      2349</span></div>
+<div class="line"><span class="preprocessor">#define C0      2093</span></div>
+<div class="line"><span class="preprocessor">#define F0      2793</span></div>
+<div class="line"><span class="preprocessor">#define G0      3126</span></div>
+<div class="line"><span class="preprocessor">#define A0      3520</span></div>
+<div class="line"><span class="preprocessor">#define B0      3951</span></div>
+<div class="line"><span class="preprocessor">#define REST    0</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* PWM task */</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>(<span class="keywordtype">void</span> *pvParameters){</div>
+<div class="line">    <span class="comment">//Notes of Mary had a little lamb</span></div>
+<div class="line">    <span class="comment">//The 5 at the end is used as an indicator for the end of the array, it&#39;s what allows for the song to run as a while loop instead of a for loop</span></div>
+<div class="line">    <span class="keywordtype">int</span> freq[] = {E0, D0, C0, D0, E0, E0, E0, REST, D0, D0, D0, REST, E0, E0, E0, REST, E0, D0, C0, D0, E0, E0, E0, REST, D0, D0, E0, D0, C0, REST};</div>
+<div class="line">    <span class="keywordtype">int</span> total_notes = <span class="keyword">sizeof</span>(freq)/<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>);</div>
+<div class="line">    <span class="comment">//Set duty cycle to 50%</span></div>
+<div class="line">    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,DUTY50);</div>
+<div class="line">    ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1);</div>
+<div class="line">    <span class="keywordflow">while</span>(1){</div>
+<div class="line">        <span class="comment">// loop through the song</span></div>
+<div class="line">        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> note = 0; note &lt; total_notes; notes++){</div>
+<div class="line">            <span class="keywordflow">if</span>(freq[note] != REST){</div>
+<div class="line">                ledc_timer_resume(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);</div>
+<div class="line">                ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,freq[note]);</div>
+<div class="line">                vTaskDelay(500/portTICK_PERIOD_MS);</div>
+<div class="line">                ledc_timer_pause(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);</div>
+<div class="line">                vTaskDelay(50/portTICK_PERIOD_MS);</div>
+<div class="line">            }<span class="keywordflow">else</span>{</div>
+<div class="line">                ledc_timer_pause(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);</div>
+<div class="line">                vTaskDelay(550/portTICK_PERIOD_MS);</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* Set PWM */</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a>(<span class="keywordtype">void</span>){</div>
+<div class="line">    <span class="comment">/*</span></div>
+<div class="line"><span class="comment">        Set LEDC Timer:</span></div>
+<div class="line"><span class="comment">                        262hz</span></div>
+<div class="line"><span class="comment">                        AUTO_CLK</span></div>
+<div class="line"><span class="comment">                        TIMER_1</span></div>
+<div class="line"><span class="comment">                        LOW_SPEED</span></div>
+<div class="line"><span class="comment">                        13 BIT</span></div>
+<div class="line"><span class="comment">    */</span></div>
+<div class="line">    ledc_timer_config_t timerConfig;</div>
+<div class="line">    timerConfig.duty_resolution = LEDC_TIMER_13_BIT;</div>
+<div class="line">    timerConfig.timer_num = LEDC_TIMER_1;</div>
+<div class="line">    <span class="comment">//Initialized frequency wont be important for PWM with buzzer, since it will be modified to play different notes</span></div>
+<div class="line">    timerConfig.freq_hz = 262;</div>
+<div class="line">    timerConfig.speed_mode = LEDC_LOW_SPEED_MODE;</div>
+<div class="line">    timerConfig.clk_cfg = LEDC_AUTO_CLK;</div>
+<div class="line">    ledc_timer_config(&amp;timerConfig);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/*</span></div>
+<div class="line"><span class="comment">        Set LEDC Channel:</span></div>
+<div class="line"><span class="comment">                        GPIO_21</span></div>
+<div class="line"><span class="comment">                        LOW_SPEED</span></div>
+<div class="line"><span class="comment">                        TIMER_1</span></div>
+<div class="line"><span class="comment">                        INTERRUPT_DISABLE</span></div>
+<div class="line"><span class="comment">                        0 duty</span></div>
+<div class="line"><span class="comment">                        Max duty</span></div>
+<div class="line"><span class="comment">    */</span></div>
+<div class="line">    ledc_channel_config_t channelConfig;</div>
+<div class="line">    channelConfig.gpio_num = BUZZ;</div>
+<div class="line">    channelConfig.speed_mode = LEDC_LOW_SPEED_MODE;</div>
+<div class="line">    channelConfig.channel = LEDC_CHANNEL_1;</div>
+<div class="line">    channelConfig.intr_type = LEDC_INTR_DISABLE;</div>
+<div class="line">    channelConfig.timer_sel = LEDC_TIMER_1;</div>
+<div class="line">    channelConfig.duty = 0;</div>
+<div class="line">    channelConfig.hpoint = MAX_DUTY;</div>
+<div class="line">    ledc_channel_config(&amp;channelConfig);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="../../dd/d74/_additional___labs_2_lab__10_2main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* set PWM*/</span></div>
+<div class="line">    <a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#a2d1c3e7be837352ae08245dc9396e7e1">pwm_setup</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Create Tasks */</span></div>
+<div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>, <span class="stringliteral">&quot;PWMtask&quot;</span>, 2048, NULL, 5, NULL);</div>
+<div class="line"> </div>
+<div class="line">}</div>
+</div><!-- fragment --> <blockquote class="doxtable">
+<p>&zwj;Written by <a href="https://github.com/JosGranados">Jose Granados</a> </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md95"></a>
 Lab Template</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -358,7 +458,7 @@ Lab Template</h1>
 <div class="line">    xTaskCreate(&amp;<a class="code hl_function" href="../../dc/d12/_lab__7_2main_2main_8c.html#af449d6a027ba3cff41528f12a08dff32">PWMtask</a>, <span class="stringliteral">&quot;PWMtask&quot;</span>, 2048, NULL, 5, NULL);</div>
 <div class="line">}</div>
 <div class="ttc" id="a_lab__7_2main_2main_8c_html_a1dbfc3fa6e8af6057fc4ee35f29c064f"><div class="ttname"><a href="../../dc/d12/_lab__7_2main_2main_8c.html#a1dbfc3fa6e8af6057fc4ee35f29c064f">duty_queue</a></div><div class="ttdeci">QueueHandle_t duty_queue</div><div class="ttdef"><b>Definition</b> main.c:34</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md95"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md96"></a>
 C helpful functions</h1>
 <p>Espressif ADC driver requires the following structures and enumerations in order to set the correct pin and operation. There are a few GPIOs that are avaiable to use analog converter. Depending on the ESP32, there are slight difference between the pinout so please verify the hardware. </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
 <div class="line">    ADC1_CHANNEL_0 = 0, </div>
@@ -426,14 +526,14 @@ C helpful functions</h1>
 <div class="line">    } flags;                        </div>
 <div class="line">} ledc_channel_config_t;</div>
 </div><!-- fragment --><p> Additionally, <code>ledc_set_duty(ledc_mode_t speed_mode, ledc_channel_t channel, uint32_t duty)</code> is use to set the duty cycle and to actually update the duty you need to use <code>ledc_update_duty(ledc_mode_t speed_mode, ledc_channel_t channel)</code>. Lastly, <code>LEDC</code> driver allows users to control the operation of the timer: <code>ledc_timer_pause(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code> and <code>ledc_timer_resume(ledc_mode_t speed_mode, ledc_timer_t timer_sel)</code>.</p>
-<h1><a class="anchor" id="autotoc_md96"></a>
+<h1><a class="anchor" id="autotoc_md97"></a>
 Additional Links</h1>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#">Espressif GPIO Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html">Espressif ADC Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html">Espressif LEDC Driver API</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md97"></a>
+<h1><a class="anchor" id="autotoc_md98"></a>
 Authors</h1>
 <ul>
 <li><a href="https://github.com/jminjares4"><b>Jesus Minjares</b></a><ul>
@@ -447,7 +547,7 @@ Authors</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md98"></a>
+<h1><a class="anchor" id="autotoc_md99"></a>
 GitHub</h1>
 <div align="left"> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7"><img src="../../github.png" alt="" class="inline"/> </a> <a href="https://github.com/jminjares4/Microprocessor-2-Lab-Template/tree/main/Lab_7">Lab 7 Repository</a> </div><p><span class="next_section_button"> Read Next: <a class="el" href="../../d2/d74/md_doc__pages_2lab8.html">Lab 8</a> </span> </p>
 </div></div><!-- contents -->

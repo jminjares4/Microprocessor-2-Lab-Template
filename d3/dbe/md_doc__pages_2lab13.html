@@ -124,8 +124,8 @@ $(document).ready(function(){initNavTree('d3/dbe/md_doc__pages_2lab13.html','../
   <div class="headertitle"><div class="title">Lab 13 Assignment of Task to Cores</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md135"></a> </p>
-<h1><a class="anchor" id="autotoc_md136"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md136"></a> </p>
+<h1><a class="anchor" id="autotoc_md137"></a>
 Objective</h1>
 <p>The objective of this lab is to learn how to assign tasks to each of the cores manually. Up until now, you have been making tasks, but never had any control of the actual CPU core. In this lab, you will be assigning each task to the CPU core and will be using a semaphore for some of the tasks!</p>
 <table class="markdownTable">
@@ -142,7 +142,7 @@ Objective</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">Task 5   </td><td class="markdownTableBodyLeft">Core 0   </td><td class="markdownTableBodyLeft">2 seconds   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md137"></a>
+<h2><a class="anchor" id="autotoc_md138"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -168,7 +168,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md138"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md139"></a>
 Pre-lab</h1>
 <p>Analyze the example code and demonstrate some understanding from the sample code below.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
@@ -208,7 +208,7 @@ Pre-lab</h1>
 <div class="ttc" id="a_additional___labs_2_lab__13_2main_8c_html_a97a983ca35ed48764aa512b98c8961fe"><div class="ttname"><a href="../../da/dc5/_additional___labs_2_lab__13_2main_8c.html#a97a983ca35ed48764aa512b98c8961fe">Task_code1</a></div><div class="ttdeci">void Task_code1(void *parameter)</div><div class="ttdef"><b>Definition</b> main.c:28</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__13_2main_8c_html_aa8a74d99e32c031fea96c5a186b717ae"><div class="ttname"><a href="../../da/dc5/_additional___labs_2_lab__13_2main_8c.html#aa8a74d99e32c031fea96c5a186b717ae">Task1</a></div><div class="ttdeci">TaskHandle_t Task1</div><div class="ttdef"><b>Definition</b> main.c:7</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__13_2main_8c_html_af2b87c1936e7f8619dfb963637002fcc"><div class="ttname"><a href="../../da/dc5/_additional___labs_2_lab__13_2main_8c.html#af2b87c1936e7f8619dfb963637002fcc">Task_code2</a></div><div class="ttdeci">void Task_code2(void *parameter)</div><div class="ttdef"><b>Definition</b> main.c:37</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md139"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md140"></a>
 Lab Template</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -332,7 +332,7 @@ Lab Template</h1>
 <div class="ttc" id="a_additional___labs_2_lab__13_2main_8c_html_a9e5e3e888bb62cf7e43bb977cf763643"><div class="ttname"><a href="../../da/dc5/_additional___labs_2_lab__13_2main_8c.html#a9e5e3e888bb62cf7e43bb977cf763643">Task4</a></div><div class="ttdeci">TaskHandle_t Task4</div><div class="ttdef"><b>Definition</b> main.c:10</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__13_2main_8c_html_ab0575f4da77fdce9453edd90d8f1c969"><div class="ttname"><a href="../../da/dc5/_additional___labs_2_lab__13_2main_8c.html#ab0575f4da77fdce9453edd90d8f1c969">mySemaphore4</a></div><div class="ttdeci">SemaphoreHandle_t mySemaphore4</div><div class="ttdef"><b>Definition</b> main.c:14</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__13_2main_8c_html_ab4de63e5c00d5d72d8215b3c4732cbc2"><div class="ttname"><a href="../../da/dc5/_additional___labs_2_lab__13_2main_8c.html#ab4de63e5c00d5d72d8215b3c4732cbc2">Task_code5</a></div><div class="ttdeci">void Task_code5(void *parameter)</div><div class="ttdef"><b>Definition</b> main.c:79</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md140"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md141"></a>
 Author</h1>
 <ul>
 <li>Christopher Mendoza<ul>

@@ -124,8 +124,8 @@ $(document).ready(function(){initNavTree('d4/d5d/md_doc__pages_2lab12.html','../
   <div class="headertitle"><div class="title">Lab 12 UART and LEDC (PWM)</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md126"></a> </p>
-<h1><a class="anchor" id="autotoc_md127"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md127"></a> </p>
+<h1><a class="anchor" id="autotoc_md128"></a>
 Objective</h1>
 <p>The objective for this lab is to understand how to use <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a> UART driver. Universal Asynchronous Receiver/Transmitter is a peripherl used to receive and send data, this protocol is a serial communication type. The ESP32 has three UART channels: <em><b>UART 0, UART 1, UART 2.</b></em> In this configuration we will use <em><b>UART 1</b></em> which allows you to select custom pins for the RX and TX setup. Students must receive information from the sender using UART and control the PWM peripheral to dim and brighten an LED to show LOW, MEDIUM and HIGH.</p>
 <table class="markdownTable">
@@ -144,7 +144,7 @@ Objective</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">4   </td><td class="markdownTableBodyLeft">RX   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md128"></a>
+<h1><a class="anchor" id="autotoc_md129"></a>
 Bonus</h1>
 <ul>
 <li>Undergrad Bonus<ul>
@@ -156,7 +156,7 @@ Bonus</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md129"></a>
+<h2><a class="anchor" id="autotoc_md130"></a>
 ESP32 Pinout</h2>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -182,7 +182,7 @@ ESP32 Pinout</h2>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md130"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md131"></a>
 Example</h2>
 <p>Here is an example of a UART receiving data and printing Hello World.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -264,7 +264,7 @@ Example</h2>
 <div class="ttc" id="a_additional___labs_2_lab__12_2main_8c_html_a49dcd593bb4dd55620e7c08581f8e2ad"><div class="ttname"><a href="../../d1/d29/_additional___labs_2_lab__12_2main_8c.html#a49dcd593bb4dd55620e7c08581f8e2ad">UART_NUM</a></div><div class="ttdeci">#define UART_NUM</div><div class="ttdef"><b>Definition</b> main.c:10</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__12_2main_8c_html_a6821bafc3c88dfb2e433a095df9940c6"><div class="ttname"><a href="../../d1/d29/_additional___labs_2_lab__12_2main_8c.html#a6821bafc3c88dfb2e433a095df9940c6">BUF_SIZE</a></div><div class="ttdeci">#define BUF_SIZE</div><div class="ttdef"><b>Definition</b> main.c:11</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__12_2main_8c_html_afb0dda7d617e2076f8ea7d0fc28984e2"><div class="ttname"><a href="../../d1/d29/_additional___labs_2_lab__12_2main_8c.html#afb0dda7d617e2076f8ea7d0fc28984e2">TASK_MEMORY</a></div><div class="ttdeci">#define TASK_MEMORY</div><div class="ttdef"><b>Definition</b> main.c:12</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md131"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md132"></a>
 Lab Template</h2>
 <p>Here is the Lab Template need for the completion of the Lab. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
@@ -314,7 +314,7 @@ Lab Template</h2>
 <div class="ttc" id="a_additional___labs_2_lab__12_2main_8c_html_a5687d704551207929e6a5bab14b61f50"><div class="ttname"><a href="../../d1/d29/_additional___labs_2_lab__12_2main_8c.html#a5687d704551207929e6a5bab14b61f50">sledc_setup</a></div><div class="ttdeci">void sledc_setup(void)</div><div class="ttdef"><b>Definition</b> main.c:21</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__12_2main_8c_html_ab603ca098576a789b1b97f491b994de4"><div class="ttname"><a href="../../d1/d29/_additional___labs_2_lab__12_2main_8c.html#ab603ca098576a789b1b97f491b994de4">LEDQueue</a></div><div class="ttdeci">QueueHandle_t LEDQueue</div><div class="ttdef"><b>Definition</b> main.c:14</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__12_2main_8c_html_aedaa5a6c9f9ab4832e4a9cca5be5498a"><div class="ttname"><a href="../../d1/d29/_additional___labs_2_lab__12_2main_8c.html#aedaa5a6c9f9ab4832e4a9cca5be5498a">LEDC_task</a></div><div class="ttdeci">void LEDC_task(void *pvParameters)</div><div class="ttdef"><b>Definition</b> main.c:25</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md132"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md133"></a>
 C Helpful Functions</h2>
 <p>For this lab there are additional functions from <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a> that are important to use the UART peripheral. As previously mentioned, ESP32 has 3 UART channels. So to be able to send information through UART you need to use the uart_write_bytes() function, here is an example of how to use it from the <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/gpio.html#"><code>Espressif</code></a> documentation.</p>
 <div class="fragment"><div class="line"><span class="comment">/* Write Data to UART. */</span></div>
@@ -344,14 +344,14 @@ C Helpful Functions</h2>
 <p><img src="../../Device_manager.png" alt="Device Manager" class="inline"/></p>
 <p><img src="../../Putty_Configuration.png" alt="PuTTy Configuration" class="inline"/></p>
 <p><img src="../../Putty_Configuration_1.png" alt="PuTTy Configuration 1" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md133"></a>
+<h2><a class="anchor" id="autotoc_md134"></a>
 Additional Links</h2>
 <ul>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/uart.html#_CPPv416uart_write_bytes11uart_port_tPKv6size_t">Espressif UART Driver API</a></li>
 <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/ledc.html">Espressif LEDC Driver API</a></li>
 <li><a href="https://www.gme.cz/data/attachments/dsh.772-148.1.pdf">HC-05 Bluetooth Module</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md134"></a>
+<h2><a class="anchor" id="autotoc_md135"></a>
 Author</h2>
 <ul>
 <li>Irvin Ortiz<ul>

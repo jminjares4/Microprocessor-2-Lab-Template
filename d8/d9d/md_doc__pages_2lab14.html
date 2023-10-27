@@ -124,13 +124,13 @@ $(document).ready(function(){initNavTree('d8/d9d/md_doc__pages_2lab14.html','../
   <div class="headertitle"><div class="title">Lab 14 ADC with LCD</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md141"></a> </p>
-<h1><a class="anchor" id="autotoc_md142"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md142"></a> </p>
+<h1><a class="anchor" id="autotoc_md143"></a>
 Objective:</h1>
 <ul>
 <li>The objective of this lab is to utilize the <code>ADC peripheral</code> alongside the <code>LCD driver</code> to create a <code>digital multimeter (DMM)</code>. The LCD driver was provided by the main author of this documentation, <a href="https://github.com/jminjares4"><code>Jesus Minjares</code></a>, the driver can be found here: <a href="https://github.com/jminjares4/ESP32-LCD-1602-Driver"><code>LCD Driver</code></a>. </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md143"></a>
+<h1><a class="anchor" id="autotoc_md144"></a>
 Bonus</h1>
 <ul>
 <li><em><b>Undergrad Bonus:</b></em><ul>
@@ -142,7 +142,7 @@ Bonus</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md144"></a>
+<h1><a class="anchor" id="autotoc_md145"></a>
 ESP32 Pinout</h1>
 <div class="fragment"><div class="line">                                        +-----------------------+</div>
 <div class="line">                                        | O      | USB |      O |</div>
@@ -168,7 +168,7 @@ ESP32 Pinout</h1>
 <div class="line">                                        |  |__|__|  |__|  |__|  |</div>
 <div class="line">                                        | O                   O |</div>
 <div class="line">                                        +-----------------------+</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md145"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md146"></a>
 LCD Example Code</h1>
 <p>This is an example code that demostrates how to utilize the LCD driver. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -203,7 +203,7 @@ LCD Example Code</h1>
 <div class="ttc" id="aesp__lcd_8c_html_aabda8e6338496228eac57ac7216f652f"><div class="ttname"><a href="../../d1/dea/esp__lcd_8c.html#aabda8e6338496228eac57ac7216f652f">lcdClear</a></div><div class="ttdeci">lcd_err_t lcdClear(lcd_t *const lcd)</div><div class="ttdoc">Clear LCD screen Detailed description starts here.</div><div class="ttdef"><b>Definition</b> esp_lcd.c:306</div></div>
 <div class="ttc" id="aesp__lcd_8c_html_ab19f1b5ac801f10a4913596be6cff3e7"><div class="ttname"><a href="../../d1/dea/esp__lcd_8c.html#ab19f1b5ac801f10a4913596be6cff3e7">lcdDefault</a></div><div class="ttdeci">void lcdDefault(lcd_t *const lcd)</div><div class="ttdoc">LCD default constructor.</div><div class="ttdef"><b>Definition</b> esp_lcd.c:154</div></div>
 <div class="ttc" id="astructlcd__t_html"><div class="ttname"><a href="../../df/db0/structlcd__t.html">lcd_t</a></div><div class="ttdoc">LCD object.</div><div class="ttdef"><b>Definition</b> esp_lcd.h:48</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md146"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md147"></a>
 Lab Template</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
@@ -244,12 +244,12 @@ Lab Template</h1>
 <div class="line">}</div>
 <div class="ttc" id="a_additional___labs_2_lab__14_2main_8c_html_a7c0dcc5e320f3de8829e900c8ced38ca"><div class="ttname"><a href="../../de/d2a/_additional___labs_2_lab__14_2main_8c.html#a7c0dcc5e320f3de8829e900c8ced38ca">sweeper_function</a></div><div class="ttdeci">void sweeper_function(uint32_t val)</div><div class="ttdef"><b>Definition</b> main.c:12</div></div>
 <div class="ttc" id="a_additional___labs_2_lab__14_2main_8c_html_ac350db5dd3b5e4e2be490eb5f61538d2"><div class="ttname"><a href="../../de/d2a/_additional___labs_2_lab__14_2main_8c.html#ac350db5dd3b5e4e2be490eb5f61538d2">ADC_setup</a></div><div class="ttdeci">void ADC_setup(void)</div><div class="ttdef"><b>Definition</b> main.c:8</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md147"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md148"></a>
 Warning</h2>
 <p>Before anything you must add the library for the LCD driver onto the <code>CMakeLists.txt</code> which is found in the lab's main folder. This would be how to add it: </p><div class="fragment"><div class="line">idf_component_register(SRCS <span class="stringliteral">&quot;main.c&quot;</span></div>
 <div class="line">                            <span class="stringliteral">&quot;driver/esp_lcd.c&quot;</span></div>
 <div class="line">                    INCLUDE_DIRS <span class="stringliteral">&quot;.&quot;</span>)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md148"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md149"></a>
 Author:</h2>
 <ul>
 <li><a href="https://github.com/JorgeMinjares"><b>Jorge Minjares</b></a><br  />
