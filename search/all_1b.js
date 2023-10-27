@@ -18,10 +18,9 @@ var searchData=
   ['state_15',['state',['../df/db0/structlcd__t.html#a26160a6755e92b432e480bae30ee3a25',1,'lcd_t::state'],['../d0/dbe/structled__t.html#a719ba949d57a87da8cb97015606bf443',1,'led_t::state']]],
   ['state_5ft_16',['state_t',['../db/da0/led_8h.html#aa0aafed44fec19806d8f9ad834be1248',1,'led.h']]],
   ['str_17',['str',['../dd/d65/struct_undergaduate__t.html#a917d6133c8954c1882d2661b0120a810',1,'Undergaduate_t::str'],['../d5/de6/struct_graduate__t.html#a347079ca97dff76cc7845171fb3f2075',1,'Graduate_t::str']]],
-  ['strong_20example_203_20strong_18',['&lt;strong&gt;Example 3&lt;/strong&gt;',['../da/d9c/md_doc__pages_2lab7.html#autotoc_md94',1,'']]],
-  ['studentid_19',['studentID',['../d5/de6/struct_graduate__t.html#a3ad3bc5e3dbcdfac8e0a68528cf76f8a',1,'Graduate_t']]],
-  ['studentname_20',['studentName',['../d5/de6/struct_graduate__t.html#aa12f536043cf1935e0a57b04ec2922ba',1,'Graduate_t']]],
-  ['submodules_21',['Submodules',['../index.html#autotoc_md4',1,'']]],
-  ['sweep_22',['sweep',['../d3/db7/_lab__0_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c'],['../d7/d62/_lab__1_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c']]],
-  ['sweeper_5ffunction_23',['sweeper_function',['../de/d2a/_additional___labs_2_lab__14_2main_8c.html#a7c0dcc5e320f3de8829e900c8ced38ca',1,'main.c']]]
+  ['studentid_18',['studentID',['../d5/de6/struct_graduate__t.html#a3ad3bc5e3dbcdfac8e0a68528cf76f8a',1,'Graduate_t']]],
+  ['studentname_19',['studentName',['../d5/de6/struct_graduate__t.html#aa12f536043cf1935e0a57b04ec2922ba',1,'Graduate_t']]],
+  ['submodules_20',['Submodules',['../index.html#autotoc_md4',1,'']]],
+  ['sweep_21',['sweep',['../d3/db7/_lab__0_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c'],['../d7/d62/_lab__1_2main_2main_8c.html#ae2b25158970fc0a4d4c4f291b1f747f7',1,'sweep(uint8_t *led, int size):&#160;main.c']]],
+  ['sweeper_5ffunction_22',['sweeper_function',['../de/d2a/_additional___labs_2_lab__14_2main_8c.html#a7c0dcc5e320f3de8829e900c8ced38ca',1,'main.c']]]
 ];

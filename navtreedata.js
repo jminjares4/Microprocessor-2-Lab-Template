@@ -118,7 +118,7 @@ var NAVTREE =
       [ "ESP32 Pinout", "da/d9c/md_doc__pages_2lab7.html#autotoc_md91", null ],
       [ "Example 1", "da/d9c/md_doc__pages_2lab7.html#autotoc_md92", null ],
       [ "Example 2", "da/d9c/md_doc__pages_2lab7.html#autotoc_md93", null ],
-      [ "<strong>Example 3</strong>", "da/d9c/md_doc__pages_2lab7.html#autotoc_md94", null ],
+      [ "Example 3", "da/d9c/md_doc__pages_2lab7.html#autotoc_md94", null ],
       [ "Lab Template", "da/d9c/md_doc__pages_2lab7.html#autotoc_md95", null ],
       [ "C helpful functions", "da/d9c/md_doc__pages_2lab7.html#autotoc_md96", null ],
       [ "Additional Links", "da/d9c/md_doc__pages_2lab7.html#autotoc_md97", null ],
