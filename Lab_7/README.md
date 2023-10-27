@@ -176,6 +176,107 @@ void app_main(void){
 }
 ~~~
 
+## **Example 3**
+This example can display the use of PWM on the ESP32 using a buzzer with a center frequency of 2.7k Hz. It will play the tune of mary had a little lamb changing the frequency to play the notes.
+~~~c
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/queue.h"
+#include <driver/ledc.h>
+
+#define BUZZ 21  /* Buzzer */
+
+#define MAX_DUTY    4096 /* max duty cycle */
+#define DUTY50	2048 //50% duty cycle
+
+// Notes for octave meeting the buzzer's central frequency
+#define E0	    2637
+#define D0	    2349
+#define C0	    2093
+#define F0	    2793
+#define G0	    3126
+#define A0	    3520
+#define B0	    3951
+#define REST    0
+
+/* PWM task */
+void PWMtask(void *pvParameters){
+    //Notes of Mary had a little lamb
+    //The 5 at the end is used as an indicator for the end of the array, it's what allows for the song to run as a while loop instead of a for loop
+    int freq[] = {E0, D0, C0, D0, E0, E0, E0, REST, D0, D0, D0, REST, E0, E0, E0, REST, E0, D0, C0, D0, E0, E0, E0, REST, D0, D0, E0, D0, C0, REST};
+    int total_notes = sizeof(freq)/sizeof(int);
+    //Set duty cycle to 50%
+    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,DUTY50);
+	ledc_update_duty(LEDC_LOW_SPEED_MODE,LEDC_CHANNEL_1);
+    while(1){
+        // loop through the song
+        for(int note = 0; note < total_notes; notes++){
+            if(freq[note] != REST){
+		        ledc_timer_resume(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);
+				ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1,freq[note]);
+				vTaskDelay(500/portTICK_PERIOD_MS);
+				ledc_timer_pause(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);
+				vTaskDelay(50/portTICK_PERIOD_MS);
+            }else{
+                ledc_timer_pause(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);
+				vTaskDelay(550/portTICK_PERIOD_MS);
+            }
+        }
+    }
+}
+
+/* Set PWM */
+void pwm_setup(void){
+    /*
+        Set LEDC Timer:
+                        262hz
+                        AUTO_CLK
+                        TIMER_1
+                        LOW_SPEED
+                        13 BIT
+    */
+    ledc_timer_config_t timerConfig;
+    timerConfig.duty_resolution = LEDC_TIMER_13_BIT;
+    timerConfig.timer_num = LEDC_TIMER_1;
+    //Initialized frequency wont be important for PWM with buzzer, since it will be modified to play different notes
+    timerConfig.freq_hz = 262;
+    timerConfig.speed_mode = LEDC_LOW_SPEED_MODE;
+    timerConfig.clk_cfg = LEDC_AUTO_CLK;
+    ledc_timer_config(&timerConfig);
+
+    /*
+        Set LEDC Channel:
+                        GPIO_21
+                        LOW_SPEED
+                        TIMER_1
+                        INTERRUPT_DISABLE
+                        0 duty
+                        Max duty
+    */
+    ledc_channel_config_t channelConfig;
+    channelConfig.gpio_num = BUZZ;
+    channelConfig.speed_mode = LEDC_LOW_SPEED_MODE;
+    channelConfig.channel = LEDC_CHANNEL_1;
+    channelConfig.intr_type = LEDC_INTR_DISABLE;
+    channelConfig.timer_sel = LEDC_TIMER_1;
+    channelConfig.duty = 0;
+    channelConfig.hpoint = MAX_DUTY;
+    ledc_channel_config(&channelConfig);
+}
+
+void app_main(void){
+
+    /* set PWM*/
+    pwm_setup();
+
+    /* Create Tasks */
+    xTaskCreate(&PWMtask, "PWMtask", 2048, NULL, 5, NULL);
+
+}
+~~~
+> Written by [Jose Granados](https://github.com/JosGranados)
+
 ## **Lab Template**
 ~~~c
 #include <stdio.h>
